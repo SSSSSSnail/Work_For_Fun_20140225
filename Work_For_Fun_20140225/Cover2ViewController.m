@@ -1,24 +1,24 @@
 //
-//  CoverViewController.m
+//  Cover2ViewController.m
 //  Work_For_Fun_20140225
 //
-//  Created by Snail on 26/2/14.
+//  Created by Snail on 1/3/14.
 //  Copyright (c) 2014 Snail. All rights reserved.
 //
 
-#import "CoverViewController.h"
+#import "Cover2ViewController.h"
 
-@interface CoverViewController ()
+@interface Cover2ViewController ()
 
 @end
 
-@implementation CoverViewController
+@implementation Cover2ViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        // Custom initialization
     }
     return self;
 }
@@ -26,9 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UISwipeGestureRecognizer *swipeGes = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeup:)];
+	UISwipeGestureRecognizer *swipeGes = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeup:)];
     swipeGes.direction = UISwipeGestureRecognizerDirectionUp;
     [self.view addGestureRecognizer:swipeGes];
+
+    [self performSelector:@selector(swipeup:) withObject:nil afterDelay:3.0f];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,7 +41,14 @@
 
 - (void)swipeup:(UISwipeGestureRecognizer *)recognizer
 {
-    [self performSegueWithIdentifier:@"modalToCover2" sender:self];
+    [self modeToSelectCase];
 }
+
+- (void)modeToSelectCase
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(swipeup:) object:nil];
+    [self performSegueWithIdentifier:@"modalToSelectCase" sender:self];
+}
+
 
 @end

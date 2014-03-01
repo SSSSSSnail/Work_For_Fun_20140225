@@ -12,20 +12,33 @@
 
 typedef NS_ENUM(NSUInteger, ScrollSubButtonTag)
 {
-    HZQKButton = 10,
-    LCJCButton = 11,
-    ZDJGButton = 12,
-    ZLFAButton = 13,
-    LCJJButton = 14
+    HZQKButton1 = 10, //患者情况
+    LCJCButton1 = 11, //临床检查
+    ZDJGButton1 = 12, //诊断结果
+    ZLFAButton1 = 13, //治疗方案
+    LCJJButton1 = 14, //临床结局
+
+    BSHGButton2 = 15, //病史回顾
+    LCJCButton2 = 16, //临床检查
+    ZDJGButton2 = 17, //诊断结果
+    ZLFAButton2 = 18, //治疗方案
+    LCJJButton2 = 19  //临床结局
 };
 
 typedef NS_ENUM(NSUInteger, ScrollSubViewTag)
 {
-    HZQKView = 110,
-    LCJCView = 111,
-    ZDJGView = 112,
-    ZLFAView = 113,
-    LCJJView = 114
+    HZQKView1 = 110, //患者情况
+    LCJCView1 = 111, //临床检查
+    ZDJGView1 = 112, //诊断结果
+    ZLFAView1 = 113, //治疗方案
+    LCJJView1 = 114, //临床结局
+
+    BSHGView2 = 115, //病史回顾
+    LCJCView2 = 116, //临床检查
+    ZDJGView2 = 117, //诊断结果
+    ZLFAView2 = 118, //治疗方案
+    LCJJView2 = 119  //临床结局
+
 };
 
 static float const DETAILVIEWHEIGHT = 768.0f;
@@ -62,18 +75,31 @@ static float const DETAILVIEWIDTH = 877.0f;
     [super viewDidLoad];
 
     self.masterTagArray = @[
-                            [NSNumber numberWithInt:HZQKButton],
-                            [NSNumber numberWithInt:LCJCButton],
-                            [NSNumber numberWithInt:ZDJGButton],
-                            [NSNumber numberWithInt:ZLFAButton],
-                            [NSNumber numberWithInt:LCJJButton]
+                            [NSNumber numberWithInt:HZQKButton1],
+                            [NSNumber numberWithInt:LCJCButton1],
+                            [NSNumber numberWithInt:ZDJGButton1],
+                            [NSNumber numberWithInt:ZLFAButton1],
+                            [NSNumber numberWithInt:LCJJButton1],
+
+                            [NSNumber numberWithInt:BSHGButton2],
+                            [NSNumber numberWithInt:LCJCButton2],
+                            [NSNumber numberWithInt:ZDJGButton2],
+                            [NSNumber numberWithInt:ZLFAButton2],
+                            [NSNumber numberWithInt:LCJJButton2]
                             ];
+
     self.detailTagArray = @[
-                            [NSNumber numberWithInt:HZQKView],
-                            [NSNumber numberWithInt:LCJCView],
-                            [NSNumber numberWithInt:ZDJGView],
-                            [NSNumber numberWithInt:ZLFAView],
-                            [NSNumber numberWithInt:LCJJView]
+                            [NSNumber numberWithInt:HZQKView1],
+                            [NSNumber numberWithInt:LCJCView1],
+                            [NSNumber numberWithInt:ZDJGView1],
+                            [NSNumber numberWithInt:ZLFAView1],
+                            [NSNumber numberWithInt:LCJJView1],
+
+                            [NSNumber numberWithInt:BSHGView2],
+                            [NSNumber numberWithInt:LCJCView2],
+                            [NSNumber numberWithInt:ZDJGView2],
+                            [NSNumber numberWithInt:ZLFAView2],
+                            [NSNumber numberWithInt:LCJJView2]
                             ];
 
     self.masterButtonArray = [NSMutableArray array];
@@ -99,17 +125,20 @@ static float const DETAILVIEWIDTH = 877.0f;
         }
     }
 
+
+
+
     for (UIButton *scrollSubButton in _masterButtonArray) {
-        if (scrollSubButton.tag == 10) {
-            scrollSubButton.highlighted = YES;
-        }
-        if (scrollSubButton.tag != 11) {
-            scrollSubButton.enabled = NO;
-        }
+//        if (scrollSubButton.tag == 10) {
+//            scrollSubButton.highlighted = YES;
+//        }
+//        if (scrollSubButton.tag != 11) {
+//            scrollSubButton.enabled = NO;
+//        }
     }
 
     for (LLUIView *scrollSubView in _detailViewArray) {
-        NSLog(@"scrollSubView.tag: %d", scrollSubView.tag);
+        NSLog(@"scrollSubView.tag: %ld", scrollSubView.tag);
         scrollSubView.frame = CGRectMake(0.0f, DETAILVIEWHEIGHT*(scrollSubView.tag - 110), DETAILVIEWIDTH, DETAILVIEWHEIGHT);
         scrollSubView.LLDelegate = self;
     }
@@ -134,16 +163,16 @@ static float const DETAILVIEWIDTH = 877.0f;
     [self refreshButtonAndView:sender.tag - 10];
 }
 
-- (void)refreshButtonAndView:(int)toIndex
+- (void)refreshButtonAndView:(long)toIndex
 {
-    NSLog(@"toIndex: %d", toIndex);
-    UIButton *fromButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 9];
-    fromButton.highlighted = NO;
-    UIButton *toButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 10];
-    toButton.highlighted = YES;
-    toButton.enabled = NO;
-    UIButton *nextButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 11];
-    nextButton.enabled = YES;
+//    NSLog(@"toIndex: %ld", toIndex);
+//    UIButton *fromButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 9];
+//    fromButton.highlighted = NO;
+//    UIButton *toButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 10];
+//    toButton.highlighted = YES;
+//    toButton.enabled = NO;
+//    UIButton *nextButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 11];
+//    nextButton.enabled = YES;
 
     [_detailScrollVIew scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 }
