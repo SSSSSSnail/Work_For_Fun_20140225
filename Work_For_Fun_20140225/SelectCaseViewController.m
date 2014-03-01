@@ -10,6 +10,11 @@
 
 @interface SelectCaseViewController ()
 
+@property (assign, nonatomic) NSInteger selectedCase;
+
+- (IBAction)clickCaseButton:(UIButton *)sender;
+- (IBAction)clickStartButton:(UIButton *)sender;
+
 @end
 
 @implementation SelectCaseViewController
@@ -26,9 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UISwipeGestureRecognizer *swipeGes = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeup:)];
-    swipeGes.direction = UISwipeGestureRecognizerDirectionUp;
-    [self.view addGestureRecognizer:swipeGes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,9 +39,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)swipeup:(UISwipeGestureRecognizer *)recognizer
-{
-    [self performSegueWithIdentifier:@"modalToMain" sender:self];
+- (IBAction)clickCaseButton:(UIButton *)sender {
+    sender.selected = YES;
+    _selectedCase = 1;
 }
 
+- (IBAction)clickStartButton:(UIButton *)sender {
+    if (_selectedCase == 1) {
+        [self performSegueWithIdentifier:@"modalToMain" sender:self];
+    } else {
+        NSLog(@"ALERT VIEW"); //TODO
+    }
+}
 @end
