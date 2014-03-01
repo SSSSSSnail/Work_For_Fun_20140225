@@ -224,6 +224,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Snail;
 				TargetAttributes = {
+					07AF0AA818BCDC8C002356CE = {
+						DevelopmentTeam = PMEG45YRP4;
+					};
 					07AF0AC918BCDC8C002356CE = {
 						TestTargetID = 07AF0AA818BCDC8C002356CE;
 					};
