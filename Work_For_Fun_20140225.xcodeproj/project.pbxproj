@@ -42,6 +42,7 @@
 		07AF0B3118BF0A85002356CE /* LLUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AF0B3018BF0A85002356CE /* LLUIView.m */; };
 		07AF0B3418BF0A9E002356CE /* LLUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AF0B3318BF0A9E002356CE /* LLUIButton.m */; };
 		07AF0B3718BF0BFE002356CE /* LLGlobalContant.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AF0B3618BF0BFE002356CE /* LLGlobalContant.m */; };
+		CE03F89D18C616F500EB05EC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE03F89C18C616F500EB05EC /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		07AF0B3318BF0A9E002356CE /* LLUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLUIButton.m; sourceTree = "<group>"; };
 		07AF0B3518BF0BFE002356CE /* LLGlobalContant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLGlobalContant.h; sourceTree = "<group>"; };
 		07AF0B3618BF0BFE002356CE /* LLGlobalContant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLGlobalContant.m; sourceTree = "<group>"; };
+		CE03F89C18C616F500EB05EC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 		07AF0AB218BCDC8C002356CE /* Work_For_Fun_20140225 */ = {
 			isa = PBXGroup;
 			children = (
+				CE03F89B18C616E600EB05EC /* Settings */,
 				0750C73618C1B13A00640D1F /* images */,
 				07AF0ABB18BCDC8C002356CE /* AppDelegate.h */,
 				07AF0ABC18BCDC8C002356CE /* AppDelegate.m */,
@@ -233,6 +236,14 @@
 				07AF0AD418BCDC8C002356CE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CE03F89B18C616E600EB05EC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CE03F89C18C616F500EB05EC /* Settings.bundle */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0750C73F18C1B4E300640D1F /* selectCase@2x.png in Resources */,
+				CE03F89D18C616F500EB05EC /* Settings.bundle in Resources */,
 				0750C73D18C1B45500640D1F /* cover2@2x.png in Resources */,
 				0759650818C1D55700B17B2D /* zdjgSelected@2x.png in Resources */,
 				07AF0AC518BCDC8C002356CE /* Images.xcassets in Resources */,
