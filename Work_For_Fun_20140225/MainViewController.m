@@ -79,13 +79,13 @@ static float const DETAILVIEWIDTH = 877.0f;
                             [NSNumber numberWithInt:LCJCButton1],
                             [NSNumber numberWithInt:ZDJGButton1],
                             [NSNumber numberWithInt:ZLFAButton1],
-                            [NSNumber numberWithInt:LCJJButton1],
+                            [NSNumber numberWithInt:LCJJButton1]
 
-                            [NSNumber numberWithInt:BSHGButton2],
-                            [NSNumber numberWithInt:LCJCButton2],
-                            [NSNumber numberWithInt:ZDJGButton2],
-                            [NSNumber numberWithInt:ZLFAButton2],
-                            [NSNumber numberWithInt:LCJJButton2]
+//                            [NSNumber numberWithInt:BSHGButton2],
+//                            [NSNumber numberWithInt:LCJCButton2],
+//                            [NSNumber numberWithInt:ZDJGButton2],
+//                            [NSNumber numberWithInt:ZLFAButton2],
+//                            [NSNumber numberWithInt:LCJJButton2]
                             ];
 
     self.detailTagArray = @[
@@ -93,13 +93,13 @@ static float const DETAILVIEWIDTH = 877.0f;
                             [NSNumber numberWithInt:LCJCView1],
                             [NSNumber numberWithInt:ZDJGView1],
                             [NSNumber numberWithInt:ZLFAView1],
-                            [NSNumber numberWithInt:LCJJView1],
+                            [NSNumber numberWithInt:LCJJView1]
 
-                            [NSNumber numberWithInt:BSHGView2],
-                            [NSNumber numberWithInt:LCJCView2],
-                            [NSNumber numberWithInt:ZDJGView2],
-                            [NSNumber numberWithInt:ZLFAView2],
-                            [NSNumber numberWithInt:LCJJView2]
+//                            [NSNumber numberWithInt:BSHGView2],
+//                            [NSNumber numberWithInt:LCJCView2],
+//                            [NSNumber numberWithInt:ZDJGView2],
+//                            [NSNumber numberWithInt:ZLFAView2],
+//                            [NSNumber numberWithInt:LCJJView2]
                             ];
 
     self.masterButtonArray = [NSMutableArray array];
@@ -125,26 +125,19 @@ static float const DETAILVIEWIDTH = 877.0f;
         }
     }
 
-
-
-
-    for (UIButton *scrollSubButton in _masterButtonArray) {
-//        if (scrollSubButton.tag == 10) {
-//            scrollSubButton.highlighted = YES;
-//        }
-//        if (scrollSubButton.tag != 11) {
-//            scrollSubButton.enabled = NO;
-//        }
-    }
-
     for (LLUIView *scrollSubView in _detailViewArray) {
-        NSLog(@"scrollSubView.tag: %ld", scrollSubView.tag);
         scrollSubView.frame = CGRectMake(0.0f, DETAILVIEWHEIGHT*(scrollSubView.tag - 110), DETAILVIEWIDTH, DETAILVIEWHEIGHT);
         scrollSubView.LLDelegate = self;
     }
     
     _detailScrollVIew.scrollEnabled = NO;
     _detailScrollVIew.contentSize = CGSizeMake(DETAILVIEWIDTH, DETAILVIEWHEIGHT*_detailViewArray.count);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self refreshButtonAndView:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -165,14 +158,18 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 - (void)refreshButtonAndView:(long)toIndex
 {
-//    NSLog(@"toIndex: %ld", toIndex);
-//    UIButton *fromButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 9];
-//    fromButton.highlighted = NO;
-//    UIButton *toButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 10];
-//    toButton.highlighted = YES;
-//    toButton.enabled = NO;
-//    UIButton *nextButton = (UIButton *)[_masterScrollView viewWithTag:toIndex + 11];
-//    nextButton.enabled = YES;
+    if (toIndex >= _masterButtonArray.count) {
+        return;
+    }
+
+    for (NSUInteger i = 0; i < _masterButtonArray.count; i ++) {
+        UIButton *toButton = _masterButtonArray[i];
+        if (toIndex == i) {
+            toButton.selected = YES;
+        } else {
+            toButton.selected = NO;
+        }
+    }
 
     [_detailScrollVIew scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 }
