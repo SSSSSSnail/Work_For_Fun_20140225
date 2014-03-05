@@ -46,27 +46,17 @@
 
 - (IBAction)clickStartButton:(UIButton *)sender {
     if (_selectedCase == 1) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
-            NSDictionary *parameters = @{@"step":@"0", @"action":@"getsubject"};
-            //        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-            [manager POST:SERVERURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                NSLog(@"%@", responseObject);
-                [self performSegueWithIdentifier:@"modalToMain" sender:self];
-            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                NSLog(@"Error: %@", error);
-            }];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            });
-        });
-
-
-
+        [GInstance() httprequestWithHUD:self.view
+                         withRequestURL:SERVERURL
+                         withParameters:@{@"step":@"0", @"action":@"getsubject"}
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 
+                                 [self performSegueWithIdentifier:@"modalToMain" sender:self];
+                             }];
     } else {
-        NSLog(@"ALERT VIEW"); //TODO
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先选择本次讨论Case!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
     }
 }
 @end

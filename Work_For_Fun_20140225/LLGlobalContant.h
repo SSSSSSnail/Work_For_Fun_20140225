@@ -29,12 +29,27 @@ static NSString *const SERVERURL = @"http://edetailing-data.com/case/subject.do"
 
 @interface LLGlobalContant : NSObject
 
-- (instancetype)sharedInstance;
++ (instancetype)sharedInstance;
 
 - (void)loadData;
 - (void)backupData;
 - (void)savaData;
 
+/**
+ *  该方法用于请求服务器返回数据
+ *
+ *  @param addToView     添加HUD的view 一般为self.view
+ *  @param requestURL    发送请求的URL
+ *  @param parameters    POST的数据
+ *  @param requestFinish Block请求完成后处理事件
+ */
+- (void)httprequestWithHUD:(UIView *)addToView
+            withRequestURL:(NSString *)requestURL
+            withParameters:(NSDictionary *)parameters
+                completion:(void(^)(NSDictionary *responseJsonDic))requestFinish;
+
 @property (strong, nonatomic) LLGlobalData *globalData;
 
 @end
+
+LLGlobalContant *GInstance();

@@ -19,7 +19,7 @@ NSString *BackupFileName(NSString *subjectName);
 
 @implementation LLGlobalContant
 
-- (instancetype)sharedInstance
++ (instancetype)sharedInstance
 {
     static id sharedInstance = nil;
     static dispatch_once_t onceToken;
@@ -58,6 +58,34 @@ NSString *BackupFileName(NSString *subjectName);
     [_globalDictionary writeToFile:DataFileName() atomically:YES];
 }
 
+- (void)httprequestWithHUD:(UIView *)addToView
+            withRequestURL:(NSString *)requestURL
+            withParameters:(NSDictionary *)parameters
+                completion:(void(^)(NSDictionary *responseJsonDic))requestFinish
+{
+    [MBProgressHUD showHUDAddedTo:addToView animated:YES];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 10.0f;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    [manager POST:requestURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD hideHUDForView:addToView animated:YES];
+        NSLog(@"%@", responseObject);
+        NSDictionary *jsonDic;
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            jsonDic = (NSDictionary *)responseObject;
+        } else {
+            NSLog(@"返回数据格式转化错误！");
+            return;
+        }
+        requestFinish(jsonDic);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD hideHUDForView:addToView animated:YES];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络异常，请检查网络后重试！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        NSLog(@"Error: %@", error);
+    }];
+}
+
 @end
 
 NSString *DataFileName()
@@ -72,4 +100,9 @@ NSString *BackupFileName(NSString *subjectName)
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *plistPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:subjectName];
     return [plistPath stringByAppendingPathComponent:@"data.plist"];
+}
+
+LLGlobalContant *GInstance()
+{
+    return [LLGlobalContant sharedInstance];
 }
