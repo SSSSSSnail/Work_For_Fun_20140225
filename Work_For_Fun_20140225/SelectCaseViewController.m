@@ -45,17 +45,32 @@
 }
 
 - (IBAction)clickStartButton:(UIButton *)sender {
+    // 1. check group in settings
+
+
     if (_selectedCase == 1) {
         [GInstance() httprequestWithHUD:self.view
                          withRequestURL:SERVERURL
                          withParameters:@{@"step":@"0", @"action":@"getsubject"}
                              completion:^(NSDictionary *jsonDic) {
                                  NSLog(@"responseJson: %@", jsonDic);
-                                 
-                                 [self performSegueWithIdentifier:@"modalToMain" sender:self];
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     [GInstance() loadData];
+                                     NSString *subjectid = (NSString *)jsonDic[@"subject_id"];
+                                     if (![subjectid isEqualToString:GInstance().globalData.subjectName]) {
+                                         [GInstance() backupData];
+                                         GInstance().globalData.subjectName = subjectid;
+                                         GInstance().globalData.groupNumber = @"1";
+                                         [GInstance() savaData];
+                                     }
+                                      //[self performSegueWithIdentifier:@"modalToMain" sender:self];
+                                 } else {
+                                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:@"服务器结果异常!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                                     [alertView show];
+                                 }
                              }];
     } else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先选择本次讨论Case!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先选择本次讨论Case!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
         [alertView show];
     }
 }

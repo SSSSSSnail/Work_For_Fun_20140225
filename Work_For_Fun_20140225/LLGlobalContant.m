@@ -41,7 +41,7 @@ NSString *BackupFileName(NSString *subjectName);
 - (void)loadData
 {
     self.globalDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:DataFileName()];
-    //dictionary 转换到 bean
+    //TODO dictionary 转换到 bean
 }
 
 //将已存在plist备份至backup文件夹
@@ -55,6 +55,9 @@ NSString *BackupFileName(NSString *subjectName);
 - (void)savaData
 {
     //bean 转换到 dictionary
+//    for (NSString *dicKeyString in ) {
+//        <#statements#>
+//    }
     [_globalDictionary writeToFile:DataFileName() atomically:YES];
 }
 
@@ -69,7 +72,6 @@ NSString *BackupFileName(NSString *subjectName);
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     [manager POST:requestURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:addToView animated:YES];
-        NSLog(@"%@", responseObject);
         NSDictionary *jsonDic;
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
             jsonDic = (NSDictionary *)responseObject;
