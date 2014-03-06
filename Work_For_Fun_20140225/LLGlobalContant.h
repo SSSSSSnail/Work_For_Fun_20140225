@@ -15,6 +15,7 @@
 @interface LLGlobalData : NSObject
 
 @property (copy, nonatomic) NSString *subjectName;
+@property (copy, nonatomic) NSString *subjectId;
 @property (copy, nonatomic) NSString *groupNumber;
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)
@@ -23,6 +24,7 @@
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)
+
 @end
 
 static NSString *const SERVERURL = @"http://edetailing-data.com/case/subject.do";
@@ -47,6 +49,9 @@ static NSString *const SERVERURL = @"http://edetailing-data.com/case/subject.do"
             withRequestURL:(NSString *)requestURL
             withParameters:(NSDictionary *)parameters
                 completion:(void(^)(NSDictionary *responseJsonDic))requestFinish;
+
+- (NSMutableDictionary *)coverToDictionaryFromObject:(id)object;
+- (void)coverToObject:(id)object fromDictionary:(NSMutableDictionary *)dictionary;
 
 @property (strong, nonatomic) LLGlobalData *globalData;
 

@@ -45,9 +45,16 @@
 }
 
 - (IBAction)clickStartButton:(UIButton *)sender {
-    // 1. check group in settings
-
-
+    // 1. 检查设置中是否已经选择了组
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *groupNumber = [defaults objectForKey:@"groupNo"];
+    NSLog(@"Settings groupNumber : %@", groupNumber);
+    if (!groupNumber) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:@"首次启动应用请先到设置选择分组!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    // 2. 请求Server拿到课题号, 并创建本次的plist。
     if (_selectedCase == 1) {
         [GInstance() httprequestWithHUD:self.view
                          withRequestURL:SERVERURL
@@ -57,11 +64,16 @@
                                  if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
                                      [GInstance() loadData];
                                      NSString *subjectid = (NSString *)jsonDic[@"subject_id"];
-                                     if (![subjectid isEqualToString:GInstance().globalData.subjectName]) {
-                                         [GInstance() backupData];
-                                         GInstance().globalData.subjectName = subjectid;
-                                         GInstance().globalData.groupNumber = @"1";
+                                     if ([subjectid isEqualToString:GInstance().globalData.subjectId]) {
+                                         if (GInstance().globalData.subjectId) {
+                                             [GInstance() backupData];
+                                         }
+                                         GInstance().globalData.subjectId = subjectid;
+                                         GInstance().globalData.subjectName = (NSString *)jsonDic[@"subject_name"];
+                                         GInstance().globalData.groupNumber = groupNumber;
                                          [GInstance() savaData];
+                                     } else {
+                                         NSLog(@"目前课题进行中, plist文件已创建！");
                                      }
                                       //[self performSegueWithIdentifier:@"modalToMain" sender:self];
                                  } else {

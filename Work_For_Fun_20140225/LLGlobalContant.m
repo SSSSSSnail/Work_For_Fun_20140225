@@ -7,15 +7,19 @@
 //
 
 #import "LLGlobalContant.h"
+#import <objc/runtime.h>
+
+@implementation LLGlobalData
+@end
+
 @interface LLGlobalContant ()
 
 @property (strong, nonatomic) NSMutableDictionary *globalDictionary;
 
 @end
 
-static LLGlobalData *staticGlobalData;
 NSString *DataFileName();
-NSString *BackupFileName(NSString *subjectName);
+NSString *BackupFileName();
 
 @implementation LLGlobalContant
 
@@ -25,40 +29,44 @@ NSString *BackupFileName(NSString *subjectName);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[LLGlobalContant alloc] init];
+
     });
     return sharedInstance;
 }
 
-- (LLGlobalData *)globalData
-{
-    if (!staticGlobalData) {
-        [self loadData];
-    }
-    return staticGlobalData;
-}
-
-//从Documents/data.plist读取数据
+//从Documents/data.plist读取数据并替换当前全局的GlobalData
 - (void)loadData
 {
     self.globalDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:DataFileName()];
-    //TODO dictionary 转换到 bean
+    self.globalData = [[LLGlobalData alloc] init];
+    [GInstance() coverToObject:_globalData fromDictionary:_globalDictionary];
 }
+
 
 //将已存在plist备份至backup文件夹
 - (void)backupData
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager moveItemAtPath:DataFileName() toPath:BackupFileName(_globalData.subjectName) error:NULL];
+    NSError *error;
+    BOOL isFolderCreated = YES;
+    if (![fileManager fileExistsAtPath:BackupFileName()]) {
+        isFolderCreated = [fileManager createDirectoryAtPath:BackupFileName() withIntermediateDirectories:YES attributes:NO error:&error];
+    }
+    if (isFolderCreated) {
+        [fileManager moveItemAtPath:DataFileName() toPath:[BackupFileName() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", _globalData.subjectId]] error:&error];
+    }
+    if (error) {
+        NSLog(@"BackupData Error : %@", error.localizedDescription);
+    }
 }
 
 //将GlobalDcitionary中的数据持久化到plist中
 - (void)savaData
 {
-    //bean 转换到 dictionary
-//    for (NSString *dicKeyString in ) {
-//        <#statements#>
-//    }
-    [_globalDictionary writeToFile:DataFileName() atomically:YES];
+    if (_globalData) {
+        self.globalDictionary = [GInstance() coverToDictionaryFromObject:_globalData];
+        [_globalDictionary writeToFile:DataFileName() atomically:YES];
+    }
 }
 
 - (void)httprequestWithHUD:(UIView *)addToView
@@ -88,6 +96,31 @@ NSString *BackupFileName(NSString *subjectName);
     }];
 }
 
+- (NSMutableDictionary *)coverToDictionaryFromObject:(id)object
+{
+    NSMutableDictionary *theDictionary = [NSMutableDictionary dictionary];
+    NSString *className = NSStringFromClass([object class]);
+    id theClass = objc_getClass([className UTF8String]);
+    unsigned int outCount, i;
+    objc_property_t *properties = class_copyPropertyList(theClass, &outCount);
+    for (i = 0; i < outCount; i++) {
+        NSString *propertyNameString = [[NSString alloc] initWithCString:property_getName(properties[i]) encoding:NSUTF8StringEncoding];
+        NSLog(@"coverToDictionaryFromObject : %@", propertyNameString);
+        id value = [object valueForKey:propertyNameString];
+        [theDictionary setObject:value forKey:propertyNameString];
+    }
+    return theDictionary;
+}
+
+- (void)coverToObject:(id)object fromDictionary:(NSMutableDictionary *)dictionary
+{
+    for (NSString *dicKey in dictionary.allKeys) {
+        NSLog(@"coverToObject : %@", dicKey);
+        id dicValue = dictionary[dicKey];
+        [object setValue:dicValue forKey:dicKey];
+    }
+}
+
 @end
 
 NSString *DataFileName()
@@ -97,11 +130,11 @@ NSString *DataFileName()
     return [plistPath stringByAppendingPathComponent:@"data.plist"];
 }
 
-NSString *BackupFileName(NSString *subjectName)
+NSString *BackupFileName()
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *plistPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:subjectName];
-    return [plistPath stringByAppendingPathComponent:@"data.plist"];
+    NSString *plistPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"backup"];
+    return plistPath;
 }
 
 LLGlobalContant *GInstance()
