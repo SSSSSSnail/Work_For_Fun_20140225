@@ -64,18 +64,19 @@
                                  if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
                                      [GInstance() loadData];
                                      NSString *subjectid = (NSString *)jsonDic[@"subject_id"];
-                                     if ([subjectid isEqualToString:GInstance().globalData.subjectId]) {
+                                     if (![subjectid isEqualToString:GInstance().globalData.subjectId]) {
                                          if (GInstance().globalData.subjectId) {
                                              [GInstance() backupData];
                                          }
                                          GInstance().globalData.subjectId = subjectid;
                                          GInstance().globalData.subjectName = (NSString *)jsonDic[@"subject_name"];
                                          GInstance().globalData.groupNumber = groupNumber;
+                                         GInstance().globalData.currentIndex = 0;
                                          [GInstance() savaData];
                                      } else {
-                                         NSLog(@"目前课题进行中, plist文件已创建！");
+                                         NSLog(@"当前plist已创建！");
                                      }
-                                      //[self performSegueWithIdentifier:@"modalToMain" sender:self];
+                                     [self performSegueWithIdentifier:@"modalToMain" sender:self];
                                  } else {
                                      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:@"服务器结果异常!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
                                      [alertView show];

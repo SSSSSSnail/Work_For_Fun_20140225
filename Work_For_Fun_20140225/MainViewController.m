@@ -137,7 +137,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self refreshButtonAndView:0];
+#warning TODO: 加载旧数据并赋值
+    [self refreshButtonAndView:GInstance().globalData.currentIndex];
 }
 
 - (void)didReceiveMemoryWarning

@@ -17,6 +17,7 @@
 @property (copy, nonatomic) NSString *subjectName;
 @property (copy, nonatomic) NSString *subjectId;
 @property (copy, nonatomic) NSString *groupNumber;
+@property (assign, nonatomic) NSUInteger currentIndex;
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)
