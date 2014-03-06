@@ -6,15 +6,25 @@
 	<array>
 		<dict>
 			<key>Title</key>
-			<string>Settings</string>
+			<string>设置</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
 		<dict>
 			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>版本号</string>
+			<key>DefaultValue</key>
+			<string>V1.0</string>
+			<key>Key</key>
+			<string>versionNO</string>
+		</dict>
+		<dict>
+			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Title</key>
-			<string>value</string>
+			<string>组号</string>
 			<key>Key</key>
 			<string>groupNo</string>
 			<key>DefaultValue</key>
@@ -39,28 +49,6 @@
 				<string>6</string>
 				<string>7</string>
 			</array>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>enabled_preference</string>
-			<key>Title</key>
-			<string>Enabled</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>Type</key>
-			<string>PSSliderSpecifier</string>
-			<key>Key</key>
-			<string>groupNo</string>
-			<key>DefaultValue</key>
-			<integer>0</integer>
-			<key>MinimumValue</key>
-			<integer>0</integer>
-			<key>MaximumValue</key>
-			<integer>10</integer>
 		</dict>
 	</array>
 	<key>StringsTable</key>
