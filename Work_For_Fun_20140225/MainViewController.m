@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "LLUIView.h"
 #import "LLUIButton.h"
+#import "LLUIPickView.h"
 
 typedef NS_ENUM(NSUInteger, ScrollSubButtonTag)
 {
@@ -41,6 +42,15 @@ typedef NS_ENUM(NSUInteger, ScrollSubViewTag)
 
 };
 
+typedef NS_ENUM(NSInteger, SUBVIEWTAG)
+{
+    UIPICKVIEWZDJG1EVALUTE = 200,
+    UIPICKVIEWZDJG1T = 201,
+    UIPICKVIEWZDJG1N = 202,
+    UIPICKVIEWZDJG1M = 203,
+    UIPICKVIEWZLFATYQS = 204,
+};
+
 static float const DETAILVIEWHEIGHT = 768.0f;
 static float const DETAILVIEWIDTH = 877.0f;
 
@@ -51,6 +61,19 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableviewLCJC;
 
+@property (weak, nonatomic) IBOutlet UILabel *ZDJGFQ;
+@property (weak, nonatomic) IBOutlet UILabel *qgRateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bmRateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jnRateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lbjRateLabel;
+
+@property (weak, nonatomic) IBOutlet LLUIPickView *zdjglcfqTPickView;
+@property (weak, nonatomic) IBOutlet LLUIPickView *zdjglcfqNPickView;
+@property (weak, nonatomic) IBOutlet LLUIPickView *zdjglcfqMPickView;
+@property (weak, nonatomic) IBOutlet LLUIPickView *zdjgEvaluatePickView;
+
+@property (weak, nonatomic) IBOutlet UIButton *qzButton;
+
 @property (strong, nonatomic) NSMutableArray *masterButtonArray;
 @property (strong, nonatomic) NSMutableArray *detailViewArray;
 
@@ -58,8 +81,10 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (strong, nonatomic) NSArray *detailTagArray;
 
 @property (strong, nonatomic) NSArray *lcjcTableViewLabelTextArray;
+@property (strong, nonatomic) NSDictionary *pickViewSourceDictionary;
 
 - (IBAction)clickNext:(LLUIButton *)sender;
+- (void)fillDictionary;
 
 @end
 
@@ -153,6 +178,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 
     self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查", @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
                                          @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR", @"ECOG评分", @"穿刺活检", @"CT检查"];
+    [self fillDictionary];
+    [self resizingPickView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -239,6 +266,130 @@ static float const DETAILVIEWIDTH = 877.0f;
         rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
         selectedString = [selectedString stringByAppendingFormat:@", %ld", indexPath.row];
     }
+
+#pragma mark - 
+#pragma mark UIPickerView DataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (YES) {
+       return [self pickerViewInZDJGPage:pickerView];
+    }
+}
+
+#pragma mark -
+#pragma mark - UIPickerView Delegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (YES) {
+        return [self pickerViewInZDJGPage:pickerView titleForRow:row];
+    }
+    return @"";
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    //选择内容之后进行存储的操作
+    if (YES) {
+        [self pickerViewInZDJGPage:pickerView didSelectRow:row];
+    }
+}
+
+#pragma mark -
+#pragma mark - private
+
+#pragma mark - ZDJGPage
+
+- (void)resizingPickView
+{
+    [self.zdjglcfqMPickView resizeFrameMinHeight];
+    [self.zdjglcfqTPickView resizeFrameMinHeight];
+    [self.zdjglcfqNPickView resizeFrameMinHeight];
+}
+
+//将Source 确定
+- (void)fillDictionary
+{
+    NSArray *resultArray = @[ @"",@"高危", @"中危", @"低危"];
+    NSArray *tArray = @[ @"", @"1a", @"1b", @"1c", @"2a", @"2b", @"2c", @"3a", @"3b", @"4"];
+    NSArray *nArray = @[ @"", @"0", @"1", @"2"];
+    NSArray *mArray = @[ @"", @"0", @"1"];
+    self.pickViewSourceDictionary = [NSMutableDictionary dictionaryWithDictionary:@{ @"200": resultArray, @"201": tArray, @"202": nArray, @"203":mArray}];
+}
+
+- (void)showPickViewSelectedResult
+{
+#warning mark calc the Rate and show
+    
+}
+
+- (BOOL)hasCompletedPickViewSelctionZDJGPage
+{
+    if ([self.zdjglcfqTPickView.selectedOjbect isEqualToString:@""] ||
+        [self.zdjglcfqMPickView.selectedOjbect isEqualToString:@""] ||
+        [self.zdjglcfqNPickView.selectedOjbect isEqualToString:@""] ||
+        [self.zdjgEvaluatePickView.selectedOjbect isEqualToString:@""]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)hasCompletedButtonSelectionZDJGPage
+{
+#warning mark ButtonGroup has selected One Object
+    return YES;
+}
+
+- (void)confirmQZButtonEable
+{
+    self.qzButton.enabled = [self hasCompletedButtonSelectionZDJGPage] && [self hasCompletedPickViewSelctionZDJGPage];
+}
+
+#pragma mark - 
+#pragma mark 诊断结果 PickView UIPickerViewDelegate
+
+- (NSInteger)pickerViewInZDJGPage:(UIPickerView *)pickerView
+{
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+    return [pickViewSource count];
+}
+
+- (void)pickerViewInZDJGPage:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
+{
+    switch (pickerView.tag) {
+        case UIPICKVIEWZDJG1T:
+        case UIPICKVIEWZDJG1M:
+        case UIPICKVIEWZDJG1N:
+        {
+            NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+            ((LLUIPickView *)pickerView).selectedOjbect = [pickViewSource objectAtIndex:row];
+            [self showPickViewSelectedResult];
+        }
+            break;
+        case UIPICKVIEWZDJG1EVALUTE:
+        {
+            NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+            ((LLUIPickView *)pickerView).selectedOjbect = [pickViewSource objectAtIndex:row];
+        }
+            break;
+        default:
+            break;
+    }
+    [self confirmQZButtonEable];
+}
+
+#pragma mark - 
+#pragma mark 诊断结果 UIPickerViewDataSource
+- (NSString *)pickerViewInZDJGPage:(UIPickerView *)pickerView titleForRow:(NSInteger)row
+{
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+    return pickViewSource[row];
 }
 
 @end

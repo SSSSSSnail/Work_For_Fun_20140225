@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LLUIPickView : UIPickerView <UIPickerViewDataSource,UIPickerViewDelegate>
-
+@interface LLUIPickView : UIPickerView
+@property ( copy, nonatomic) NSString *selectedOjbect;
+- (void)resizeFrameMinHeight;
 @end

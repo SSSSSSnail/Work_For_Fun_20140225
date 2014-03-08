@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="owM-LY-byI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -186,18 +186,19 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view tag="112" contentMode="scaleToFill" id="mD3-Zx-j1Y" userLabel="诊断结果 - View" customClass="LLUIView">
+                                    <view tag="111" contentMode="scaleToFill" id="36w-Rh-Pi7" userLabel="临床检查 - View" customClass="LLUIView">
+                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.90963747829999997" blue="0.1689663468" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view tag="110" contentMode="scaleToFill" id="2Vf-hM-IpV" userLabel="患者情况 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZDJGM1.png" id="Mih-f5-aRY">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hzqkBG.png" id="kUc-2m-HB6">
                                                 <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
-                                            <pickerView contentMode="scaleToFill" id="llo-LZ-fJB" customClass="LLUIPickView">
-                                                <rect key="frame" x="146" y="409" width="47" height="216"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </pickerView>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                     </view>
@@ -247,6 +248,111 @@
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.90963747829999997" blue="0.1689663468" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
+                                    <view tag="112" contentMode="scaleToFill" id="mD3-Zx-j1Y" userLabel="诊断结果 - View" customClass="LLUIView">
+                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZDJGM1.png" id="Mih-f5-aRY">
+                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <pickerView tag="203" contentMode="scaleToFill" id="wFs-DU-p1b" customClass="LLUIPickView">
+                                                <rect key="frame" x="305" y="387" width="40" height="216"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="dTL-s9-QlI" id="LIv-LB-oJ7"/>
+                                                    <outlet property="delegate" destination="dTL-s9-QlI" id="DWd-dV-FcI"/>
+                                                </connections>
+                                            </pickerView>
+                                            <pickerView tag="201" contentMode="scaleToFill" id="llo-LZ-fJB" customClass="LLUIPickView">
+                                                <rect key="frame" x="145" y="387" width="40" height="216"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="dTL-s9-QlI" id="azs-R8-mma"/>
+                                                    <outlet property="delegate" destination="dTL-s9-QlI" id="TQv-he-h9w"/>
+                                                </connections>
+                                            </pickerView>
+                                            <pickerView tag="202" contentMode="scaleToFill" id="qXP-Ed-zZV" customClass="LLUIPickView">
+                                                <rect key="frame" x="226" y="387" width="40" height="216"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="dTL-s9-QlI" id="Uq3-6q-nLg"/>
+                                                    <outlet property="delegate" destination="dTL-s9-QlI" id="2J6-wR-Q6D"/>
+                                                </connections>
+                                            </pickerView>
+                                            <pickerView tag="200" contentMode="scaleToFill" id="asU-Mz-XRk" customClass="LLUIPickView">
+                                                <rect key="frame" x="518" y="135" width="220" height="216"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="dTL-s9-QlI" id="1eg-T6-bPo"/>
+                                                    <outlet property="delegate" destination="dTL-s9-QlI" id="Nyv-KX-Lx5"/>
+                                                </connections>
+                                            </pickerView>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqc-GX-MPz">
+                                                <rect key="frame" x="157" y="582" width="179" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="器官局限性癌概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bsO-Fb-MgQ">
+                                                <rect key="frame" x="588" y="424" width="148" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="包膜侵犯概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="flq-57-mdM">
+                                                <rect key="frame" x="588" y="455" width="148" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精囊侵犯概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2iZ-sD-eU3">
+                                                <rect key="frame" x="588" y="484" width="148" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="淋巴结转移概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pCm-yQ-435">
+                                                <rect key="frame" x="588" y="515" width="148" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5ta-Tg-mQ9">
+                                                <rect key="frame" x="744" y="424" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8jk-Kc-aT1">
+                                                <rect key="frame" x="708" y="455" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gsf-mP-m9h">
+                                                <rect key="frame" x="715" y="484" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wGg-IN-y0h">
+                                                <rect key="frame" x="726" y="515" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zdh-0c-Rsm">
+                                                <rect key="frame" x="395" y="678" width="83" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" image="qzButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                    </view>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="dTL-s9-QlI" id="BM6-LK-pgO"/>
@@ -257,9 +363,19 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
+                        <outlet property="ZDJGFQ" destination="Pqc-GX-MPz" id="3Db-gt-Y4t"/>
+                        <outlet property="bmRateLabel" destination="8jk-Kc-aT1" id="fga-jv-NQJ"/>
                         <outlet property="detailScrollVIew" destination="hY5-sl-7hJ" id="xbt-bV-hvR"/>
+                        <outlet property="jnRateLabel" destination="Gsf-mP-m9h" id="CVL-L8-MKM"/>
+                        <outlet property="lbjRateLabel" destination="wGg-IN-y0h" id="tXy-88-kOh"/>
                         <outlet property="masterScrollView" destination="Qpf-5X-ZeI" id="xDq-uT-odN"/>
                         <outlet property="tableviewLCJC" destination="7zt-MH-Urf" id="9du-5d-yHl"/>
+                        <outlet property="qgRateLabel" destination="5ta-Tg-mQ9" id="7YF-yw-1WG"/>
+                        <outlet property="qzButton" destination="Zdh-0c-Rsm" id="qKK-62-loz"/>
+                        <outlet property="zdjgEvaluatePickView" destination="asU-Mz-XRk" id="rMP-5g-sti"/>
+                        <outlet property="zdjglcfqMPickView" destination="wFs-DU-p1b" id="MXt-IA-x1g"/>
+                        <outlet property="zdjglcfqNPickView" destination="qXP-Ed-zZV" id="VRx-wH-L0H"/>
+                        <outlet property="zdjglcfqTPickView" destination="llo-LZ-fJB" id="CpU-fY-bJe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Byq-kY-xpD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -268,7 +384,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ZDJGM1.png" width="1744" height="1536"/>
+        <image name="ZDJGM1.png" width="872" height="768"/>
         <image name="bcjzSelected.png" width="131" height="126"/>
         <image name="bcjzUnselected.png" width="131" height="126"/>
         <image name="caseButtonSelected.png" width="168" height="168"/>
@@ -281,6 +397,7 @@
         <image name="lcjcSelected.png" width="131" height="126"/>
         <image name="lcjcUnselected.png" width="131" height="126"/>
         <image name="leftMenuBG.png" width="151" height="768"/>
+        <image name="qzButton.png" width="83" height="31"/>
         <image name="selectCase.png" width="1024" height="768"/>
         <image name="zdjgSelected.png" width="131" height="126"/>
         <image name="zdjgUnselected.png" width="131" height="126"/>
