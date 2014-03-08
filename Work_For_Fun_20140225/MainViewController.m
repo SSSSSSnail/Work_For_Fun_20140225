@@ -44,16 +44,20 @@ typedef NS_ENUM(NSUInteger, ScrollSubViewTag)
 static float const DETAILVIEWHEIGHT = 768.0f;
 static float const DETAILVIEWIDTH = 877.0f;
 
-@interface MainViewController ()<LLUIViewDelegate>
+@interface MainViewController ()<LLUIViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *masterScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollVIew;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableviewLCJC;
 
 @property (strong, nonatomic) NSMutableArray *masterButtonArray;
 @property (strong, nonatomic) NSMutableArray *detailViewArray;
 
 @property (strong, nonatomic) NSArray *masterTagArray;
 @property (strong, nonatomic) NSArray *detailTagArray;
+
+@property (strong, nonatomic) NSArray *lcjcTableViewLabelTextArray;
 
 - (IBAction)clickNext:(LLUIButton *)sender;
 
@@ -75,6 +79,18 @@ static float const DETAILVIEWIDTH = 877.0f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSArray *familyNames = [UIFont familyNames];
+    for( NSString *familyName in familyNames ){
+        if ([familyName hasPrefix:@"Micro"]) {
+            NSLog(@"%@", familyName);
+        }
+//        printf( "Family: %s \n", [familyName UTF8String] );
+//        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
+//        for( NSString *fontName in fontNames ){
+//            printf( "\tFont: %s \n", [fontName UTF8String] );
+//        }
+    }
 
     self.masterTagArray = @[
                             [NSNumber numberWithInt:HZQKButton1],
@@ -134,6 +150,9 @@ static float const DETAILVIEWIDTH = 877.0f;
     
     _detailScrollVIew.scrollEnabled = NO;
     _detailScrollVIew.contentSize = CGSizeMake(DETAILVIEWIDTH, DETAILVIEWHEIGHT*_detailViewArray.count);
+
+    self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查", @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
+                                         @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR", @"ECOG评分", @"穿刺活检", @"CT检查"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -183,6 +202,43 @@ static float const DETAILVIEWIDTH = 877.0f;
 
     GInstance().globalData.currentIndex = toIndex;
     [_detailScrollVIew scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
+}
+
+#pragma mark -
+#pragma mark TableView DataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 16;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *selectedString = GInstance().globalData.lcjcSelectedArrayString;
+    BOOL isSelected = [[selectedString componentsSeparatedByString:@","] containsObject:[NSString stringWithFormat:@"%ld", indexPath.row]];
+    NSString *rightImageName = isSelected?@"lcjcCellRightButtonSelected.png":@"lcjcCellRightButtonUnselected.png";
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"lcjcTableviewCell"];
+    cell.textLabel.font = [UIFont miscrosoftYaHeiFontWithSize:22.0f];
+    cell.textLabel.textColor = [UIColor colorWithRed:2.0f/255 green:128.0f/255 blue:127.0f/255 alpha:1];
+    UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
+    rightImageView.image = [UIImage imageNamed:rightImageName];
+	cell.textLabel.text = _lcjcTableViewLabelTextArray[indexPath.row];
+    return cell;
+}
+
+#pragma mark -
+#pragma mark TableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *selectedString = GInstance().globalData.lcjcSelectedArrayString;
+    NSArray *selectedArray = [selectedString componentsSeparatedByString:@","];
+
+    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", indexPath.row]]) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
+        rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
+        selectedString = [selectedString stringByAppendingFormat:@", %ld", indexPath.row];
+    }
 }
 
 @end

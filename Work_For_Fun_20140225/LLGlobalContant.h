@@ -12,11 +12,16 @@
 #define NSLog(...) {}
 #endif
 
+#import "UIFont+MicrosoftFont.h"
+
 @interface LLGlobalData : NSObject
 
 @property (copy, nonatomic) NSString *subjectName;
 @property (copy, nonatomic) NSString *subjectId;
 @property (copy, nonatomic) NSString *groupNumber;
+
+@property (copy, nonatomic) NSString *lcjcSelectedArrayString;
+
 @property (assign, nonatomic) NSUInteger currentIndex;
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)

@@ -8,8 +8,8 @@
 
 #import "UIFont+MicrosoftFont.h"
 static float const DefaultFontSize = 15.0f;
-static NSString *const YaHeiFontName = @"MicrosoftYaHei";
-static NSString *const YaHeiFontBoldName = @"";
+static NSString *const YaHeiFontName = @"Microsoft YaHei";
+static NSString *const YaHeiFontBoldName = @"Microsoft Yahei In-Bold";
 @implementation UIFont (MicrosoftFont)
 
 #pragma mark YaHei font 

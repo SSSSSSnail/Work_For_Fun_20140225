@@ -66,6 +66,9 @@
 		07D2ADA618C3473F00FEC498 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2AD9418C3473F00FEC498 /* UIRefreshControl+AFNetworking.m */; };
 		07D2ADA718C3473F00FEC498 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2AD9618C3473F00FEC498 /* UIWebView+AFNetworking.m */; };
 		07D5284518CA27DA005FCB7A /* hzqkBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D5284418CA27DA005FCB7A /* hzqkBG@2x.png */; };
+		07D5284718CAB8CA005FCB7A /* lcjcBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D5284618CAB8CA005FCB7A /* lcjcBG@2x.png */; };
+		07D5284D18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D5284B18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png */; };
+		07D5284E18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D5284C18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png */; };
 		CEA743EC18CA137C003CF3F8 /* ZDJGPage1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743EB18CA137C003CF3F8 /* ZDJGPage1ViewController.m */; };
 		CEA743EE18CA1E05003CF3F8 /* ZDJGM1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA743ED18CA1E05003CF3F8 /* ZDJGM1.png */; };
 		CEA743F218CA2037003CF3F8 /* LLUIPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743F118CA2037003CF3F8 /* LLUIPickView.m */; };
@@ -175,6 +178,9 @@
 		07D2AD9518C3473F00FEC498 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		07D2AD9618C3473F00FEC498 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		07D5284418CA27DA005FCB7A /* hzqkBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hzqkBG@2x.png"; sourceTree = "<group>"; };
+		07D5284618CAB8CA005FCB7A /* lcjcBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcBG@2x.png"; sourceTree = "<group>"; };
+		07D5284B18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcCellRightButtonSelected@2x.png"; sourceTree = "<group>"; };
+		07D5284C18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcCellRightButtonUnselected@2x.png"; sourceTree = "<group>"; };
 		CEA743EA18CA137C003CF3F8 /* ZDJGPage1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDJGPage1ViewController.h; sourceTree = "<group>"; };
 		CEA743EB18CA137C003CF3F8 /* ZDJGPage1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDJGPage1ViewController.m; sourceTree = "<group>"; };
 		CEA743ED18CA1E05003CF3F8 /* ZDJGM1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZDJGM1.png; sourceTree = "<group>"; };
@@ -217,6 +223,9 @@
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				07D5284B18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png */,
+				07D5284C18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png */,
+				07D5284618CAB8CA005FCB7A /* lcjcBG@2x.png */,
 				07D5284418CA27DA005FCB7A /* hzqkBG@2x.png */,
 				CEA743ED18CA1E05003CF3F8 /* ZDJGM1.png */,
 				0759650018C1D55700B17B2D /* bcjzSelected@2x.png */,
@@ -511,7 +520,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0750C73F18C1B4E300640D1F /* selectCase@2x.png in Resources */,
+				07D5284E18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png in Resources */,
 				07B52C2D18C62BEF0003B3C2 /* Settings.bundle in Resources */,
+				07D5284D18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png in Resources */,
 				0750C73D18C1B45500640D1F /* cover2@2x.png in Resources */,
 				CEB92C2D18C75AD1009928EB /* MSYHBD.TTF in Resources */,
 				0759650818C1D55700B17B2D /* zdjgSelected@2x.png in Resources */,
@@ -520,6 +531,7 @@
 				0759650618C1D55700B17B2D /* bcjzSelected@2x.png in Resources */,
 				07AF0AB718BCDC8C002356CE /* InfoPlist.strings in Resources */,
 				0759650B18C1D55700B17B2D /* zlfaUnselected@2x.png in Resources */,
+				07D5284718CAB8CA005FCB7A /* lcjcBG@2x.png in Resources */,
 				0750C74E18C1CF4200640D1F /* lcjcSelected@2x.png in Resources */,
 				07D5284518CA27DA005FCB7A /* hzqkBG@2x.png in Resources */,
 				0750C73818C1B23A00640D1F /* cover1@2x.png in Resources */,

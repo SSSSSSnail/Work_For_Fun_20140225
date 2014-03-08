@@ -29,7 +29,6 @@ NSString *BackupFileName();
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[LLGlobalContant alloc] init];
-
     });
     return sharedInstance;
 }
