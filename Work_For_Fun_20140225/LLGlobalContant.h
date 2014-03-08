@@ -38,6 +38,9 @@ static NSString *const SERVERURL = @"http://edetailing-data.com/case/subject.do"
 - (void)backupData;
 - (void)savaData;
 
+- (void)showInfoMessage:(NSString *)message;
+- (void)showErrorMessage:(NSString *)message;
+
 /**
  *  该方法用于请求服务器返回数据
  *

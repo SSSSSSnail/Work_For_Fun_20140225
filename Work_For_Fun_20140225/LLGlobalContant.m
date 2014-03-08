@@ -69,6 +69,18 @@ NSString *BackupFileName();
     }
 }
 
+- (void)showInfoMessage:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
+- (void)showErrorMessage:(NSString *)message
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    [alertView show];
+}
+
 - (void)httprequestWithHUD:(UIView *)addToView
             withRequestURL:(NSString *)requestURL
             withParameters:(NSDictionary *)parameters
@@ -76,7 +88,7 @@ NSString *BackupFileName();
 {
     [MBProgressHUD showHUDAddedTo:addToView animated:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer.timeoutInterval = 10.0f;
+    manager.requestSerializer.timeoutInterval = 15.0f;
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
     [manager POST:requestURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [MBProgressHUD hideHUDForView:addToView animated:YES];
@@ -90,8 +102,7 @@ NSString *BackupFileName();
         requestFinish(jsonDic);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [MBProgressHUD hideHUDForView:addToView animated:YES];
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"网络异常，请检查网络后重试！" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
+        [self showInfoMessage:@"网络异常，请检查网络后重试！"];
         NSLog(@"Error: %@", error);
     }];
 }
@@ -126,8 +137,8 @@ NSString *BackupFileName();
 NSString *DataFileName()
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *plistPath = [paths objectAtIndex:0];
-    return [plistPath stringByAppendingPathComponent:@"data.plist"];
+    NSString *plistPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"data.plist"];
+    return plistPath;
 }
 
 NSString *BackupFileName()

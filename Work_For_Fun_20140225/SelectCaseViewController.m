@@ -50,8 +50,7 @@
     NSString *groupNumber = [defaults objectForKey:@"groupNo"];
     NSLog(@"Settings groupNumber : %@", groupNumber);
     if (!groupNumber) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:@"首次启动应用请先到设置选择分组!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alertView show];
+        [GInstance() showErrorMessage:@"首次启动应用请先到设置分组!"];
         return;
     }
     // 2. 请求Server拿到课题号, 并创建本次的plist。
@@ -61,6 +60,7 @@
                          withParameters:@{@"step":@"0", @"action":@"getsubject"}
                              completion:^(NSDictionary *jsonDic) {
                                  NSLog(@"responseJson: %@", jsonDic);
+#warning TODO: 请求服务器创建分组
                                  if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
                                      [GInstance() loadData];
                                      NSString *subjectid = (NSString *)jsonDic[@"subject_id"];
@@ -78,13 +78,11 @@
                                      }
                                      [self performSegueWithIdentifier:@"modalToMain" sender:self];
                                  } else {
-                                     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:@"服务器结果异常!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-                                     [alertView show];
+                                     [GInstance() showErrorMessage:@"服务器结果异常!"];
                                  }
                              }];
     } else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先选择本次讨论Case!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alertView show];
+        [GInstance() showInfoMessage:@"请先选择本次讨论Case!"];
     }
 }
 @end

@@ -61,6 +61,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 @implementation MainViewController
 
+#pragma mark -
+#pragma mark Controller Life Cycle
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -147,6 +149,9 @@ static float const DETAILVIEWIDTH = 877.0f;
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -
+#pragma mark 页面切换按钮刷新事件处理
+
 - (void)swipeup:(UIView *)sender
 {
     [self refreshButtonAndView:sender.tag - 109];
@@ -154,6 +159,10 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 - (IBAction)clickNext:(LLUIButton *)sender
 {
+    if (sender.tag - 10 >=  GInstance().globalData.currentIndex) {
+        [GInstance() showInfoMessage:@"请完成当前步骤！"];
+        return;
+    }
     [self refreshButtonAndView:sender.tag - 10];
 }
 
@@ -172,6 +181,7 @@ static float const DETAILVIEWIDTH = 877.0f;
         }
     }
 
+    GInstance().globalData.currentIndex = toIndex;
     [_detailScrollVIew scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 }
 
