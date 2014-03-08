@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="owM-LY-byI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="owM-LY-byI">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Cover View Controller-->
@@ -189,6 +189,16 @@
                                     <view tag="112" contentMode="scaleToFill" id="mD3-Zx-j1Y" userLabel="诊断结果 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ZDJGM1.png" id="Mih-f5-aRY">
+                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <pickerView contentMode="scaleToFill" id="llo-LZ-fJB" customClass="LLUIPickView">
+                                                <rect key="frame" x="146" y="409" width="47" height="216"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </pickerView>
+                                        </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                     </view>
                                     <view tag="111" contentMode="scaleToFill" id="36w-Rh-Pi7" userLabel="临床检查 - View" customClass="LLUIView">
@@ -220,6 +230,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ZDJGM1.png" width="1744" height="1536"/>
         <image name="bcjzSelected.png" width="131" height="126"/>
         <image name="bcjzUnselected.png" width="131" height="126"/>
         <image name="caseButtonSelected.png" width="168" height="168"/>

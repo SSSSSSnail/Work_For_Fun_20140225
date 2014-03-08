@@ -65,6 +65,9 @@
 		07D2ADA518C3473F00FEC498 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2AD9218C3473F00FEC498 /* UIProgressView+AFNetworking.m */; };
 		07D2ADA618C3473F00FEC498 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2AD9418C3473F00FEC498 /* UIRefreshControl+AFNetworking.m */; };
 		07D2ADA718C3473F00FEC498 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2AD9618C3473F00FEC498 /* UIWebView+AFNetworking.m */; };
+		CEA743EC18CA137C003CF3F8 /* ZDJGPage1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743EB18CA137C003CF3F8 /* ZDJGPage1ViewController.m */; };
+		CEA743EE18CA1E05003CF3F8 /* ZDJGM1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA743ED18CA1E05003CF3F8 /* ZDJGM1.png */; };
+		CEA743F218CA2037003CF3F8 /* LLUIPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743F118CA2037003CF3F8 /* LLUIPickView.m */; };
 		CEB92C2918C63707009928EB /* UIFont+MicrosoftFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB92C2818C63707009928EB /* UIFont+MicrosoftFont.m */; };
 		CEB92C2C18C75AD1009928EB /* MSYH.TTF in Resources */ = {isa = PBXBuildFile; fileRef = CEB92C2A18C75AD1009928EB /* MSYH.TTF */; };
 		CEB92C2D18C75AD1009928EB /* MSYHBD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = CEB92C2B18C75AD1009928EB /* MSYHBD.TTF */; };
@@ -170,6 +173,11 @@
 		07D2AD9418C3473F00FEC498 /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		07D2AD9518C3473F00FEC498 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		07D2AD9618C3473F00FEC498 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		CEA743EA18CA137C003CF3F8 /* ZDJGPage1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDJGPage1ViewController.h; sourceTree = "<group>"; };
+		CEA743EB18CA137C003CF3F8 /* ZDJGPage1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDJGPage1ViewController.m; sourceTree = "<group>"; };
+		CEA743ED18CA1E05003CF3F8 /* ZDJGM1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZDJGM1.png; sourceTree = "<group>"; };
+		CEA743F018CA2037003CF3F8 /* LLUIPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUIPickView.h; sourceTree = "<group>"; };
+		CEA743F118CA2037003CF3F8 /* LLUIPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLUIPickView.m; sourceTree = "<group>"; };
 		CEB92C2718C63707009928EB /* UIFont+MicrosoftFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MicrosoftFont.h"; sourceTree = "<group>"; };
 		CEB92C2818C63707009928EB /* UIFont+MicrosoftFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MicrosoftFont.m"; sourceTree = "<group>"; };
 		CEB92C2A18C75AD1009928EB /* MSYH.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = MSYH.TTF; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CEA743ED18CA1E05003CF3F8 /* ZDJGM1.png */,
 				0759650018C1D55700B17B2D /* bcjzSelected@2x.png */,
 				0759650118C1D55700B17B2D /* bcjzUnselected@2x.png */,
 				0759650218C1D55700B17B2D /* zdjgSelected@2x.png */,
@@ -263,6 +272,7 @@
 		07AF0AB218BCDC8C002356CE /* Work_For_Fun_20140225 */ = {
 			isa = PBXGroup;
 			children = (
+				CEA743EF18CA2016003CF3F8 /* LLSubClasses */,
 				0750C73618C1B13A00640D1F /* images */,
 				07AF0ABB18BCDC8C002356CE /* AppDelegate.h */,
 				07AF0ABC18BCDC8C002356CE /* AppDelegate.m */,
@@ -275,6 +285,8 @@
 				0750C73A18C1B35200640D1F /* Cover2ViewController.m */,
 				07AF0AE818BE3A08002356CE /* SelectCaseViewController.h */,
 				07AF0AE918BE3A08002356CE /* SelectCaseViewController.m */,
+				CEA743EA18CA137C003CF3F8 /* ZDJGPage1ViewController.h */,
+				CEA743EB18CA137C003CF3F8 /* ZDJGPage1ViewController.m */,
 				07AF0B2C18BF07A5002356CE /* MainViewController.h */,
 				07AF0B2D18BF07A5002356CE /* MainViewController.m */,
 				07AF0B2F18BF0A85002356CE /* LLUIView.h */,
@@ -396,6 +408,15 @@
 			path = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		CEA743EF18CA2016003CF3F8 /* LLSubClasses */ = {
+			isa = PBXGroup;
+			children = (
+				CEA743F018CA2037003CF3F8 /* LLUIPickView.h */,
+				CEA743F118CA2037003CF3F8 /* LLUIPickView.m */,
+			);
+			path = LLSubClasses;
+			sourceTree = "<group>";
+		};
 		CEB92C2218C63339009928EB /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -505,6 +526,7 @@
 				0750C74C18C1CF4200640D1F /* hzqkSelected@2x.png in Resources */,
 				0759650918C1D55700B17B2D /* zdjgUnselected@2x.png in Resources */,
 				0759650A18C1D55700B17B2D /* zlfaSelected@2x.png in Resources */,
+				CEA743EE18CA1E05003CF3F8 /* ZDJGM1.png in Resources */,
 				0750C74D18C1CF4200640D1F /* hzqkUnselected@2x.png in Resources */,
 				0750C74718C1CA6F00640D1F /* leftMenuBG@2x.png in Resources */,
 			);
@@ -532,6 +554,7 @@
 				07D2ADA018C3473F00FEC498 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				07D2ADA418C3473F00FEC498 /* UIImageView+AFNetworking.m in Sources */,
 				07D2AD9C18C3473F00FEC498 /* AFURLConnectionOperation.m in Sources */,
+				CEA743EC18CA137C003CF3F8 /* ZDJGPage1ViewController.m in Sources */,
 				07D2ADA118C3473F00FEC498 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				07D2ADA718C3473F00FEC498 /* UIWebView+AFNetworking.m in Sources */,
 				07D2AD9718C3473F00FEC498 /* AFHTTPRequestOperation.m in Sources */,
@@ -545,6 +568,7 @@
 				07D2AD9818C3473F00FEC498 /* AFHTTPRequestOperationManager.m in Sources */,
 				07D2ADA518C3473F00FEC498 /* UIProgressView+AFNetworking.m in Sources */,
 				0750C73B18C1B35200640D1F /* Cover2ViewController.m in Sources */,
+				CEA743F218CA2037003CF3F8 /* LLUIPickView.m in Sources */,
 				07D2ADA318C3473F00FEC498 /* UIButton+AFNetworking.m in Sources */,
 				07D2AD9E18C3473F00FEC498 /* AFURLResponseSerialization.m in Sources */,
 				CEB92C2918C63707009928EB /* UIFont+MicrosoftFont.m in Sources */,

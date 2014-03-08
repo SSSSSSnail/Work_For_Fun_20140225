@@ -7,7 +7,7 @@
 //
 
 #import "SelectCaseViewController.h"
-
+#import "AppDelegate.h"
 @interface SelectCaseViewController ()
 
 @property (assign, nonatomic) NSInteger selectedCase;
@@ -47,7 +47,7 @@
 - (IBAction)clickStartButton:(UIButton *)sender {
     // 1. 检查设置中是否已经选择了组
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *groupNumber = [defaults objectForKey:@"groupNo"];
+    NSString *groupNumber = [defaults objectForKey:GroupNo];
     NSLog(@"Settings groupNumber : %@", groupNumber);
     if (!groupNumber) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"错误" message:@"首次启动应用请先到设置选择分组!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
