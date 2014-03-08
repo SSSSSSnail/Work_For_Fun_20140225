@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-static NSString *const groupNo = @"groupNo";
-static NSString *const versionNo = @"versionNO";
+static NSString *const GroupNo = @"groupNo";
+static NSString *const VersionNo = @"versionNO";
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
