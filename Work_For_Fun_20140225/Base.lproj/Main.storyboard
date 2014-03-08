@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -186,68 +186,6 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view tag="111" contentMode="scaleToFill" id="36w-Rh-Pi7" userLabel="临床检查 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.90963747829999997" blue="0.1689663468" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <view tag="110" contentMode="scaleToFill" id="2Vf-hM-IpV" userLabel="患者情况 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hzqkBG.png" id="kUc-2m-HB6">
-                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                    </view>
-                                    <view tag="110" contentMode="scaleToFill" id="2Vf-hM-IpV" userLabel="患者情况 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hzqkBG.png" id="kUc-2m-HB6">
-                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </imageView>
-                                        </subviews>
-                                    </view>
-                                    <view tag="111" contentMode="scaleToFill" id="36w-Rh-Pi7" userLabel="临床检查 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcjcBG.png" id="zI6-BT-0FB">
-                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </imageView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="36" sectionHeaderHeight="10" sectionFooterHeight="10" id="7zt-MH-Urf">
-                                                <rect key="frame" x="195" y="101" width="472" height="625"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <prototypes>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="lcjcTableviewCell" id="uGT-iW-o2d">
-                                                        <rect key="frame" x="0.0" y="55" width="472" height="36"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uGT-iW-o2d" id="hk4-2Y-1lF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="472" height="35"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Md9-bf-p3l">
-                                                                    <rect key="frame" x="376" y="3" width="83" height="30"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                </imageView>
-                                                            </subviews>
-                                                        </tableViewCellContentView>
-                                                    </tableViewCell>
-                                                </prototypes>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="dTL-s9-QlI" id="Hnh-fW-Ltv"/>
-                                                    <outlet property="delegate" destination="dTL-s9-QlI" id="0wq-mt-Qtg"/>
-                                                </connections>
-                                            </tableView>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="0.90963747829999997" blue="0.1689663468" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
                                     <view tag="112" contentMode="scaleToFill" id="mD3-Zx-j1Y" userLabel="诊断结果 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -353,6 +291,51 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                     </view>
+                                    <view tag="110" contentMode="scaleToFill" id="2Vf-hM-IpV" userLabel="患者情况 - View" customClass="LLUIView">
+                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hzqkBG.png" id="kUc-2m-HB6">
+                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                    </view>
+                                    <view tag="111" contentMode="scaleToFill" id="36w-Rh-Pi7" userLabel="临床检查 - View" customClass="LLUIView">
+                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcjcBG.png" id="zI6-BT-0FB">
+                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="36" sectionHeaderHeight="10" sectionFooterHeight="10" id="7zt-MH-Urf">
+                                                <rect key="frame" x="195" y="101" width="472" height="625"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <prototypes>
+                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="lcjcTableviewCell" id="uGT-iW-o2d">
+                                                        <rect key="frame" x="0.0" y="55" width="472" height="36"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uGT-iW-o2d" id="hk4-2Y-1lF">
+                                                            <rect key="frame" x="0.0" y="0.0" width="472" height="35"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Md9-bf-p3l">
+                                                                    <rect key="frame" x="376" y="3" width="83" height="30"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="dTL-s9-QlI" id="Hnh-fW-Ltv"/>
+                                                    <outlet property="delegate" destination="dTL-s9-QlI" id="0wq-mt-Qtg"/>
+                                                </connections>
+                                            </tableView>
+                                        </subviews>
+                                    </view>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="dTL-s9-QlI" id="BM6-LK-pgO"/>
@@ -369,9 +352,9 @@
                         <outlet property="jnRateLabel" destination="Gsf-mP-m9h" id="CVL-L8-MKM"/>
                         <outlet property="lbjRateLabel" destination="wGg-IN-y0h" id="tXy-88-kOh"/>
                         <outlet property="masterScrollView" destination="Qpf-5X-ZeI" id="xDq-uT-odN"/>
-                        <outlet property="tableviewLCJC" destination="7zt-MH-Urf" id="9du-5d-yHl"/>
                         <outlet property="qgRateLabel" destination="5ta-Tg-mQ9" id="7YF-yw-1WG"/>
                         <outlet property="qzButton" destination="Zdh-0c-Rsm" id="qKK-62-loz"/>
+                        <outlet property="tableviewLCJC" destination="7zt-MH-Urf" id="9du-5d-yHl"/>
                         <outlet property="zdjgEvaluatePickView" destination="asU-Mz-XRk" id="rMP-5g-sti"/>
                         <outlet property="zdjglcfqMPickView" destination="wFs-DU-p1b" id="MXt-IA-x1g"/>
                         <outlet property="zdjglcfqNPickView" destination="qXP-Ed-zZV" id="VRx-wH-L0H"/>

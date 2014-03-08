@@ -84,7 +84,6 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (strong, nonatomic) NSDictionary *pickViewSourceDictionary;
 
 - (IBAction)clickNext:(LLUIButton *)sender;
-- (void)fillDictionary;
 
 @end
 
@@ -176,10 +175,21 @@ static float const DETAILVIEWIDTH = 877.0f;
     _detailScrollVIew.scrollEnabled = NO;
     _detailScrollVIew.contentSize = CGSizeMake(DETAILVIEWIDTH, DETAILVIEWHEIGHT*_detailViewArray.count);
 
+    /* 临床检查初始化 */
     self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查", @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
                                          @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR", @"ECOG评分", @"穿刺活检", @"CT检查"];
-    [self fillDictionary];
-    [self resizingPickView];
+
+    /* 诊断结果初始化 */
+    self.pickViewSourceDictionary = @{@"200": @[@"",@"高危", @"中危", @"低危"],
+                                      @"201": @[@"", @"1a", @"1b", @"1c", @"2a", @"2b", @"2c", @"3a", @"3b", @"4"],
+                                      @"202": @[@"", @"0", @"1", @"2"],
+                                      @"203": @[@"", @"0", @"1"]};
+
+    [self.zdjglcfqMPickView resizeFrameMinHeight];
+    [self.zdjglcfqTPickView resizeFrameMinHeight];
+    [self.zdjglcfqNPickView resizeFrameMinHeight];
+
+    /* xxxxxx */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -197,7 +207,6 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 #pragma mark -
 #pragma mark 页面切换按钮刷新事件处理
-
 - (void)swipeup:(UIView *)sender
 {
     [self refreshButtonAndView:sender.tag - 109];
@@ -266,10 +275,10 @@ static float const DETAILVIEWIDTH = 877.0f;
         rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
         selectedString = [selectedString stringByAppendingFormat:@", %ld", indexPath.row];
     }
+}
 
-#pragma mark - 
+#pragma mark -
 #pragma mark UIPickerView DataSource
-
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -283,8 +292,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 }
 
 #pragma mark -
-#pragma mark - UIPickerView Delegate
-
+#pragma mark UIPickerView Delegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (YES) {
@@ -301,31 +309,9 @@ static float const DETAILVIEWIDTH = 877.0f;
     }
 }
 
-#pragma mark -
-#pragma mark - private
-
-#pragma mark - ZDJGPage
-
-- (void)resizingPickView
-{
-    [self.zdjglcfqMPickView resizeFrameMinHeight];
-    [self.zdjglcfqTPickView resizeFrameMinHeight];
-    [self.zdjglcfqNPickView resizeFrameMinHeight];
-}
-
-//将Source 确定
-- (void)fillDictionary
-{
-    NSArray *resultArray = @[ @"",@"高危", @"中危", @"低危"];
-    NSArray *tArray = @[ @"", @"1a", @"1b", @"1c", @"2a", @"2b", @"2c", @"3a", @"3b", @"4"];
-    NSArray *nArray = @[ @"", @"0", @"1", @"2"];
-    NSArray *mArray = @[ @"", @"0", @"1"];
-    self.pickViewSourceDictionary = [NSMutableDictionary dictionaryWithDictionary:@{ @"200": resultArray, @"201": tArray, @"202": nArray, @"203":mArray}];
-}
-
 - (void)showPickViewSelectedResult
 {
-#warning mark calc the Rate and show
+#warning calc the Rate and show
     
 }
 
@@ -342,7 +328,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 - (BOOL)hasCompletedButtonSelectionZDJGPage
 {
-#warning mark ButtonGroup has selected One Object
+#warning ButtonGroup has selected One Object
     return YES;
 }
 
@@ -351,12 +337,11 @@ static float const DETAILVIEWIDTH = 877.0f;
     self.qzButton.enabled = [self hasCompletedButtonSelectionZDJGPage] && [self hasCompletedPickViewSelctionZDJGPage];
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark 诊断结果 PickView UIPickerViewDelegate
-
 - (NSInteger)pickerViewInZDJGPage:(UIPickerView *)pickerView
 {
-    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld", pickerView.tag]];
     return [pickViewSource count];
 }
 
@@ -384,7 +369,7 @@ static float const DETAILVIEWIDTH = 877.0f;
     [self confirmQZButtonEable];
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark 诊断结果 UIPickerViewDataSource
 - (NSString *)pickerViewInZDJGPage:(UIPickerView *)pickerView titleForRow:(NSInteger)row
 {

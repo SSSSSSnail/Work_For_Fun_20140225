@@ -179,7 +179,6 @@
 		07D2AD9518C3473F00FEC498 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		07D2AD9618C3473F00FEC498 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		07D5284418CA27DA005FCB7A /* hzqkBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hzqkBG@2x.png"; sourceTree = "<group>"; };
-<<<<<<< HEAD
 		07D5284618CAB8CA005FCB7A /* lcjcBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcBG@2x.png"; sourceTree = "<group>"; };
 		07D5284B18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcCellRightButtonSelected@2x.png"; sourceTree = "<group>"; };
 		07D5284C18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcCellRightButtonUnselected@2x.png"; sourceTree = "<group>"; };
