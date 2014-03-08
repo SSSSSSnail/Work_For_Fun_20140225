@@ -44,11 +44,11 @@ typedef NS_ENUM(NSUInteger, ScrollSubViewTag)
 
 typedef NS_ENUM(NSInteger, SUBVIEWTAG)
 {
-    UIPICKVIEWZDJG1EVALUTE = 200,
-    UIPICKVIEWZDJG1T = 201,
-    UIPICKVIEWZDJG1N = 202,
-    UIPICKVIEWZDJG1M = 203,
-    UIPICKVIEWZLFATYQS = 204,
+    UIPickViewZDJG1Evalute = 200,
+    UIPickViewZDJG1T = 201,
+    UIPickViewZDJG1N = 202,
+    UIPickViewZDJG1M = 203,
+    UIPickViewZLFATYQS = 204,
 };
 
 static float const DETAILVIEWHEIGHT = 768.0f;
@@ -66,6 +66,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (weak, nonatomic) IBOutlet UILabel *bmRateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *jnRateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lbjRateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pgjgLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lcfqLabel;
 
 @property (weak, nonatomic) IBOutlet LLUIPickView *zdjglcfqTPickView;
 @property (weak, nonatomic) IBOutlet LLUIPickView *zdjglcfqNPickView;
@@ -188,6 +190,7 @@ static float const DETAILVIEWIDTH = 877.0f;
     [self.zdjglcfqMPickView resizeFrameMinHeight];
     [self.zdjglcfqTPickView resizeFrameMinHeight];
     [self.zdjglcfqNPickView resizeFrameMinHeight];
+    [self.zdjgEvaluatePickView resizeFrameMinHeight];
 
     /* xxxxxx */
 }
@@ -286,34 +289,41 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    if (YES) {
-       return [self pickerViewInZDJGPage:pickerView];
-    }
-}
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld", pickerView.tag]];
+    return [pickViewSource count];}
 
 #pragma mark -
 #pragma mark UIPickerView Delegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    if (YES) {
-        return [self pickerViewInZDJGPage:pickerView titleForRow:row];
-    }
-    return @"";
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+    return pickViewSource[row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     //选择内容之后进行存储的操作
-    if (YES) {
-        [self pickerViewInZDJGPage:pickerView didSelectRow:row];
+    switch (pickerView.tag) {
+        case UIPickViewZDJG1T: // 诊断结果 T
+        case UIPickViewZDJG1M: // 诊断结果 M
+        case UIPickViewZDJG1N: // 诊断结果 N
+        {
+            NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+            ((LLUIPickView *)pickerView).selectedOjbect = [pickViewSource objectAtIndex:row];
+            // 添加label
+        }
+            break;
+        case UIPickViewZDJG1Evalute: //患者危险评估
+        {
+            NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+            ((LLUIPickView *)pickerView).selectedOjbect = [pickViewSource objectAtIndex:row];
+        }
+            break;
+        default:
+            break;
     }
 }
 
-- (void)showPickViewSelectedResult
-{
-#warning calc the Rate and show
-    
-}
 
 - (BOOL)hasCompletedPickViewSelctionZDJGPage
 {
@@ -324,57 +334,6 @@ static float const DETAILVIEWIDTH = 877.0f;
         return NO;
     }
     return YES;
-}
-
-- (BOOL)hasCompletedButtonSelectionZDJGPage
-{
-#warning ButtonGroup has selected One Object
-    return YES;
-}
-
-- (void)confirmQZButtonEable
-{
-    self.qzButton.enabled = [self hasCompletedButtonSelectionZDJGPage] && [self hasCompletedPickViewSelctionZDJGPage];
-}
-
-#pragma mark -
-#pragma mark 诊断结果 PickView UIPickerViewDelegate
-- (NSInteger)pickerViewInZDJGPage:(UIPickerView *)pickerView
-{
-    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld", pickerView.tag]];
-    return [pickViewSource count];
-}
-
-- (void)pickerViewInZDJGPage:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
-{
-    switch (pickerView.tag) {
-        case UIPICKVIEWZDJG1T:
-        case UIPICKVIEWZDJG1M:
-        case UIPICKVIEWZDJG1N:
-        {
-            NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
-            ((LLUIPickView *)pickerView).selectedOjbect = [pickViewSource objectAtIndex:row];
-            [self showPickViewSelectedResult];
-        }
-            break;
-        case UIPICKVIEWZDJG1EVALUTE:
-        {
-            NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
-            ((LLUIPickView *)pickerView).selectedOjbect = [pickViewSource objectAtIndex:row];
-        }
-            break;
-        default:
-            break;
-    }
-    [self confirmQZButtonEable];
-}
-
-#pragma mark -
-#pragma mark 诊断结果 UIPickerViewDataSource
-- (NSString *)pickerViewInZDJGPage:(UIPickerView *)pickerView titleForRow:(NSInteger)row
-{
-    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
-    return pickViewSource[row];
 }
 
 @end
