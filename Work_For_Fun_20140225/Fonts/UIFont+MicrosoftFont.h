@@ -11,8 +11,4 @@
 @interface UIFont (MicrosoftFont)
 + (UIFont *)miscrosoftYaHeiFont;
 + (UIFont *)miscrosoftYaHeiFontWithSize:(float)fontSize;
-+ (UIFont *)miscrosoftYaHeiBoldFont;
-+ (UIFont *)miscrosoftYaHeiBoldFontWithSize:(float)fontSize;
-+ (UIFont *)miscrosoftYaHeiFontWithSize:(float)fontSize bold:(BOOL)isBold;
-+ (UIFont *)miscrosoftYaHeiFont:(BOOL)isBold;
 @end

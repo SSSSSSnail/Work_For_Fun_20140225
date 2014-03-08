@@ -9,42 +9,36 @@
 #import "LLUIPickView.h"
 
 @implementation LLUIPickView
-
 #pragma mark – Lifecycle
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     }
     return self;
 }
 
-#pragma mark - 
-#pragma mark - UIPickerViewDataSource
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (void)resizeFrameMinHeight
 {
-    return 1;
+    CGFloat minHeight = 162.0f;
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    CGRect frame = self.frame;
+    CGFloat originYCenter = CGRectGetMinY(frame);
+    CGFloat originHeight = CGRectGetHeight(frame) - minHeight;
+    self.frame = CGRectMake(CGRectGetMinX(frame), originYCenter + (originHeight / 2.0), CGRectGetWidth(frame), minHeight);
+    frame = self.frame;
+    self.showsSelectionIndicator= YES;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+- (NSString *)selectedOjbect
 {
-    return 3;
-}
-
-#pragma mark -
-#pragma mark - UIPickerViewDelegate
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return @"1";
-}
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+    if (_selectedOjbect) {
+        return _selectedOjbect;
+    }
+    _selectedOjbect = @"";
+    return _selectedOjbect;
 }
 
 @end

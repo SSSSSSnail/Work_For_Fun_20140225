@@ -7,9 +7,8 @@
 //
 
 #import "UIFont+MicrosoftFont.h"
-static float const DefaultFontSize = 15.0f;
+static float const DefaultFontSize = 12.0f;
 static NSString *const YaHeiFontName = @"MicrosoftYaHei";
-static NSString *const YaHeiFontBoldName = @"";
 @implementation UIFont (MicrosoftFont)
 
 #pragma mark YaHei font 
@@ -28,45 +27,6 @@ static NSString *const YaHeiFontBoldName = @"";
 + (UIFont *)miscrosoftYaHeiFontWithSize:(float)fontSize
 {
     return [UIFont fontWithName:YaHeiFontName size:fontSize];
-}
-
-
-/*
- YaHei BoldFont with DefaultSize
- */
-+ (UIFont *)miscrosoftYaHeiBoldFont;
-{
-    return [UIFont miscrosoftYaHeiBoldFontWithSize:DefaultFontSize];
-}
-
-/*
- YaHei BoldFont with fontsize
- */
-+ (UIFont *)miscrosoftYaHeiBoldFontWithSize:(float)fontSize
-{
-    return [UIFont fontWithName:YaHeiFontBoldName size:fontSize];
-}
-
-/*
- YaHei bold:isBold with fontSize
- */
-+ (UIFont *)miscrosoftYaHeiFontWithSize:(float)fontSize bold:(BOOL)isBold
-{
-    if (isBold) {
-        return [UIFont miscrosoftYaHeiBoldFontWithSize:fontSize];
-    }
-    return [UIFont miscrosoftYaHeiFontWithSize:fontSize];
-}
-
-/*
- isBold yes :boldFont
- */
-+ (UIFont *)miscrosoftYaHeiFont:(BOOL)isBold
-{
-    if (isBold) {
-        return [UIFont miscrosoftYaHeiBoldFont];
-    }
-    return [UIFont miscrosoftYaHeiFont];
 }
 
 @end
