@@ -235,7 +235,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (YES) {
-        [self pickerViewInZDJGPage:pickerView titleForRow:row];
+        return [self pickerViewInZDJGPage:pickerView titleForRow:row];
     }
     return @"";
 }
