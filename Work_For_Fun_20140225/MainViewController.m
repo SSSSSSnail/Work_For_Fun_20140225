@@ -42,8 +42,10 @@ typedef NS_ENUM(NSUInteger, ScrollSubViewTag)
 
 };
 
-typedef NS_ENUM(NSInteger, SUBVIEWTAG)
+typedef NS_ENUM(NSInteger, ComponentsTag)
 {
+    UITableViewLCJC = 199,
+
     UIPickViewZDJG1Evalute = 200,
     UIPickViewZDJG1T = 201,
     UIPickViewZDJG1N = 202,
@@ -60,6 +62,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollVIew;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableviewLCJC;
+@property (weak, nonatomic) IBOutlet UIImageView *lcjcResultImageView;
+@property (weak, nonatomic) IBOutlet UIButton *lcjcOkButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *ZDJGFQ;
 @property (weak, nonatomic) IBOutlet UILabel *qgRateLabel;
@@ -83,6 +87,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (strong, nonatomic) NSArray *detailTagArray;
 
 @property (strong, nonatomic) NSArray *lcjcTableViewLabelTextArray;
+@property (strong, nonatomic) NSArray *lcjcTableToImageNameArray;
 @property (strong, nonatomic) NSDictionary *pickViewSourceDictionary;
 
 - (IBAction)clickNext:(LLUIButton *)sender;
@@ -180,6 +185,15 @@ static float const DETAILVIEWIDTH = 877.0f;
     /* 临床检查初始化 */
     self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查", @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
                                          @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR", @"ECOG评分", @"穿刺活检", @"CT检查"];
+    self.lcjcTableToImageNameArray = @[@"xuechanggui.png", @183, @184, @185, @186, @187, @188, @189,
+                                     @190, @191, @192, @193, @194, @195, @196, @197];
+
+    UILabel *lcjcHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 40.0f)];
+    lcjcHeaderLabel.textAlignment = NSTextAlignmentCenter;
+    lcjcHeaderLabel.text = @"选择相关检查项目";
+    lcjcHeaderLabel.font = [UIFont miscrosoftYaHeiFontWithSize:22.0f];
+    lcjcHeaderLabel.textColor = [UIColor colorWithRed:2.0f/255 green:128.0f/255 blue:127.0f/255 alpha:1];
+    _tableviewLCJC.tableHeaderView = lcjcHeaderLabel;
 
     /* 诊断结果初始化 */
     self.pickViewSourceDictionary = @{@"200": @[@"",@"高危", @"中危", @"低危"],
@@ -243,6 +257,10 @@ static float const DETAILVIEWIDTH = 877.0f;
     [_detailScrollVIew scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 }
 
+- (IBAction)detailViewConfirm:(UIButton *)sender {
+    
+}
+
 #pragma mark -
 #pragma mark TableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -278,6 +296,14 @@ static float const DETAILVIEWIDTH = 877.0f;
         rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
         selectedString = [selectedString stringByAppendingFormat:@", %ld", indexPath.row];
     }
+    _lcjcResultImageView.image = [UIImage imageNamed:_lcjcTableToImageNameArray[indexPath.row]];
+    [UIView transitionFromView:_tableviewLCJC
+                        toView:_lcjcResultImageView
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews 
+                    completion:^(BOOL finished) {
+                        [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                    }];
 }
 
 #pragma mark -

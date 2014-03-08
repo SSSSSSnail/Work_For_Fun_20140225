@@ -44,6 +44,9 @@
 		07AF0B3718BF0BFE002356CE /* LLGlobalContant.m in Sources */ = {isa = PBXBuildFile; fileRef = 07AF0B3618BF0BFE002356CE /* LLGlobalContant.m */; };
 		07B52C2A18C620340003B3C2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B52C2918C620340003B3C2 /* MBProgressHUD.m */; };
 		07B52C2D18C62BEF0003B3C2 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07B52C2C18C62BEF0003B3C2 /* Settings.bundle */; };
+		07BF9F9818CB63A500FABFB9 /* xuechanggui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BF9F9718CB63A500FABFB9 /* xuechanggui@2x.png */; };
+		07BF9F9B18CB660300FABFB9 /* backButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BF9F9918CB660300FABFB9 /* backButton@2x.png */; };
+		07BF9F9C18CB660300FABFB9 /* okButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BF9F9A18CB660300FABFB9 /* okButton@2x.png */; };
 		07D2AD6918C3468300FEC498 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D2AD6818C3468300FEC498 /* MobileCoreServices.framework */; };
 		07D2AD6B18C3468D00FEC498 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D2AD6A18C3468D00FEC498 /* SystemConfiguration.framework */; };
 		07D2AD6D18C3469400FEC498 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D2AD6C18C3469400FEC498 /* Security.framework */; };
@@ -69,8 +72,6 @@
 		07D5284718CAB8CA005FCB7A /* lcjcBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D5284618CAB8CA005FCB7A /* lcjcBG@2x.png */; };
 		07D5284D18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D5284B18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png */; };
 		07D5284E18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07D5284C18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png */; };
-		CEA743EC18CA137C003CF3F8 /* ZDJGPage1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743EB18CA137C003CF3F8 /* ZDJGPage1ViewController.m */; };
-		CEA743EE18CA1E05003CF3F8 /* ZDJGM1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA743ED18CA1E05003CF3F8 /* ZDJGM1.png */; };
 		CE1CAC0618CAFC3C00BC0F4E /* qzButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1CAC0518CAFC3C00BC0F4E /* qzButton@2x.png */; };
 		CEA743EE18CA1E05003CF3F8 /* ZDJGM1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA743ED18CA1E05003CF3F8 /* ZDJGM1@2x.png */; };
 		CEA743F218CA2037003CF3F8 /* LLUIPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743F118CA2037003CF3F8 /* LLUIPickView.m */; };
@@ -138,6 +139,9 @@
 		07B52C2818C620340003B3C2 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		07B52C2918C620340003B3C2 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		07B52C2C18C62BEF0003B3C2 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		07BF9F9718CB63A500FABFB9 /* xuechanggui@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xuechanggui@2x.png"; sourceTree = "<group>"; };
+		07BF9F9918CB660300FABFB9 /* backButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButton@2x.png"; sourceTree = "<group>"; };
+		07BF9F9A18CB660300FABFB9 /* okButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "okButton@2x.png"; sourceTree = "<group>"; };
 		07D2AD6818C3468300FEC498 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		07D2AD6A18C3468D00FEC498 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		07D2AD6C18C3469400FEC498 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -182,9 +186,6 @@
 		07D5284618CAB8CA005FCB7A /* lcjcBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcBG@2x.png"; sourceTree = "<group>"; };
 		07D5284B18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcCellRightButtonSelected@2x.png"; sourceTree = "<group>"; };
 		07D5284C18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lcjcCellRightButtonUnselected@2x.png"; sourceTree = "<group>"; };
-		CEA743EA18CA137C003CF3F8 /* ZDJGPage1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDJGPage1ViewController.h; sourceTree = "<group>"; };
-		CEA743EB18CA137C003CF3F8 /* ZDJGPage1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDJGPage1ViewController.m; sourceTree = "<group>"; };
-		CEA743ED18CA1E05003CF3F8 /* ZDJGM1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZDJGM1.png; sourceTree = "<group>"; };
 		CE1CAC0518CAFC3C00BC0F4E /* qzButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qzButton@2x.png"; sourceTree = "<group>"; };
 		CEA743ED18CA1E05003CF3F8 /* ZDJGM1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZDJGM1@2x.png"; sourceTree = "<group>"; };
 		CEA743F018CA2037003CF3F8 /* LLUIPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUIPickView.h; sourceTree = "<group>"; };
@@ -225,6 +226,9 @@
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				07BF9F9918CB660300FABFB9 /* backButton@2x.png */,
+				07BF9F9A18CB660300FABFB9 /* okButton@2x.png */,
+				07BF9F9718CB63A500FABFB9 /* xuechanggui@2x.png */,
 				07D5284B18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png */,
 				07D5284C18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png */,
 				07D5284618CAB8CA005FCB7A /* lcjcBG@2x.png */,
@@ -520,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0750C73F18C1B4E300640D1F /* selectCase@2x.png in Resources */,
+				07BF9F9C18CB660300FABFB9 /* okButton@2x.png in Resources */,
 				07D5284E18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png in Resources */,
 				07B52C2D18C62BEF0003B3C2 /* Settings.bundle in Resources */,
 				07D5284D18CAC70F005FCB7A /* lcjcCellRightButtonSelected@2x.png in Resources */,
@@ -534,6 +539,7 @@
 				07D5284718CAB8CA005FCB7A /* lcjcBG@2x.png in Resources */,
 				0750C74E18C1CF4200640D1F /* lcjcSelected@2x.png in Resources */,
 				07D5284518CA27DA005FCB7A /* hzqkBG@2x.png in Resources */,
+				07BF9F9B18CB660300FABFB9 /* backButton@2x.png in Resources */,
 				0750C73818C1B23A00640D1F /* cover1@2x.png in Resources */,
 				0750C74F18C1CF4200640D1F /* lcjcUnselected@2x.png in Resources */,
 				0750C74118C1BBE500640D1F /* caseButtonSelected@2x.png in Resources */,
@@ -542,6 +548,7 @@
 				0750C74C18C1CF4200640D1F /* hzqkSelected@2x.png in Resources */,
 				0759650918C1D55700B17B2D /* zdjgUnselected@2x.png in Resources */,
 				0759650A18C1D55700B17B2D /* zlfaSelected@2x.png in Resources */,
+				07BF9F9818CB63A500FABFB9 /* xuechanggui@2x.png in Resources */,
 				CEA743EE18CA1E05003CF3F8 /* ZDJGM1@2x.png in Resources */,
 				0750C74D18C1CF4200640D1F /* hzqkUnselected@2x.png in Resources */,
 				0750C74718C1CA6F00640D1F /* leftMenuBG@2x.png in Resources */,
