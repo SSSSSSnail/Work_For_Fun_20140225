@@ -10,5 +10,4 @@
 @class LLCheckButtonGroup;
 @interface LLCheckButton : UIButton
 @property (nonatomic, assign) BOOL checked;
-@property (weak, nonatomic) LLCheckButtonGroup *group;
 @end

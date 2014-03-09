@@ -226,56 +226,32 @@
                                                     <outlet property="delegate" destination="dTL-s9-QlI" id="Nyv-KX-Lx5"/>
                                                 </connections>
                                             </pickerView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqc-GX-MPz" userLabel="Label - 分期结果">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pqc-GX-MPz" userLabel="Label - 分期结果">
                                                 <rect key="frame" x="157" y="582" width="179" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="器官局限性癌概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bsO-Fb-MgQ">
-                                                <rect key="frame" x="588" y="424" width="148" height="21"/>
+                                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="器官局限性癌概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bsO-Fb-MgQ">
+                                                <rect key="frame" x="588" y="424" width="197" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="包膜侵犯概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="flq-57-mdM">
-                                                <rect key="frame" x="588" y="455" width="148" height="21"/>
+                                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="包膜侵犯概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="flq-57-mdM">
+                                                <rect key="frame" x="588" y="455" width="197" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精囊侵犯概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2iZ-sD-eU3">
-                                                <rect key="frame" x="588" y="484" width="148" height="21"/>
+                                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精囊侵犯概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2iZ-sD-eU3">
+                                                <rect key="frame" x="588" y="484" width="197" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="淋巴结转移概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pCm-yQ-435">
-                                                <rect key="frame" x="588" y="515" width="148" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5ta-Tg-mQ9" userLabel="Label - 器官概率">
-                                                <rect key="frame" x="744" y="424" width="42" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8jk-Kc-aT1" userLabel="Label - 包膜概率">
-                                                <rect key="frame" x="708" y="455" width="42" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gsf-mP-m9h" userLabel="Label - 精囊概率">
-                                                <rect key="frame" x="715" y="484" width="42" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wGg-IN-y0h" userLabel="Label - 淋巴结概率">
-                                                <rect key="frame" x="726" y="515" width="42" height="21"/>
+                                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="淋巴结转移概率 :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pCm-yQ-435">
+                                                <rect key="frame" x="588" y="515" width="197" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
@@ -287,6 +263,9 @@
                                                 <state key="normal" image="qzButton.png">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="detailViewConfirm:" destination="dTL-s9-QlI" eventType="touchUpInside" id="M3L-i0-eEh"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PVs-YF-ppd" userLabel="Label - 评估结果">
                                                 <rect key="frame" x="559" y="318" width="138" height="21"/>
@@ -403,16 +382,16 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
-                        <outlet property="bmRateLabel" destination="8jk-Kc-aT1" id="fga-jv-NQJ"/>
+                        <outlet property="bmRateLabel" destination="flq-57-mdM" id="bLq-d3-62n"/>
                         <outlet property="detailScrollVIew" destination="hY5-sl-7hJ" id="xbt-bV-hvR"/>
-                        <outlet property="jnRateLabel" destination="Gsf-mP-m9h" id="CVL-L8-MKM"/>
-                        <outlet property="lbjRateLabel" destination="wGg-IN-y0h" id="tXy-88-kOh"/>
+                        <outlet property="jnRateLabel" destination="2iZ-sD-eU3" id="CKA-FH-97q"/>
+                        <outlet property="lbjRateLabel" destination="pCm-yQ-435" id="WDV-Uk-TUt"/>
                         <outlet property="lcfqLabel" destination="Pqc-GX-MPz" id="5wW-Eo-RFq"/>
                         <outlet property="lcjcOkButton" destination="Cii-f0-o1p" id="uQY-BU-cdM"/>
                         <outlet property="lcjcResultImageView" destination="rUX-jD-hlA" id="GiW-EY-93b"/>
                         <outlet property="masterScrollView" destination="Qpf-5X-ZeI" id="xDq-uT-odN"/>
                         <outlet property="pgjgLabel" destination="PVs-YF-ppd" id="8QF-G1-PSN"/>
-                        <outlet property="qgRateLabel" destination="5ta-Tg-mQ9" id="7YF-yw-1WG"/>
+                        <outlet property="qgRateLabel" destination="bsO-Fb-MgQ" id="VXd-0B-gag"/>
                         <outlet property="tableviewLCJC" destination="7zt-MH-Urf" id="9du-5d-yHl"/>
                         <outlet property="zdjgEvaluatePickView" destination="asU-Mz-XRk" id="rMP-5g-sti"/>
                         <outlet property="zdjglcfqMPickView" destination="wFs-DU-p1b" id="MXt-IA-x1g"/>

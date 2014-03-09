@@ -116,6 +116,9 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     [super viewDidLoad];
 
+#warning For TEST
+    [GInstance() loadData];
+
     self.masterTagArray = @[
                             [NSNumber numberWithInt:HZQKButton1],
                             [NSNumber numberWithInt:LCJCButton1],
@@ -221,8 +224,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
-//    [self refreshButtonAndView:GInstance().globalData.currentIndex];
-    [self refreshButtonAndView:1];
+    [self refreshButtonAndView:GInstance().globalData.currentIndex];
+
     _checkButtonGroup.selectedItemTag = 207;
 }
 
@@ -381,6 +384,40 @@ static float const DETAILVIEWIDTH = 877.0f;
     //选择内容之后进行存储的操作
     switch (pickerView.tag) {
         case UIPickViewZDJG1T: // 诊断结果 T
+        {
+            NSArray *pickerViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+            NSString *selectedString = pickerViewSource[row];
+            ((LLUIPickView *)pickerView).selectedOjbect = selectedString;
+            _qgRateLabel.hidden = NO;
+            _bmRateLabel.hidden = NO;
+            _jnRateLabel.hidden = NO;
+            _lbjRateLabel.hidden = NO;
+            if ([selectedString isEqualToString:@"1c"]) {
+                _qgRateLabel.text = @"器官局限性癌概率：80%";
+                _bmRateLabel.text = @"包膜侵犯概率：18%";
+                _jnRateLabel.text = @"精囊侵犯概率：1%";
+                _lbjRateLabel.text = @"淋巴结转移概率：0";
+            } else if ([selectedString isEqualToString:@"2a"]) {
+                _qgRateLabel.text = @"器官局限性癌概率：73%";
+                _bmRateLabel.text = @"包膜侵犯概率：26%";
+                _jnRateLabel.text = @"精囊侵犯概率：1%";
+                _lbjRateLabel.text = @"淋巴结转移概率：0";
+            } else if ([selectedString isEqualToString:@"2b"] || [_zdjglcfqTPickView.selectedOjbect isEqualToString:@"2c"]){
+                _qgRateLabel.text = @"器官局限性癌概率：58%";
+                _bmRateLabel.text = @"包膜侵犯概率：38%";
+                _jnRateLabel.text = @"精囊侵犯概率：4%";
+                _lbjRateLabel.text = @"淋巴结转移概率：1%";
+            } else {
+                _qgRateLabel.hidden = YES;
+                _bmRateLabel.hidden = YES;
+                _jnRateLabel.hidden = YES;
+                _lbjRateLabel.hidden = YES;
+            }
+            // 添加label
+            _lcfqLabel.text = [NSString stringWithFormat:@"T%@N%@M%@",_zdjglcfqTPickView.selectedOjbect,_zdjglcfqNPickView.selectedOjbect,_zdjglcfqMPickView.selectedOjbect];
+            
+        }
+            break;
         case UIPickViewZDJG1M: // 诊断结果 M
         case UIPickViewZDJG1N: // 诊断结果 N
         {
