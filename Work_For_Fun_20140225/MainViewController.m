@@ -111,18 +111,6 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     [super viewDidLoad];
 
-    NSArray *familyNames = [UIFont familyNames];
-    for( NSString *familyName in familyNames ){
-        if ([familyName hasPrefix:@"Micro"]) {
-            NSLog(@"%@", familyName);
-        }
-//        printf( "Family: %s \n", [familyName UTF8String] );
-//        NSArray *fontNames = [UIFont fontNamesForFamilyName:familyName];
-//        for( NSString *fontName in fontNames ){
-//            printf( "\tFont: %s \n", [fontName UTF8String] );
-//        }
-    }
-
     self.masterTagArray = @[
                             [NSNumber numberWithInt:HZQKButton1],
                             [NSNumber numberWithInt:LCJCButton1],
@@ -185,8 +173,10 @@ static float const DETAILVIEWIDTH = 877.0f;
     /* 临床检查初始化 */
     self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查", @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
                                          @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR", @"ECOG评分", @"穿刺活检", @"CT检查"];
-    self.lcjcTableToImageNameArray = @[@"xuechanggui.png", @183, @184, @185, @186, @187, @188, @189,
-                                     @190, @191, @192, @193, @194, @195, @196, @197];
+    self.lcjcTableToImageNameArray = @[@"xuechanggui.png", @"niaochanggui.png", @"xueshenghua.png", @"ningxueshaicha.png",
+                                       @"zhichangzhizhen.png", @"xindiantu.png", @"chaoshengxindong.png", @"xiongpian.png",
+                                       @"BChao.png", @"qianliexianteyikangyuan.png", @"gaotong.png", @"fangshexinghesugusaomiao.png",
+                                       @"penqianghecigongzhen.png", @"ECOGpingfen.png", @"chuancihuojian.png", @"CTjiancha.png"];
 
     UILabel *lcjcHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 40.0f)];
     lcjcHeaderLabel.textAlignment = NSTextAlignmentCenter;
@@ -258,7 +248,19 @@ static float const DETAILVIEWIDTH = 877.0f;
 }
 
 - (IBAction)detailViewConfirm:(UIButton *)sender {
-    
+    NSLog(@"CLICK!");
+
+    //先通过Index判断是临床检查
+//    if (sender.imageView.image) {
+//        <#statements#>
+//    }
+    [UIView transitionFromView:_lcjcResultImageView
+                        toView:_tableviewLCJC
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionCurlDown | UIViewAnimationOptionShowHideTransitionViews
+                    completion:^(BOOL finished) {
+                        [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
+                    }];
 }
 
 #pragma mark -
@@ -296,6 +298,19 @@ static float const DETAILVIEWIDTH = 877.0f;
         rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
         selectedString = [selectedString stringByAppendingFormat:@", %ld", indexPath.row];
     }
+
+    if (indexPath.row == 12) {
+
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:@"您在临床检查中核磁检查的时机选择？"
+                           cancelButtonItem:[RIButtonItem itemWithLabel:@"穿刺活检前" action:^{
+
+        }]
+                           otherButtonItems:[RIButtonItem itemWithLabel:@"穿刺活检后" action:^{
+
+        }], nil] show];
+    }
+
     _lcjcResultImageView.image = [UIImage imageNamed:_lcjcTableToImageNameArray[indexPath.row]];
     [UIView transitionFromView:_tableviewLCJC
                         toView:_lcjcResultImageView
