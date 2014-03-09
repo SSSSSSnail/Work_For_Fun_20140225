@@ -10,6 +10,7 @@
 #import "LLCheckButton.h"
 @interface LLCheckButtonGroup ()
 @property (nonatomic, retain) NSMutableArray *container;
+@property (strong, nonatomic) LLCheckButton *selectedItem;
 @end
 
 @implementation LLCheckButtonGroup
@@ -36,8 +37,8 @@
 
 - (NSInteger)selectedItemTag
 {
-    if (self.selectedItem) {
-        return self.selectedItem.tag;
+    if (_selectedItem) {
+        return _selectedItem.tag;
     }
     return -1;
 }
@@ -45,27 +46,18 @@
 #pragma mark - selectedItem Accessor
 - (void)setSelectedItem:(LLCheckButton *)selectedItem
 {
+    _selectedItem = selectedItem;
     for (LLCheckButton *checkButton in _container) {
         if ([selectedItem isEqual:checkButton]) {
-            if (!checkButton.checked) {
-                checkButton.checked = YES;
+            if (!checkButton.isSelected) {
+                checkButton.selected = YES;
             }
             continue;
         }
-        if (checkButton.checked) {
-            checkButton.checked = NO;
+        if (checkButton.isSelected) {
+            checkButton.selected = NO;
         }
     }
-}
-
-- (LLCheckButton *)selectedItem
-{
-    for (LLCheckButton *checkButton in _container) {
-        if (checkButton.checked) {
-            return checkButton;
-        }
-    }
-    return nil;
 }
 
 #pragma mark - Public Method
@@ -77,9 +69,7 @@
 
 - (void)touchButton:(LLCheckButton *)sender
 {
-    if (sender.checked) {
-        sender.checked = NO;
-    } else {
+    if (!sender.isSelected) {
         self.selectedItem = sender;
     }
     [_delegate buttonItemTouchedinGroup:sender];

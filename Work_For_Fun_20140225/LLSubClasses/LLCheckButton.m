@@ -27,20 +27,9 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        
+        [self setImage:[UIImage imageNamed:@"checkSelectButton@2x.png"] forState:UIControlStateSelected];
+        [self setImage:[UIImage imageNamed:@"checkUnselectButton@2x.png"] forState:UIControlStateNormal];
     }
     return self;
 }
-
-#pragma mark - checked Accessors
-- (void)setChecked:(BOOL)checked
-{
-    _checked = checked;
-    if (checked) {
-        [self setImage:[UIImage imageNamed:@"checkSelectButton@2x.png"] forState:UIControlStateNormal];
-    } else {
-        [self setImage:[UIImage imageNamed:@"checkUnselectButton@2x.png"] forState:UIControlStateNormal];
-    }
-}
-
 @end

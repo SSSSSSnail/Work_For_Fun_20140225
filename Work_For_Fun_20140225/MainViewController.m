@@ -226,7 +226,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 #warning TODO: 加载旧数据并赋值
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 
-    _checkButtonGroup.selectedItemTag = 207;
+//    _checkButtonGroup.selectedItemTag = 207;
 }
 
 - (void)didReceiveMemoryWarning
