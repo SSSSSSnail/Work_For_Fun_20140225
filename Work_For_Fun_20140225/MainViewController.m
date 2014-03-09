@@ -10,7 +10,8 @@
 #import "LLUIView.h"
 #import "LLUIButton.h"
 #import "LLUIPickView.h"
-
+#import "LLCheckButton.h"
+#import "LLCheckButtonGroup.h"
 typedef NS_ENUM(NSUInteger, ScrollSubButtonTag)
 {
     HZQKButton1 = 10, //患者情况
@@ -50,7 +51,11 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
     UIPickViewZDJG1T = 201,
     UIPickViewZDJG1N = 202,
     UIPickViewZDJG1M = 203,
-    UIPickViewZLFATYQS = 204,
+    UIButtonQLZS = 204,
+    UIButtonJXX = 205,
+    UIButtonJBWQ = 206,
+    UIButtonZYX = 207,
+    UIPickViewZLFATYQS = 210,
 };
 
 static float const DETAILVIEWHEIGHT = 768.0f;
@@ -65,7 +70,6 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (weak, nonatomic) IBOutlet UIImageView *lcjcResultImageView;
 @property (weak, nonatomic) IBOutlet UIButton *lcjcOkButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *ZDJGFQ;
 @property (weak, nonatomic) IBOutlet UILabel *qgRateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bmRateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *jnRateLabel;
@@ -78,8 +82,6 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (weak, nonatomic) IBOutlet LLUIPickView *zdjglcfqMPickView;
 @property (weak, nonatomic) IBOutlet LLUIPickView *zdjgEvaluatePickView;
 
-@property (weak, nonatomic) IBOutlet UIButton *qzButton;
-
 @property (strong, nonatomic) NSMutableArray *masterButtonArray;
 @property (strong, nonatomic) NSMutableArray *detailViewArray;
 
@@ -89,8 +91,9 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (strong, nonatomic) NSArray *lcjcTableViewLabelTextArray;
 @property (strong, nonatomic) NSArray *lcjcTableToImageNameArray;
 @property (strong, nonatomic) NSDictionary *pickViewSourceDictionary;
-
+@property (strong, nonatomic) LLCheckButtonGroup *checkButtonGroup;
 - (IBAction)clickNext:(LLUIButton *)sender;
+- (IBAction)detailViewConfirm:(UIButton *)sender;
 
 @end
 
@@ -196,16 +199,29 @@ static float const DETAILVIEWIDTH = 877.0f;
     _tableviewLCJC.tableHeaderView = lcjcHeaderLabel;
 
     /* 诊断结果初始化 */
-    self.pickViewSourceDictionary = @{@"200": @[@"",@"高危", @"中危", @"低危"],
-                                      @"201": @[@"", @"1a", @"1b", @"1c", @"2a", @"2b", @"2c", @"3a", @"3b", @"4"],
-                                      @"202": @[@"", @"0", @"1", @"2"],
-                                      @"203": @[@"", @"0", @"1"]};
+    self.pickViewSourceDictionary = @{@"200": @[doubleSpace,@"高危", @"中危", @"低危"],
+                                      @"201": @[doubleSpace, @"1a", @"1b", @"1c", @"2a", @"2b", @"2c", @"3a", @"3b", @"4"],
+                                      @"202": @[doubleSpace, @"0", @"1", @"2"],
+                                      @"203": @[doubleSpace, @"0", @"1"]};
+    self.checkButtonGroup = [[LLCheckButtonGroup alloc] init];
+    [_zdjglcfqMPickView resizeFrameMinHeight];
+    [_zdjglcfqTPickView resizeFrameMinHeight];
+    [_zdjglcfqNPickView resizeFrameMinHeight];
+    [_zdjgEvaluatePickView resizeFrameMinHeight];
 
-    [self.zdjglcfqMPickView resizeFrameMinHeight];
-    [self.zdjglcfqTPickView resizeFrameMinHeight];
-    [self.zdjglcfqNPickView resizeFrameMinHeight];
-    [self.zdjgEvaluatePickView resizeFrameMinHeight];
-
+    _lcfqLabel.text = @"T  N  M  ";
+    UIFont *zdjgFont = [UIFont miscrosoftYaHeiFont];
+    
+    NSArray *zdjgSubViews = [[_detailScrollVIew viewWithTag:ZDJGView1] subviews];
+    for (UIView *subView in zdjgSubViews) {
+        if ([subView isKindOfClass:[UILabel class]]) {
+            ((UILabel *)subView).font = zdjgFont;
+            continue;
+        }
+        if ([subView isKindOfClass:[LLCheckButton class]]) {
+            [_checkButtonGroup addObject:subView];
+        }
+    }
     /* xxxxxx */
 }
 
@@ -214,6 +230,8 @@ static float const DETAILVIEWIDTH = 877.0f;
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
+
+    _checkButtonGroup.selectedItemTag = 207;
 }
 
 - (void)didReceiveMemoryWarning
@@ -257,8 +275,9 @@ static float const DETAILVIEWIDTH = 877.0f;
     [_detailScrollVIew scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 }
 
-- (IBAction)detailViewConfirm:(UIButton *)sender {
-    
+- (IBAction)detailViewConfirm:(UIButton *)sender
+{
+    NSLog(@"%ld",(long)self.checkButtonGroup.selectedItemTag);
 }
 
 #pragma mark -
@@ -271,7 +290,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *selectedString = GInstance().globalData.lcjcSelectedArrayString;
-    BOOL isSelected = [[selectedString componentsSeparatedByString:@","] containsObject:[NSString stringWithFormat:@"%ld", indexPath.row]];
+    BOOL isSelected = [[selectedString componentsSeparatedByString:@","] containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
     NSString *rightImageName = isSelected?@"lcjcCellRightButtonSelected.png":@"lcjcCellRightButtonUnselected.png";
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"lcjcTableviewCell"];
@@ -290,11 +309,11 @@ static float const DETAILVIEWIDTH = 877.0f;
     NSString *selectedString = GInstance().globalData.lcjcSelectedArrayString;
     NSArray *selectedArray = [selectedString componentsSeparatedByString:@","];
 
-    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", indexPath.row]]) {
+    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
         rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
-        selectedString = [selectedString stringByAppendingFormat:@", %ld", indexPath.row];
+        selectedString = [selectedString stringByAppendingFormat:@", %ld", (long)indexPath.row];
     }
     _lcjcResultImageView.image = [UIImage imageNamed:_lcjcTableToImageNameArray[indexPath.row]];
     [UIView transitionFromView:_tableviewLCJC
@@ -315,7 +334,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld", pickerView.tag]];
+    NSArray *pickViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld", (long)pickerView.tag]];
     return [pickViewSource count];}
 
 #pragma mark -
@@ -334,15 +353,17 @@ static float const DETAILVIEWIDTH = 877.0f;
         case UIPickViewZDJG1M: // 诊断结果 M
         case UIPickViewZDJG1N: // 诊断结果 N
         {
-            NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
-            ((LLUIPickView *)pickerView).selectedOjbect = [pickViewSource objectAtIndex:row];
+            NSArray *pickerViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+            ((LLUIPickView *)pickerView).selectedOjbect = pickerViewSource[row];
             // 添加label
+            _lcfqLabel.text = [NSString stringWithFormat:@"T%@N%@M%@",_zdjglcfqTPickView.selectedOjbect,_zdjglcfqNPickView.selectedOjbect,_zdjglcfqMPickView.selectedOjbect];
         }
             break;
         case UIPickViewZDJG1Evalute: //患者危险评估
         {
-            NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
-            ((LLUIPickView *)pickerView).selectedOjbect = [pickViewSource objectAtIndex:row];
+            NSArray *pickerViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
+            ((LLUIPickView *)pickerView).selectedOjbect = pickerViewSource[row];
+            _pgjgLabel.text = pickerViewSource[row];
         }
             break;
         default:
@@ -353,10 +374,10 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 - (BOOL)hasCompletedPickViewSelctionZDJGPage
 {
-    if ([self.zdjglcfqTPickView.selectedOjbect isEqualToString:@""] ||
-        [self.zdjglcfqMPickView.selectedOjbect isEqualToString:@""] ||
-        [self.zdjglcfqNPickView.selectedOjbect isEqualToString:@""] ||
-        [self.zdjgEvaluatePickView.selectedOjbect isEqualToString:@""]) {
+    if ([_zdjglcfqTPickView.selectedOjbect isEqualToString:doubleSpace] ||
+        [_zdjglcfqMPickView.selectedOjbect isEqualToString:doubleSpace] ||
+        [_zdjglcfqNPickView.selectedOjbect isEqualToString:doubleSpace] ||
+        [_zdjgEvaluatePickView.selectedOjbect isEqualToString:doubleSpace]) {
         return NO;
     }
     return YES;
