@@ -219,9 +219,12 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
-    [self refreshButtonAndView:GInstance().globalData.currentIndex];
+//    [self refreshButtonAndView:GInstance().globalData.currentIndex];
+    [self refreshButtonAndView:2];
 
-//    _checkButtonGroup.selectedItemTag = 207;
+    NSLog(@"%lu",(unsigned long)GInstance().globalData.currentIndex);
+
+    _checkButtonGroup.selectedItemTag = 207;
 }
 
 - (void)didReceiveMemoryWarning

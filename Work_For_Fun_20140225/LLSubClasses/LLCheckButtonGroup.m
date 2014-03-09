@@ -47,8 +47,8 @@
 {
     for (LLCheckButton *checkButton in _container) {
         if ([selectedItem isEqual:checkButton]) {
-            if (!selectedItem.checked) {
-                selectedItem.checked = YES;
+            if (!checkButton.checked) {
+                checkButton.checked = YES;
             }
             continue;
         }
@@ -71,8 +71,17 @@
 #pragma mark - Public Method
 - (void)addObject:(LLCheckButton *)checkButton
 {
-    checkButton.group = self;
     [_container addObject:checkButton];
+    [checkButton addTarget:self action:@selector(touchButton:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)touchButton:(LLCheckButton *)sender
+{
+    if (sender.checked) {
+        sender.checked = NO;
+    } else {
+        self.selectedItem = sender;
+    }
+    [_delegate buttonItemTouchedinGroup:sender];
+}
 @end

@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 @class LLCheckButton;
+@protocol LLCheckButtonGroupDelegate <NSObject>
+
+- (void)buttonItemTouchedinGroup:(LLCheckButton *)checkButton;
+
+@end
+
 @interface LLCheckButtonGroup : NSObject
 @property (assign, nonatomic) NSInteger selectedItemTag;
 @property (strong, nonatomic) LLCheckButton *selectedItem;
+@property (weak, nonatomic)id<LLCheckButtonGroupDelegate> delegate;
 - (void)addObject:(id)checkButton;
 @end

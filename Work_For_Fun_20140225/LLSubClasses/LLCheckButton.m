@@ -10,7 +10,6 @@
 #import "LLCheckButtonGroup.h"
 
 @interface LLCheckButton ()
-- (void)touchButton;
 @end
 
 @implementation LLCheckButton
@@ -21,7 +20,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self addTarget:self action:@selector(touchButton) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -29,7 +27,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        [self addTarget:self action:@selector(touchButton) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return self;
 }
@@ -40,24 +38,9 @@
     _checked = checked;
     if (checked) {
         [self setImage:[UIImage imageNamed:@"checkSelectButton@2x.png"] forState:UIControlStateNormal];
-        _group.selectedItem = self;
     } else {
         [self setImage:[UIImage imageNamed:@"checkUnselectButton@2x.png"] forState:UIControlStateNormal];
     }
 }
-
-#pragma mark - private SEL
-- (void)touchButton
-{
-    self.checked = !_checked;
-}
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end
