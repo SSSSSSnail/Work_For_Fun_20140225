@@ -90,11 +90,13 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 @property (strong, nonatomic) NSArray *lcjcTableViewLabelTextArray;
 @property (strong, nonatomic) NSArray *lcjcTableToImageNameArray;
+@property (assign, nonatomic) BOOL isLcjcDeatilView;
+
 @property (strong, nonatomic) NSDictionary *pickViewSourceDictionary;
 @property (strong, nonatomic) LLCheckButtonGroup *checkButtonGroup;
+
 - (IBAction)clickNext:(LLUIButton *)sender;
 - (IBAction)detailViewConfirm:(UIButton *)sender;
-
 @end
 
 @implementation MainViewController
@@ -189,7 +191,7 @@ static float const DETAILVIEWIDTH = 877.0f;
     _tableviewLCJC.tableHeaderView = lcjcHeaderLabel;
 
     /* 诊断结果初始化 */
-    self.pickViewSourceDictionary = @{@"200": @[doubleSpace,@"高危", @"中危", @"低危"],
+    self.pickViewSourceDictionary = @{@"200": @[doubleSpace, @"高危", @"中危", @"低危"],
                                       @"201": @[doubleSpace, @"1a", @"1b", @"1c", @"2a", @"2b", @"2c", @"3a", @"3b", @"4"],
                                       @"202": @[doubleSpace, @"0", @"1", @"2"],
                                       @"203": @[doubleSpace, @"0", @"1"]};
@@ -219,8 +221,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
-    [self refreshButtonAndView:GInstance().globalData.currentIndex];
-
+//    [self refreshButtonAndView:GInstance().globalData.currentIndex];
+    [self refreshButtonAndView:1];
     _checkButtonGroup.selectedItemTag = 207;
 }
 
@@ -271,13 +273,19 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     NSLog(@"%ld",(long)self.checkButtonGroup.selectedItemTag);
 
-    [UIView transitionFromView:_lcjcResultImageView
-                        toView:_tableviewLCJC
-                      duration:1.0
-                       options:UIViewAnimationOptionTransitionCurlDown | UIViewAnimationOptionShowHideTransitionViews
-                    completion:^(BOOL finished) {
-                        [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
-                    }];
+    NSLog(@"%ld", sender.tag);
+
+    /* 临床检查 */
+    if (_isLcjcDeatilView) {
+        _isLcjcDeatilView = NO;
+        [UIView transitionFromView:_lcjcResultImageView
+                            toView:_tableviewLCJC
+                          duration:1.0
+                           options:UIViewAnimationOptionTransitionCurlDown | UIViewAnimationOptionShowHideTransitionViews
+                        completion:^(BOOL finished) {
+                            [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
+                        }];
+    }
 }
 
 #pragma mark -
@@ -315,27 +323,37 @@ static float const DETAILVIEWIDTH = 877.0f;
         rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
         selectedString = [selectedString stringByAppendingFormat:@", %ld", (long)indexPath.row];
     }
-
+    dispatch_semaphore_t t = dispatch_semaphore_create(0);
     if (indexPath.row == 12) {
-
         [[[UIAlertView alloc] initWithTitle:nil
                                     message:@"您在临床检查中核磁检查的时机选择？"
                            cancelButtonItem:[RIButtonItem itemWithLabel:@"穿刺活检前" action:^{
+            dispatch_semaphore_signal(t);
 
         }]
                            otherButtonItems:[RIButtonItem itemWithLabel:@"穿刺活检后" action:^{
-
+            dispatch_semaphore_signal(t);
         }], nil] show];
+    } else {
+        dispatch_semaphore_signal(t);
     }
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _lcjcResultImageView.image = [UIImage imageNamed:_lcjcTableToImageNameArray[indexPath.row]];
+            _isLcjcDeatilView = YES;
+            [UIView transitionFromView:_tableviewLCJC
+                                toView:_lcjcResultImageView
+                              duration:1.0
+                               options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                            completion:^(BOOL finished) {
+                                [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                            }];
+        });
+    });
 
-    _lcjcResultImageView.image = [UIImage imageNamed:_lcjcTableToImageNameArray[indexPath.row]];
-    [UIView transitionFromView:_tableviewLCJC
-                        toView:_lcjcResultImageView
-                      duration:1.0
-                       options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews 
-                    completion:^(BOOL finished) {
-                        [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                    }];
+
 }
 
 #pragma mark -
