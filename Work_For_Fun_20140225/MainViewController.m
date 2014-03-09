@@ -234,7 +234,9 @@ static float const DETAILVIEWIDTH = 877.0f;
 #pragma mark 页面切换按钮刷新事件处理
 - (void)swipeup:(UIView *)sender
 {
-    [self refreshButtonAndView:sender.tag - 109];
+    if (sender.tag == 110) {
+        [self refreshButtonAndView:sender.tag - 109];
+    }
 }
 
 - (IBAction)clickNext:(LLUIButton *)sender
