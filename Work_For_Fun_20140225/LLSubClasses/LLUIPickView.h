@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+static NSString *const doubleSpace = @"  ";
 @interface LLUIPickView : UIPickerView
-@property ( copy, nonatomic) NSString *selectedOjbect;
+@property (copy, nonatomic) NSString *selectedOjbect;
 - (void)resizeFrameMinHeight;
 @end

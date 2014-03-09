@@ -92,6 +92,10 @@
 		CE1CAC0618CAFC3C00BC0F4E /* qzButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1CAC0518CAFC3C00BC0F4E /* qzButton@2x.png */; };
 		CEA743EE18CA1E05003CF3F8 /* ZDJGM1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA743ED18CA1E05003CF3F8 /* ZDJGM1@2x.png */; };
 		CEA743F218CA2037003CF3F8 /* LLUIPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743F118CA2037003CF3F8 /* LLUIPickView.m */; };
+		CEA76BBD18CB860400BF1EF6 /* LLCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA76BBC18CB860400BF1EF6 /* LLCheckButton.m */; };
+		CEA76BC018CB8F6100BF1EF6 /* checkSelectButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA76BBE18CB8F6100BF1EF6 /* checkSelectButton@2x.png */; };
+		CEA76BC118CB8F6100BF1EF6 /* checkUnselectButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA76BBF18CB8F6100BF1EF6 /* checkUnselectButton@2x.png */; };
+		CEA76BC418CB932C00BF1EF6 /* LLCheckButtonGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA76BC318CB932C00BF1EF6 /* LLCheckButtonGroup.m */; };
 		CEB92C2918C63707009928EB /* UIFont+MicrosoftFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB92C2818C63707009928EB /* UIFont+MicrosoftFont.m */; };
 		CEB92C2C18C75AD1009928EB /* MSYH.TTF in Resources */ = {isa = PBXBuildFile; fileRef = CEB92C2A18C75AD1009928EB /* MSYH.TTF */; };
 /* End PBXBuildFile section */
@@ -226,6 +230,12 @@
 		CEA743ED18CA1E05003CF3F8 /* ZDJGM1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZDJGM1@2x.png"; sourceTree = "<group>"; };
 		CEA743F018CA2037003CF3F8 /* LLUIPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUIPickView.h; sourceTree = "<group>"; };
 		CEA743F118CA2037003CF3F8 /* LLUIPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLUIPickView.m; sourceTree = "<group>"; };
+		CEA76BBB18CB860400BF1EF6 /* LLCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCheckButton.h; sourceTree = "<group>"; };
+		CEA76BBC18CB860400BF1EF6 /* LLCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCheckButton.m; sourceTree = "<group>"; };
+		CEA76BBE18CB8F6100BF1EF6 /* checkSelectButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkSelectButton@2x.png"; sourceTree = "<group>"; };
+		CEA76BBF18CB8F6100BF1EF6 /* checkUnselectButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkUnselectButton@2x.png"; sourceTree = "<group>"; };
+		CEA76BC218CB932C00BF1EF6 /* LLCheckButtonGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCheckButtonGroup.h; sourceTree = "<group>"; };
+		CEA76BC318CB932C00BF1EF6 /* LLCheckButtonGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCheckButtonGroup.m; sourceTree = "<group>"; };
 		CEB92C2718C63707009928EB /* UIFont+MicrosoftFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+MicrosoftFont.h"; sourceTree = "<group>"; };
 		CEB92C2818C63707009928EB /* UIFont+MicrosoftFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+MicrosoftFont.m"; sourceTree = "<group>"; };
 		CEB92C2A18C75AD1009928EB /* MSYH.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = MSYH.TTF; sourceTree = "<group>"; };
@@ -277,6 +287,8 @@
 				07BF9FA518CB7B8700FABFB9 /* zhichangzhizhen@2x.png */,
 				07BF9F9D18CB777F00FABFB9 /* niaochanggui@2x.png */,
 				07BF9F9E18CB777F00FABFB9 /* xueshenghua@2x.png */,
+				CEA76BBE18CB8F6100BF1EF6 /* checkSelectButton@2x.png */,
+				CEA76BBF18CB8F6100BF1EF6 /* checkUnselectButton@2x.png */,
 				07BF9F9918CB660300FABFB9 /* backButton@2x.png */,
 				07BF9F9A18CB660300FABFB9 /* okButton@2x.png */,
 				07BF9F9718CB63A500FABFB9 /* xuechanggui@2x.png */,
@@ -493,6 +505,10 @@
 			children = (
 				CEA743F018CA2037003CF3F8 /* LLUIPickView.h */,
 				CEA743F118CA2037003CF3F8 /* LLUIPickView.m */,
+				CEA76BBB18CB860400BF1EF6 /* LLCheckButton.h */,
+				CEA76BBC18CB860400BF1EF6 /* LLCheckButton.m */,
+				CEA76BC218CB932C00BF1EF6 /* LLCheckButtonGroup.h */,
+				CEA76BC318CB932C00BF1EF6 /* LLCheckButtonGroup.m */,
 			);
 			path = LLSubClasses;
 			sourceTree = "<group>";
@@ -604,6 +620,7 @@
 				07BF9FBA18CB7DFC00FABFB9 /* qianliexianteyikangyuan@2x.png in Resources */,
 				0759650B18C1D55700B17B2D /* zlfaUnselected@2x.png in Resources */,
 				07BF9FB918CB7DFC00FABFB9 /* penqianghecigongzhen@2x.png in Resources */,
+				CEA76BC018CB8F6100BF1EF6 /* checkSelectButton@2x.png in Resources */,
 				07D5284718CAB8CA005FCB7A /* lcjcBG@2x.png in Resources */,
 				0750C74E18C1CF4200640D1F /* lcjcSelected@2x.png in Resources */,
 				07D5284518CA27DA005FCB7A /* hzqkBG@2x.png in Resources */,
@@ -619,6 +636,7 @@
 				07BF9F9F18CB777F00FABFB9 /* niaochanggui@2x.png in Resources */,
 				07BF9FB318CB7DFC00FABFB9 /* BChao@2x.png in Resources */,
 				07AF0AC018BCDC8C002356CE /* Main.storyboard in Resources */,
+				CEA76BC118CB8F6100BF1EF6 /* checkUnselectButton@2x.png in Resources */,
 				0750C74C18C1CF4200640D1F /* hzqkSelected@2x.png in Resources */,
 				07BF9FB818CB7DFC00FABFB9 /* gaotong@2x.png in Resources */,
 				07BF9FA818CB7B8700FABFB9 /* xindiantu@2x.png in Resources */,
@@ -658,12 +676,14 @@
 				07D2ADA118C3473F00FEC498 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				07D2ADA718C3473F00FEC498 /* UIWebView+AFNetworking.m in Sources */,
 				07D2AD9718C3473F00FEC498 /* AFHTTPRequestOperation.m in Sources */,
+				CEA76BC418CB932C00BF1EF6 /* LLCheckButtonGroup.m in Sources */,
 				07D2AD9918C3473F00FEC498 /* AFHTTPSessionManager.m in Sources */,
 				07D2ADA218C3473F00FEC498 /* UIAlertView+AFNetworking.m in Sources */,
 				07D2AD9D18C3473F00FEC498 /* AFURLRequestSerialization.m in Sources */,
 				07B52C2A18C620340003B3C2 /* MBProgressHUD.m in Sources */,
 				07AF0AE718BE325B002356CE /* CoverViewController.m in Sources */,
 				07D2AD9F18C3473F00FEC498 /* AFURLSessionManager.m in Sources */,
+				CEA76BBD18CB860400BF1EF6 /* LLCheckButton.m in Sources */,
 				07AF0ABD18BCDC8C002356CE /* AppDelegate.m in Sources */,
 				07D2AD9818C3473F00FEC498 /* AFHTTPRequestOperationManager.m in Sources */,
 				076CFEBA18CC1534000F298E /* RIButtonItem.m in Sources */,

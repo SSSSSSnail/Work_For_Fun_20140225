@@ -37,7 +37,7 @@
     if (_selectedOjbect) {
         return _selectedOjbect;
     }
-    _selectedOjbect = @"";
+    _selectedOjbect = doubleSpace;
     return _selectedOjbect;
 }
 
