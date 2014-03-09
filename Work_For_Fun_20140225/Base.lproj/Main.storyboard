@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -280,7 +280,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zdh-0c-Rsm">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zdh-0c-Rsm" userLabel="Button － 确诊">
                                                 <rect key="frame" x="395" y="678" width="83" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -295,6 +295,35 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" tag="204" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cX6-J5-dUd" userLabel="Button - 前列腺" customClass="LLCheckButton">
+                                                <rect key="frame" x="136" y="180" width="18" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" image="checkUnselectButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="205" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9xf-Kr-aOM" userLabel="Button - 局限性" customClass="LLCheckButton">
+                                                <rect key="frame" x="136" y="218" width="18" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="checkUnselectButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="206" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="E1E-ih-xDw" userLabel="Button - 局部晚期" customClass="LLCheckButton">
+                                                <rect key="frame" x="136" y="259" width="18" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="checkUnselectButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" tag="207" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rx7-9N-bf2" userLabel="Button - 转移性" customClass="LLCheckButton">
+                                                <rect key="frame" x="136" y="298" width="18" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="checkUnselectButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                     </view>
@@ -374,7 +403,6 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
-                        <outlet property="ZDJGFQ" destination="Pqc-GX-MPz" id="3Db-gt-Y4t"/>
                         <outlet property="bmRateLabel" destination="8jk-Kc-aT1" id="fga-jv-NQJ"/>
                         <outlet property="detailScrollVIew" destination="hY5-sl-7hJ" id="xbt-bV-hvR"/>
                         <outlet property="jnRateLabel" destination="Gsf-mP-m9h" id="CVL-L8-MKM"/>
@@ -385,7 +413,6 @@
                         <outlet property="masterScrollView" destination="Qpf-5X-ZeI" id="xDq-uT-odN"/>
                         <outlet property="pgjgLabel" destination="PVs-YF-ppd" id="8QF-G1-PSN"/>
                         <outlet property="qgRateLabel" destination="5ta-Tg-mQ9" id="7YF-yw-1WG"/>
-                        <outlet property="qzButton" destination="Zdh-0c-Rsm" id="qKK-62-loz"/>
                         <outlet property="tableviewLCJC" destination="7zt-MH-Urf" id="9du-5d-yHl"/>
                         <outlet property="zdjgEvaluatePickView" destination="asU-Mz-XRk" id="rMP-5g-sti"/>
                         <outlet property="zdjglcfqMPickView" destination="wFs-DU-p1b" id="MXt-IA-x1g"/>
@@ -403,6 +430,7 @@
         <image name="bcjzSelected.png" width="131" height="126"/>
         <image name="bcjzUnselected.png" width="131" height="126"/>
         <image name="caseButtonSelected.png" width="168" height="168"/>
+        <image name="checkUnselectButton.png" width="18" height="18"/>
         <image name="cover1.png" width="1024" height="768"/>
         <image name="cover2.png" width="1024" height="768"/>
         <image name="hzqkBG.png" width="872" height="768"/>
