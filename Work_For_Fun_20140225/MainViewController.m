@@ -224,7 +224,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 
     NSLog(@"%lu",(unsigned long)GInstance().globalData.currentIndex);
 
-    _checkButtonGroup.selectedItemTag = 207;
+//    _checkButtonGroup.selectedItemTag = 207;
 }
 
 - (void)didReceiveMemoryWarning

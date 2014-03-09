@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 @class LLCheckButtonGroup;
 @interface LLCheckButton : UIButton
-@property (nonatomic, assign) BOOL checked;
 @end
