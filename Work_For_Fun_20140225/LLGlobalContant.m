@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 
 @implementation LLGlobalData
+
 @end
 
 @interface LLGlobalContant ()

@@ -25,6 +25,7 @@
 @property (copy, nonatomic) NSString *lcjcChuanCiBA;
 
 @property (assign, nonatomic) NSUInteger currentIndex;
+@property (assign, nonatomic) NSUInteger maxIndex;
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)

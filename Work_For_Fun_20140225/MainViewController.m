@@ -116,7 +116,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     [super viewDidLoad];
 
-#warning For TEST
+#warning JUST For TEST
     [GInstance() loadData];
 
     self.masterTagArray = @[
@@ -246,7 +246,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 - (IBAction)clickNext:(LLUIButton *)sender
 {
-    if (sender.tag - 10 >=  GInstance().globalData.currentIndex) {
+    if (sender.tag - 10 > GInstance().globalData.maxIndex) {
         [GInstance() showInfoMessage:@"请完成当前步骤！"];
         return;
     }
@@ -269,6 +269,7 @@ static float const DETAILVIEWIDTH = 877.0f;
     }
 
     GInstance().globalData.currentIndex = toIndex;
+    GInstance().globalData.maxIndex = MAX(toIndex, GInstance().globalData.maxIndex);
     [_detailScrollVIew scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 }
 
@@ -276,18 +277,43 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     NSLog(@"%ld",(long)self.checkButtonGroup.selectedItemTag);
 
-    NSLog(@"%ld", sender.tag);
+    NSLog(@"%ld", GInstance().globalData.currentIndex);
 
     /* 临床检查 */
-    if (_isLcjcDeatilView) {
-        _isLcjcDeatilView = NO;
-        [UIView transitionFromView:_lcjcResultImageView
-                            toView:_tableviewLCJC
-                          duration:1.0
-                           options:UIViewAnimationOptionTransitionCurlDown | UIViewAnimationOptionShowHideTransitionViews
-                        completion:^(BOOL finished) {
-                            [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
-                        }];
+    if (GInstance().globalData.currentIndex == 1) {
+        if (_isLcjcDeatilView) {
+            _isLcjcDeatilView = NO;
+            [UIView transitionFromView:_lcjcResultImageView
+                                toView:_tableviewLCJC
+                              duration:1.0
+                               options:UIViewAnimationOptionTransitionCurlDown | UIViewAnimationOptionShowHideTransitionViews
+                            completion:^(BOOL finished) {
+                                [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
+                            }];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成全部检查！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                //TODO 需要发送请求
+                sender.hidden = YES;
+                [self refreshButtonAndView:2];
+            }], nil] show];
+        }
+    } else if (GInstance().globalData.currentIndex == 2) {
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:@"请确认已经完成诊断！"
+                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+        }]
+                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+            //TODO 需要发送请求
+            ((UIView *)_detailViewArray[2]).userInteractionEnabled = NO;
+            sender.hidden = YES;
+            [self refreshButtonAndView:3];
+        }], nil] show];
     }
 }
 
@@ -317,46 +343,50 @@ static float const DETAILVIEWIDTH = 877.0f;
 #pragma mark TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *selectedString = GInstance().globalData.lcjcSelectedArrayString;
-    NSArray *selectedArray = [selectedString componentsSeparatedByString:@","];
+    if (!GInstance().globalData.lcjcSelectedArrayString) {
+        GInstance().globalData.lcjcSelectedArrayString = [NSString string];
+    }
+    NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayString componentsSeparatedByString:@","];
 
-    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]] && GInstance().globalData.maxIndex == 1) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
         rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
-        selectedString = [selectedString stringByAppendingFormat:@", %ld", (long)indexPath.row];
+        GInstance().globalData.lcjcSelectedArrayString = [GInstance().globalData.lcjcSelectedArrayString stringByAppendingFormat:@"%ld,", (long)indexPath.row];
     }
     dispatch_semaphore_t t = dispatch_semaphore_create(0);
-    if (indexPath.row == 12) {
+    if (indexPath.row == 12 && !GInstance().globalData.lcjcChuanCiBA && GInstance().globalData.maxIndex == 1) {
         [[[UIAlertView alloc] initWithTitle:nil
                                     message:@"您在临床检查中核磁检查的时机选择？"
                            cancelButtonItem:[RIButtonItem itemWithLabel:@"穿刺活检前" action:^{
+            GInstance().globalData.lcjcChuanCiBA = @"B";
             dispatch_semaphore_signal(t);
 
         }]
                            otherButtonItems:[RIButtonItem itemWithLabel:@"穿刺活检后" action:^{
+            GInstance().globalData.lcjcChuanCiBA = @"A";
             dispatch_semaphore_signal(t);
         }], nil] show];
     } else {
         dispatch_semaphore_signal(t);
     }
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _lcjcResultImageView.image = [UIImage imageNamed:_lcjcTableToImageNameArray[indexPath.row]];
-            _isLcjcDeatilView = YES;
-            [UIView transitionFromView:_tableviewLCJC
-                                toView:_lcjcResultImageView
-                              duration:1.0
-                               options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                            completion:^(BOOL finished) {
-                                [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                            }];
+
+    if (GInstance().globalData.maxIndex == 1 || (GInstance().globalData.maxIndex > 1 && [selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]])) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _lcjcResultImageView.image = [UIImage imageNamed:_lcjcTableToImageNameArray[indexPath.row]];
+                _isLcjcDeatilView = YES;
+                [UIView transitionFromView:_tableviewLCJC
+                                    toView:_lcjcResultImageView
+                                  duration:1.0
+                                   options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                completion:^(BOOL finished) {
+                                    [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                }];
+            });
         });
-    });
-
-
+    }
 }
 
 #pragma mark -
