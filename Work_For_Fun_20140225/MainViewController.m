@@ -7,6 +7,8 @@
 //
 
 #import "MainViewController.h"
+#import "HZQKViewController.h"
+
 #import "LLUIView.h"
 #import "LLUIButton.h"
 #import "LLUIPickView.h"
@@ -66,6 +68,9 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (weak, nonatomic) IBOutlet UIScrollView *masterScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollVIew;
 
+@property (strong, nonatomic) HZQKViewController *hzqkViewController;
+
+
 @property (weak, nonatomic) IBOutlet UITableView *tableviewLCJC;
 @property (weak, nonatomic) IBOutlet UIImageView *lcjcResultImageView;
 @property (weak, nonatomic) IBOutlet UIButton *lcjcOkButton;
@@ -82,6 +87,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (weak, nonatomic) IBOutlet LLUIPickView *zdjglcfqMPickView;
 @property (weak, nonatomic) IBOutlet LLUIPickView *zdjgEvaluatePickView;
 
+@property (strong, nonatomic) IBOutletCollection(UISegmentedControl) NSArray *zlfaLeftSegmentedCollection;
+
 @property (strong, nonatomic) NSMutableArray *masterButtonArray;
 @property (strong, nonatomic) NSMutableArray *detailViewArray;
 
@@ -97,6 +104,8 @@ static float const DETAILVIEWIDTH = 877.0f;
 
 - (IBAction)clickNext:(LLUIButton *)sender;
 - (IBAction)detailViewConfirm:(UIButton *)sender;
+
+- (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender;
 @end
 
 @implementation MainViewController
@@ -224,6 +233,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
+    GInstance().globalData.currentIndex = 0;
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 
 //    _checkButtonGroup.selectedItemTag = 207;
@@ -313,6 +323,18 @@ static float const DETAILVIEWIDTH = 877.0f;
             ((UIView *)_detailViewArray[2]).userInteractionEnabled = NO;
             sender.hidden = YES;
             [self refreshButtonAndView:3];
+        }], nil] show];
+    } else if (GInstance().globalData.currentIndex == 3) {
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:@"治疗方案确认后不能修改!"
+                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+        }]
+                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+            //TODO 需要发送请求
+            ((UIView *)_detailViewArray[3]).userInteractionEnabled = NO;
+            sender.hidden = YES;
+            [self refreshButtonAndView:4];
         }], nil] show];
     }
 }
@@ -481,4 +503,13 @@ static float const DETAILVIEWIDTH = 877.0f;
     return YES;
 }
 
+- (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 0) {
+        for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
+            if (segmentedControl.selectedSegmentIndex == 0 && segmentedControl != sender) {
+                segmentedControl.selectedSegmentIndex = 1;
+            }
+        }
+    }
+}
 @end

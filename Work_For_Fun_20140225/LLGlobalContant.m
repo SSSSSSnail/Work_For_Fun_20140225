@@ -118,6 +118,9 @@ NSString *BackupFileName();
         NSString *propertyNameString = [[NSString alloc] initWithCString:property_getName(properties[i]) encoding:NSUTF8StringEncoding];
         NSLog(@"coverToDictionaryFromObject : %@", propertyNameString);
         id value = [object valueForKey:propertyNameString];
+        if (!value) {
+            value = @"";
+        }
         [theDictionary setObject:value forKey:propertyNameString];
     }
     return theDictionary;

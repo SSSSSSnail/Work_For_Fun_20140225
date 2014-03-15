@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="cHd-s7-bne">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -180,11 +180,6 @@
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view tag="113" contentMode="scaleToFill" id="wmz-Sd-oXM" userLabel="治疗方案 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view tag="112" contentMode="scaleToFill" id="mD3-Zx-j1Y" userLabel="诊断结果 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
@@ -372,6 +367,103 @@
                                             </button>
                                         </subviews>
                                     </view>
+                                    <view tag="113" contentMode="scaleToFill" id="wmz-Sd-oXM" userLabel="治疗方案 - View" customClass="LLUIView">
+                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBG.png" id="SyE-Xh-Nc8">
+                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" id="aup-7h-CKP" userLabel="View - Left">
+                                                <rect key="frame" x="25" y="149" width="400" height="471"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBGLeft.png" id="i3W-Na-ZaE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="Ply-GJ-IFl">
+                                                        <rect key="frame" x="299" y="38" width="81" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <segments>
+                                                            <segment title="YES"/>
+                                                            <segment title="NO"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="DqZ-PN-d77"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="E4t-KX-3Ev">
+                                                        <rect key="frame" x="299" y="85" width="81" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <segments>
+                                                            <segment title="YES"/>
+                                                            <segment title="NO"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="dKq-8t-v50"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="F0b-FR-FQ1">
+                                                        <rect key="frame" x="299" y="152" width="81" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <segments>
+                                                            <segment title="YES"/>
+                                                            <segment title="NO"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="w5s-oP-aKi"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="HI6-pa-OvP">
+                                                        <rect key="frame" x="299" y="198" width="81" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <segments>
+                                                            <segment title="YES"/>
+                                                            <segment title="NO"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="WZy-eq-ITx"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="5Kx-70-Qel">
+                                                        <rect key="frame" x="299" y="277" width="81" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <segments>
+                                                            <segment title="YES"/>
+                                                            <segment title="NO"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="PnW-HV-Gte"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" id="ttg-1p-fpD" userLabel="View - Right">
+                                                <rect key="frame" x="445" y="149" width="400" height="471"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eKs-nA-leR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c2P-Mh-sKA">
+                                                <rect key="frame" x="395" y="683" width="83" height="31"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="okButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="detailViewConfirm:" destination="dTL-s9-QlI" eventType="touchUpInside" id="LET-Xg-ndN"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </view>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="dTL-s9-QlI" id="BM6-LK-pgO"/>
@@ -397,11 +489,39 @@
                         <outlet property="zdjglcfqMPickView" destination="wFs-DU-p1b" id="MXt-IA-x1g"/>
                         <outlet property="zdjglcfqNPickView" destination="qXP-Ed-zZV" id="VRx-wH-L0H"/>
                         <outlet property="zdjglcfqTPickView" destination="llo-LZ-fJB" id="CpU-fY-bJe"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="HI6-pa-OvP" id="osM-tH-RJD"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="5Kx-70-Qel" id="uQT-Iq-0uu"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="Ply-GJ-IFl" id="Mtg-C7-Q3r"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="F0b-FR-FQ1" id="5Ag-dZ-czf"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="E4t-KX-3Ev" id="ZD6-Fy-vr6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Byq-kY-xpD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="742" y="2277"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6Hf-9K-umH">
+            <objects>
+                <viewController id="IzL-WT-k9n" customClass="HZQKViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MDP-cc-3iG">
+                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hzqkBG.png" id="fim-ZT-jbn">
+                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LQy-8J-DDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1943" y="2123"/>
         </scene>
     </scenes>
     <resources>
@@ -424,6 +544,8 @@
         <image name="selectCase.png" width="1024" height="768"/>
         <image name="zdjgSelected.png" width="131" height="126"/>
         <image name="zdjgUnselected.png" width="131" height="126"/>
+        <image name="zlfaBG.png" width="872" height="768"/>
+        <image name="zlfaBGLeft.png" width="400" height="471"/>
         <image name="zlfaSelected.png" width="131" height="126"/>
         <image name="zlfaUnselected.png" width="131" height="126"/>
     </resources>

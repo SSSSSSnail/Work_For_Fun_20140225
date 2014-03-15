@@ -36,7 +36,7 @@
 
 @end
 
-static NSString *const SERVERURL = @"http://edetailing-data.com/case/subject.do";
+static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";
 
 @interface LLGlobalContant : NSObject
 

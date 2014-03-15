@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070FB68E18D1F31F00162250 /* zlfaBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 070FB68D18D1F31F00162250 /* zlfaBG@2x.png */; };
+		070FB69018D1F67400162250 /* zlfaBGLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 070FB68F18D1F67400162250 /* zlfaBGLeft@2x.png */; };
 		0750C73818C1B23A00640D1F /* cover1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0750C73718C1B23A00640D1F /* cover1@2x.png */; };
 		0750C73B18C1B35200640D1F /* Cover2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750C73A18C1B35200640D1F /* Cover2ViewController.m */; };
 		0750C73D18C1B45500640D1F /* cover2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0750C73C18C1B45500640D1F /* cover2@2x.png */; };
@@ -23,6 +25,7 @@
 		0759650918C1D55700B17B2D /* zdjgUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650318C1D55700B17B2D /* zdjgUnselected@2x.png */; };
 		0759650A18C1D55700B17B2D /* zlfaSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650418C1D55700B17B2D /* zlfaSelected@2x.png */; };
 		0759650B18C1D55700B17B2D /* zlfaUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650518C1D55700B17B2D /* zlfaUnselected@2x.png */; };
+		0762576618D2E6A70080B9DC /* HZQKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0762576518D2E6A70080B9DC /* HZQKViewController.m */; };
 		076CFEB718CC146B000F298E /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB618CC146B000F298E /* UIAlertView+Blocks.m */; };
 		076CFEBA18CC1534000F298E /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB918CC1534000F298E /* RIButtonItem.m */; };
 		07AF0AAD18BCDC8C002356CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AF0AAC18BCDC8C002356CE /* Foundation.framework */; };
@@ -111,6 +114,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070FB68D18D1F31F00162250 /* zlfaBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaBG@2x.png"; sourceTree = "<group>"; };
+		070FB68F18D1F67400162250 /* zlfaBGLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaBGLeft@2x.png"; sourceTree = "<group>"; };
 		0750C73718C1B23A00640D1F /* cover1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cover1@2x.png"; sourceTree = "<group>"; };
 		0750C73918C1B35200640D1F /* Cover2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cover2ViewController.h; sourceTree = "<group>"; };
 		0750C73A18C1B35200640D1F /* Cover2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover2ViewController.m; sourceTree = "<group>"; };
@@ -128,6 +133,8 @@
 		0759650318C1D55700B17B2D /* zdjgUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zdjgUnselected@2x.png"; sourceTree = "<group>"; };
 		0759650418C1D55700B17B2D /* zlfaSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSelected@2x.png"; sourceTree = "<group>"; };
 		0759650518C1D55700B17B2D /* zlfaUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaUnselected@2x.png"; sourceTree = "<group>"; };
+		0762576418D2E6A70080B9DC /* HZQKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZQKViewController.h; sourceTree = "<group>"; };
+		0762576518D2E6A70080B9DC /* HZQKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZQKViewController.m; sourceTree = "<group>"; };
 		076CFEB518CC146B000F298E /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		076CFEB618CC146B000F298E /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		076CFEB818CC1534000F298E /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
@@ -272,6 +279,8 @@
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				070FB68F18D1F67400162250 /* zlfaBGLeft@2x.png */,
+				070FB68D18D1F31F00162250 /* zlfaBG@2x.png */,
 				07BF9FAB18CB7DFC00FABFB9 /* BChao@2x.png */,
 				07BF9FAC18CB7DFC00FABFB9 /* chuancihuojian@2x.png */,
 				07BF9FAD18CB7DFC00FABFB9 /* CTjiancha@2x.png */,
@@ -315,6 +324,15 @@
 				0750C73718C1B23A00640D1F /* cover1@2x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		0762576318D2E65E0080B9DC /* mainScorllViews */ = {
+			isa = PBXGroup;
+			children = (
+				0762576418D2E6A70080B9DC /* HZQKViewController.h */,
+				0762576518D2E6A70080B9DC /* HZQKViewController.m */,
+			);
+			path = mainScorllViews;
 			sourceTree = "<group>";
 		};
 		076CFEB418CC146B000F298E /* UIAlertView+Blocks */ = {
@@ -365,6 +383,7 @@
 		07AF0AB218BCDC8C002356CE /* Work_For_Fun_20140225 */ = {
 			isa = PBXGroup;
 			children = (
+				0762576318D2E65E0080B9DC /* mainScorllViews */,
 				CEA743EF18CA2016003CF3F8 /* LLSubClasses */,
 				0750C73618C1B13A00640D1F /* images */,
 				07AF0ABB18BCDC8C002356CE /* AppDelegate.h */,
@@ -633,6 +652,7 @@
 				0750C74118C1BBE500640D1F /* caseButtonSelected@2x.png in Resources */,
 				CEB92C2C18C75AD1009928EB /* MSYH.TTF in Resources */,
 				07BF9FA018CB777F00FABFB9 /* xueshenghua@2x.png in Resources */,
+				070FB69018D1F67400162250 /* zlfaBGLeft@2x.png in Resources */,
 				07BF9F9F18CB777F00FABFB9 /* niaochanggui@2x.png in Resources */,
 				07BF9FB318CB7DFC00FABFB9 /* BChao@2x.png in Resources */,
 				07AF0AC018BCDC8C002356CE /* Main.storyboard in Resources */,
@@ -646,6 +666,7 @@
 				07BF9FA718CB7B8700FABFB9 /* ningxueshaicha@2x.png in Resources */,
 				07BF9F9818CB63A500FABFB9 /* xuechanggui@2x.png in Resources */,
 				CEA743EE18CA1E05003CF3F8 /* ZDJGM1@2x.png in Resources */,
+				070FB68E18D1F31F00162250 /* zlfaBG@2x.png in Resources */,
 				0750C74D18C1CF4200640D1F /* hzqkUnselected@2x.png in Resources */,
 				0750C74718C1CA6F00640D1F /* leftMenuBG@2x.png in Resources */,
 			);
@@ -666,6 +687,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0762576618D2E6A70080B9DC /* HZQKViewController.m in Sources */,
 				07D2AD9B18C3473F00FEC498 /* AFSecurityPolicy.m in Sources */,
 				07AF0AEA18BE3A08002356CE /* SelectCaseViewController.m in Sources */,
 				07D2AD9A18C3473F00FEC498 /* AFNetworkReachabilityManager.m in Sources */,
