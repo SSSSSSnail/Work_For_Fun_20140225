@@ -13,7 +13,6 @@
 #import "ZLFAViewController.h"
 #import "BCJZViewController.h"
 
-#import "LLUIView.h"
 #import "LLUIButton.h"
 #import "LLUIPickView.h"
 #import "LLCheckButton.h"
@@ -33,26 +32,8 @@ typedef NS_ENUM(NSUInteger, ScrollSubButtonTag)
     LCJJButton2 = 19  //临床结局
 };
 
-//typedef NS_ENUM(NSUInteger, ScrollSubViewTag)
-//{
-//    HZQKView1 = 110, //患者情况
-//    LCJCView1 = 111, //临床检查
-//    ZDJGView1 = 112, //诊断结果
-//    ZLFAView1 = 113, //治疗方案
-//    LCJJView1 = 114, //临床结局
-//
-//    BSHGView2 = 115, //病史回顾
-//    LCJCView2 = 116, //临床检查
-//    ZDJGView2 = 117, //诊断结果
-//    ZLFAView2 = 118, //治疗方案
-//    LCJJView2 = 119  //临床结局
-//
-//};
-
 typedef NS_ENUM(NSInteger, ComponentsTag)
 {
-    UITableViewLCJC = 199,
-
     UIPickViewZDJG1Evalute = 200,
     UIPickViewZDJG1T = 201,
     UIPickViewZDJG1N = 202,
@@ -67,7 +48,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 static float const DETAILVIEWHEIGHT = 768.0f;
 static float const DETAILVIEWIDTH = 872.0f;
 
-@interface MainViewController ()<LLUIViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MainViewController ()<ScrollViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *masterScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
@@ -77,11 +58,6 @@ static float const DETAILVIEWIDTH = 872.0f;
 @property (strong, nonatomic) ZDJGViewController *zdjgViewController;
 @property (strong, nonatomic) ZLFAViewController *zlfaViewController;
 @property (strong, nonatomic) BCJZViewController *bcjzViewController;
-
-
-@property (weak, nonatomic) IBOutlet UITableView *tableviewLCJC;
-@property (weak, nonatomic) IBOutlet UIImageView *lcjcResultImageView;
-@property (weak, nonatomic) IBOutlet UIButton *lcjcOkButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *qgRateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bmRateLabel;
@@ -95,38 +71,23 @@ static float const DETAILVIEWIDTH = 872.0f;
 @property (weak, nonatomic) IBOutlet LLUIPickView *zdjglcfqMPickView;
 @property (weak, nonatomic) IBOutlet LLUIPickView *zdjgEvaluatePickView;
 
-@property (strong, nonatomic) IBOutletCollection(UISegmentedControl) NSArray *zlfaLeftSegmentedCollection;
-
 @property (strong, nonatomic) NSMutableArray *masterButtonArray;
 @property (strong, nonatomic) NSArray *detailViewArray;
 
 @property (strong, nonatomic) NSArray *masterTagArray;
 
-@property (strong, nonatomic) NSArray *lcjcTableViewLabelTextArray;
-@property (strong, nonatomic) NSArray *lcjcTableToImageNameArray;
-@property (assign, nonatomic) BOOL isLcjcDeatilView;
-
 @property (strong, nonatomic) NSDictionary *pickViewSourceDictionary;
 @property (strong, nonatomic) LLCheckButtonGroup *checkButtonGroup;
 
 - (IBAction)clickNext:(LLUIButton *)sender;
-- (IBAction)detailViewConfirm:(UIButton *)sender;
 
-- (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender;
+
 @end
 
 @implementation MainViewController
 
 #pragma mark -
 #pragma mark Controller Life Cycle
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -149,22 +110,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 //                            [NSNumber numberWithInt:LCJJButton2]
                             ];
 
-//    self.detailTagArray = @[
-//                            [NSNumber numberWithInt:HZQKView1],
-//                            [NSNumber numberWithInt:LCJCView1],
-//                            [NSNumber numberWithInt:ZDJGView1],
-//                            [NSNumber numberWithInt:ZLFAView1],
-//                            [NSNumber numberWithInt:LCJJView1]
-//
-////                            [NSNumber numberWithInt:BSHGView2],
-////                            [NSNumber numberWithInt:LCJCView2],
-////                            [NSNumber numberWithInt:ZDJGView2],
-////                            [NSNumber numberWithInt:ZLFAView2],
-////                            [NSNumber numberWithInt:LCJJView2]
-//                            ];
-
     self.masterButtonArray = [NSMutableArray array];
-//    self.detailViewArray = [NSMutableArray array];
 
     self.hzqkViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"hzqkVC"];
     self.lcjcViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
@@ -173,10 +119,15 @@ static float const DETAILVIEWIDTH = 872.0f;
     self.bcjzViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
 
     [self addChildViewController:_hzqkViewController];
+    _hzqkViewController.scrollViewDelegate = self;
     [self addChildViewController:_lcjcViewController];
+    _lcjcViewController.scrollViewDelegate = self;
     [self addChildViewController:_zdjgViewController];
+    _zdjgViewController.scrollViewDelegate = self;
     [self addChildViewController:_zlfaViewController];
+    _zlfaViewController.scrollViewDelegate = self;
     [self addChildViewController:_bcjzViewController];
+    _bcjzViewController.scrollViewDelegate = self;
 
     for (NSNumber *buttonTag in _masterTagArray) {
         UIButton *button = (UIButton *)[_masterScrollView viewWithTag:buttonTag.integerValue];
@@ -200,20 +151,6 @@ static float const DETAILVIEWIDTH = 872.0f;
     _detailScrollView.scrollEnabled = NO;
     _detailScrollView.contentSize = CGSizeMake(DETAILVIEWIDTH, DETAILVIEWHEIGHT*_detailViewArray.count);
 
-    /* 临床检查初始化 */
-    self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查", @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
-                                         @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR", @"ECOG评分", @"穿刺活检", @"CT检查"];
-    self.lcjcTableToImageNameArray = @[@"xuechanggui.png", @"niaochanggui.png", @"xueshenghua.png", @"ningxueshaicha.png",
-                                       @"zhichangzhizhen.png", @"xindiantu.png", @"chaoshengxindong.png", @"xiongpian.png",
-                                       @"BChao.png", @"qianliexianteyikangyuan.png", @"gaotong.png", @"fangshexinghesugusaomiao.png",
-                                       @"penqianghecigongzhen.png", @"ECOGpingfen.png", @"chuancihuojian.png", @"CTjiancha.png"];
-
-    UILabel *lcjcHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 40.0f)];
-    lcjcHeaderLabel.textAlignment = NSTextAlignmentCenter;
-    lcjcHeaderLabel.text = @"选择相关检查项目";
-    lcjcHeaderLabel.font = [UIFont miscrosoftYaHeiFontWithSize:22.0f];
-    lcjcHeaderLabel.textColor = [UIColor colorWithRed:2.0f/255 green:128.0f/255 blue:127.0f/255 alpha:1];
-    _tableviewLCJC.tableHeaderView = lcjcHeaderLabel;
 
     /* 诊断结果初始化 */
     self.pickViewSourceDictionary = @{@"200": @[doubleSpace, @"高危", @"中危", @"低危"],
@@ -246,7 +183,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
-    GInstance().globalData.currentIndex = 0;
+    GInstance().globalData.currentIndex = 3;
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 
 //    _checkButtonGroup.selectedItemTag = 207;
@@ -256,15 +193,6 @@ static float const DETAILVIEWIDTH = 872.0f;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark -
-#pragma mark 页面切换按钮刷新事件处理
-- (void)swipeup:(UIView *)sender
-{
-    if (sender.tag == 110) {
-        [self refreshButtonAndView:sender.tag - 109];
-    }
 }
 
 - (IBAction)clickNext:(LLUIButton *)sender
@@ -296,133 +224,6 @@ static float const DETAILVIEWIDTH = 872.0f;
     [_detailScrollView scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 }
 
-- (IBAction)detailViewConfirm:(UIButton *)sender
-{
-    NSLog(@"%ld",(long)self.checkButtonGroup.selectedItemTag);
-
-    NSLog(@"%ld", GInstance().globalData.currentIndex);
-
-    /* 临床检查 */
-    if (GInstance().globalData.currentIndex == 1) {
-        if (_isLcjcDeatilView) {
-            _isLcjcDeatilView = NO;
-            [UIView transitionFromView:_lcjcResultImageView
-                                toView:_tableviewLCJC
-                              duration:1.0
-                               options:UIViewAnimationOptionTransitionCurlDown | UIViewAnimationOptionShowHideTransitionViews
-                            completion:^(BOOL finished) {
-                                [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
-                            }];
-        } else {
-            [[[UIAlertView alloc] initWithTitle:nil
-                                        message:@"请确认已经完成全部检查！"
-                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-
-            }]
-                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-                //TODO 需要发送请求
-                sender.hidden = YES;
-                [self refreshButtonAndView:2];
-            }], nil] show];
-        }
-    } else if (GInstance().globalData.currentIndex == 2) {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"请确认已经完成诊断！"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-            //TODO 需要发送请求
-            ((UIView *)_detailViewArray[2]).userInteractionEnabled = NO;
-            sender.hidden = YES;
-            [self refreshButtonAndView:3];
-        }], nil] show];
-    } else if (GInstance().globalData.currentIndex == 3) {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"治疗方案确认后不能修改!"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-            //TODO 需要发送请求
-            ((UIView *)_detailViewArray[3]).userInteractionEnabled = NO;
-            sender.hidden = YES;
-            [self refreshButtonAndView:4];
-        }], nil] show];
-    }
-}
-
-#pragma mark -
-#pragma mark TableView DataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 16;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *selectedString = GInstance().globalData.lcjcSelectedArrayString;
-    BOOL isSelected = [[selectedString componentsSeparatedByString:@","] containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
-    NSString *rightImageName = isSelected?@"lcjcCellRightButtonSelected.png":@"lcjcCellRightButtonUnselected.png";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"lcjcTableviewCell"];
-    cell.textLabel.font = [UIFont miscrosoftYaHeiFontWithSize:22.0f];
-    cell.textLabel.textColor = [UIColor colorWithRed:2.0f/255 green:128.0f/255 blue:127.0f/255 alpha:1];
-    UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
-    rightImageView.image = [UIImage imageNamed:rightImageName];
-	cell.textLabel.text = _lcjcTableViewLabelTextArray[indexPath.row];
-    return cell;
-}
-
-#pragma mark -
-#pragma mark TableView Delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!GInstance().globalData.lcjcSelectedArrayString) {
-        GInstance().globalData.lcjcSelectedArrayString = [NSString string];
-    }
-    NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayString componentsSeparatedByString:@","];
-
-    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]] && GInstance().globalData.maxIndex == 1) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
-        rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
-        GInstance().globalData.lcjcSelectedArrayString = [GInstance().globalData.lcjcSelectedArrayString stringByAppendingFormat:@"%ld,", (long)indexPath.row];
-    }
-    dispatch_semaphore_t t = dispatch_semaphore_create(0);
-    if (indexPath.row == 12 && !GInstance().globalData.lcjcChuanCiBA && GInstance().globalData.maxIndex == 1) {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"您在临床检查中核磁检查的时机选择？"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"穿刺活检前" action:^{
-            GInstance().globalData.lcjcChuanCiBA = @"B";
-            dispatch_semaphore_signal(t);
-
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"穿刺活检后" action:^{
-            GInstance().globalData.lcjcChuanCiBA = @"A";
-            dispatch_semaphore_signal(t);
-        }], nil] show];
-    } else {
-        dispatch_semaphore_signal(t);
-    }
-
-    if (GInstance().globalData.maxIndex == 1 || (GInstance().globalData.maxIndex > 1 && [selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]])) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _lcjcResultImageView.image = [UIImage imageNamed:_lcjcTableToImageNameArray[indexPath.row]];
-                _isLcjcDeatilView = YES;
-                [UIView transitionFromView:_tableviewLCJC
-                                    toView:_lcjcResultImageView
-                                  duration:1.0
-                                   options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                                completion:^(BOOL finished) {
-                                    [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                                }];
-            });
-        });
-    }
-}
 
 #pragma mark -
 #pragma mark UIPickerView DataSource
@@ -516,13 +317,49 @@ static float const DETAILVIEWIDTH = 872.0f;
     return YES;
 }
 
-- (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender {
-    if (sender.selectedSegmentIndex == 0) {
-        for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
-            if (segmentedControl.selectedSegmentIndex == 0 && segmentedControl != sender) {
-                segmentedControl.selectedSegmentIndex = 1;
-            }
-        }
+
+
+#pragma mark - ScrollViewController Delegate
+- (void)didClickConfirmButton:(UIButton *)sender
+{
+    if (GInstance().globalData.currentIndex == 0) {
+        [self refreshButtonAndView:1];
+    } else if (GInstance().globalData.currentIndex == 1) {
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:@"请确认已经完成全部检查！"
+                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+        }]
+                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+            //TODO 需要发送请求
+            sender.hidden = YES;
+            [self refreshButtonAndView:2];
+        }], nil] show];
+    } else if (GInstance().globalData.currentIndex == 2) {
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:@"请确认已经完成诊断！"
+                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+        }]
+                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+            //TODO 需要发送请求
+            ((UIView *)_detailViewArray[2]).userInteractionEnabled = NO;
+//            sender.hidden = YES;
+            [self refreshButtonAndView:3];
+        }], nil] show];
+    } else if (GInstance().globalData.currentIndex == 3) {
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:@"治疗方案确认后不能修改!"
+                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+        }]
+                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+            //TODO 需要发送请求
+            ((UIView *)_detailViewArray[3]).userInteractionEnabled = NO;
+//            sender.hidden = YES;
+            [self refreshButtonAndView:4];
+        }], nil] show];
     }
 }
+
 @end

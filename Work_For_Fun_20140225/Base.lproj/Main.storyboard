@@ -176,11 +176,6 @@
                                 <rect key="frame" x="152" y="0.0" width="872" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <view hidden="YES" tag="114" contentMode="scaleToFill" id="Vyn-8C-lbU" userLabel="病程进展 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
                                     <view hidden="YES" tag="112" contentMode="scaleToFill" id="mD3-Zx-j1Y" userLabel="诊断结果 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -301,169 +296,6 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                     </view>
-                                    <view hidden="YES" tag="110" contentMode="scaleToFill" id="2Vf-hM-IpV" userLabel="患者情况 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hzqkBG.png" id="kUc-2m-HB6">
-                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </imageView>
-                                        </subviews>
-                                    </view>
-                                    <view hidden="YES" tag="111" contentMode="scaleToFill" id="36w-Rh-Pi7" userLabel="临床检查 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcjcBG.png" id="zI6-BT-0FB">
-                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </imageView>
-                                            <view contentMode="scaleToFill" id="qpy-F9-jTa">
-                                                <rect key="frame" x="195" y="99" width="477" height="616"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rUX-jD-hlA">
-                                                        <rect key="frame" x="0.0" y="0.0" width="477" height="616"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                    <tableView clipsSubviews="YES" tag="199" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="35" sectionHeaderHeight="10" sectionFooterHeight="10" id="7zt-MH-Urf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="477" height="616"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                        <prototypes>
-                                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="lcjcTableviewCell" id="uGT-iW-o2d">
-                                                                <rect key="frame" x="0.0" y="55" width="477" height="35"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uGT-iW-o2d" id="hk4-2Y-1lF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="477" height="34"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <subviews>
-                                                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Md9-bf-p3l">
-                                                                            <rect key="frame" x="382" y="2" width="84" height="31"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                        </imageView>
-                                                                    </subviews>
-                                                                </tableViewCellContentView>
-                                                            </tableViewCell>
-                                                        </prototypes>
-                                                        <connections>
-                                                            <outlet property="dataSource" destination="dTL-s9-QlI" id="Hnh-fW-Ltv"/>
-                                                            <outlet property="delegate" destination="dTL-s9-QlI" id="0wq-mt-Qtg"/>
-                                                        </connections>
-                                                    </tableView>
-                                                </subviews>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Cii-f0-o1p">
-                                                <rect key="frame" x="394" y="733" width="84" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="okButton.png">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="detailViewConfirm:" destination="dTL-s9-QlI" eventType="touchUpInside" id="hV2-AM-GME"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </view>
-                                    <view hidden="YES" tag="113" contentMode="scaleToFill" id="wmz-Sd-oXM" userLabel="治疗方案 - View" customClass="LLUIView">
-                                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBG.png" id="SyE-Xh-Nc8">
-                                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </imageView>
-                                            <view contentMode="scaleToFill" id="aup-7h-CKP" userLabel="View - Left">
-                                                <rect key="frame" x="25" y="149" width="400" height="471"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBGLeft.png" id="i3W-Na-ZaE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="Ply-GJ-IFl">
-                                                        <rect key="frame" x="299" y="38" width="81" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <segments>
-                                                            <segment title="YES"/>
-                                                            <segment title="NO"/>
-                                                        </segments>
-                                                        <connections>
-                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="DqZ-PN-d77"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="E4t-KX-3Ev">
-                                                        <rect key="frame" x="299" y="85" width="81" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <segments>
-                                                            <segment title="YES"/>
-                                                            <segment title="NO"/>
-                                                        </segments>
-                                                        <connections>
-                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="dKq-8t-v50"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="F0b-FR-FQ1">
-                                                        <rect key="frame" x="299" y="152" width="81" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <segments>
-                                                            <segment title="YES"/>
-                                                            <segment title="NO"/>
-                                                        </segments>
-                                                        <connections>
-                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="w5s-oP-aKi"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="HI6-pa-OvP">
-                                                        <rect key="frame" x="299" y="198" width="81" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <segments>
-                                                            <segment title="YES"/>
-                                                            <segment title="NO"/>
-                                                        </segments>
-                                                        <connections>
-                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="WZy-eq-ITx"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="5Kx-70-Qel">
-                                                        <rect key="frame" x="299" y="277" width="81" height="29"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <segments>
-                                                            <segment title="YES"/>
-                                                            <segment title="NO"/>
-                                                        </segments>
-                                                        <connections>
-                                                            <action selector="zlfaLeftSegmentedChanged:" destination="dTL-s9-QlI" eventType="valueChanged" id="PnW-HV-Gte"/>
-                                                        </connections>
-                                                    </segmentedControl>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" id="ttg-1p-fpD" userLabel="View - Right">
-                                                <rect key="frame" x="445" y="149" width="400" height="471"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eKs-nA-leR">
-                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c2P-Mh-sKA">
-                                                <rect key="frame" x="395" y="683" width="83" height="31"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="okButton.png">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="detailViewConfirm:" destination="dTL-s9-QlI" eventType="touchUpInside" id="LET-Xg-ndN"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </view>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="dTL-s9-QlI" id="BM6-LK-pgO"/>
@@ -479,21 +311,13 @@
                         <outlet property="jnRateLabel" destination="2iZ-sD-eU3" id="CKA-FH-97q"/>
                         <outlet property="lbjRateLabel" destination="pCm-yQ-435" id="WDV-Uk-TUt"/>
                         <outlet property="lcfqLabel" destination="Pqc-GX-MPz" id="5wW-Eo-RFq"/>
-                        <outlet property="lcjcOkButton" destination="Cii-f0-o1p" id="uQY-BU-cdM"/>
-                        <outlet property="lcjcResultImageView" destination="rUX-jD-hlA" id="GiW-EY-93b"/>
                         <outlet property="masterScrollView" destination="Qpf-5X-ZeI" id="xDq-uT-odN"/>
                         <outlet property="pgjgLabel" destination="PVs-YF-ppd" id="8QF-G1-PSN"/>
                         <outlet property="qgRateLabel" destination="bsO-Fb-MgQ" id="VXd-0B-gag"/>
-                        <outlet property="tableviewLCJC" destination="7zt-MH-Urf" id="9du-5d-yHl"/>
                         <outlet property="zdjgEvaluatePickView" destination="asU-Mz-XRk" id="rMP-5g-sti"/>
                         <outlet property="zdjglcfqMPickView" destination="wFs-DU-p1b" id="MXt-IA-x1g"/>
                         <outlet property="zdjglcfqNPickView" destination="qXP-Ed-zZV" id="VRx-wH-L0H"/>
                         <outlet property="zdjglcfqTPickView" destination="llo-LZ-fJB" id="CpU-fY-bJe"/>
-                        <outletCollection property="zlfaLeftSegmentedCollection" destination="HI6-pa-OvP" id="osM-tH-RJD"/>
-                        <outletCollection property="zlfaLeftSegmentedCollection" destination="5Kx-70-Qel" id="uQT-Iq-0uu"/>
-                        <outletCollection property="zlfaLeftSegmentedCollection" destination="Ply-GJ-IFl" id="Mtg-C7-Q3r"/>
-                        <outletCollection property="zlfaLeftSegmentedCollection" destination="F0b-FR-FQ1" id="5Ag-dZ-czf"/>
-                        <outletCollection property="zlfaLeftSegmentedCollection" destination="E4t-KX-3Ev" id="ZD6-Fy-vr6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Byq-kY-xpD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -512,6 +336,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jK8-zO-LSB">
+                                <rect key="frame" x="395" y="692" width="83" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="okButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmClick:" destination="IzL-WT-k9n" eventType="touchUpInside" id="ZXE-aX-rgd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -530,10 +364,61 @@
         <scene sceneID="ZbX-3V-Fd9">
             <objects>
                 <viewController storyboardIdentifier="lcjcVC" title="临床检查" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WYl-Dp-ALg" customClass="LCJCViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ueT-Rr-YFj">
+                    <view key="view" contentMode="scaleToFill" id="9g0-Lm-MoU">
                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcjcBG.png" id="zj8-Yi-Elj">
+                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="JA1-dn-fT8">
+                                <rect key="frame" x="193" y="99" width="475" height="616"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Vv7-Ny-SpI">
+                                        <rect key="frame" x="0.0" y="0.0" width="475" height="616"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <tableView clipsSubviews="YES" tag="199" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="35" sectionHeaderHeight="10" sectionFooterHeight="10" id="N8O-mH-uik">
+                                        <rect key="frame" x="0.0" y="0.0" width="475" height="616"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="lcjcTableviewCell" id="LEu-Jo-DK3">
+                                                <rect key="frame" x="0.0" y="55" width="475" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LEu-Jo-DK3" id="h0B-oR-fhY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="475" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qvo-s8-inY">
+                                                            <rect key="frame" x="382" y="2" width="82" height="31"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="WYl-Dp-ALg" id="Z6p-fP-HQi"/>
+                                            <outlet property="delegate" destination="WYl-Dp-ALg" id="2TC-0m-VDW"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="li9-fR-jPg">
+                                <rect key="frame" x="394" y="733" width="84" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="okButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmClick:" destination="WYl-Dp-ALg" eventType="touchUpInside" id="56k-LN-SRp"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -541,8 +426,17 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="lcjcOkButton" destination="li9-fR-jPg" id="OXl-aR-dHO"/>
+                        <outlet property="lcjcResultImageView" destination="Vv7-Ny-SpI" id="ysQ-Us-16i"/>
+                        <outlet property="tableviewLCJC" destination="N8O-mH-uik" id="afh-4g-F1c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cig-P7-ZhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lcjcBG.png" id="rzd-Vl-1K4">
+                    <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
             </objects>
             <point key="canvasLocation" x="2344" y="395"/>
         </scene>
@@ -573,6 +467,168 @@
                     <view key="view" contentMode="scaleToFill" id="gHV-XC-lem">
                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBG.png" id="Noy-hQ-xH0">
+                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oot-XO-Hds">
+                                <rect key="frame" x="394" y="683" width="83" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="okButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="detailViewConfirm:" destination="dTL-s9-QlI" eventType="touchUpInside" id="5Hq-FT-T8i"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" id="B1h-Jm-vNq" userLabel="View - Left">
+                                <rect key="frame" x="25" y="149" width="400" height="471"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBGLeft.png" id="6oO-cw-bMP">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="2r8-t1-jIE">
+                                        <rect key="frame" x="299" y="38" width="81" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="YES"/>
+                                            <segment title="NO"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="zlfaLeftSegmentedChanged:" destination="TQ3-zH-gg5" eventType="valueChanged" id="gWh-Iq-wWt"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="ovL-3l-Hat">
+                                        <rect key="frame" x="299" y="85" width="81" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="YES"/>
+                                            <segment title="NO"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="zlfaLeftSegmentedChanged:" destination="TQ3-zH-gg5" eventType="valueChanged" id="yVT-Ri-DZn"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="Moa-FP-8Hr">
+                                        <rect key="frame" x="299" y="152" width="81" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="YES"/>
+                                            <segment title="NO"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="zlfaLeftSegmentedChanged:" destination="TQ3-zH-gg5" eventType="valueChanged" id="cut-77-YjQ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="VUs-f4-EXU">
+                                        <rect key="frame" x="299" y="198" width="81" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="YES"/>
+                                            <segment title="NO"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="zlfaLeftSegmentedChanged:" destination="TQ3-zH-gg5" eventType="valueChanged" id="MLK-Xm-kGI"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="42x-GR-qRQ">
+                                        <rect key="frame" x="299" y="277" width="81" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="YES"/>
+                                            <segment title="NO"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="zlfaLeftSegmentedChanged:" destination="TQ3-zH-gg5" eventType="valueChanged" id="sbz-3m-d2g"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="boE-ib-7Mf" userLabel="View - Right">
+                                <rect key="frame" x="445" y="149" width="400" height="471"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBGRight1.png" id="86M-pS-UfY">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <segmentedControl opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="6Dl-a5-Bba">
+                                        <rect key="frame" x="294" y="39" width="81" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="YES"/>
+                                            <segment title="NO"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="zlfaRightSegmentChanged:" destination="TQ3-zH-gg5" eventType="valueChanged" id="4Rt-mM-8WZ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="4mA-jA-Fob">
+                                        <rect key="frame" x="294" y="85" width="81" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="YES"/>
+                                            <segment title="NO"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="zlfaRightSegmentChanged:" destination="TQ3-zH-gg5" eventType="valueChanged" id="U9X-4g-GJP"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <view hidden="YES" contentMode="scaleToFill" id="Bns-wb-Aon">
+                                        <rect key="frame" x="26" y="122" width="353" height="146"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBGRight2.png" id="Cjn-Yw-a5u">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="146"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="60d-iY-LRo">
+                                                <rect key="frame" x="32" y="14" width="18" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" image="checkUnselectButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="checkSelectButton.png"/>
+                                                <connections>
+                                                    <action selector="fhuSubClickButton:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="1XX-eQ-qzg"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kEe-xw-Nar">
+                                                <rect key="frame" x="32" y="64" width="18" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" image="checkUnselectButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="checkSelectButton.png"/>
+                                                <connections>
+                                                    <action selector="fhuSubClickButton:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="eca-2e-7kZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wFs-xn-L6W">
+                                                <rect key="frame" x="32" y="110" width="18" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" image="checkUnselectButton.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="checkSelectButton.png"/>
+                                                <connections>
+                                                    <action selector="fhuSubClickButton:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="jDC-0d-Ea6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -581,6 +637,19 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="danyiSegmented" destination="6Dl-a5-Bba" id="laj-Sr-rfj"/>
+                        <outlet property="fuzhuSegmented" destination="4mA-jA-Fob" id="HnR-LL-RA7"/>
+                        <outlet property="fuzhuSubView" destination="Bns-wb-Aon" id="UoJ-rw-BpB"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="2r8-t1-jIE" id="Be9-f9-60A"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="ovL-3l-Hat" id="LbP-3p-Ai0"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="Moa-FP-8Hr" id="4d4-n3-pX7"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="VUs-f4-EXU" id="M62-Jg-OHi"/>
+                        <outletCollection property="zlfaLeftSegmentedCollection" destination="42x-GR-qRQ" id="vKu-lB-X1a"/>
+                        <outletCollection property="fuzhuSubCollection" destination="kEe-xw-Nar" id="G1I-N8-Im1"/>
+                        <outletCollection property="fuzhuSubCollection" destination="60d-iY-LRo" id="ceG-F6-feD"/>
+                        <outletCollection property="fuzhuSubCollection" destination="wFs-xn-L6W" id="vVE-PN-o5J"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGN-dr-EIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -612,6 +681,7 @@
         <image name="bcjzSelected.png" width="131" height="126"/>
         <image name="bcjzUnselected.png" width="131" height="126"/>
         <image name="caseButtonSelected.png" width="168" height="168"/>
+        <image name="checkSelectButton.png" width="18" height="18"/>
         <image name="checkUnselectButton.png" width="18" height="18"/>
         <image name="cover1.png" width="1024" height="768"/>
         <image name="cover2.png" width="1024" height="768"/>
@@ -629,6 +699,8 @@
         <image name="zdjgUnselected.png" width="131" height="126"/>
         <image name="zlfaBG.png" width="872" height="768"/>
         <image name="zlfaBGLeft.png" width="400" height="471"/>
+        <image name="zlfaBGRight1.png" width="400" height="471"/>
+        <image name="zlfaBGRight2.png" width="352" height="145"/>
         <image name="zlfaSelected.png" width="131" height="126"/>
         <image name="zlfaUnselected.png" width="131" height="126"/>
     </resources>

@@ -10,6 +10,8 @@
 
 @interface HZQKViewController ()
 
+- (IBAction)confirmClick:(UIButton *)sender;
+
 @end
 
 @implementation HZQKViewController
@@ -35,4 +37,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)confirmClick:(UIButton *)sender {
+    if ([_scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
+        [_scrollViewDelegate didClickConfirmButton:sender];
+    }
+}
 @end

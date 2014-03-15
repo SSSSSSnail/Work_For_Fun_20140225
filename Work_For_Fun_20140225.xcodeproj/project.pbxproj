@@ -29,6 +29,8 @@
 		075EB0CF18D404E0001196FF /* ZDJGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0CE18D404E0001196FF /* ZDJGViewController.m */; };
 		075EB0D218D404EC001196FF /* ZLFAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0D118D404EC001196FF /* ZLFAViewController.m */; };
 		075EB0D518D404FB001196FF /* BCJZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0D418D404FB001196FF /* BCJZViewController.m */; };
+		075EB0D818D433E0001196FF /* zlfaBGRight1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0D718D433E0001196FF /* zlfaBGRight1@2x.png */; };
+		075EB0DA18D4424A001196FF /* zlfaBGRight2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0D918D4424A001196FF /* zlfaBGRight2@2x.png */; };
 		0762576618D2E6A70080B9DC /* HZQKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0762576518D2E6A70080B9DC /* HZQKViewController.m */; };
 		076CFEB718CC146B000F298E /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB618CC146B000F298E /* UIAlertView+Blocks.m */; };
 		076CFEBA18CC1534000F298E /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB918CC1534000F298E /* RIButtonItem.m */; };
@@ -145,6 +147,9 @@
 		075EB0D118D404EC001196FF /* ZLFAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLFAViewController.m; sourceTree = "<group>"; };
 		075EB0D318D404FB001196FF /* BCJZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCJZViewController.h; sourceTree = "<group>"; };
 		075EB0D418D404FB001196FF /* BCJZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCJZViewController.m; sourceTree = "<group>"; };
+		075EB0D618D410E0001196FF /* ScrollViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewControllerDelegate.h; sourceTree = "<group>"; };
+		075EB0D718D433E0001196FF /* zlfaBGRight1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaBGRight1@2x.png"; sourceTree = "<group>"; };
+		075EB0D918D4424A001196FF /* zlfaBGRight2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaBGRight2@2x.png"; sourceTree = "<group>"; };
 		0762576418D2E6A70080B9DC /* HZQKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZQKViewController.h; sourceTree = "<group>"; };
 		0762576518D2E6A70080B9DC /* HZQKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZQKViewController.m; sourceTree = "<group>"; };
 		076CFEB518CC146B000F298E /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
@@ -291,6 +296,8 @@
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				075EB0D918D4424A001196FF /* zlfaBGRight2@2x.png */,
+				075EB0D718D433E0001196FF /* zlfaBGRight1@2x.png */,
 				070FB68F18D1F67400162250 /* zlfaBGLeft@2x.png */,
 				070FB68D18D1F31F00162250 /* zlfaBG@2x.png */,
 				07BF9FAB18CB7DFC00FABFB9 /* BChao@2x.png */,
@@ -351,6 +358,7 @@
 				075EB0D118D404EC001196FF /* ZLFAViewController.m */,
 				075EB0D318D404FB001196FF /* BCJZViewController.h */,
 				075EB0D418D404FB001196FF /* BCJZViewController.m */,
+				075EB0D618D410E0001196FF /* ScrollViewControllerDelegate.h */,
 			);
 			path = mainScorllViews;
 			sourceTree = "<group>";
@@ -686,6 +694,8 @@
 				07BF9FA718CB7B8700FABFB9 /* ningxueshaicha@2x.png in Resources */,
 				07BF9F9818CB63A500FABFB9 /* xuechanggui@2x.png in Resources */,
 				CEA743EE18CA1E05003CF3F8 /* ZDJGM1@2x.png in Resources */,
+				075EB0D818D433E0001196FF /* zlfaBGRight1@2x.png in Resources */,
+				075EB0DA18D4424A001196FF /* zlfaBGRight2@2x.png in Resources */,
 				070FB68E18D1F31F00162250 /* zlfaBG@2x.png in Resources */,
 				0750C74D18C1CF4200640D1F /* hzqkUnselected@2x.png in Resources */,
 				0750C74718C1CA6F00640D1F /* leftMenuBG@2x.png in Resources */,

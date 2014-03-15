@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Snail. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ScrollViewControllerDelegate.h"
 
 @interface ZLFAViewController : UIViewController
+
+@property (weak, nonatomic) id<ScrollViewControllerDelegate> scrollViewDelegate;
 
 @end
