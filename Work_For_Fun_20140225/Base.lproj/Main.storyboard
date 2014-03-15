@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="cHd-s7-bne">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -176,12 +176,12 @@
                                 <rect key="frame" x="152" y="0.0" width="872" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <view tag="114" contentMode="scaleToFill" id="Vyn-8C-lbU" userLabel="病程进展 - View" customClass="LLUIView">
+                                    <view hidden="YES" tag="114" contentMode="scaleToFill" id="Vyn-8C-lbU" userLabel="病程进展 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view tag="112" contentMode="scaleToFill" id="mD3-Zx-j1Y" userLabel="诊断结果 - View" customClass="LLUIView">
+                                    <view hidden="YES" tag="112" contentMode="scaleToFill" id="mD3-Zx-j1Y" userLabel="诊断结果 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -301,7 +301,7 @@
                                         </subviews>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                     </view>
-                                    <view tag="110" contentMode="scaleToFill" id="2Vf-hM-IpV" userLabel="患者情况 - View" customClass="LLUIView">
+                                    <view hidden="YES" tag="110" contentMode="scaleToFill" id="2Vf-hM-IpV" userLabel="患者情况 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -311,7 +311,7 @@
                                             </imageView>
                                         </subviews>
                                     </view>
-                                    <view tag="111" contentMode="scaleToFill" id="36w-Rh-Pi7" userLabel="临床检查 - View" customClass="LLUIView">
+                                    <view hidden="YES" tag="111" contentMode="scaleToFill" id="36w-Rh-Pi7" userLabel="临床检查 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -367,7 +367,7 @@
                                             </button>
                                         </subviews>
                                     </view>
-                                    <view tag="113" contentMode="scaleToFill" id="wmz-Sd-oXM" userLabel="治疗方案 - View" customClass="LLUIView">
+                                    <view hidden="YES" tag="113" contentMode="scaleToFill" id="wmz-Sd-oXM" userLabel="治疗方案 - View" customClass="LLUIView">
                                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -475,7 +475,7 @@
                     </view>
                     <connections>
                         <outlet property="bmRateLabel" destination="flq-57-mdM" id="bLq-d3-62n"/>
-                        <outlet property="detailScrollVIew" destination="hY5-sl-7hJ" id="xbt-bV-hvR"/>
+                        <outlet property="detailScrollView" destination="hY5-sl-7hJ" id="BiP-Db-5dG"/>
                         <outlet property="jnRateLabel" destination="2iZ-sD-eU3" id="CKA-FH-97q"/>
                         <outlet property="lbjRateLabel" destination="pCm-yQ-435" id="WDV-Uk-TUt"/>
                         <outlet property="lcfqLabel" destination="Pqc-GX-MPz" id="5wW-Eo-RFq"/>
@@ -503,8 +503,8 @@
         <!--View Controller-->
         <scene sceneID="6Hf-9K-umH">
             <objects>
-                <viewController id="IzL-WT-k9n" customClass="HZQKViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MDP-cc-3iG">
+                <viewController storyboardIdentifier="hzqkVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IzL-WT-k9n" customClass="HZQKViewController" sceneMemberID="viewController">
+                    <view key="view" tag="110" contentMode="scaleToFill" id="MDP-cc-3iG" customClass="LLUIView">
                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -516,12 +516,95 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQy-8J-DDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1943" y="2123"/>
+            <point key="canvasLocation" x="2344" y="-546"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ZbX-3V-Fd9">
+            <objects>
+                <viewController storyboardIdentifier="lcjcVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WYl-Dp-ALg" customClass="LCJCViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ueT-Rr-YFj">
+                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cig-P7-ZhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2344" y="395"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ssI-zh-tvg">
+            <objects>
+                <viewController storyboardIdentifier="zdjgVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QR2-Fd-NxG" customClass="ZDJGViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XNc-aM-6Wp">
+                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nuw-3T-QRp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2341" y="1319"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="508-ID-9rE">
+            <objects>
+                <viewController storyboardIdentifier="zlfaVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TQ3-zH-gg5" customClass="ZLFAViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gHV-XC-lem">
+                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gGN-dr-EIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2349" y="2277"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rbx-8v-Y37">
+            <objects>
+                <viewController storyboardIdentifier="bcjzVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZST-lu-LBs" customClass="BCJZViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rxF-tI-RVW">
+                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HMH-5L-vIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3793" y="1919"/>
         </scene>
     </scenes>
     <resources>

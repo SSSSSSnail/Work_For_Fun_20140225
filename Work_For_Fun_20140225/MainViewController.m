@@ -8,6 +8,10 @@
 
 #import "MainViewController.h"
 #import "HZQKViewController.h"
+#import "LCJCViewController.h"
+#import "ZDJGViewController.h"
+#import "ZLFAViewController.h"
+#import "BCJZViewController.h"
 
 #import "LLUIView.h"
 #import "LLUIButton.h"
@@ -29,21 +33,21 @@ typedef NS_ENUM(NSUInteger, ScrollSubButtonTag)
     LCJJButton2 = 19  //临床结局
 };
 
-typedef NS_ENUM(NSUInteger, ScrollSubViewTag)
-{
-    HZQKView1 = 110, //患者情况
-    LCJCView1 = 111, //临床检查
-    ZDJGView1 = 112, //诊断结果
-    ZLFAView1 = 113, //治疗方案
-    LCJJView1 = 114, //临床结局
-
-    BSHGView2 = 115, //病史回顾
-    LCJCView2 = 116, //临床检查
-    ZDJGView2 = 117, //诊断结果
-    ZLFAView2 = 118, //治疗方案
-    LCJJView2 = 119  //临床结局
-
-};
+//typedef NS_ENUM(NSUInteger, ScrollSubViewTag)
+//{
+//    HZQKView1 = 110, //患者情况
+//    LCJCView1 = 111, //临床检查
+//    ZDJGView1 = 112, //诊断结果
+//    ZLFAView1 = 113, //治疗方案
+//    LCJJView1 = 114, //临床结局
+//
+//    BSHGView2 = 115, //病史回顾
+//    LCJCView2 = 116, //临床检查
+//    ZDJGView2 = 117, //诊断结果
+//    ZLFAView2 = 118, //治疗方案
+//    LCJJView2 = 119  //临床结局
+//
+//};
 
 typedef NS_ENUM(NSInteger, ComponentsTag)
 {
@@ -61,14 +65,18 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 };
 
 static float const DETAILVIEWHEIGHT = 768.0f;
-static float const DETAILVIEWIDTH = 877.0f;
+static float const DETAILVIEWIDTH = 872.0f;
 
 @interface MainViewController ()<LLUIViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *masterScrollView;
-@property (weak, nonatomic) IBOutlet UIScrollView *detailScrollVIew;
+@property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
 
 @property (strong, nonatomic) HZQKViewController *hzqkViewController;
+@property (strong, nonatomic) LCJCViewController *lcjcViewController;
+@property (strong, nonatomic) ZDJGViewController *zdjgViewController;
+@property (strong, nonatomic) ZLFAViewController *zlfaViewController;
+@property (strong, nonatomic) BCJZViewController *bcjzViewController;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableviewLCJC;
@@ -90,10 +98,9 @@ static float const DETAILVIEWIDTH = 877.0f;
 @property (strong, nonatomic) IBOutletCollection(UISegmentedControl) NSArray *zlfaLeftSegmentedCollection;
 
 @property (strong, nonatomic) NSMutableArray *masterButtonArray;
-@property (strong, nonatomic) NSMutableArray *detailViewArray;
+@property (strong, nonatomic) NSArray *detailViewArray;
 
 @property (strong, nonatomic) NSArray *masterTagArray;
-@property (strong, nonatomic) NSArray *detailTagArray;
 
 @property (strong, nonatomic) NSArray *lcjcTableViewLabelTextArray;
 @property (strong, nonatomic) NSArray *lcjcTableToImageNameArray;
@@ -142,22 +149,34 @@ static float const DETAILVIEWIDTH = 877.0f;
 //                            [NSNumber numberWithInt:LCJJButton2]
                             ];
 
-    self.detailTagArray = @[
-                            [NSNumber numberWithInt:HZQKView1],
-                            [NSNumber numberWithInt:LCJCView1],
-                            [NSNumber numberWithInt:ZDJGView1],
-                            [NSNumber numberWithInt:ZLFAView1],
-                            [NSNumber numberWithInt:LCJJView1]
-
-//                            [NSNumber numberWithInt:BSHGView2],
-//                            [NSNumber numberWithInt:LCJCView2],
-//                            [NSNumber numberWithInt:ZDJGView2],
-//                            [NSNumber numberWithInt:ZLFAView2],
-//                            [NSNumber numberWithInt:LCJJView2]
-                            ];
+//    self.detailTagArray = @[
+//                            [NSNumber numberWithInt:HZQKView1],
+//                            [NSNumber numberWithInt:LCJCView1],
+//                            [NSNumber numberWithInt:ZDJGView1],
+//                            [NSNumber numberWithInt:ZLFAView1],
+//                            [NSNumber numberWithInt:LCJJView1]
+//
+////                            [NSNumber numberWithInt:BSHGView2],
+////                            [NSNumber numberWithInt:LCJCView2],
+////                            [NSNumber numberWithInt:ZDJGView2],
+////                            [NSNumber numberWithInt:ZLFAView2],
+////                            [NSNumber numberWithInt:LCJJView2]
+//                            ];
 
     self.masterButtonArray = [NSMutableArray array];
-    self.detailViewArray = [NSMutableArray array];
+//    self.detailViewArray = [NSMutableArray array];
+
+    self.hzqkViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"hzqkVC"];
+    self.lcjcViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
+    self.zdjgViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjgVC"];
+    self.zlfaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfaVC"];
+    self.bcjzViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
+
+    [self addChildViewController:_hzqkViewController];
+    [self addChildViewController:_lcjcViewController];
+    [self addChildViewController:_zdjgViewController];
+    [self addChildViewController:_zlfaViewController];
+    [self addChildViewController:_bcjzViewController];
 
     for (NSNumber *buttonTag in _masterTagArray) {
         UIButton *button = (UIButton *)[_masterScrollView viewWithTag:buttonTag.integerValue];
@@ -169,23 +188,17 @@ static float const DETAILVIEWIDTH = 877.0f;
         }
     }
 
-    for (NSNumber *viewTag in _detailTagArray) {
-        UIView *view = [_detailScrollVIew viewWithTag:viewTag.integerValue];
-        if (view) {
-            [_detailViewArray addObject:view];
-        } else {
-//            NSLog(@"ViewTag: %d", viewTag.integerValue);
-//            NSAssert(NO, @"View not found!");
-        }
-    }
+    self.detailViewArray = @[_hzqkViewController.view, _lcjcViewController.view,
+                             _zdjgViewController.view, _zlfaViewController.view,
+                             _bcjzViewController.view];
 
-    for (LLUIView *scrollSubView in _detailViewArray) {
-        scrollSubView.frame = CGRectMake(0.0f, DETAILVIEWHEIGHT*(scrollSubView.tag - 110), DETAILVIEWIDTH, DETAILVIEWHEIGHT);
-        scrollSubView.LLDelegate = self;
+    for (int i = 0; i < _detailViewArray.count; i++) {
+        [_detailScrollView addSubview:((UIView *)_detailViewArray[i])];
+        ((UIView *)_detailViewArray[i]).frame = CGRectMake(0.0f, DETAILVIEWHEIGHT * i, DETAILVIEWIDTH, DETAILVIEWHEIGHT);
     }
     
-    _detailScrollVIew.scrollEnabled = NO;
-    _detailScrollVIew.contentSize = CGSizeMake(DETAILVIEWIDTH, DETAILVIEWHEIGHT*_detailViewArray.count);
+    _detailScrollView.scrollEnabled = NO;
+    _detailScrollView.contentSize = CGSizeMake(DETAILVIEWIDTH, DETAILVIEWHEIGHT*_detailViewArray.count);
 
     /* 临床检查初始化 */
     self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查", @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
@@ -216,16 +229,16 @@ static float const DETAILVIEWIDTH = 877.0f;
     _lcfqLabel.text = @"T  N  M  ";
     UIFont *zdjgFont = [UIFont miscrosoftYaHeiFont];
     
-    NSArray *zdjgSubViews = [[_detailScrollVIew viewWithTag:ZDJGView1] subviews];
-    for (UIView *subView in zdjgSubViews) {
-        if ([subView isKindOfClass:[UILabel class]]) {
-            ((UILabel *)subView).font = zdjgFont;
-            continue;
-        }
-        if ([subView isKindOfClass:[LLCheckButton class]]) {
-            [_checkButtonGroup addObject:subView];
-        }
-    }
+//    NSArray *zdjgSubViews = [[_detailScrollView viewWithTag:ZDJGView1] subviews];
+//    for (UIView *subView in zdjgSubViews) {
+//        if ([subView isKindOfClass:[UILabel class]]) {
+//            ((UILabel *)subView).font = zdjgFont;
+//            continue;
+//        }
+//        if ([subView isKindOfClass:[LLCheckButton class]]) {
+//            [_checkButtonGroup addObject:subView];
+//        }
+//    }
     /* xxxxxx */
 }
 
@@ -280,7 +293,7 @@ static float const DETAILVIEWIDTH = 877.0f;
 
     GInstance().globalData.currentIndex = toIndex;
     GInstance().globalData.maxIndex = MAX(toIndex, GInstance().globalData.maxIndex);
-    [_detailScrollVIew scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
+    [_detailScrollView scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 }
 
 - (IBAction)detailViewConfirm:(UIButton *)sender

@@ -25,6 +25,10 @@
 		0759650918C1D55700B17B2D /* zdjgUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650318C1D55700B17B2D /* zdjgUnselected@2x.png */; };
 		0759650A18C1D55700B17B2D /* zlfaSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650418C1D55700B17B2D /* zlfaSelected@2x.png */; };
 		0759650B18C1D55700B17B2D /* zlfaUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650518C1D55700B17B2D /* zlfaUnselected@2x.png */; };
+		075EB0CC18D404D1001196FF /* LCJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0CB18D404D1001196FF /* LCJCViewController.m */; };
+		075EB0CF18D404E0001196FF /* ZDJGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0CE18D404E0001196FF /* ZDJGViewController.m */; };
+		075EB0D218D404EC001196FF /* ZLFAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0D118D404EC001196FF /* ZLFAViewController.m */; };
+		075EB0D518D404FB001196FF /* BCJZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0D418D404FB001196FF /* BCJZViewController.m */; };
 		0762576618D2E6A70080B9DC /* HZQKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0762576518D2E6A70080B9DC /* HZQKViewController.m */; };
 		076CFEB718CC146B000F298E /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB618CC146B000F298E /* UIAlertView+Blocks.m */; };
 		076CFEBA18CC1534000F298E /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB918CC1534000F298E /* RIButtonItem.m */; };
@@ -133,6 +137,14 @@
 		0759650318C1D55700B17B2D /* zdjgUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zdjgUnselected@2x.png"; sourceTree = "<group>"; };
 		0759650418C1D55700B17B2D /* zlfaSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSelected@2x.png"; sourceTree = "<group>"; };
 		0759650518C1D55700B17B2D /* zlfaUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaUnselected@2x.png"; sourceTree = "<group>"; };
+		075EB0CA18D404D1001196FF /* LCJCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCJCViewController.h; sourceTree = "<group>"; };
+		075EB0CB18D404D1001196FF /* LCJCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCJCViewController.m; sourceTree = "<group>"; };
+		075EB0CD18D404E0001196FF /* ZDJGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDJGViewController.h; sourceTree = "<group>"; };
+		075EB0CE18D404E0001196FF /* ZDJGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDJGViewController.m; sourceTree = "<group>"; };
+		075EB0D018D404EC001196FF /* ZLFAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLFAViewController.h; sourceTree = "<group>"; };
+		075EB0D118D404EC001196FF /* ZLFAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLFAViewController.m; sourceTree = "<group>"; };
+		075EB0D318D404FB001196FF /* BCJZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCJZViewController.h; sourceTree = "<group>"; };
+		075EB0D418D404FB001196FF /* BCJZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCJZViewController.m; sourceTree = "<group>"; };
 		0762576418D2E6A70080B9DC /* HZQKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZQKViewController.h; sourceTree = "<group>"; };
 		0762576518D2E6A70080B9DC /* HZQKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZQKViewController.m; sourceTree = "<group>"; };
 		076CFEB518CC146B000F298E /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
@@ -331,6 +343,14 @@
 			children = (
 				0762576418D2E6A70080B9DC /* HZQKViewController.h */,
 				0762576518D2E6A70080B9DC /* HZQKViewController.m */,
+				075EB0CA18D404D1001196FF /* LCJCViewController.h */,
+				075EB0CB18D404D1001196FF /* LCJCViewController.m */,
+				075EB0CD18D404E0001196FF /* ZDJGViewController.h */,
+				075EB0CE18D404E0001196FF /* ZDJGViewController.m */,
+				075EB0D018D404EC001196FF /* ZLFAViewController.h */,
+				075EB0D118D404EC001196FF /* ZLFAViewController.m */,
+				075EB0D318D404FB001196FF /* BCJZViewController.h */,
+				075EB0D418D404FB001196FF /* BCJZViewController.m */,
 			);
 			path = mainScorllViews;
 			sourceTree = "<group>";
@@ -688,6 +708,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0762576618D2E6A70080B9DC /* HZQKViewController.m in Sources */,
+				075EB0CF18D404E0001196FF /* ZDJGViewController.m in Sources */,
+				075EB0D218D404EC001196FF /* ZLFAViewController.m in Sources */,
 				07D2AD9B18C3473F00FEC498 /* AFSecurityPolicy.m in Sources */,
 				07AF0AEA18BE3A08002356CE /* SelectCaseViewController.m in Sources */,
 				07D2AD9A18C3473F00FEC498 /* AFNetworkReachabilityManager.m in Sources */,
@@ -702,6 +724,7 @@
 				07D2AD9918C3473F00FEC498 /* AFHTTPSessionManager.m in Sources */,
 				07D2ADA218C3473F00FEC498 /* UIAlertView+AFNetworking.m in Sources */,
 				07D2AD9D18C3473F00FEC498 /* AFURLRequestSerialization.m in Sources */,
+				075EB0D518D404FB001196FF /* BCJZViewController.m in Sources */,
 				07B52C2A18C620340003B3C2 /* MBProgressHUD.m in Sources */,
 				07AF0AE718BE325B002356CE /* CoverViewController.m in Sources */,
 				07D2AD9F18C3473F00FEC498 /* AFURLSessionManager.m in Sources */,
@@ -720,6 +743,7 @@
 				07D2ADA618C3473F00FEC498 /* UIRefreshControl+AFNetworking.m in Sources */,
 				076CFEB718CC146B000F298E /* UIAlertView+Blocks.m in Sources */,
 				07AF0B3118BF0A85002356CE /* LLUIView.m in Sources */,
+				075EB0CC18D404D1001196FF /* LCJCViewController.m in Sources */,
 				07AF0AB918BCDC8C002356CE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
