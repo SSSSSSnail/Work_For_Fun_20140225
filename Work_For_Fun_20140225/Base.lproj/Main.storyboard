@@ -500,10 +500,10 @@
             </objects>
             <point key="canvasLocation" x="742" y="2277"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - 患者情况-->
         <scene sceneID="6Hf-9K-umH">
             <objects>
-                <viewController storyboardIdentifier="hzqkVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IzL-WT-k9n" customClass="HZQKViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="hzqkVC" title="患者情况" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IzL-WT-k9n" customClass="HZQKViewController" sceneMemberID="viewController">
                     <view key="view" tag="110" contentMode="scaleToFill" id="MDP-cc-3iG" customClass="LLUIView">
                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -526,10 +526,10 @@
             </objects>
             <point key="canvasLocation" x="2344" y="-546"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - 临床检查-->
         <scene sceneID="ZbX-3V-Fd9">
             <objects>
-                <viewController storyboardIdentifier="lcjcVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WYl-Dp-ALg" customClass="LCJCViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="lcjcVC" title="临床检查" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WYl-Dp-ALg" customClass="LCJCViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ueT-Rr-YFj">
                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -546,10 +546,10 @@
             </objects>
             <point key="canvasLocation" x="2344" y="395"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - 诊断结果-->
         <scene sceneID="ssI-zh-tvg">
             <objects>
-                <viewController storyboardIdentifier="zdjgVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QR2-Fd-NxG" customClass="ZDJGViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="zdjgVC" title="诊断结果" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QR2-Fd-NxG" customClass="ZDJGViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XNc-aM-6Wp">
                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -566,10 +566,10 @@
             </objects>
             <point key="canvasLocation" x="2341" y="1319"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - 治疗方案-->
         <scene sceneID="508-ID-9rE">
             <objects>
-                <viewController storyboardIdentifier="zlfaVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TQ3-zH-gg5" customClass="ZLFAViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="zlfaVC" title="治疗方案" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TQ3-zH-gg5" customClass="ZLFAViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gHV-XC-lem">
                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -586,10 +586,10 @@
             </objects>
             <point key="canvasLocation" x="2349" y="2277"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - 病程进展-->
         <scene sceneID="rbx-8v-Y37">
             <objects>
-                <viewController storyboardIdentifier="bcjzVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZST-lu-LBs" customClass="BCJZViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bcjzVC" title="病程进展" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZST-lu-LBs" customClass="BCJZViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rxF-tI-RVW">
                         <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
