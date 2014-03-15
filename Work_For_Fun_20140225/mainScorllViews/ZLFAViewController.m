@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIView *fuzhuSubView;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *fuzhuSubCollection;
 - (IBAction)fhuSubClickButton:(UIButton *)sender;
+- (IBAction)confirmClick:(UIButton *)sender;
+
 
 @end
 
@@ -72,17 +74,16 @@
     if (sender.tag == 12) {
         BOOL segEnabled = sender.selectedSegmentIndex == 0 ? NO : YES;
         ((UISegmentedControl *)_zlfaLeftSegmentedCollection[4]).enabled = segEnabled;
-
+        BOOL isLeftSelected = NO;
         if (segEnabled) {
-            BOOL isLeftSelected = NO;
             for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
                 if (segmentedControl.selectedSegmentIndex == 0) {
                     isLeftSelected = YES;
                     break;
                 }
             }
-            _danyiSegmented.enabled = isLeftSelected;
         }
+        _danyiSegmented.enabled = isLeftSelected;
 
         if (!segEnabled) {
             [UIView transitionWithView:_fuzhuSubView
@@ -114,5 +115,16 @@
             button.selected = NO;
         }
     }
+}
+
+- (IBAction)confirmClick:(UIButton *)sender {
+    [[[UIAlertView alloc] initWithTitle:nil
+                                message:@"治疗方案确认后不能修改!"
+                       cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+    }]
+                       otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+
+    }], nil] show];
 }
 @end

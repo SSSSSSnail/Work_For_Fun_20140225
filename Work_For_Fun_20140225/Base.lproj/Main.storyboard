@@ -479,7 +479,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="detailViewConfirm:" destination="dTL-s9-QlI" eventType="touchUpInside" id="5Hq-FT-T8i"/>
+                                    <action selector="confirmClick:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="if4-0J-gBP"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="B1h-Jm-vNq" userLabel="View - Left">
