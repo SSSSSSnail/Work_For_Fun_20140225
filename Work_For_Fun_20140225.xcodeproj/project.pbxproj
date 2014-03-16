@@ -25,12 +25,22 @@
 		0759650918C1D55700B17B2D /* zdjgUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650318C1D55700B17B2D /* zdjgUnselected@2x.png */; };
 		0759650A18C1D55700B17B2D /* zlfaSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650418C1D55700B17B2D /* zlfaSelected@2x.png */; };
 		0759650B18C1D55700B17B2D /* zlfaUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0759650518C1D55700B17B2D /* zlfaUnselected@2x.png */; };
+		075CC85918D555F50099F1D9 /* zlfaSection2LeftBG_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075CC85718D555F50099F1D9 /* zlfaSection2LeftBG_3@2x.png */; };
+		075CC85A18D555F50099F1D9 /* zlfaSection2LeftBG_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075CC85818D555F50099F1D9 /* zlfaSection2LeftBG_4@2x.png */; };
 		075EB0CC18D404D1001196FF /* LCJCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0CB18D404D1001196FF /* LCJCViewController.m */; };
 		075EB0CF18D404E0001196FF /* ZDJGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0CE18D404E0001196FF /* ZDJGViewController.m */; };
 		075EB0D218D404EC001196FF /* ZLFAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0D118D404EC001196FF /* ZLFAViewController.m */; };
 		075EB0D518D404FB001196FF /* BCJZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EB0D418D404FB001196FF /* BCJZViewController.m */; };
 		075EB0D818D433E0001196FF /* zlfaBGRight1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0D718D433E0001196FF /* zlfaBGRight1@2x.png */; };
 		075EB0DA18D4424A001196FF /* zlfaBGRight2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0D918D4424A001196FF /* zlfaBGRight2@2x.png */; };
+		075EB0DC18D46658001196FF /* zlfaSection1BG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0DB18D46658001196FF /* zlfaSection1BG@2x.png */; };
+		075EB0E118D47FF8001196FF /* zlfaSection2BG_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0DF18D47FF8001196FF /* zlfaSection2BG_1@2x.png */; };
+		075EB0E218D47FF8001196FF /* zlfaSection2BG_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0E018D47FF8001196FF /* zlfaSection2BG_2@2x.png */; };
+		075EB0E418D48500001196FF /* zlfaSection2BG_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0E318D48500001196FF /* zlfaSection2BG_3@2x.png */; };
+		075EB0E718D54A34001196FF /* zlfaSection2LeftBG_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0E518D54A34001196FF /* zlfaSection2LeftBG_1@2x.png */; };
+		075EB0E818D54A34001196FF /* zlfaSection2LeftBG_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0E618D54A34001196FF /* zlfaSection2LeftBG_2@2x.png */; };
+		075EB0EB18D54D62001196FF /* zlfaSection2RightButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0E918D54D62001196FF /* zlfaSection2RightButtonSelected@2x.png */; };
+		075EB0EC18D54D62001196FF /* zlfaSection2RightButtonUnselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 075EB0EA18D54D62001196FF /* zlfaSection2RightButtonUnselected@2x.png */; };
 		0762576618D2E6A70080B9DC /* HZQKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0762576518D2E6A70080B9DC /* HZQKViewController.m */; };
 		076CFEB718CC146B000F298E /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB618CC146B000F298E /* UIAlertView+Blocks.m */; };
 		076CFEBA18CC1534000F298E /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB918CC1534000F298E /* RIButtonItem.m */; };
@@ -139,6 +149,8 @@
 		0759650318C1D55700B17B2D /* zdjgUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zdjgUnselected@2x.png"; sourceTree = "<group>"; };
 		0759650418C1D55700B17B2D /* zlfaSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSelected@2x.png"; sourceTree = "<group>"; };
 		0759650518C1D55700B17B2D /* zlfaUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaUnselected@2x.png"; sourceTree = "<group>"; };
+		075CC85718D555F50099F1D9 /* zlfaSection2LeftBG_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2LeftBG_3@2x.png"; sourceTree = "<group>"; };
+		075CC85818D555F50099F1D9 /* zlfaSection2LeftBG_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2LeftBG_4@2x.png"; sourceTree = "<group>"; };
 		075EB0CA18D404D1001196FF /* LCJCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCJCViewController.h; sourceTree = "<group>"; };
 		075EB0CB18D404D1001196FF /* LCJCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCJCViewController.m; sourceTree = "<group>"; };
 		075EB0CD18D404E0001196FF /* ZDJGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDJGViewController.h; sourceTree = "<group>"; };
@@ -150,6 +162,14 @@
 		075EB0D618D410E0001196FF /* ScrollViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewControllerDelegate.h; sourceTree = "<group>"; };
 		075EB0D718D433E0001196FF /* zlfaBGRight1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaBGRight1@2x.png"; sourceTree = "<group>"; };
 		075EB0D918D4424A001196FF /* zlfaBGRight2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaBGRight2@2x.png"; sourceTree = "<group>"; };
+		075EB0DB18D46658001196FF /* zlfaSection1BG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection1BG@2x.png"; sourceTree = "<group>"; };
+		075EB0DF18D47FF8001196FF /* zlfaSection2BG_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2BG_1@2x.png"; sourceTree = "<group>"; };
+		075EB0E018D47FF8001196FF /* zlfaSection2BG_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2BG_2@2x.png"; sourceTree = "<group>"; };
+		075EB0E318D48500001196FF /* zlfaSection2BG_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2BG_3@2x.png"; sourceTree = "<group>"; };
+		075EB0E518D54A34001196FF /* zlfaSection2LeftBG_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2LeftBG_1@2x.png"; sourceTree = "<group>"; };
+		075EB0E618D54A34001196FF /* zlfaSection2LeftBG_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2LeftBG_2@2x.png"; sourceTree = "<group>"; };
+		075EB0E918D54D62001196FF /* zlfaSection2RightButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2RightButtonSelected@2x.png"; sourceTree = "<group>"; };
+		075EB0EA18D54D62001196FF /* zlfaSection2RightButtonUnselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zlfaSection2RightButtonUnselected@2x.png"; sourceTree = "<group>"; };
 		0762576418D2E6A70080B9DC /* HZQKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZQKViewController.h; sourceTree = "<group>"; };
 		0762576518D2E6A70080B9DC /* HZQKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZQKViewController.m; sourceTree = "<group>"; };
 		076CFEB518CC146B000F298E /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Blocks.h"; sourceTree = "<group>"; };
@@ -296,6 +316,16 @@
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				075CC85718D555F50099F1D9 /* zlfaSection2LeftBG_3@2x.png */,
+				075CC85818D555F50099F1D9 /* zlfaSection2LeftBG_4@2x.png */,
+				075EB0E918D54D62001196FF /* zlfaSection2RightButtonSelected@2x.png */,
+				075EB0EA18D54D62001196FF /* zlfaSection2RightButtonUnselected@2x.png */,
+				075EB0E518D54A34001196FF /* zlfaSection2LeftBG_1@2x.png */,
+				075EB0E618D54A34001196FF /* zlfaSection2LeftBG_2@2x.png */,
+				075EB0E318D48500001196FF /* zlfaSection2BG_3@2x.png */,
+				075EB0DF18D47FF8001196FF /* zlfaSection2BG_1@2x.png */,
+				075EB0E018D47FF8001196FF /* zlfaSection2BG_2@2x.png */,
+				075EB0DB18D46658001196FF /* zlfaSection1BG@2x.png */,
 				075EB0D918D4424A001196FF /* zlfaBGRight2@2x.png */,
 				075EB0D718D433E0001196FF /* zlfaBGRight1@2x.png */,
 				070FB68F18D1F67400162250 /* zlfaBGLeft@2x.png */,
@@ -649,6 +679,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075EB0E718D54A34001196FF /* zlfaSection2LeftBG_1@2x.png in Resources */,
 				0750C73F18C1B4E300640D1F /* selectCase@2x.png in Resources */,
 				07BF9F9C18CB660300FABFB9 /* okButton@2x.png in Resources */,
 				07D5284E18CAC70F005FCB7A /* lcjcCellRightButtonUnselected@2x.png in Resources */,
@@ -660,19 +691,23 @@
 				0750C73D18C1B45500640D1F /* cover2@2x.png in Resources */,
 				0759650818C1D55700B17B2D /* zdjgSelected@2x.png in Resources */,
 				07AF0AC518BCDC8C002356CE /* Images.xcassets in Resources */,
+				075EB0DC18D46658001196FF /* zlfaSection1BG@2x.png in Resources */,
 				07BF9FB518CB7DFC00FABFB9 /* CTjiancha@2x.png in Resources */,
 				0759650718C1D55700B17B2D /* bcjzUnselected@2x.png in Resources */,
 				0759650618C1D55700B17B2D /* bcjzSelected@2x.png in Resources */,
 				07AF0AB718BCDC8C002356CE /* InfoPlist.strings in Resources */,
 				07BF9FBA18CB7DFC00FABFB9 /* qianliexianteyikangyuan@2x.png in Resources */,
 				0759650B18C1D55700B17B2D /* zlfaUnselected@2x.png in Resources */,
+				075CC85A18D555F50099F1D9 /* zlfaSection2LeftBG_4@2x.png in Resources */,
 				07BF9FB918CB7DFC00FABFB9 /* penqianghecigongzhen@2x.png in Resources */,
 				CEA76BC018CB8F6100BF1EF6 /* checkSelectButton@2x.png in Resources */,
 				07D5284718CAB8CA005FCB7A /* lcjcBG@2x.png in Resources */,
 				0750C74E18C1CF4200640D1F /* lcjcSelected@2x.png in Resources */,
 				07D5284518CA27DA005FCB7A /* hzqkBG@2x.png in Resources */,
+				075EB0E418D48500001196FF /* zlfaSection2BG_3@2x.png in Resources */,
 				07BF9FB418CB7DFC00FABFB9 /* chuancihuojian@2x.png in Resources */,
 				07BF9F9B18CB660300FABFB9 /* backButton@2x.png in Resources */,
+				075EB0E118D47FF8001196FF /* zlfaSection2BG_1@2x.png in Resources */,
 				07BF9FB618CB7DFC00FABFB9 /* ECOGpingfen@2x.png in Resources */,
 				0750C73818C1B23A00640D1F /* cover1@2x.png in Resources */,
 				07BF9FA918CB7B8700FABFB9 /* xiongpian@2x.png in Resources */,
@@ -682,13 +717,17 @@
 				07BF9FA018CB777F00FABFB9 /* xueshenghua@2x.png in Resources */,
 				070FB69018D1F67400162250 /* zlfaBGLeft@2x.png in Resources */,
 				07BF9F9F18CB777F00FABFB9 /* niaochanggui@2x.png in Resources */,
+				075EB0EC18D54D62001196FF /* zlfaSection2RightButtonUnselected@2x.png in Resources */,
 				07BF9FB318CB7DFC00FABFB9 /* BChao@2x.png in Resources */,
 				07AF0AC018BCDC8C002356CE /* Main.storyboard in Resources */,
 				CEA76BC118CB8F6100BF1EF6 /* checkUnselectButton@2x.png in Resources */,
 				0750C74C18C1CF4200640D1F /* hzqkSelected@2x.png in Resources */,
+				075EB0E818D54A34001196FF /* zlfaSection2LeftBG_2@2x.png in Resources */,
+				075EB0EB18D54D62001196FF /* zlfaSection2RightButtonSelected@2x.png in Resources */,
 				07BF9FB818CB7DFC00FABFB9 /* gaotong@2x.png in Resources */,
 				07BF9FA818CB7B8700FABFB9 /* xindiantu@2x.png in Resources */,
 				0759650918C1D55700B17B2D /* zdjgUnselected@2x.png in Resources */,
+				075CC85918D555F50099F1D9 /* zlfaSection2LeftBG_3@2x.png in Resources */,
 				0759650A18C1D55700B17B2D /* zlfaSelected@2x.png in Resources */,
 				07BF9FA618CB7B8700FABFB9 /* chaoshengxindong@2x.png in Resources */,
 				07BF9FA718CB7B8700FABFB9 /* ningxueshaicha@2x.png in Resources */,
@@ -699,6 +738,7 @@
 				070FB68E18D1F31F00162250 /* zlfaBG@2x.png in Resources */,
 				0750C74D18C1CF4200640D1F /* hzqkUnselected@2x.png in Resources */,
 				0750C74718C1CA6F00640D1F /* leftMenuBG@2x.png in Resources */,
+				075EB0E218D47FF8001196FF /* zlfaSection2BG_2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

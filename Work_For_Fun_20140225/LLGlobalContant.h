@@ -24,6 +24,9 @@
 @property (copy, nonatomic) NSString *lcjcSelectedArrayString;
 @property (copy, nonatomic) NSString *lcjcChuanCiBA;
 
+@property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 1 2 3 4 5
+@property (assign, nonatomic) NSUInteger zlfaRightSelectedIndex; // 1 2 3   0标示未选择
+
 @property (assign, nonatomic) NSUInteger currentIndex;
 @property (assign, nonatomic) NSUInteger maxIndex;
 //@property (copy, nonatomic)
