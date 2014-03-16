@@ -133,7 +133,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
-    GInstance().globalData.currentIndex = 4;
+    GInstance().globalData.currentIndex = 3;
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 
 //    _checkButtonGroup.selectedItemTag = 207;
@@ -203,17 +203,12 @@ static float const DETAILVIEWIDTH = 872.0f;
             [self refreshButtonAndView:3];
         }], nil] show];
     } else if (GInstance().globalData.currentIndex == 3) {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"治疗方案确认后不能修改!"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
             //TODO 需要发送请求
             ((UIView *)_detailViewArray[3]).userInteractionEnabled = NO;
-//            sender.hidden = YES;
+            sender.hidden = YES;
             [self refreshButtonAndView:4];
-        }], nil] show];
+    } else if (GInstance().globalData.currentIndex == 4) {
+
     }
 }
 

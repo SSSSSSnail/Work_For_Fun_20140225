@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Cover View Controller-->
@@ -223,7 +223,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="872" height="768"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQy-8J-DDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -295,7 +294,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="lcjcOkButton" destination="li9-fR-jPg" id="OXl-aR-dHO"/>
                         <outlet property="lcjcResultImageView" destination="Vv7-Ny-SpI" id="ysQ-Us-16i"/>
@@ -440,7 +438,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="bmRateLabel" destination="tb0-AY-Mbm" id="ciL-qf-6Bm"/>
                         <outlet property="jnRateLabel" destination="H7Y-Ht-T8t" id="kEF-3f-qSO"/>
@@ -671,6 +668,89 @@
                                             <view contentMode="scaleToFill" id="x4M-xV-Mzp" userLabel="View - Right 2">
                                                 <rect key="frame" x="437" y="21" width="400" height="471"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBG2Right1.png" id="LgI-eJ-zrB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    </imageView>
+                                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" id="l93-5L-O5B">
+                                                        <rect key="frame" x="108" y="95" width="185" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <segments>
+                                                            <segment title="持续"/>
+                                                            <segment title="间歇"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="rightView2SegmentControlerValueChange:" destination="TQ3-zH-gg5" eventType="valueChanged" id="Jvd-bp-UMh"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="t01-DF-0qb">
+                                                        <rect key="frame" x="299" y="39" width="81" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <segments>
+                                                            <segment title="YES"/>
+                                                            <segment title="NO"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="rightView2SegmentControlerValueChange:" destination="TQ3-zH-gg5" eventType="valueChanged" id="TRj-jS-L4d"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <view hidden="YES" contentMode="scaleToFill" id="v58-eO-tWC">
+                                                        <rect key="frame" x="30" y="141" width="349" height="195"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="npL-8b-scZ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="349" height="195"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </imageView>
+                                                            <button opaque="NO" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lhl-tQ-ii0">
+                                                                <rect key="frame" x="34" y="19" width="18" height="22"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                <connections>
+                                                                    <action selector="clickRightView2Button:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="Mmq-DJ-YAc"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CcR-m7-eOx">
+                                                                <rect key="frame" x="34" y="63" width="18" height="22"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                <connections>
+                                                                    <action selector="clickRightView2Button:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="Rgj-MG-Xmy"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="203" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pn7-Jr-Lr5">
+                                                                <rect key="frame" x="34" y="112" width="18" height="22"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                <connections>
+                                                                    <action selector="clickRightView2Button:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="aQl-io-GRV"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" tag="204" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i2b-xc-Usg">
+                                                                <rect key="frame" x="34" y="160" width="18" height="22"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                <connections>
+                                                                    <action selector="clickRightView2Button:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="IqE-F8-cqF"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    </view>
+                                                </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
                                         </subviews>
@@ -717,12 +797,17 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="addFuzhuButton" destination="9nz-ur-Rly" id="3r5-uK-WBd"/>
                         <outlet property="danyiSegmented" destination="6Dl-a5-Bba" id="laj-Sr-rfj"/>
                         <outlet property="fuzhuSegmented" destination="4mA-jA-Fob" id="HnR-LL-RA7"/>
                         <outlet property="fuzhuSubView" destination="Bns-wb-Aon" id="UoJ-rw-BpB"/>
+                        <outlet property="right2ChixuJianxieSegmentControl" destination="l93-5L-O5B" id="lnD-0f-Wqm"/>
+                        <outlet property="right2FuzhuSegmentControl" destination="t01-DF-0qb" id="gNu-Ka-CAo"/>
+                        <outlet property="rightView1" destination="boE-ib-7Mf" id="fZL-k4-COD"/>
+                        <outlet property="rightView2" destination="x4M-xV-Mzp" id="9m6-7E-grk"/>
+                        <outlet property="rightView2SubImageView" destination="npL-8b-scZ" id="ohK-X3-ylj"/>
+                        <outlet property="rightViw2SubView" destination="v58-eO-tWC" id="yds-sE-od0"/>
                         <outlet property="section1View" destination="4zz-sn-sqZ" id="7Qw-al-Xoe"/>
                         <outlet property="section2ImageBG" destination="tX9-Ds-exa" id="hHC-kU-RCa"/>
                         <outlet property="section2Picker1" destination="U7Y-bs-igd" id="g17-OT-g01"/>
@@ -738,6 +823,10 @@
                         <outletCollection property="zlfaLeftSegmentedCollection" destination="ovL-3l-Hat" id="LbP-3p-Ai0"/>
                         <outletCollection property="zlfaLeftSegmentedCollection" destination="42x-GR-qRQ" id="vKu-lB-X1a"/>
                         <outletCollection property="zlfaLeftSegmentedCollection" destination="2r8-t1-jIE" id="Be9-f9-60A"/>
+                        <outletCollection property="fuzhuButtonCollection" destination="Lhl-tQ-ii0" id="W6V-zU-Yda"/>
+                        <outletCollection property="fuzhuButtonCollection" destination="CcR-m7-eOx" id="cjD-8t-rbG"/>
+                        <outletCollection property="fuzhuButtonCollection" destination="pn7-Jr-Lr5" id="yze-WT-LuD"/>
+                        <outletCollection property="fuzhuButtonCollection" destination="i2b-xc-Usg" id="9mi-Wl-T3U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGN-dr-EIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -786,7 +875,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="bcjzImage" destination="NkB-bv-7F8" id="di9-fS-cYd"/>
                         <outlet property="datatimeLabel" destination="3Xf-fv-PWF" id="RrV-T6-pZK"/>
@@ -821,6 +909,7 @@
         <image name="zdjgSelected.png" width="131" height="126"/>
         <image name="zdjgUnselected.png" width="131" height="126"/>
         <image name="zlfaBG.png" width="872" height="768"/>
+        <image name="zlfaBG2Right1.png" width="400" height="471"/>
         <image name="zlfaBGLeft.png" width="400" height="471"/>
         <image name="zlfaBGRight1.png" width="400" height="471"/>
         <image name="zlfaBGRight2.png" width="352" height="145"/>

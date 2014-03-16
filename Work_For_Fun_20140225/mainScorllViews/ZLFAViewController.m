@@ -25,15 +25,27 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *section2Picker2;
 @property (weak, nonatomic) IBOutlet UIPickerView *section2Picker3;
 
+@property (weak, nonatomic) IBOutlet UIView *rightView1;
+@property (weak, nonatomic) IBOutlet UIView *rightView2;
+@property (weak, nonatomic) IBOutlet UIView *rightViw2SubView;
+@property (weak, nonatomic) IBOutlet UIImageView *rightView2SubImageView;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *fuzhuButtonCollection;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *right2FuzhuSegmentControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *right2ChixuJianxieSegmentControl;
+
+
 @property (assign, nonatomic) BOOL shouldShowLeft;
 @property (assign, nonatomic) BOOL shouldToNext;
 @property (assign, nonatomic) BOOL showFuzhu;
+@property (assign, nonatomic) BOOL showFuzhuDetail;
 
 - (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender;
 - (IBAction)zlfaRightSegmentChanged:(UISegmentedControl *)sender;
 - (IBAction)fhuSubClickButton:(UIButton *)sender;
 - (IBAction)confirmClick:(UIButton *)sender;
 - (IBAction)clickAddFuzhuButton:(UIButton *)sender;
+- (IBAction)clickRightView2Button:(UIButton *)sender;
+- (IBAction)rightView2SegmentControlerValueChange:(UISegmentedControl *)sender;
 
 @property (strong, nonatomic) NSDictionary *pickViewSourceDictionary;
 
@@ -51,12 +63,24 @@
     _shouldShowLeft = NO;
     _shouldToNext = NO;
     _showFuzhu = NO;
+    _showFuzhuDetail = NO;
+
+    _rightView1.hidden = NO;
+    _rightView2.hidden = YES;
 
     self.pickViewSourceDictionary = @{
-                                      @"1011": @[@"", @"比卡鲁胺", @"氟他胺"],
-                                      @"1012": @[@"", @"达菲林 3月剂型", @"达菲林 1月剂型", @"戈舍瑞林", @"亮丙瑞林"],
-                                      @"1013": @[@"", @"比卡鲁胺", @"氟他胺"],
-                                      @"1023": @[@"", @"达菲林 3月剂型", @"达菲林 1月剂型", @"戈舍瑞林", @"亮丙瑞林"],
+                                      @"1011": @[@"", @"达菲林 3月剂型", @"达菲林 1月剂型", @"戈舍瑞林", @"亮丙瑞林"],
+                                      @"1012": @[@"", @"比卡鲁胺", @"氟他胺"],
+                                      @"1013": @[@"", @"达菲林 3月剂型", @"达菲林 1月剂型", @"戈舍瑞林", @"亮丙瑞林"],
+                                      @"1023": @[@"", @"比卡鲁胺", @"氟他胺"],
+                                      //辅助
+                                      @"101_2": @[@"", @"即刻", @"生化复发"],
+                                      @"102_2": @[@"", @"达菲林 3月剂型", @"达菲林 1月剂型", @"戈舍瑞林", @"亮丙瑞林"],
+                                      @"101_3": @[@"", @"即刻", @"生化复发"],
+                                      @"102_3": @[@"", @"比卡鲁胺", @"氟他胺"],
+                                      @"101_4": @[@"", @"即刻", @"生化复发"],
+                                      @"102_4": @[@"", @"达菲林 3月剂型", @"达菲林 1月剂型", @"戈舍瑞林", @"亮丙瑞林"],
+                                      @"103_4": @[@"", @"比卡鲁胺", @"氟他胺"],
                                       };
 }
 
@@ -66,9 +90,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender {
+- (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender
+{
     if (_showFuzhu) {
-
+        BOOL fuzhuEnable = sender.selectedSegmentIndex == 0 ? NO : YES;
+        if (sender.tag == 3) {
+            _right2FuzhuSegmentControl.enabled = fuzhuEnable;
+            GInstance().globalData.zlfaFuzhuOrZhaoShe = fuzhuEnable ? @"" : @"W";
+        }
     } else {
         if (sender.selectedSegmentIndex == 0) {
             for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
@@ -76,7 +105,7 @@
                     segmentedControl.selectedSegmentIndex = 1;
                 }
             }
-            if (sender.tag == 5) {
+            if (sender.tag == 3 || sender.tag == 4 || sender.tag == 5) {
                 _fuzhuSegmented.enabled = NO;
             } else {
                 _fuzhuSegmented.enabled = YES;
@@ -93,7 +122,8 @@
     }
 }
 
-- (IBAction)zlfaRightSegmentChanged:(UISegmentedControl *)sender {
+- (IBAction)zlfaRightSegmentChanged:(UISegmentedControl *)sender
+{
     if (sender.tag == 11) {
         BOOL segEnabled = sender.selectedSegmentIndex == 0 ? NO : YES;
         for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
@@ -108,9 +138,8 @@
     if (sender.tag == 12) {
         BOOL segEnabled = sender.selectedSegmentIndex == 0 ? NO : YES;
         for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
-            if (segmentedControl.tag == 5) {
+            if (segmentedControl.tag == 3 || segmentedControl.tag == 4 || segmentedControl.tag == 5) {
                 segmentedControl.enabled = segEnabled;
-                break;
             }
         }
 
@@ -178,12 +207,20 @@
     }]
                        otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
         if (GInstance().globalData.zlfaLeftSelectedIndex == 5) {
-            NSLog(@"NEXT");
+            if ([_scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
+                [_scrollViewDelegate didClickConfirmButton:sender];
+            }
         } else {
             if (_shouldToNext) {
-                NSLog(@"NEXT");
+                if ([_scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
+                    [_scrollViewDelegate didClickConfirmButton:sender];
+                }
             } else {
-                [self transitionToSectionTwo];
+                if (_showFuzhu) {
+                    [self transitionToSectionThree];
+                } else {
+                    [self transitionToSectionTwo];
+                }
             }
         }
     }], nil] show];
@@ -192,13 +229,26 @@
 - (IBAction)clickAddFuzhuButton:(UIButton *)sender
 {
     _showFuzhu = YES;
+    _shouldToNext = NO;
+    _rightView2.hidden = NO;
+    _rightView1.hidden = YES;
 
     for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
         segmentedControl.enabled = NO;
-        if (segmentedControl.selectedSegmentIndex !=0 && segmentedControl.tag == 3) {
+        if (segmentedControl.selectedSegmentIndex != 0 && segmentedControl.tag == 3) {
             segmentedControl.enabled = YES;
+            for (UISegmentedControl *segmentedControl2 in _zlfaLeftSegmentedCollection) {
+                if (segmentedControl2.selectedSegmentIndex == 0 && segmentedControl2.tag == 4) {
+                    segmentedControl.enabled = NO;
+                    break;
+                }
+            }
+            if (segmentedControl.enabled && GInstance().globalData.zlfaRightSelectedIndex > 0) {
+                segmentedControl.enabled = NO;
+            }
         }
     }
+
     [UIView transitionFromView:_section2View
                         toView:_section1View
                       duration:1.0
@@ -208,6 +258,82 @@
                         _addFuzhuButton.hidden = YES;
                         _titleLabel.text = @"选择治疗方案";
                     }];
+}
+
+- (IBAction)clickRightView2Button:(UIButton *)sender
+{
+    for (UIButton *button in _fuzhuButtonCollection) {
+        if (sender == button) {
+            sender.selected = YES;
+        } else {
+            button.selected = NO;
+        }
+    }
+    GInstance().globalData.zlfaFuzhuSelectedIndex = sender.tag - 200;
+}
+
+- (IBAction)rightView2SegmentControlerValueChange:(UISegmentedControl *)sender
+{
+    if (sender == _right2FuzhuSegmentControl) {
+        if (sender.selectedSegmentIndex == 0) {
+            _right2ChixuJianxieSegmentControl.hidden = NO;
+            for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
+                if (segmentControl.tag == 3) {
+                    segmentControl.enabled = NO;
+                }
+            }
+            GInstance().globalData.zlfaFuzhuOrZhaoShe = @"F";
+        } else {
+            _right2ChixuJianxieSegmentControl.hidden = YES;
+            _rightViw2SubView.hidden = YES;
+            _right2ChixuJianxieSegmentControl.selectedSegmentIndex = -1;
+            for (UIButton *button in _fuzhuButtonCollection) {
+                button.selected = NO;
+            }
+
+            if ((GInstance().globalData.zlfaLeftSelectedIndex == 1 ||
+                 GInstance().globalData.zlfaLeftSelectedIndex == 2) &&
+                GInstance().globalData.zlfaRightSelectedIndex == 0) {
+                for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
+                    if (segmentControl.tag == 3) {
+                        segmentControl.enabled = YES;
+                    }
+                }
+            }
+        }
+    } else if (sender == _right2ChixuJianxieSegmentControl) {
+        _rightViw2SubView.hidden = NO;
+        UIViewAnimationOptions option;
+        if (sender.selectedSegmentIndex == 0) {
+            _rightView2SubImageView.image = [UIImage imageNamed:@"zlfaBG2Right2.png"];
+            for (UIButton *button in _fuzhuButtonCollection) {
+                if (button.tag == 204) {
+                    button.hidden = NO;
+                }
+                button.selected = NO;
+            }
+            option = UIViewAnimationOptionTransitionFlipFromLeft;
+            GInstance().globalData.zlfaFuzhuType = @"C";
+        } else {
+            _rightView2SubImageView.image = [UIImage imageNamed:@"zlfaBG2Right3.png"];
+            for (UIButton *button in _fuzhuButtonCollection) {
+                if (button.tag == 204) {
+                    button.hidden = YES;
+                }
+                button.selected = NO;
+            }
+            option = UIViewAnimationOptionTransitionFlipFromRight;
+            GInstance().globalData.zlfaFuzhuType = @"J";
+        }
+        [UIView transitionWithView:_rightViw2SubView
+                          duration:0.8
+                           options:option | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionShowHideTransitionViews
+                        animations:^{
+                            _fuzhuSubView.hidden = NO;
+                        }
+                        completion:^(BOOL finished){
+                        }];
+    }
 }
 
 - (BOOL)checkValues
@@ -243,16 +369,50 @@
         }
     }
 
+    if (_showFuzhu) {
+        BOOL isWaiZhaoSheSelected = NO;
+        BOOL isFuZhuSelected = NO;
+        for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
+            if (segmentControl.selectedSegmentIndex == 0 && segmentControl.tag == 3) {
+                isWaiZhaoSheSelected = YES;
+                break;
+            }
+        }
+        isFuZhuSelected = _right2FuzhuSegmentControl.selectedSegmentIndex == 0 ? YES : NO;
+
+        if (!isWaiZhaoSheSelected && !isFuZhuSelected) {
+            [GInstance() showInfoMessage:@"请完成治疗方案"];
+            return NO;
+        }
+
+        if (isFuZhuSelected) {
+            BOOL buttonSelected = NO;
+            for (UIButton *button in _fuzhuButtonCollection) {
+                if (button.isSelected) {
+                    buttonSelected = YES;
+                    break;
+                }
+            }
+            if (!buttonSelected) {
+                [GInstance() showInfoMessage:@"请完成治疗方案"];
+                return NO;
+            }
+        }
+    }
+
+    if (_showFuzhuDetail) {
+
+    }
+
     return YES;
 }
 
 - (void)transitionToSectionTwo
 {
     NSString *imageName = nil;
+    BOOL firtTransition = NO;
     if (GInstance().globalData.zlfaRightSelectedIndex > 0) {
         if (_shouldShowLeft) {
-            _titleLabel.text = @"治疗方案记录";
-            _addFuzhuButton.hidden = NO;
             if (GInstance().globalData.zlfaLeftSelectedIndex > 0 && GInstance().globalData.zlfaLeftSelectedIndex < 5) {
                 _section2Picker1.hidden = YES;
                 _section2Picker2.hidden = YES;
@@ -261,10 +421,10 @@
             }
             _shouldToNext = YES;
         } else {
-            _titleLabel.text = @"选择具体治疗方法";
             if (GInstance().globalData.zlfaRightSelectedIndex == 1 || GInstance().globalData.zlfaRightSelectedIndex == 2) {
                 _section2Picker1.hidden = NO;
                 _section2Picker1.frame = CGRectMake(327.0f, 149.0f, 200.0f, 216.0f);
+                [_section2Picker1 selectRow:0 inComponent:0 animated:NO];
                 [_section2Picker1 reloadAllComponents];
                 _section2Picker2.hidden = YES;
                 _section2Picker3.hidden = YES;
@@ -273,19 +433,20 @@
             } else if (GInstance().globalData.zlfaRightSelectedIndex == 3) {
                 _section2Picker1.hidden = NO;
                 _section2Picker1.frame = CGRectMake(157.0f, 149.0f, 200.0f, 216.0f);
+                [_section2Picker1 selectRow:0 inComponent:0 animated:NO];
                 [_section2Picker1 reloadAllComponents];
                 _section2Picker2.hidden = NO;
                 _section2Picker2.frame = CGRectMake(457.0f, 149.0f, 200.0f, 216.0f);
+                [_section2Picker2 selectRow:0 inComponent:0 animated:NO];
                 [_section2Picker2 reloadAllComponents];
                 _section2Picker3.hidden = YES;
 
                 imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", GInstance().globalData.zlfaRightSelectedIndex];
             }
+            firtTransition = YES;
             _shouldShowLeft = YES;
         }
     } else {
-        _titleLabel.text = @"治疗方案记录";
-        _addFuzhuButton.hidden = NO;
         if (GInstance().globalData.zlfaLeftSelectedIndex > 0 && GInstance().globalData.zlfaLeftSelectedIndex < 5) {
             _section2Picker1.hidden = YES;
             _section2Picker2.hidden = YES;
@@ -299,9 +460,93 @@
     [UIView transitionFromView:_section1View
                         toView:_section2View
                       duration:1.0
-                       options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationOptionShowHideTransitionViews
+                       options:UIViewAnimationOptionTransitionFlipFromLeft | UIViewAnimationOptionShowHideTransitionViews
                     completion:^(BOOL finished) {
                         _section1View.hidden = YES;
+
+                        if (GInstance().globalData.zlfaRightSelectedIndex > 0) {
+                            if (_shouldShowLeft && !firtTransition) {
+                                _titleLabel.text = @"治疗方案记录";
+                                _addFuzhuButton.hidden = NO;
+                            } else {
+                                _titleLabel.text = @"选择具体治疗方法";
+                            }
+                        } else {
+                            _titleLabel.text = @"治疗方案记录";
+                            _addFuzhuButton.hidden = NO;
+                        }
+                    }];
+}
+
+- (void)transitionToSectionThree
+{
+    _showFuzhuDetail = YES;
+    _shouldToNext = YES;
+
+    NSString *imageName;
+    NSString *titleString;
+    if ([GInstance().globalData.zlfaFuzhuOrZhaoShe isEqualToString:@"F"]) {
+        NSUInteger iamgeIndex;
+        if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
+            iamgeIndex = GInstance().globalData.zlfaFuzhuSelectedIndex;
+        } else {
+            iamgeIndex = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+        }
+        if (iamgeIndex == 2) {
+            _section2Picker1.hidden = NO;
+            _section2Picker1.frame = CGRectMake(265.0f, -10.0f, 120.0f, 216.0f);
+            [_section2Picker1 selectRow:0 inComponent:0 animated:NO];
+            [_section2Picker1 reloadAllComponents];
+            _section2Picker2.hidden = NO;
+            _section2Picker2.frame = CGRectMake(327.0f, 179.0f, 200.0f, 216.0f);
+            [_section2Picker2 selectRow:0 inComponent:0 animated:NO];
+            [_section2Picker2 reloadAllComponents];
+            _section2Picker3.hidden = YES;
+        } else if (iamgeIndex == 3) {
+            _section2Picker1.hidden = NO;
+            _section2Picker1.frame = CGRectMake(265.0f, -10.0f, 120.0f, 216.0f);
+            [_section2Picker1 selectRow:0 inComponent:0 animated:NO];
+            [_section2Picker1 reloadAllComponents];
+            _section2Picker2.hidden = NO;
+            _section2Picker2.frame = CGRectMake(327.0f, 179.0f, 200.0f, 216.0f);
+            [_section2Picker2 selectRow:0 inComponent:0 animated:NO];
+            [_section2Picker2 reloadAllComponents];
+            _section2Picker3.hidden = YES;
+        } else if (iamgeIndex == 4) {
+            _section2Picker1.hidden = NO;
+            _section2Picker1.frame = CGRectMake(265.0f, -10.0f, 120.0f, 216.0f);
+            [_section2Picker1 selectRow:0 inComponent:0 animated:NO];
+            [_section2Picker1 reloadAllComponents];
+            _section2Picker2.hidden = NO;
+            _section2Picker2.frame = CGRectMake(157.0f, 179.0f, 200.0f, 216.0f);
+            [_section2Picker2 selectRow:0 inComponent:0 animated:NO];
+            [_section2Picker2 reloadAllComponents];
+            _section2Picker3.hidden = NO;
+            _section2Picker3.frame = CGRectMake(457.0, 179.0f, 200.0f, 216.0f);
+            [_section2Picker3 selectRow:0 inComponent:0 animated:NO];
+            [_section2Picker3 reloadAllComponents];
+
+        } else {
+            _section2Picker1.hidden = YES;
+            _section2Picker2.hidden = YES;
+            _section2Picker3.hidden = YES;
+        }
+        titleString = @"选择具体治疗方法";
+        imageName = [NSString stringWithFormat:@"zlfaFuzhuDetail_%lu.png", iamgeIndex];
+    } else {
+        imageName = @"zlfaSection2LeftBG_3.png";
+        titleString = @"";
+    }
+
+
+
+    _section2ImageBG.image = [UIImage imageNamed:imageName];
+    [UIView transitionFromView:_section1View
+                        toView:_section2View
+                      duration:1.0
+                       options:UIViewAnimationOptionTransitionFlipFromLeft | UIViewAnimationOptionShowHideTransitionViews
+                    completion:^(BOOL finished) {
+                        _titleLabel.text = titleString;
                     }];
 }
 
@@ -314,15 +559,40 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    NSLog(@"%@", [NSString stringWithFormat:@"%ld%lu", (long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex]);
-    return ((NSArray *)_pickViewSourceDictionary[[NSString stringWithFormat:@"%ld%lu", (long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex]]).count;
+    NSString *dicKeyString;
+    if (_showFuzhuDetail) {
+        NSUInteger keyInt;
+        if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
+            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+        } else {
+            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+        }
+        dicKeyString = [NSString stringWithFormat:@"%ld_%lu",(long)pickerView.tag, keyInt];
+    } else {
+        dicKeyString = [NSString stringWithFormat:@"%ld%lu",(long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
+    }
+    NSLog(@"dicKeyString : %@", dicKeyString);
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:dicKeyString];
+    return pickViewSource.count;
 }
 
 #pragma mark -
 #pragma mark UIPickerView Delegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld%lu",(long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex]];
+    NSString *dicKeyString;
+    if (_showFuzhuDetail) {
+        NSUInteger keyInt;
+        if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
+            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+        } else {
+            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+        }
+        dicKeyString = [NSString stringWithFormat:@"%ld_%lu",(long)pickerView.tag, keyInt];
+    } else {
+        dicKeyString = [NSString stringWithFormat:@"%ld%lu",(long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
+    }
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:dicKeyString];
     return pickViewSource[row];
 }
 

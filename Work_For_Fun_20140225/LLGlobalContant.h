@@ -26,6 +26,9 @@
 
 @property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 1 2 3 4 5
 @property (assign, nonatomic) NSUInteger zlfaRightSelectedIndex; // 1 2 3   0标示未选择
+@property (copy, nonatomic) NSString *zlfaFuzhuType; // C : 持续 J : 间歇
+@property (copy, nonatomic) NSString *zlfaFuzhuOrZhaoShe; // F : 辅助 W : 外照射
+@property (assign, nonatomic) NSUInteger zlfaFuzhuSelectedIndex; // 1 2 3 4
 
 @property (assign, nonatomic) NSUInteger currentIndex;
 @property (assign, nonatomic) NSUInteger maxIndex;
