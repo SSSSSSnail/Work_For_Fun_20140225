@@ -8,8 +8,23 @@
 
 #import "ScrollViewControllerDelegate.h"
 
+typedef NS_ENUM(NSInteger, BCJZResult) {
+    ZDJC             = 1, //M1 主动监测
+    GZS              = 2, //M2 根治术
+    GZSFZNFMCX       = 3, //M3 根治术+辅助 持续
+    GZSFZNFMJX       = 4, //M3 根治术+辅助 间歇
+    XFZNFMGZS        = 5, //M4 新辅助+根治术
+    XFZNFMGZSFZNFMCX = 6, //M5 新辅助+根治术+辅助 持续
+    XFZNFMGZSFZNFMJX = 7, //M5 新辅助+根治术+辅助 间歇
+    GZSFL            = 8, //M6 根治术+放疗
+    FL               = 9, //M7 放疗
+    FLFZNFMCX        = 10,//M8 放疗+辅助 持续
+    FLFZNFMJX        = 11,//M8 放疗+辅助 间歇
+};
 @interface BCJZViewController : UIViewController
 
 @property (weak, nonatomic) id<ScrollViewControllerDelegate> scrollViewDelegate;
 
+- (void)changeLabelText:(BCJZResult)result;
+- (void)changedLabelTextInM2:(BCJZResult)result;
 @end

@@ -167,26 +167,27 @@
 
 - (IBAction)confirmClick:(UIButton *)sender
 {
-    if (![self checkValues]) {
-        return;
-    }
-
-    [[[UIAlertView alloc] initWithTitle:nil
-                                message:@"治疗方案确认后不能修改!"
-                       cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-
-    }]
-                       otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-        if (GInstance().globalData.zlfaLeftSelectedIndex == 5) {
-            NSLog(@"NEXT");
-        } else {
-            if (_shouldToNext) {
-                NSLog(@"NEXT");
-            } else {
-                [self transitionToSectionTwo];
-            }
-        }
-    }], nil] show];
+//    if (![self checkValues]) {
+//        return;
+//    }
+//
+//    [[[UIAlertView alloc] initWithTitle:nil
+//                                message:@"治疗方案确认后不能修改!"
+//                       cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+//
+//    }]
+//                       otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+//        if (GInstance().globalData.zlfaLeftSelectedIndex == 5) {
+//            NSLog(@"NEXT");
+//        } else {
+//            if (_shouldToNext) {
+//                NSLog(@"NEXT");
+//            } else {
+//                [self transitionToSectionTwo];
+//            }
+//        }
+//    }], nil] show];
+    [_scrollViewDelegate didClickConfirmButton:sender];
 }
 
 - (IBAction)clickAddFuzhuButton:(UIButton *)sender

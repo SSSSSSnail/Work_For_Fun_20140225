@@ -121,6 +121,7 @@
 		CE80216618D54F5D0051F86D /* bcjz10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE80215B18D54F5D0051F86D /* bcjz10@2x.png */; };
 		CE80216718D54F5D0051F86D /* bcjz11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE80215C18D54F5D0051F86D /* bcjz11@2x.png */; };
 		CE978C5818D5559B00A06F40 /* bcjzBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE978C5718D5559B00A06F40 /* bcjzBG@2x.png */; };
+		CE978C5B18D5CEC700A06F40 /* PickViewSourceBean.m in Sources */ = {isa = PBXBuildFile; fileRef = CE978C5A18D5CEC700A06F40 /* PickViewSourceBean.m */; };
 		CEA743EE18CA1E05003CF3F8 /* ZDJGM1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA743ED18CA1E05003CF3F8 /* ZDJGM1@2x.png */; };
 		CEA743F218CA2037003CF3F8 /* LLUIPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743F118CA2037003CF3F8 /* LLUIPickView.m */; };
 		CEA76BBD18CB860400BF1EF6 /* LLCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA76BBC18CB860400BF1EF6 /* LLCheckButton.m */; };
@@ -295,6 +296,8 @@
 		CE80215B18D54F5D0051F86D /* bcjz10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bcjz10@2x.png"; sourceTree = "<group>"; };
 		CE80215C18D54F5D0051F86D /* bcjz11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bcjz11@2x.png"; sourceTree = "<group>"; };
 		CE978C5718D5559B00A06F40 /* bcjzBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bcjzBG@2x.png"; sourceTree = "<group>"; };
+		CE978C5918D5CEC700A06F40 /* PickViewSourceBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickViewSourceBean.h; sourceTree = "<group>"; };
+		CE978C5A18D5CEC700A06F40 /* PickViewSourceBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickViewSourceBean.m; sourceTree = "<group>"; };
 		CEA743ED18CA1E05003CF3F8 /* ZDJGM1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZDJGM1@2x.png"; sourceTree = "<group>"; };
 		CEA743F018CA2037003CF3F8 /* LLUIPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUIPickView.h; sourceTree = "<group>"; };
 		CEA743F118CA2037003CF3F8 /* LLUIPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLUIPickView.m; sourceTree = "<group>"; };
@@ -340,7 +343,6 @@
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				075CC85718D555F50099F1D9 /* zlfaSection2LeftBG_3@2x.png */,
 				075CC85818D555F50099F1D9 /* zlfaSection2LeftBG_4@2x.png */,
 				075EB0E918D54D62001196FF /* zlfaSection2RightButtonSelected@2x.png */,
@@ -425,6 +427,8 @@
 				075EB0D118D404EC001196FF /* ZLFAViewController.m */,
 				075EB0D318D404FB001196FF /* BCJZViewController.h */,
 				075EB0D418D404FB001196FF /* BCJZViewController.m */,
+				CE978C5918D5CEC700A06F40 /* PickViewSourceBean.h */,
+				CE978C5A18D5CEC700A06F40 /* PickViewSourceBean.m */,
 				075EB0D618D410E0001196FF /* ScrollViewControllerDelegate.h */,
 			);
 			path = mainScorllViews;
@@ -829,6 +833,7 @@
 				07D2AD9F18C3473F00FEC498 /* AFURLSessionManager.m in Sources */,
 				CEA76BBD18CB860400BF1EF6 /* LLCheckButton.m in Sources */,
 				07AF0ABD18BCDC8C002356CE /* AppDelegate.m in Sources */,
+				CE978C5B18D5CEC700A06F40 /* PickViewSourceBean.m in Sources */,
 				07D2AD9818C3473F00FEC498 /* AFHTTPRequestOperationManager.m in Sources */,
 				076CFEBA18CC1534000F298E /* RIButtonItem.m in Sources */,
 				07D2ADA518C3473F00FEC498 /* UIProgressView+AFNetworking.m in Sources */,

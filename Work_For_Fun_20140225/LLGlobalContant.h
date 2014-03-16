@@ -37,6 +37,11 @@
 //@property (copy, nonatomic)
 //@property (copy, nonatomic)
 
+@property (copy, nonatomic) NSString *zdjgZDSelectItem;
+@property (copy, nonatomic) NSString *zdjgPGSelectItem;
+@property (copy, nonatomic) NSString *zdjgTSelectItem;
+@property (copy, nonatomic) NSString *zdjgMSelectItem;
+@property (copy, nonatomic) NSString *zdjgNSelectItem;
 @end
 
 static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";

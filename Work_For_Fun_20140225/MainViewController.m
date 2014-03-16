@@ -41,12 +41,20 @@ static float const DETAILVIEWIDTH = 872.0f;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *masterScrollView;
 @property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
+@property (weak, nonatomic) IBOutlet UIView *step1MasterView;
+@property (weak, nonatomic) IBOutlet UIView *step2MasterView;
 
 @property (strong, nonatomic) HZQKViewController *hzqkViewController;
 @property (strong, nonatomic) LCJCViewController *lcjcViewController;
 @property (strong, nonatomic) ZDJGViewController *zdjgViewController;
 @property (strong, nonatomic) ZLFAViewController *zlfaViewController;
 @property (strong, nonatomic) BCJZViewController *bcjzViewController;
+
+@property (strong, nonatomic) HZQKViewController *hzqkM2ViewController;
+@property (strong, nonatomic) LCJCViewController *lcjcM2ViewController;
+@property (strong, nonatomic) ZDJGViewController *zdjgM2ViewController;
+@property (strong, nonatomic) ZLFAViewController *zlfaM2ViewController;
+@property (strong, nonatomic) BCJZViewController *bcjzM2ViewController;
 
 @property (strong, nonatomic) NSMutableArray *masterButtonArray;
 @property (strong, nonatomic) NSArray *detailViewArray;
@@ -77,13 +85,13 @@ static float const DETAILVIEWIDTH = 872.0f;
                             [NSNumber numberWithInt:LCJCButton1],
                             [NSNumber numberWithInt:ZDJGButton1],
                             [NSNumber numberWithInt:ZLFAButton1],
-                            [NSNumber numberWithInt:LCJJButton1]
-
-//                            [NSNumber numberWithInt:BSHGButton2],
-//                            [NSNumber numberWithInt:LCJCButton2],
-//                            [NSNumber numberWithInt:ZDJGButton2],
-//                            [NSNumber numberWithInt:ZLFAButton2],
-//                            [NSNumber numberWithInt:LCJJButton2]
+                            [NSNumber numberWithInt:LCJJButton1],
+                            
+                            [NSNumber numberWithInt:BSHGButton2],
+                            [NSNumber numberWithInt:LCJCButton2],
+                            [NSNumber numberWithInt:ZDJGButton2],
+                            [NSNumber numberWithInt:ZLFAButton2],
+                            [NSNumber numberWithInt:LCJJButton2]
                             ];
 
     self.masterButtonArray = [NSMutableArray array];
@@ -93,7 +101,13 @@ static float const DETAILVIEWIDTH = 872.0f;
     self.zdjgViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjgVC"];
     self.zlfaViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfaVC"];
     self.bcjzViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
-
+    
+    self.hzqkM2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"hzqkVC"];
+    self.lcjcM2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
+    self.zdjgM2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjgVC"];
+    self.zlfaM2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfaVC"];
+    self.bcjzM2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
+    
     [self addChildViewController:_hzqkViewController];
     _hzqkViewController.scrollViewDelegate = self;
     [self addChildViewController:_lcjcViewController];
@@ -104,9 +118,20 @@ static float const DETAILVIEWIDTH = 872.0f;
     _zlfaViewController.scrollViewDelegate = self;
     [self addChildViewController:_bcjzViewController];
     _bcjzViewController.scrollViewDelegate = self;
+    
+    [self addChildViewController:_hzqkM2ViewController];
+    _hzqkM2ViewController.scrollViewDelegate = self;
+    [self addChildViewController:_lcjcM2ViewController];
+    _lcjcM2ViewController.scrollViewDelegate = self;
+    [self addChildViewController:_zdjgM2ViewController];
+    _zdjgM2ViewController.scrollViewDelegate = self;
+    [self addChildViewController:_zlfaM2ViewController];
+    _zlfaM2ViewController.scrollViewDelegate = self;
+    [self addChildViewController:_bcjzM2ViewController];
+    _bcjzM2ViewController.scrollViewDelegate = self;
 
     for (NSNumber *buttonTag in _masterTagArray) {
-        UIButton *button = (UIButton *)[_masterScrollView viewWithTag:buttonTag.integerValue];
+        UIButton *button = (UIButton *)[_step1MasterView viewWithTag:buttonTag.integerValue];
         if (button) {
             [_masterButtonArray addObject:button];
         } else {
@@ -115,9 +140,25 @@ static float const DETAILVIEWIDTH = 872.0f;
         }
     }
 
+    for (NSNumber *buttonTag in _masterTagArray) {
+        UIButton *button = (UIButton *)[_step2MasterView viewWithTag:buttonTag.integerValue];
+        if (button) {
+            [_masterButtonArray addObject:button];
+        } else {
+            //            NSLog(@"ButtonTag: %d", buttonTag.integerValue);
+            //            NSAssert(NO, @"Button not found!");
+        }
+    }
+
+    _masterScrollView.scrollEnabled = NO;
+    _masterScrollView.contentSize = CGSizeMake(152, 1390);
+    
+    
     self.detailViewArray = @[_hzqkViewController.view, _lcjcViewController.view,
                              _zdjgViewController.view, _zlfaViewController.view,
-                             _bcjzViewController.view];
+                             _bcjzViewController.view, _hzqkM2ViewController.view,
+                             _lcjcM2ViewController.view, _zdjgM2ViewController.view,
+                             _zlfaM2ViewController.view, _bcjzM2ViewController.view];
 
     for (int i = 0; i < _detailViewArray.count; i++) {
         [_detailScrollView addSubview:((UIView *)_detailViewArray[i])];
@@ -133,7 +174,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
-    GInstance().globalData.currentIndex = 4;
+    GInstance().globalData.currentIndex = 1;
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 
 //    _checkButtonGroup.selectedItemTag = 207;
@@ -214,6 +255,25 @@ static float const DETAILVIEWIDTH = 872.0f;
 //            sender.hidden = YES;
             [self refreshButtonAndView:4];
         }], nil] show];
+    } else if (GInstance().globalData.currentIndex == 4) {
+        [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
+        [self refreshButtonAndView:5];
+    } else if (GInstance().globalData.currentIndex == 5) {
+        ((UIView *) _detailViewArray[6]).userInteractionEnabled = YES;
+        [self refreshButtonAndView:6];
+    } else if (GInstance().globalData.currentIndex == 6) {
+        [_zdjgM2ViewController loadDataFromGlobalData];
+        [self refreshButtonAndView:7];
+    } else if (GInstance().globalData.currentIndex == 7) {
+        [self refreshButtonAndView:8];
+
+    } else if (GInstance().globalData.currentIndex == 8) {
+        [self refreshButtonAndView:9];
+
+    } else if (GInstance().globalData.currentIndex == 9) {
+        [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 0.0f, 152.0f, 695.0f) animated:YES];
+        [self refreshButtonAndView:0];
+
     }
 }
 

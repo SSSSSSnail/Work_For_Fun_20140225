@@ -17,6 +17,9 @@
 
 @property (strong, nonatomic) NSMutableDictionary *globalDictionary;
 
+@property (strong, nonatomic) NSDictionary *globalDataDictionary;
+
+- (NSMutableDictionary *)mapZDJG;
 @end
 
 NSString *DataFileName();
@@ -39,6 +42,9 @@ NSString *BackupFileName();
 {
     self.globalDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:DataFileName()];
     self.globalData = [[LLGlobalData alloc] init];
+//    self.globalDataDictionary = @{@"1" : @{@"": @""},
+//                                  @"2" : @{},
+//                                  @"3" : [self mapZDJG]};
     [GInstance() coverToObject:_globalData fromDictionary:_globalDictionary];
 }
 
@@ -133,6 +139,26 @@ NSString *BackupFileName();
         id dicValue = dictionary[dicKey];
         [object setValue:dicValue forKey:dicKey];
     }
+}
+
+- (NSMutableDictionary *)mapZDJG
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+//    NSDictionary *pickViewSourceDictionary = @{@"pg": @[@"  ", @"gw", @"zw", @"dw"],
+//                                               @"t": @[@"  ", @"1a", @"1b", @"1c", @"2a", @"2b", @"2c", @"3a", @"3b", @"4"],
+//                                               @"n": @[@"  ", @"0", @"1", @"2"],
+//                                               @"m": @[@"  ", @"0", @"1"],
+//                                               @"zd":@[@"bph", @"jxa", @"jxw", @"zya"]};
+//    NSDictionary *sourceDictionary = @{@"pg": _globalData.zdjgPGSelectIndex,
+//                                       @"t": _globalData.zdjgTSelectIndex,
+//                                       @"n": _globalData.zdjgNSelectIndex,
+//                                       @"m": _globalData.zdjgMSelectIndex,
+//                                       @"zd": _globalData.zdjgZDSelectIndex};
+//    for (NSString *key in sourceDictionary) {
+//        NSArray *array = pickViewSourceDictionary[key];
+//        [dictionary setObject:array[((NSNumber *)sourceDictionary[key]).integerValue] forKey:key];
+//    }
+    return dictionary;
 }
 
 @end
