@@ -8,7 +8,7 @@
 
 #import "ScrollViewControllerDelegate.h"
 
-@interface ZDJGViewController : UIViewController
+@interface ZDJGViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) id<ScrollViewControllerDelegate> scrollViewDelegate;
 
