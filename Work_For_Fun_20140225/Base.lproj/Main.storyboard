@@ -112,61 +112,130 @@
                                 <rect key="frame" x="0.0" y="0.0" width="152" height="695"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Km-G0-7jg" userLabel="患者情况 - Button" customClass="LLUIButton">
-                                        <rect key="frame" x="9" y="20" width="131" height="126"/>
+                                    <view contentMode="scaleToFill" id="VWd-LA-fQe" userLabel="View- Step2">
+                                        <rect key="frame" x="0.0" y="695" width="152" height="695"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="hzqkUnselected.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="hzqkSelected.png"/>
-                                        <connections>
-                                            <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="8mo-hQ-aNm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Foo-PQ-9GZ" userLabel="临床检查 - Button" customClass="LLUIButton">
-                                        <rect key="frame" x="9" y="150" width="131" height="126"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fIM-b2-cvf" userLabel="患者情况 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="20" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="hzqkUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="hzqkSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="L9D-Jc-Doj"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LyR-3K-2op" userLabel="临床检查 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="150" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="lcjcUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="lcjcSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="m1G-iL-k4h"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="17" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mhr-IQ-BLq" userLabel="诊断结果 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="283" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="zdjgUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="zdjgSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="29w-X7-Re1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="18" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OTF-1m-1Pk" userLabel="治疗方案 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="415" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="zlfaUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="zlfaSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="q3U-M8-WBR"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XHv-w6-cHC" userLabel="病程进展 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="549" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="bcjzUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="bcjzSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="4OV-67-DTg"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="lt5-z5-y64" userLabel="View- Step1">
+                                        <rect key="frame" x="0.0" y="0.0" width="152" height="695"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="lcjcUnselected.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="lcjcSelected.png"/>
-                                        <connections>
-                                            <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="2Yh-Ue-Fy1"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bZz-ks-LJg" userLabel="诊断结果 - Button" customClass="LLUIButton">
-                                        <rect key="frame" x="9" y="283" width="131" height="126"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="zdjgUnselected.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="zdjgSelected.png"/>
-                                        <connections>
-                                            <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="WSW-iB-sUn"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8vE-g4-fYs" userLabel="治疗方案 - Button" customClass="LLUIButton">
-                                        <rect key="frame" x="9" y="415" width="131" height="126"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="zlfaUnselected.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="zlfaSelected.png"/>
-                                        <connections>
-                                            <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="Z5h-CR-RPw"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZLb-RQ-2WG" userLabel=" 病程进展 - Button" customClass="LLUIButton">
-                                        <rect key="frame" x="9" y="549" width="131" height="126"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="bcjzUnselected.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="bcjzSelected.png"/>
-                                        <connections>
-                                            <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="n5q-23-Q3g"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Km-G0-7jg" userLabel="病史回顾 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="20" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="hzqkUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="hzqkSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="8mo-hQ-aNm"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Foo-PQ-9GZ" userLabel="临床检查 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="150" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="lcjcUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="lcjcSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="2Yh-Ue-Fy1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bZz-ks-LJg" userLabel="诊断结果 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="283" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="zdjgUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="zdjgSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="WSW-iB-sUn"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8vE-g4-fYs" userLabel="治疗方案 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="415" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="zlfaUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="zlfaSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="Z5h-CR-RPw"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZLb-RQ-2WG" userLabel="病程进展 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="549" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="bcjzUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="bcjzSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="dTL-s9-QlI" eventType="touchUpInside" id="n5q-23-Q3g"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="dTL-s9-QlI" id="rvN-dP-9V2"/>
@@ -186,6 +255,8 @@
                     <connections>
                         <outlet property="detailScrollView" destination="hY5-sl-7hJ" id="BiP-Db-5dG"/>
                         <outlet property="masterScrollView" destination="Qpf-5X-ZeI" id="xDq-uT-odN"/>
+                        <outlet property="step1MasterView" destination="lt5-z5-y64" id="z6P-3S-5d1"/>
+                        <outlet property="step2MasterView" destination="VWd-LA-fQe" id="cD4-J9-23R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Byq-kY-xpD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -205,7 +276,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jK8-zO-LSB">
-                                <rect key="frame" x="395" y="692" width="83" height="31"/>
+                                <rect key="frame" x="395" y="717" width="83" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="okButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -320,24 +391,32 @@
                                 <rect key="frame" x="305" y="387" width="40" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="dTL-s9-QlI" id="0VF-C2-haJ"/>
-                                    <outlet property="delegate" destination="dTL-s9-QlI" id="IB6-UB-gtu"/>
+                                    <outlet property="dataSource" destination="QR2-Fd-NxG" id="oGC-Du-0bS"/>
+                                    <outlet property="delegate" destination="QR2-Fd-NxG" id="n6Q-97-ALs"/>
                                 </connections>
                             </pickerView>
                             <pickerView tag="201" contentMode="scaleToFill" id="hfm-JY-Na8" customClass="LLUIPickView">
                                 <rect key="frame" x="145" y="387" width="40" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="QR2-Fd-NxG" id="clx-GB-Ywc"/>
+                                    <outlet property="delegate" destination="QR2-Fd-NxG" id="JDP-jB-I8i"/>
+                                </connections>
                             </pickerView>
                             <pickerView tag="202" contentMode="scaleToFill" id="cYZ-da-yEW" customClass="LLUIPickView">
                                 <rect key="frame" x="226" y="387" width="40" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="QR2-Fd-NxG" id="9j9-Nt-MSC"/>
+                                    <outlet property="delegate" destination="QR2-Fd-NxG" id="QDY-y8-KtW"/>
+                                </connections>
                             </pickerView>
                             <pickerView tag="200" contentMode="scaleToFill" id="xpc-br-m4q" customClass="LLUIPickView">
                                 <rect key="frame" x="518" y="135" width="220" height="216"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="dTL-s9-QlI" id="V3T-fk-YbJ"/>
-                                    <outlet property="delegate" destination="dTL-s9-QlI" id="tWO-r8-LjD"/>
+                                    <outlet property="dataSource" destination="QR2-Fd-NxG" id="VkJ-fW-f3H"/>
+                                    <outlet property="delegate" destination="QR2-Fd-NxG" id="DN3-US-iKS"/>
                                 </connections>
                             </pickerView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="agc-dc-Ed3" userLabel="Label - 分期结果">
@@ -877,7 +956,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="bcjzImage" destination="NkB-bv-7F8" id="di9-fS-cYd"/>
-                        <outlet property="datatimeLabel" destination="3Xf-fv-PWF" id="RrV-T6-pZK"/>
+                        <outlet property="datetimeLabel" destination="3Xf-fv-PWF" id="ERR-3C-W6H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HMH-5L-vIe" userLabel="First Responder" sceneMemberID="firstResponder"/>
