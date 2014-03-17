@@ -59,6 +59,8 @@
 @property (copy, nonatomic) NSString *zdjgNSelectItemR2;
 @property (getter = isFSSetp2, nonatomic) BOOL fsStep2;
 @property (assign, nonatomic) BCJZMResult r2Type;
+@property (copy, nonatomic) NSString *dateTimeOneMonth;
+@property (copy, nonatomic) NSString *dateTimeSixMonth;
 @end
 
 static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";
