@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableviewLCJC;
 @property (weak, nonatomic) IBOutlet UIImageView *lcjcResultImageView;
 @property (weak, nonatomic) IBOutlet UIButton *lcjcOkButton;
+@property (weak, nonatomic) IBOutlet UILabel *dateTimeLabel;
 
 @property (strong, nonatomic) NSArray *lcjcTableViewLabelTextArray;
 @property (strong, nonatomic) NSArray *lcjcTableToImageNameArray;

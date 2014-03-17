@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="dTL-s9-QlI">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Cover View Controller-->
@@ -285,6 +285,13 @@
                                     <action selector="confirmClick:" destination="IzL-WT-k9n" eventType="touchUpInside" id="ZXE-aX-rgd"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000/1/18 星期五" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HeX-wO-8cz">
+                                <rect key="frame" x="700" y="33" width="147" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.082178695440000005" green="0.43929368619999998" blue="0.27551770619999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -294,6 +301,10 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
+                    <connections>
+                        <outlet property="dateTimeLabel" destination="HeX-wO-8cz" id="Tkx-lN-60S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LQy-8J-DDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -357,6 +368,13 @@
                                     <action selector="confirmClick:" destination="WYl-Dp-ALg" eventType="touchUpInside" id="56k-LN-SRp"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000/1/18 星期五" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vv0-qA-fmh">
+                                <rect key="frame" x="700" y="33" width="147" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.082178695436040838" green="0.43929368622448983" blue="0.27551770621023225" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -365,7 +383,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
+                        <outlet property="dateTimeLabel" destination="vv0-qA-fmh" id="0AF-sy-6pZ"/>
                         <outlet property="lcjcOkButton" destination="li9-fR-jPg" id="OXl-aR-dHO"/>
                         <outlet property="lcjcResultImageView" destination="Vv7-Ny-SpI" id="ysQ-Us-16i"/>
                         <outlet property="tableviewLCJC" destination="N8O-mH-uik" id="afh-4g-F1c"/>
@@ -508,6 +528,13 @@
                                     <action selector="refreshButtonGroup:" destination="QR2-Fd-NxG" eventType="touchUpInside" id="3fj-wV-5jg"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000/1/18 星期五" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="usf-l2-YbJ">
+                                <rect key="frame" x="700" y="33" width="147" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -517,13 +544,16 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="bmRateLabel" destination="tb0-AY-Mbm" id="ciL-qf-6Bm"/>
+                        <outlet property="dateTimeLabel" destination="usf-l2-YbJ" id="faK-Mj-pol"/>
                         <outlet property="jnRateLabel" destination="H7Y-Ht-T8t" id="kEF-3f-qSO"/>
                         <outlet property="lbjRateLabel" destination="x3K-L7-Cbj" id="SYZ-l5-4b2"/>
                         <outlet property="lcfqLabel" destination="agc-dc-Ed3" id="XqV-eN-2Kv"/>
                         <outlet property="pgjgLabel" destination="E8C-Nz-EhJ" id="7m7-bO-ezp"/>
                         <outlet property="qgRateLabel" destination="bu4-bx-HCR" id="YGc-co-j0l"/>
+                        <outlet property="zdjgBGImageView" destination="B3g-84-gaj" id="r0o-XT-YYI"/>
                         <outlet property="zdjgEvaluatePickView" destination="xpc-br-m4q" id="sVf-05-gaZ"/>
                         <outlet property="zdjglcfqMPickView" destination="HSZ-wC-ggS" id="fdk-NK-KYZ"/>
                         <outlet property="zdjglcfqNPickView" destination="cYZ-da-yEW" id="J6R-Pa-pKj"/>
@@ -867,6 +897,13 @@
                                     <action selector="clickAddFuzhuButton:" destination="TQ3-zH-gg5" eventType="touchUpInside" id="Hk0-jg-b80"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000/1/18 星期五" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KtS-3m-6w8">
+                                <rect key="frame" x="700" y="33" width="147" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -876,9 +913,11 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="addFuzhuButton" destination="9nz-ur-Rly" id="3r5-uK-WBd"/>
                         <outlet property="danyiSegmented" destination="6Dl-a5-Bba" id="laj-Sr-rfj"/>
+                        <outlet property="dateTimeLabel" destination="KtS-3m-6w8" id="WKn-u3-4lP"/>
                         <outlet property="fuzhuSegmented" destination="4mA-jA-Fob" id="HnR-LL-RA7"/>
                         <outlet property="fuzhuSubView" destination="Bns-wb-Aon" id="UoJ-rw-BpB"/>
                         <outlet property="right2ChixuJianxieSegmentControl" destination="l93-5L-O5B" id="lnD-0f-Wqm"/>
@@ -939,7 +978,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000/1/18 星期五" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Xf-fv-PWF">
-                                <rect key="frame" x="673" y="33" width="147" height="21"/>
+                                <rect key="frame" x="700" y="33" width="147" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -954,6 +993,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="bcjzImage" destination="NkB-bv-7F8" id="di9-fS-cYd"/>
                         <outlet property="datetimeLabel" destination="3Xf-fv-PWF" id="ERR-3C-W6H"/>

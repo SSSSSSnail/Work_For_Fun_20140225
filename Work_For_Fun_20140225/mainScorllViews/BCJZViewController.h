@@ -21,6 +21,18 @@ typedef NS_ENUM(NSInteger, BCJZResult) {
     FLFZNFMCX        = 10,//M8 放疗+辅助 持续
     FLFZNFMJX        = 11,//M8 放疗+辅助 间歇
 };
+
+typedef NS_ENUM(NSInteger, BCJZMResult) {
+    M1 = 21,
+    M2 = 22,
+    M3 = 23,
+    M4 = 24,
+    M5 = 25,
+    M6 = 26,
+    M7 = 27,
+    M8 = 28
+};
+
 @interface BCJZViewController : UIViewController
 
 @property (weak, nonatomic) id<ScrollViewControllerDelegate> scrollViewDelegate;

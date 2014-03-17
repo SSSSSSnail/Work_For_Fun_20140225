@@ -129,6 +129,8 @@
 		CE80216718D54F5D0051F86D /* bcjz11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE80215C18D54F5D0051F86D /* bcjz11@2x.png */; };
 		CE978C5818D5559B00A06F40 /* bcjzBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE978C5718D5559B00A06F40 /* bcjzBG@2x.png */; };
 		CE978C5B18D5CEC700A06F40 /* PickViewSourceBean.m in Sources */ = {isa = PBXBuildFile; fileRef = CE978C5A18D5CEC700A06F40 /* PickViewSourceBean.m */; };
+		CE978C5E18D6AD7200A06F40 /* zdjgStep2M1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE978C5C18D6AD7200A06F40 /* zdjgStep2M1@2x.png */; };
+		CE978C5F18D6AD7200A06F40 /* zdjgStep2M2-8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE978C5D18D6AD7200A06F40 /* zdjgStep2M2-8@2x.png */; };
 		CEA743EE18CA1E05003CF3F8 /* ZDJGM1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA743ED18CA1E05003CF3F8 /* ZDJGM1@2x.png */; };
 		CEA743F218CA2037003CF3F8 /* LLUIPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA743F118CA2037003CF3F8 /* LLUIPickView.m */; };
 		CEA76BBD18CB860400BF1EF6 /* LLCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA76BBC18CB860400BF1EF6 /* LLCheckButton.m */; };
@@ -312,6 +314,8 @@
 		CE978C5718D5559B00A06F40 /* bcjzBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bcjzBG@2x.png"; sourceTree = "<group>"; };
 		CE978C5918D5CEC700A06F40 /* PickViewSourceBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickViewSourceBean.h; sourceTree = "<group>"; };
 		CE978C5A18D5CEC700A06F40 /* PickViewSourceBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickViewSourceBean.m; sourceTree = "<group>"; };
+		CE978C5C18D6AD7200A06F40 /* zdjgStep2M1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zdjgStep2M1@2x.png"; sourceTree = "<group>"; };
+		CE978C5D18D6AD7200A06F40 /* zdjgStep2M2-8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zdjgStep2M2-8@2x.png"; sourceTree = "<group>"; };
 		CEA743ED18CA1E05003CF3F8 /* ZDJGM1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZDJGM1@2x.png"; sourceTree = "<group>"; };
 		CEA743F018CA2037003CF3F8 /* LLUIPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLUIPickView.h; sourceTree = "<group>"; };
 		CEA743F118CA2037003CF3F8 /* LLUIPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLUIPickView.m; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CE978C5C18D6AD7200A06F40 /* zdjgStep2M1@2x.png */,
+				CE978C5D18D6AD7200A06F40 /* zdjgStep2M2-8@2x.png */,
 				075CC86118D5C7D20099F1D9 /* zlfaFuzhuDetail_1@2x.png */,
 				075CC86218D5C7D20099F1D9 /* zlfaFuzhuDetail_2@2x.png */,
 				075CC86318D5C7D20099F1D9 /* zlfaFuzhuDetail_3@2x.png */,
@@ -799,6 +805,7 @@
 				07AF0AC018BCDC8C002356CE /* Main.storyboard in Resources */,
 				075CC86018D57A850099F1D9 /* zlfaBG2Right3@2x.png in Resources */,
 				CEA76BC118CB8F6100BF1EF6 /* checkUnselectButton@2x.png in Resources */,
+				CE978C5E18D6AD7200A06F40 /* zdjgStep2M1@2x.png in Resources */,
 				0750C74C18C1CF4200640D1F /* hzqkSelected@2x.png in Resources */,
 				075EB0E818D54A34001196FF /* zlfaSection2LeftBG_2@2x.png in Resources */,
 				075EB0EB18D54D62001196FF /* zlfaSection2RightButtonSelected@2x.png in Resources */,
@@ -813,6 +820,7 @@
 				07BF9FA718CB7B8700FABFB9 /* ningxueshaicha@2x.png in Resources */,
 				07BF9F9818CB63A500FABFB9 /* xuechanggui@2x.png in Resources */,
 				CEA743EE18CA1E05003CF3F8 /* ZDJGM1@2x.png in Resources */,
+				CE978C5F18D6AD7200A06F40 /* zdjgStep2M2-8@2x.png in Resources */,
 				075EB0D818D433E0001196FF /* zlfaBGRight1@2x.png in Resources */,
 				075EB0DA18D4424A001196FF /* zlfaBGRight2@2x.png in Resources */,
 				070FB68E18D1F31F00162250 /* zlfaBG@2x.png in Resources */,

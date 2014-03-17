@@ -14,7 +14,7 @@
 
 #import "UIFont+MicrosoftFont.h"
 #import "UIAlertView+Blocks.h"
-
+#import "BCJZViewController.h"
 @interface LLGlobalData : NSObject
 
 @property (copy, nonatomic) NSString *subjectName;
@@ -45,6 +45,8 @@
 @property (copy, nonatomic) NSString *zdjgTSelectItem;
 @property (copy, nonatomic) NSString *zdjgMSelectItem;
 @property (copy, nonatomic) NSString *zdjgNSelectItem;
+@property (getter = isFSSetp2, nonatomic) BOOL fsStep2;
+@property (assign, nonatomic) BCJZMResult r2Type;
 @end
 
 static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";

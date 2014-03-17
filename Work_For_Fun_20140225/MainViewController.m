@@ -174,7 +174,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
-    GInstance().globalData.currentIndex = 3;
+    GInstance().globalData.currentIndex = 4;
 
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 
@@ -251,12 +251,12 @@ static float const DETAILVIEWIDTH = 872.0f;
             [self refreshButtonAndView:4];
     } else if (GInstance().globalData.currentIndex == 4) {
         [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
+        GInstance().globalData.fsStep2 = YES;
         [self refreshButtonAndView:5];
     } else if (GInstance().globalData.currentIndex == 5) {
         ((UIView *) _detailViewArray[6]).userInteractionEnabled = YES;
         [self refreshButtonAndView:6];
     } else if (GInstance().globalData.currentIndex == 6) {
-        [_zdjgM2ViewController loadDataFromGlobalData];
         [self refreshButtonAndView:7];
     } else if (GInstance().globalData.currentIndex == 7) {
         [self refreshButtonAndView:8];

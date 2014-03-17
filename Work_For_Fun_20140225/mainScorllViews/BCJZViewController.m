@@ -134,7 +134,61 @@ static NSString *sixMonthCase5           = @"2002/10/18 星期五";//twoyear thr
         default:
             _datetimeLabel.hidden = YES;
             break;
-    }}
+    }
+}
 
++ (BCJZMResult)mResultFromResult:(BCJZResult)result
+{
+    BCJZMResult mResult;
+    switch (result) {
+        case ZDJC:      //主动监测 case 1 one year
+        {
+            mResult = M1;
+        }
+            break;
+        case GZS:       //M2 根治术
+        {
+            mResult = M2;
+        }
+            break;
+        case GZSFZNFMCX: //M3 根治术+辅助 持续
+        case GZSFZNFMJX: //M3 根治术+辅助 间歇
+        {
+            mResult = M3;
+        }
+            break;
+        case XFZNFMGZS: //M4 新辅助+根治术 // case 4 twoYearSixMonthLater
+        {
+            mResult = M4;
+        }
+            break;
+        case XFZNFMGZSFZNFMCX: //M5 新辅助+根治术+辅助 持续
+        case XFZNFMGZSFZNFMJX: //M5 新辅助+根治术+辅助 间歇 // case 3 twoYearNinMonthLater
+        {
+            mResult = M5;
+        }
+            break;
+        case GZSFL:     //M6 根治术+放疗
+        {
+            mResult = M6;
+        }
+            break;
+        case FL:        //M7 放疗 // case 2 two year
+        {
+            mResult = M7;
+        }
+            break;
+        case FLFZNFMCX: //M8 放疗+辅助 持续
+        case FLFZNFMJX: //M8 放疗+辅助 间歇 // case 5 twoYearthreeMonthLater
+        {
+            mResult = M8;
+        }
+            break;
+        default:
+            mResult = M1;
+            break;
+    }
+    return mResult;
+}
 
 @end

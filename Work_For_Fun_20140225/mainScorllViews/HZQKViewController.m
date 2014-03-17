@@ -11,6 +11,7 @@
 @interface HZQKViewController ()
 
 - (IBAction)confirmClick:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UILabel *dateTimeLabel;
 
 @end
 

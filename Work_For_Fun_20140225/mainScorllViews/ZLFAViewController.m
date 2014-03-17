@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *section2Picker1;
 @property (weak, nonatomic) IBOutlet UIPickerView *section2Picker2;
 @property (weak, nonatomic) IBOutlet UIPickerView *section2Picker3;
+@property (weak, nonatomic) IBOutlet UILabel *dateTimeLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *rightView1;
 @property (weak, nonatomic) IBOutlet UIView *rightView2;
