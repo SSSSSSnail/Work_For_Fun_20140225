@@ -30,6 +30,13 @@
 @property (copy, nonatomic) NSString *zlfaFuzhuOrZhaoShe; // F : 辅助 W : 外照射
 @property (assign, nonatomic) NSUInteger zlfaFuzhuSelectedIndex; // 1 2 3 4
 
+@property (copy, nonatomic) NSString *zlfaXinFuZhuYaoWuSeg1;
+@property (copy, nonatomic) NSString *zlfaXinFuZhuYaoWuSeg2;
+
+@property (copy, nonatomic) NSString *zlfaFuzhuYaoWuSeg1;
+@property (copy, nonatomic) NSString *zlfaFuzhuYaoWuSeg2;
+@property (copy, nonatomic) NSString *zlfaFuzhuYaoWuSeg3;
+
 @property (assign, nonatomic) NSUInteger currentIndex;
 @property (assign, nonatomic) NSUInteger maxIndex;
 //@property (copy, nonatomic)

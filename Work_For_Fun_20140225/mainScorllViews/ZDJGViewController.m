@@ -196,8 +196,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
     //save data
     
     if (![self checkValue]){
-        UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"警 告" message:@"请完成所有的选项 !" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alterView show];
+        [GInstance() showInfoMessage:@"请完成所有的诊断 !"];
         return;
     };
     

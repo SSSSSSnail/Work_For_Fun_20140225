@@ -38,6 +38,7 @@
 @property (assign, nonatomic) BOOL shouldShowLeft;
 @property (assign, nonatomic) BOOL shouldToNext;
 @property (assign, nonatomic) BOOL showFuzhu;
+@property (assign, nonatomic) BOOL section2FirtLanuch;
 @property (assign, nonatomic) BOOL showFuzhuDetail;
 
 - (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender;
@@ -81,7 +82,7 @@
                                       @"102_3": @[@"", @"比卡鲁胺", @"氟他胺"],
                                       @"101_4": @[@"", @"即刻", @"生化复发"],
                                       @"102_4": @[@"", @"达菲林 3月剂型", @"达菲林 1月剂型", @"戈舍瑞林", @"亮丙瑞林"],
-                                      @"103_4": @[@"", @"比卡鲁胺", @"氟他胺"],
+                                      @"103_4": @[@"", @"比卡鲁胺", @"氟他胺"]
                                       };
 }
 
@@ -301,6 +302,10 @@
                     }
                 }
             }
+            GInstance().globalData.zlfaFuzhuOrZhaoShe = @"";
+            GInstance().globalData.zlfaFuzhuType = @"";
+            GInstance().globalData.zlfaFuzhuSelectedIndex = 0;
+            
         }
     } else if (sender == _right2ChixuJianxieSegmentControl) {
         _rightViw2SubView.hidden = NO;
@@ -381,11 +386,6 @@
         }
         isFuZhuSelected = _right2FuzhuSegmentControl.selectedSegmentIndex == 0 ? YES : NO;
 
-        if (!isWaiZhaoSheSelected && !isFuZhuSelected) {
-            [GInstance() showInfoMessage:@"请完成治疗方案"];
-            return NO;
-        }
-
         if (isFuZhuSelected) {
             BOOL buttonSelected = NO;
             for (UIButton *button in _fuzhuButtonCollection) {
@@ -402,7 +402,41 @@
     }
 
     if (_showFuzhuDetail) {
+        NSUInteger keyInt;
+        BOOL checkResult =  YES;
+        if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
+            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+        } else {
+            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+        }
+        if (keyInt == 2 || keyInt == 3) {
+            checkResult = (GInstance().globalData.zlfaFuzhuYaoWuSeg1.length > 0) &&
+                          (GInstance().globalData.zlfaFuzhuYaoWuSeg2.length > 0);
+        } else if (keyInt == 4){
+            checkResult = (GInstance().globalData.zlfaFuzhuYaoWuSeg1.length > 0) &&
+                          (GInstance().globalData.zlfaFuzhuYaoWuSeg2.length > 0) &&
+                          (GInstance().globalData.zlfaFuzhuYaoWuSeg3.length > 0);
+        }
+        if (!checkResult) {
+            [GInstance() showInfoMessage:@"请完成治疗方案"];
+            return NO;
+        }
+    }
 
+    if (GInstance().globalData.zlfaRightSelectedIndex > 0 && _section2FirtLanuch) {
+        NSUInteger keyInt;
+        BOOL checkResult = YES;
+        keyInt = GInstance().globalData.zlfaRightSelectedIndex;
+        if (keyInt == 1 || keyInt == 2) {
+            checkResult = GInstance().globalData.zlfaXinFuZhuYaoWuSeg1.length > 0 ? YES : NO;
+        } else {
+            checkResult = (GInstance().globalData.zlfaXinFuZhuYaoWuSeg1.length > 0) &&
+            (GInstance().globalData.zlfaXinFuZhuYaoWuSeg2.length > 0);
+        }
+        if (!checkResult) {
+            [GInstance() showInfoMessage:@"请完成治疗方案"];
+            return NO;
+        }
     }
 
     return YES;
@@ -411,7 +445,7 @@
 - (void)transitionToSectionTwo
 {
     NSString *imageName = nil;
-    BOOL firtTransition = NO;
+    _section2FirtLanuch = NO;
     if (GInstance().globalData.zlfaRightSelectedIndex > 0) {
         if (_shouldShowLeft) {
             if (GInstance().globalData.zlfaLeftSelectedIndex > 0 && GInstance().globalData.zlfaLeftSelectedIndex < 5) {
@@ -444,7 +478,7 @@
 
                 imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", GInstance().globalData.zlfaRightSelectedIndex];
             }
-            firtTransition = YES;
+            _section2FirtLanuch = YES;
             _shouldShowLeft = YES;
         }
     } else {
@@ -466,7 +500,7 @@
                         _section1View.hidden = YES;
 
                         if (GInstance().globalData.zlfaRightSelectedIndex > 0) {
-                            if (_shouldShowLeft && !firtTransition) {
+                            if (_shouldShowLeft && !_section2FirtLanuch) {
                                 _titleLabel.text = @"治疗方案记录";
                                 _addFuzhuButton.hidden = NO;
                             } else {
@@ -560,20 +594,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    NSString *dicKeyString;
-    if (_showFuzhuDetail) {
-        NSUInteger keyInt;
-        if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
-        } else {
-            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
-        }
-        dicKeyString = [NSString stringWithFormat:@"%ld_%lu",(long)pickerView.tag, keyInt];
-    } else {
-        dicKeyString = [NSString stringWithFormat:@"%ld%lu",(long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
-    }
-    NSLog(@"dicKeyString : %@", dicKeyString);
-    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:dicKeyString];
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[self dicKeyString:pickerView]];
     return pickViewSource.count;
 }
 
@@ -581,6 +602,36 @@
 #pragma mark UIPickerView Delegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[self dicKeyString:pickerView]];
+    return pickViewSource[row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSString *dicKeyString = [self dicKeyString:pickerView];
+    NSString *selectedString = [self.pickViewSourceDictionary objectForKey:dicKeyString][row];
+
+    if ([dicKeyString isEqualToString:@"1011"] ||
+        [dicKeyString isEqualToString:@"1012"] ||
+        [dicKeyString isEqualToString:@"1013"]) {
+        GInstance().globalData.zlfaXinFuZhuYaoWuSeg1 = selectedString;
+    } else if ([dicKeyString isEqualToString:@"1023"]) {
+        GInstance().globalData.zlfaXinFuZhuYaoWuSeg2 = selectedString;
+    } else if ([dicKeyString isEqualToString:@"101_2"] ||
+               [dicKeyString isEqualToString:@"101_3"] ||
+               [dicKeyString isEqualToString:@"101_4"]) {
+        GInstance().globalData.zlfaFuzhuYaoWuSeg1 = selectedString;
+    } else if ([dicKeyString isEqualToString:@"102_2"] ||
+               [dicKeyString isEqualToString:@"102_3"] ||
+               [dicKeyString isEqualToString:@"102_4"]) {
+        GInstance().globalData.zlfaFuzhuYaoWuSeg2 = selectedString;
+    } else if ([dicKeyString isEqualToString:@"103_4"]) {
+        GInstance().globalData.zlfaFuzhuYaoWuSeg3 = selectedString;
+    }
+}
+
+- (NSString *)dicKeyString:(UIPickerView *)pickerView
+{
     NSString *dicKeyString;
     if (_showFuzhuDetail) {
         NSUInteger keyInt;
@@ -593,13 +644,7 @@
     } else {
         dicKeyString = [NSString stringWithFormat:@"%ld%lu",(long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
     }
-    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:dicKeyString];
-    return pickViewSource[row];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-
+    return dicKeyString;
 }
 
 @end

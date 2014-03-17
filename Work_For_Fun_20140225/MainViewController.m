@@ -249,6 +249,7 @@ static float const DETAILVIEWIDTH = 872.0f;
             ((UIView *)_detailViewArray[3]).userInteractionEnabled = NO;
             sender.hidden = YES;
             [self refreshButtonAndView:4];
+            [_bcjzViewController changeLabelText:[self refreshResult]];
     } else if (GInstance().globalData.currentIndex == 4) {
         [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
         GInstance().globalData.fsStep2 = YES;
@@ -268,6 +269,48 @@ static float const DETAILVIEWIDTH = 872.0f;
         [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 0.0f, 152.0f, 695.0f) animated:YES];
         [self refreshButtonAndView:0];
     }
+}
+
+- (BCJZResult)refreshResult
+{
+    BCJZResult result;
+    LLGlobalData *gData = GInstance().globalData;
+
+    if (gData.zlfaLeftSelectedIndex == 1 || gData.zlfaLeftSelectedIndex == 2) { //选择手术
+        if (gData.zlfaRightSelectedIndex > 0) { //选择新辅助
+            if ([gData.zlfaFuzhuType isEqualToString:@"C"]) { //做补充 持续
+                result = XFZNFMGZSFZNFMCX;
+            } else if ([gData.zlfaFuzhuType isEqualToString:@"J"]) { //做补充 间歇
+                result = XFZNFMGZSFZNFMJX;
+            } else { //未做补充
+                result = XFZNFMGZS;
+            }
+        } else { //未选择新辅助
+            if ([gData.zlfaFuzhuOrZhaoShe isEqualToString:@"W"]) { //选择外照射
+                result = GZSFL;
+            } else if ([gData.zlfaFuzhuOrZhaoShe isEqualToString:@"F"]) { //选择补充
+                if ([gData.zlfaFuzhuType isEqualToString:@"C"]) { //做补充 持续
+                    result = GZSFZNFMCX;
+                } else { //做补充 间歇
+                    result = GZSFZNFMJX;
+                }
+            } else {
+                result = GZS;
+            }
+        }
+    } else if (gData.zlfaLeftSelectedIndex == 3 || gData.zlfaLeftSelectedIndex == 4){ //放疗
+        if ([gData.zlfaFuzhuType isEqualToString:@"C"]) { //做补充 持续
+            result = FLFZNFMCX;
+        } else if ([gData.zlfaFuzhuType isEqualToString:@"J"]) { //做补充 间歇
+            result = FLFZNFMJX;
+        } else { //未做补充
+            result = FL;
+        }
+    } else { //主动监测
+        result = ZDJC;
+    }
+
+    return result;
 }
 
 @end

@@ -8,10 +8,10 @@
 
 #import "BCJZViewController.h"
 
-static NSString *originDateString = @"2000/1/18 星期五";
+static NSString *originDateString        = @"2000/1/18 星期五";
 static NSString *oneYearLater            = @"2001/1/18 星期四"; //case 1
 static NSString *twoYearLater            = @"2002/1/18 星期五"; //case 2
-static NSString *twoYearNineMonthLater    = @"2002/10/18 星期五";//case 3
+static NSString *twoYearNineMonthLater   = @"2002/10/18 星期五";//case 3
 static NSString *twoYearSixMonthLater    = @"2002/7/18 星期四"; //case 4
 static NSString *twoYearsThreeMonthLater = @"2002/4/18 星期四"; //case 5
 static NSString *sixMonthCase1           = @"2001/7/18 星期三"; //one Year later
@@ -58,6 +58,9 @@ static NSString *sixMonthCase5           = @"2002/10/18 星期五";//twoyear thr
 
 - (void)changeLabelText:(BCJZResult)result
 {
+    //切换图片
+    _bcjzImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bcjz%ld.png", result]];
+    //切换Label
     switch (result) {
         case ZDJC:      //主动监测 case 1
         {
