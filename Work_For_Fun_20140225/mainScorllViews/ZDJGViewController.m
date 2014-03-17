@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *lczdButtonGroup;
 @property (getter = isZDJGPreView, nonatomic) BOOL zdjgPreview;
 @property (getter = isConformed, nonatomic) BOOL conformed;
+@property (assign, nonatomic) BOOL notShow;
 @end
 
 @implementation ZDJGViewController
@@ -92,30 +93,32 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
             NSArray *pickerViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
             NSString *selectedString = pickerViewSource[row];
             ((LLUIPickView *)pickerView).selectedOjbect = selectedString;
-            _qgRateLabel.hidden = NO;
-            _bmRateLabel.hidden = NO;
-            _jnRateLabel.hidden = NO;
-            _lbjRateLabel.hidden = NO;
-            if ([selectedString isEqualToString:@"1c"]) {
-                _qgRateLabel.text = @"器官局限性癌概率：80%";
-                _bmRateLabel.text = @"包膜侵犯概率：18%";
-                _jnRateLabel.text = @"精囊侵犯概率：1%";
-                _lbjRateLabel.text = @"淋巴结转移概率：0";
-            } else if ([selectedString isEqualToString:@"2a"]) {
-                _qgRateLabel.text = @"器官局限性癌概率：73%";
-                _bmRateLabel.text = @"包膜侵犯概率：26%";
-                _jnRateLabel.text = @"精囊侵犯概率：1%";
-                _lbjRateLabel.text = @"淋巴结转移概率：0";
-            } else if ([selectedString isEqualToString:@"2b"] || [_zdjglcfqTPickView.selectedOjbect isEqualToString:@"2c"]){
-                _qgRateLabel.text = @"器官局限性癌概率：58%";
-                _bmRateLabel.text = @"包膜侵犯概率：38%";
-                _jnRateLabel.text = @"精囊侵犯概率：4%";
-                _lbjRateLabel.text = @"淋巴结转移概率：1%";
-            } else {
-                _qgRateLabel.hidden = YES;
-                _bmRateLabel.hidden = YES;
-                _jnRateLabel.hidden = YES;
-                _lbjRateLabel.hidden = YES;
+            if (!GInstance().globalData.isFSSetp2) {
+                _qgRateLabel.hidden = NO;
+                _bmRateLabel.hidden = NO;
+                _jnRateLabel.hidden = NO;
+                _lbjRateLabel.hidden = NO;
+                if ([selectedString isEqualToString:@"1c"]) {
+                    _qgRateLabel.text = @"器官局限性癌概率：80%";
+                    _bmRateLabel.text = @"包膜侵犯概率：18%";
+                    _jnRateLabel.text = @"精囊侵犯概率：1%";
+                    _lbjRateLabel.text = @"淋巴结转移概率：0";
+                } else if ([selectedString isEqualToString:@"2a"]) {
+                    _qgRateLabel.text = @"器官局限性癌概率：73%";
+                    _bmRateLabel.text = @"包膜侵犯概率：26%";
+                    _jnRateLabel.text = @"精囊侵犯概率：1%";
+                    _lbjRateLabel.text = @"淋巴结转移概率：0";
+                } else if ([selectedString isEqualToString:@"2b"] || [_zdjglcfqTPickView.selectedOjbect isEqualToString:@"2c"]){
+                    _qgRateLabel.text = @"器官局限性癌概率：58%";
+                    _bmRateLabel.text = @"包膜侵犯概率：38%";
+                    _jnRateLabel.text = @"精囊侵犯概率：4%";
+                    _lbjRateLabel.text = @"淋巴结转移概率：1%";
+                } else {
+                    _qgRateLabel.hidden = YES;
+                    _bmRateLabel.hidden = YES;
+                    _jnRateLabel.hidden = YES;
+                    _lbjRateLabel.hidden = YES;
+                }
             }
             // 添加label
             _lcfqLabel.text = [NSString stringWithFormat:@"T%@N%@M%@",_zdjglcfqTPickView.selectedOjbect,_zdjglcfqNPickView.selectedOjbect,_zdjglcfqMPickView.selectedOjbect];
@@ -200,17 +203,30 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
         return;
     };
     
-    for (UIButton *button in _lczdButtonGroup) {
-        if (button.isSelected) {
-            GInstance().globalData.zdjgZDSelectItem = [self buttonValue];
-            break;
+    if (!GInstance().globalData.isFSSetp2) {
+        for (UIButton *button in _lczdButtonGroup) {
+            if (button.isSelected) {
+                GInstance().globalData.zdjgZDSelectItem = [self buttonValue];
+                break;
+            }
         }
+        GInstance().globalData.zdjgTSelectItem = _zdjglcfqTPickView.selectedOjbect;
+        GInstance().globalData.zdjgMSelectItem = _zdjglcfqMPickView.selectedOjbect;
+        GInstance().globalData.zdjgNSelectItem = _zdjglcfqNPickView.selectedOjbect;
+        GInstance().globalData.zdjgPGSelectItem = _zdjgEvaluatePickView.selectedOjbect;
+    } else {
+        for (UIButton *button in _lczdButtonGroup) {
+            if (button.isSelected) {
+                GInstance().globalData.zdjgZDSelectItemR2 = [self buttonValue];
+                break;
+            }
+        }
+        GInstance().globalData.zdjgTSelectItemR2 = _zdjglcfqTPickView.selectedOjbect;
+        GInstance().globalData.zdjgMSelectItemR2 = _zdjglcfqMPickView.selectedOjbect;
+        GInstance().globalData.zdjgNSelectItemR2 = _zdjglcfqNPickView.selectedOjbect;
+        GInstance().globalData.zdjgPGSelectItemR2 = _zdjgEvaluatePickView.selectedOjbect;
     }
-    GInstance().globalData.zdjgTSelectItem = _zdjglcfqTPickView.selectedOjbect;
-    GInstance().globalData.zdjgMSelectItem = _zdjglcfqMPickView.selectedOjbect;
-    GInstance().globalData.zdjgNSelectItem = _zdjglcfqNPickView.selectedOjbect;
-    GInstance().globalData.zdjgPGSelectItem = _zdjgEvaluatePickView.selectedOjbect;
-    
+
     if ([_scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
         [_scrollViewDelegate didClickConfirmButton:sender];
     }
@@ -245,10 +261,13 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
     if ([_zdjgEvaluatePickView selectedRowInComponent:0] == 0) {
         return NO;
     }
-    if ([_zdjglcfqNPickView selectedRowInComponent:0] == 0 ||
-        [_zdjglcfqMPickView selectedRowInComponent:0] == 0 ||
-        [_zdjglcfqTPickView selectedRowInComponent:0] == 0) {
-        return NO;
+    
+    if (!_zdjglcfqTPickView.isHidden) {
+        if ([_zdjglcfqNPickView selectedRowInComponent:0] == 0 ||
+            [_zdjglcfqMPickView selectedRowInComponent:0] == 0 ||
+            [_zdjglcfqTPickView selectedRowInComponent:0] == 0) {
+            return NO;
+        }
     }
     return YES;
 }
@@ -309,10 +328,25 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 
 - (void)loadDataFromGlobalData
 {
-    if (YES) {
+    if (NO) {
         _zdjgBGImageView.image = [UIImage imageNamed:@"zdjgStep2M1.png"];
+        
+        CGRect frame = _zdjglcfqTPickView.frame;
+        float need = 180.0f;
+        _zdjglcfqTPickView.frame = CGRectMake(CGRectGetMinX(frame) + need, CGRectGetMinY(frame), CGRectGetWidth(frame), CGRectGetHeight(frame));
+        frame = _zdjglcfqMPickView.frame;
+        _zdjglcfqMPickView.frame = CGRectMake(CGRectGetMinX(frame) + need, CGRectGetMinY(frame), CGRectGetWidth(frame), CGRectGetHeight(frame));
+        frame =  _zdjglcfqNPickView.frame;
+        _zdjglcfqNPickView.frame = CGRectMake(CGRectGetMinX(frame) + need, CGRectGetMinY(frame), CGRectGetWidth(frame), CGRectGetHeight(frame));
+        frame = _lcfqLabel.frame;
+        _lcfqLabel.frame = CGRectMake(CGRectGetMinX(frame) + need, CGRectGetMinY(frame), CGRectGetWidth(frame), CGRectGetHeight(frame));
+        
     } else {
-        _zdjgBGImageView.image = [UIImage imageNamed:@"ZDJGM1.png"];
+        _zdjgBGImageView.image = [UIImage imageNamed:@"zdjgStep2M2-8.png"];
+        _zdjglcfqMPickView.hidden = YES;
+        _zdjglcfqNPickView.hidden = YES;
+        _zdjglcfqTPickView.hidden = YES;
+        _lcfqLabel.hidden = YES;
     }
 }
 //    LLGlobalData *data = GInstance().globalData;

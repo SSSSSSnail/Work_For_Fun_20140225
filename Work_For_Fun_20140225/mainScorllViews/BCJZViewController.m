@@ -14,11 +14,19 @@ static NSString *twoYearLater            = @"2002/1/18 星期五"; //case 2
 static NSString *twoYearNineMonthLater   = @"2002/10/18 星期五";//case 3
 static NSString *twoYearSixMonthLater    = @"2002/7/18 星期四"; //case 4
 static NSString *twoYearsThreeMonthLater = @"2002/4/18 星期四"; //case 5
-static NSString *sixMonthCase1           = @"2001/7/18 星期三"; //one Year later
-static NSString *sixMonthCase2           = @"2002/7/18 星期四"; // two year later
-static NSString *sixMonthCase3           = @"2003/4/18 星期五"; //twoyear nine month later
-static NSString *sixMonthCase4           = @"2003/1/18 星期六"; //twoyear six month later
-static NSString *sixMonthCase5           = @"2002/10/18 星期五";//twoyear three monthlater
+
+static NSString *oneMonthCase1           = @"2001/2/18 星期日"; //one Year later
+static NSString *oneMonthCase2           = @"2002/2/18 星期一"; // two year later
+static NSString *oneMonthCase3           = @"2002/11/18 星期一"; //twoyear nine month later
+static NSString *oneMonthCase4           = @"2002/8/18 星期日"; //twoyear six month later
+static NSString *oneMonthCase5           = @"2002/5/18 星期六";//twoyear three monthlater
+
+
+static NSString *sixMonthCase1           = @"2001/8/18 星期六"; //one Year later
+static NSString *sixMonthCase2           = @"2002/8/18 星期日"; // two year later
+static NSString *sixMonthCase3           = @"2003/5/18 星期日"; //twoyear nine month later
+static NSString *sixMonthCase4           = @"2003/2/18 星期二"; //twoyear six month later
+static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear three monthlater
 
 
 

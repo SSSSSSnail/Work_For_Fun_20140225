@@ -52,6 +52,11 @@
 @property (copy, nonatomic) NSString *zdjgTSelectItem;
 @property (copy, nonatomic) NSString *zdjgMSelectItem;
 @property (copy, nonatomic) NSString *zdjgNSelectItem;
+@property (copy, nonatomic) NSString *zdjgZDSelectItemR2;
+@property (copy, nonatomic) NSString *zdjgPGSelectItemR2;
+@property (copy, nonatomic) NSString *zdjgTSelectItemR2;
+@property (copy, nonatomic) NSString *zdjgMSelectItemR2;
+@property (copy, nonatomic) NSString *zdjgNSelectItemR2;
 @property (getter = isFSSetp2, nonatomic) BOOL fsStep2;
 @property (assign, nonatomic) BCJZMResult r2Type;
 @end

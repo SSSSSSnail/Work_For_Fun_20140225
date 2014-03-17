@@ -258,6 +258,7 @@ static float const DETAILVIEWIDTH = 872.0f;
         ((UIView *) _detailViewArray[6]).userInteractionEnabled = YES;
         [self refreshButtonAndView:6];
     } else if (GInstance().globalData.currentIndex == 6) {
+        [_zdjgM2ViewController loadDataFromGlobalData];
         [self refreshButtonAndView:7];
     } else if (GInstance().globalData.currentIndex == 7) {
         [self refreshButtonAndView:8];
