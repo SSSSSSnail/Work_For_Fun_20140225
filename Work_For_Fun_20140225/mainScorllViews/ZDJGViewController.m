@@ -411,7 +411,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 #pragma mark - Reload Data
 - (void)reloadViewDataForR2
 {
-
+    _dateTimeLabel.text = GInstance().globalData.dateTimeOneMonth;
 }
 
 @end

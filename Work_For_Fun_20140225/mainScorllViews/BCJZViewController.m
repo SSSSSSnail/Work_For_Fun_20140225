@@ -74,6 +74,8 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
         case ZDJC:      //主动监测 case 1
         {
             _datetimeLabel.text = oneYearLater;
+            GInstance().globalData.dateTimeOneMonth = oneMonthCase1;
+            GInstance().globalData.dateTimeSixMonth = sixMonthCase1;
         }
             break;
         case GZS:       //M2 根治术
@@ -81,6 +83,8 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
         case FL:        //M7 放疗 case 2
         {
             _datetimeLabel.text = twoYearLater;
+            GInstance().globalData.dateTimeOneMonth = oneMonthCase2;
+            GInstance().globalData.dateTimeSixMonth = sixMonthCase2;
         }
             break;
         case GZSFZNFMCX: //M3 根治术+辅助 持续
@@ -89,17 +93,23 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
         case XFZNFMGZSFZNFMJX: //M5 新辅助+根治术+辅助 间歇 case 3
         {
             _datetimeLabel.text = twoYearNineMonthLater;
+            GInstance().globalData.dateTimeOneMonth = oneMonthCase3;
+            GInstance().globalData.dateTimeSixMonth = sixMonthCase3;
         }
             break;
         case XFZNFMGZS: //M4 新辅助+根治术 case 4
         {
             _datetimeLabel.text = twoYearSixMonthLater;
+            GInstance().globalData.dateTimeOneMonth = oneMonthCase4;
+            GInstance().globalData.dateTimeSixMonth = sixMonthCase4;
         }
             break;
         case FLFZNFMCX: //M8 放疗+辅助 持续
         case FLFZNFMJX: //M8 放疗+辅助 间歇 case 5
         {
             _datetimeLabel.text = twoYearsThreeMonthLater;
+            GInstance().globalData.dateTimeOneMonth = oneMonthCase5;
+            GInstance().globalData.dateTimeSixMonth = sixMonthCase5;
         }
             break;
         default:
@@ -110,43 +120,44 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
 //step 10
 - (void)changedLabelTextInM2:(BCJZResult)result
 {
-    _datetimeLabel.hidden = NO;
-    switch (result) {
-        case ZDJC:      //主动监测 case 1 one year
-        {
-            _datetimeLabel.text = sixMonthCase1;
-        }
-            break;
-        case GZS:       //M2 根治术
-        case GZSFL:     //M6 根治术+放疗
-        case FL:        //M7 放疗 // case 2 two year
-        {
-            _datetimeLabel.text = sixMonthCase2;
-        }
-            break;
-        case GZSFZNFMCX: //M3 根治术+辅助 持续
-        case GZSFZNFMJX: //M3 根治术+辅助 间歇
-        case XFZNFMGZSFZNFMCX: //M5 新辅助+根治术+辅助 持续
-        case XFZNFMGZSFZNFMJX: //M5 新辅助+根治术+辅助 间歇 // case 3 twoYearNinMonthLater
-        {
-            _datetimeLabel.text = sixMonthCase3;
-        }
-            break;
-        case XFZNFMGZS: //M4 新辅助+根治术 // case 4 twoYearSixMonthLater
-        {
-            _datetimeLabel.text = sixMonthCase4;
-        }
-            break;
-        case FLFZNFMCX: //M8 放疗+辅助 持续
-        case FLFZNFMJX: //M8 放疗+辅助 间歇 // case 5 twoYearthreeMonthLater
-        {
-            _datetimeLabel.text = sixMonthCase5;
-        }
-            break;
-        default:
-            _datetimeLabel.hidden = YES;
-            break;
-    }
+    _datetimeLabel.text = GInstance().globalData.dateTimeSixMonth;
+//    _datetimeLabel.hidden = NO;
+//    switch (result) {
+//        case ZDJC:      //主动监测 case 1 one year
+//        {
+//            _datetimeLabel.text = sixMonthCase1;
+//        }
+//            break;
+//        case GZS:       //M2 根治术
+//        case GZSFL:     //M6 根治术+放疗
+//        case FL:        //M7 放疗 // case 2 two year
+//        {
+//            _datetimeLabel.text = sixMonthCase2;
+//        }
+//            break;
+//        case GZSFZNFMCX: //M3 根治术+辅助 持续
+//        case GZSFZNFMJX: //M3 根治术+辅助 间歇
+//        case XFZNFMGZSFZNFMCX: //M5 新辅助+根治术+辅助 持续
+//        case XFZNFMGZSFZNFMJX: //M5 新辅助+根治术+辅助 间歇 // case 3 twoYearNinMonthLater
+//        {
+//            _datetimeLabel.text = sixMonthCase3;
+//        }
+//            break;
+//        case XFZNFMGZS: //M4 新辅助+根治术 // case 4 twoYearSixMonthLater
+//        {
+//            _datetimeLabel.text = sixMonthCase4;
+//        }
+//            break;
+//        case FLFZNFMCX: //M8 放疗+辅助 持续
+//        case FLFZNFMJX: //M8 放疗+辅助 间歇 // case 5 twoYearthreeMonthLater
+//        {
+//            _datetimeLabel.text = sixMonthCase5;
+//        }
+//            break;
+//        default:
+//            _datetimeLabel.hidden = YES;
+//            break;
+//    }
 }
 
 - (BCJZMResult)mResultFromResult:(BCJZResult)result
@@ -206,6 +217,8 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
 #pragma mark - Reload Data
 - (void)reloadViewDataForR2
 {
+    _bcjzImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bcjz%ld.png", GInstance().globalData.r2Type]];
+    _datetimeLabel.text = GInstance().globalData.dateTimeSixMonth;
 
 }
 @end
