@@ -175,8 +175,8 @@ static float const DETAILVIEWIDTH = 872.0f;
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
     GInstance().globalData.currentIndex = 5;
-    [_hzqkM2ViewController reloadViewDataForR2];
     GInstance().globalData.r2Type = M1;
+    [_hzqkM2ViewController reloadViewDataForR2];
 
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 }
