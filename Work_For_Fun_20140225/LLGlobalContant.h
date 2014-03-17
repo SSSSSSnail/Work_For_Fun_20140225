@@ -22,6 +22,7 @@
 @property (copy, nonatomic) NSString *groupNumber;
 
 @property (copy, nonatomic) NSString *lcjcSelectedArrayString;
+@property (copy, nonatomic) NSString *lcjcSelectedArrayStringR2;
 @property (copy, nonatomic) NSString *lcjcChuanCiBA;
 
 @property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 1 2 3 4 5
@@ -59,11 +60,17 @@
 @property (copy, nonatomic) NSString *zdjgNSelectItemR2;
 @property (getter = isFSSetp2, nonatomic) BOOL fsStep2;
 @property (assign, nonatomic) BCJZMResult r2Type;
+@property (assign, nonatomic) BCJZResult r1Result;
+@property (assign, nonatomic) BCJZResult r2Result;
 @property (copy, nonatomic) NSString *dateTimeOneMonth;
 @property (copy, nonatomic) NSString *dateTimeSixMonth;
+@property (copy, nonatomic) NSString *hasAddtoGroup;
 @end
 
-static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";
+static NSString *const SERVERURL = @"http://192.168.1.19:8080/diphereline-case/subject.do";//@"http://diphereline-case.com/subject.do";
+static NSString *const STEPURL = @"http://192.168.1.19:8080/diphereline-case/case1.do";//@"http://diphereline-case.com/case1.do";
+static NSString *const E1 = @"E01";
+static NSString *const E2 = @"E02";
 
 @interface LLGlobalContant : NSObject
 

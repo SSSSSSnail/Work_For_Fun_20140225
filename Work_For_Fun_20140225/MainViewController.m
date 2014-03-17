@@ -17,6 +17,7 @@
 #import "LLUIPickView.h"
 #import "LLCheckButton.h"
 #import "LLCheckButtonGroup.h"
+
 typedef NS_ENUM(NSUInteger, ScrollSubButtonTag)
 {
     HZQKButton1 = 10, //患者情况
@@ -76,10 +77,6 @@ static float const DETAILVIEWIDTH = 872.0f;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-#warning JUST For TEST
-    [GInstance() loadData];
-
     self.masterTagArray = @[
                             [NSNumber numberWithInt:HZQKButton1],
                             [NSNumber numberWithInt:LCJCButton1],
@@ -168,6 +165,7 @@ static float const DETAILVIEWIDTH = 872.0f;
     _detailScrollView.scrollEnabled = NO;
     _detailScrollView.contentSize = CGSizeMake(DETAILVIEWIDTH, DETAILVIEWHEIGHT*_detailViewArray.count);
     /* xxxxxx */
+    [GInstance() loadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -175,8 +173,8 @@ static float const DETAILVIEWIDTH = 872.0f;
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
     GInstance().globalData.currentIndex = 5;
-    GInstance().globalData.r2Type = M1;
-    [_hzqkM2ViewController reloadViewDataForR2];
+    GInstance().globalData.r2Type = M2;
+//    [_hzqkM2ViewController reloadViewDataForR2];
 
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 }
@@ -214,64 +212,288 @@ static float const DETAILVIEWIDTH = 872.0f;
     GInstance().globalData.currentIndex = toIndex;
     GInstance().globalData.maxIndex = MAX(toIndex, GInstance().globalData.maxIndex);
     [_detailScrollView scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
+    switch (toIndex) {
+        case 5:
+            [_hzqkM2ViewController reloadViewDataForR2];
+            break;
+            case 6:
+            [_lcjcM2ViewController reloadViewDataForR2];
+            break;
+            case 7:
+            break;
+            case 8:
+            [_zlfaM2ViewController reloadViewDataForR2];
+            break;
+            case 9:
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - ScrollViewController Delegate
 - (void)didClickConfirmButton:(UIButton *)sender
 {
+    LLGlobalData *globalData = GInstance().globalData;
     if (GInstance().globalData.currentIndex == 0) {
-        [self refreshButtonAndView:1];
+        //患者情况 确定
+        NSDictionary *parametersDictionary = @{@"step": @"1",
+                                               @"action": @"info",
+                                               @"subject_id": globalData.subjectId,
+                                               @"group_id": globalData.groupNumber};
+        [GInstance() httprequestWithHUD:_hzqkViewController.view
+                         withRequestURL:STEPURL
+                         withParameters:parametersDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     sender.hidden = YES;
+                                     [self refreshButtonAndView:1];
+                                     [GInstance() savaData];
+                                 } else {
+                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
+                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                     }
+                                 }
+                             }];
     } else if (GInstance().globalData.currentIndex == 1) {
+        //临床检查第一轮确定
         [[[UIAlertView alloc] initWithTitle:nil
                                     message:@"请确认已经完成全部检查！"
                            cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-
+            
         }]
                            otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
             //TODO 需要发送请求
-            sender.hidden = YES;
-            [self refreshButtonAndView:2];
+            //            case1.do?step=2&action=checkconfirm&subject_id=1&group_id=g1
+            NSDictionary *parametersDictionary = @{@"step": @"2",
+                                                   @"action": @"checkconfirm",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber};
+            [GInstance() httprequestWithHUD:_lcjcViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         sender.hidden = YES;
+                                         [self refreshButtonAndView:2];
+                                         [GInstance() savaData];
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         }
+                                     }
+                                 }];
         }], nil] show];
+        
     } else if (GInstance().globalData.currentIndex == 2) {
+        // 诊断结果 确定
         [[[UIAlertView alloc] initWithTitle:nil
                                     message:@"请确认已经完成诊断！"
                            cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-
+            
         }]
                            otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
             //TODO 需要发送请求
-            ((UIView *)_detailViewArray[2]).userInteractionEnabled = NO;
-//            sender.hidden = YES;
-            [self refreshButtonAndView:3];
+            NSDictionary *parametersDictionary = @{@"step": @"3",
+                                                   @"action": @"diagnose",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
+                                                   @"zd": globalData.zdjgZDSelectItem,
+                                                   @"wxpg": globalData.zdjgPGSelectItem,
+                                                   @"t" : globalData.zdjgTSelectItem,
+                                                   @"n" : globalData.zdjgNSelectItem,
+                                                   @"m" : globalData.zdjgMSelectItem };
+            
+            [GInstance() httprequestWithHUD:_zdjgViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]) {
+                                         [GInstance() savaData];
+                                         ((UIView *)_detailViewArray[2]).userInteractionEnabled = NO;
+                                         [self refreshButtonAndView:3];
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         }
+                                     }
+                                 }];
         }], nil] show];
+        
     } else if (GInstance().globalData.currentIndex == 3) {
+        //治疗方案确定
             //TODO 需要发送请求
-            ((UIView *)_detailViewArray[3]).userInteractionEnabled = NO;
-            sender.hidden = YES;
-            [self refreshButtonAndView:4];
-            [_bcjzViewController changeLabelText:[self refreshResult]];
+        ((UIView *)_detailViewArray[3]).userInteractionEnabled = NO;
+        sender.hidden = YES;
+        [self refreshButtonAndView:4];
+        [_bcjzViewController changeLabelText:[self refreshResult]];
+       
     } else if (GInstance().globalData.currentIndex == 4) {
-        [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
-        GInstance().globalData.fsStep2 = YES;
-        [self refreshButtonAndView:5];
-        [_hzqkM2ViewController reloadViewDataForR2];
+        //病程进展 确定
+        /*
+         case1.do?step=5&action=result&subject_id=1&group_id=g1&method=m1
+         case1.do?step=5&action=result&subject_id=1&group_id=g1&method=m1
+         */
+        NSDictionary *parametersDictionary = @{@"step": @"5",
+                                               @"action": @"result",
+                                               @"subject_id": globalData.subjectId,
+                                               @"group_id": globalData.groupNumber,
+                                               @"solution": [NSString stringWithFormat:@"m%ld",globalData.r1Result - 20]};
+        [GInstance() httprequestWithHUD:_bcjzViewController.view
+                         withRequestURL:STEPURL
+                         withParameters:parametersDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
+                                     GInstance().globalData.fsStep2 = YES;
+                                     [self refreshButtonAndView:5];
+                                     sender.hidden = YES;
+//                                     [GInstance() showInfoMessage:@"治疗结束！"];
+                                     [GInstance() savaData];
+                                 } else {
+                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
+                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                     }
+                                 }
+                             }];
+        
     //R2
     } else if (GInstance().globalData.currentIndex == 5) {
-        ((UIView *) _detailViewArray[6]).userInteractionEnabled = YES;
-        [self refreshButtonAndView:6];
-        [_lcjcM2ViewController reloadViewDataForR2];
+        ///病史回顾确定
+        
+        /*
+         case1.do?step=6&action=info&subject_id=1&group_id=g1&detail=jsonstring
+         */
+        
+        NSDictionary *parametersDictionary = @{@"step": @"6",
+                                               @"action": @"info",
+                                               @"subject_id": globalData.subjectId,
+                                               @"group_id": globalData.groupNumber,
+                                               @"detail": [NSString stringWithFormat:@"m%ld",globalData.r1Result - 20]};
+        [GInstance() httprequestWithHUD:_hzqkM2ViewController.view
+                         withRequestURL:STEPURL
+                         withParameters:parametersDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     ((UIView *) _detailViewArray[5]).userInteractionEnabled = YES;
+                                     [self refreshButtonAndView:6];
+                                     [GInstance() savaData];
+                                 } else {
+                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
+                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                     }
+                                 }
+                             }];
     } else if (GInstance().globalData.currentIndex == 6) {
-        [_zdjgM2ViewController loadDataFromGlobalData];
-        [self refreshButtonAndView:7];
-        [_zdjgM2ViewController reloadViewDataForR2];
+        //临床检查第二轮确定
+        /*
+         case1.do?step=7&action=checkconfirm&subject_id=1&group_id=g1
+         */
+        NSDictionary *parametersDictionary = @{@"step": @"7",
+                                               @"action": @"checkconfirm",
+                                               @"subject_id": globalData.subjectId,
+                                               @"group_id": globalData.groupNumber};
+        [GInstance() httprequestWithHUD:_lcjcM2ViewController.view
+                         withRequestURL:STEPURL
+                         withParameters:parametersDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     ((UIView *) _detailViewArray[6]).userInteractionEnabled = NO;
+                                     [_zdjgM2ViewController loadDataFromGlobalData];
+                                     [self refreshButtonAndView:7];
+                                     [_zdjgM2ViewController reloadViewDataForR2];
+                                     [GInstance() savaData];
+                                 } else {
+                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
+                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                     }
+                                 }
+                             }];
+        
     } else if (GInstance().globalData.currentIndex == 7) {
-        [self refreshButtonAndView:8];
-        [_zlfaM2ViewController reloadViewDataForR2];
+        //诊断结果 第二轮确定
+        NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"8",
+                                                                                                    @"action": @"diagnose",
+                                                                                                    @"subject_id": globalData.subjectId,
+                                                                                                    @"group_id": globalData.groupNumber,
+                                                                                                    @"zd": globalData.zdjgZDSelectItemR2,
+                                                                                                    @"wxpg": globalData.zdjgPGSelectItemR2,
+                                                                                                    }];
+        if (globalData.zdjgTSelectItemR2) {
+            [parametersDictionary setObject:globalData.zdjgTSelectItemR2 forKey:@"t"];
+        }
+        if (globalData.zdjgNSelectItemR2) {
+            [parametersDictionary setObject:globalData.zdjgNSelectItemR2 forKey:@"n"];
+        }
+        if (globalData.zdjgMSelectItemR2) {
+            [parametersDictionary setObject:globalData.zdjgMSelectItemR2 forKey:@"m"];
+        }
+        [GInstance() httprequestWithHUD:_zdjgM2ViewController.view
+                         withRequestURL:STEPURL
+                         withParameters:parametersDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     ((UIView *)_detailViewArray[7]).userInteractionEnabled = NO;
+                                     [self refreshButtonAndView:8];
+                                     [GInstance() savaData];
+                                 } else {
+                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
+                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                     }
+                                 }
+                             }];
     } else if (GInstance().globalData.currentIndex == 8) {
+        //治疗方案 第二轮确定
         [self refreshButtonAndView:9];
         [_bcjzM2ViewController reloadViewDataForR2];
     } else if (GInstance().globalData.currentIndex == 9) {
-        [GInstance() showInfoMessage:@"治疗结束！"];
+        // 病程进展 第二轮确定
+        
+//        case1.do?step=10&action=result&subject_id=1&group_id=g1&method=m1
+        NSDictionary *parametersDictionary = @{@"step": @"10",
+                                               @"action": @"result",
+                                               @"subject_id": globalData.subjectId,
+                                               @"group_id": globalData.groupNumber};
+        [GInstance() httprequestWithHUD:_bcjzM2ViewController.view
+                         withRequestURL:STEPURL
+                         withParameters:parametersDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     sender.hidden = YES;
+                                     [GInstance() showInfoMessage:@"治疗结束！"];
+                                     [GInstance() savaData];
+//                                     [self refreshButtonAndView:1];
+                                 } else {
+                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
+                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                     }
+                                 }
+                             }];
     }
 }
 
