@@ -217,8 +217,30 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
 #pragma mark - Reload Data
 - (void)reloadViewDataForR2
 {
-    _bcjzImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bcjz%ld.png", GInstance().globalData.r2Type]];
     _datetimeLabel.text = GInstance().globalData.dateTimeSixMonth;
 
+    _bcjzImage.frame = CGRectMake(0, 0, 872.0f, 768.0f);
+    NSString *imageName;
+    if (GInstance().globalData.zlfaLeftSelectedIndex == 1 ||
+        GInstance().globalData.zlfaLeftSelectedIndex == 2) {
+        imageName = @"bcjzR2_Shoushu.png"; //手术
+    } else if (GInstance().globalData.zlfaLeftSelectedIndex == 3 ||
+               GInstance().globalData.zlfaLeftSelectedIndex == 4) {
+        imageName = @"bcjzR2_Fangliao.png"; //放疗
+    } else if (GInstance().globalData.zlfaLeftSelectedIndex == 5) {
+        imageName = @"bcjzR2_Zhudong.png"; //主动监测
+    }
+
+    if (GInstance().globalData.zlfaR2RightSelectedIndex == 1) {
+        imageName = @"bcjzR2_Fuzhu.png"; //辅助内分泌
+    } else if (GInstance().globalData.zlfaR2RightSelectedIndex == 2) {
+        imageName = @"bcjzR2_Hualiao.png"; //化疗
+    } else if (GInstance().globalData.zlfaR2RightSelectedIndex == 3) {
+        imageName = @"bcjzR2_Kangxiong.png"; //中断抗雄治疗
+    } else if (GInstance().globalData.zlfaR2RightSelectedIndex == 4) {
+        imageName = @"bcjzR2_Neifenmi.png"; //二线内分泌
+    }
+
+    _bcjzImage.image = [UIImage imageNamed:imageName];
 }
 @end

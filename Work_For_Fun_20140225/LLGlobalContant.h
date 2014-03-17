@@ -37,15 +37,16 @@
 @property (copy, nonatomic) NSString *zlfaFuzhuYaoWuSeg2;
 @property (copy, nonatomic) NSString *zlfaFuzhuYaoWuSeg3;
 
+@property (copy, nonatomic) NSString *zlfaR2FuzhuYaoWuSeg1;
+@property (copy, nonatomic) NSString *zlfaR2FuzhuYaoWuSeg2;
+@property (copy, nonatomic) NSString *zlfaR2FuzhuYaoWuSeg3;
+
+//R2
+@property (assign, nonatomic) NSUInteger zlfaR2RightSelectedIndex;
+@property (copy, nonatomic) NSString *zlfaR2RightYaowuSelected; //C : 雌激素 F : 氟他胺
+
 @property (assign, nonatomic) NSUInteger currentIndex;
 @property (assign, nonatomic) NSUInteger maxIndex;
-//@property (copy, nonatomic)
-//@property (copy, nonatomic)
-//@property (copy, nonatomic)
-//@property (copy, nonatomic)
-//@property (copy, nonatomic)
-//@property (copy, nonatomic)
-//@property (copy, nonatomic)
 
 @property (copy, nonatomic) NSString *zdjgZDSelectItem;
 @property (copy, nonatomic) NSString *zdjgPGSelectItem;
