@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) id<ScrollViewControllerDelegate> scrollViewDelegate;
 
+- (void)reloadViewDataForR2;
+
 @end

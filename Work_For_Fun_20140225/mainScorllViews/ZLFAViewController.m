@@ -647,4 +647,9 @@
     return dicKeyString;
 }
 
+#pragma mark - Reload Data
+- (void)reloadViewDataForR2
+{
+
+}
 @end

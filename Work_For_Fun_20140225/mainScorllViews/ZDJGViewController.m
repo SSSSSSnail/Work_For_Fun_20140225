@@ -408,4 +408,10 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
     return [itemArray indexOfObject:item];
 }
 
+#pragma mark - Reload Data
+- (void)reloadViewDataForR2
+{
+
+}
+
 @end

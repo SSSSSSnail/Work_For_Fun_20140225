@@ -68,6 +68,7 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
 {
     //切换图片
     _bcjzImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bcjz%ld.png", result]];
+    GInstance().globalData.r2Type = [self mResultFromResult:result];
     //切换Label
     switch (result) {
         case ZDJC:      //主动监测 case 1
@@ -148,7 +149,7 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
     }
 }
 
-+ (BCJZMResult)mResultFromResult:(BCJZResult)result
+- (BCJZMResult)mResultFromResult:(BCJZResult)result
 {
     BCJZMResult mResult;
     switch (result) {
@@ -202,4 +203,9 @@ static NSString *sixMonthCase5           = @"2002/11/18 星期一";//twoyear thr
     return mResult;
 }
 
+#pragma mark - Reload Data
+- (void)reloadViewDataForR2
+{
+
+}
 @end

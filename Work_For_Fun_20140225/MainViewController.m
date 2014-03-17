@@ -254,21 +254,24 @@ static float const DETAILVIEWIDTH = 872.0f;
         [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
         GInstance().globalData.fsStep2 = YES;
         [self refreshButtonAndView:5];
+        [_hzqkM2ViewController reloadViewDataForR2];
+    //R2
     } else if (GInstance().globalData.currentIndex == 5) {
         ((UIView *) _detailViewArray[6]).userInteractionEnabled = YES;
         [self refreshButtonAndView:6];
+        [_lcjcM2ViewController reloadViewDataForR2];
     } else if (GInstance().globalData.currentIndex == 6) {
         [_zdjgM2ViewController loadDataFromGlobalData];
         [self refreshButtonAndView:7];
+        [_zdjgM2ViewController reloadViewDataForR2];
     } else if (GInstance().globalData.currentIndex == 7) {
         [self refreshButtonAndView:8];
-
+        [_zlfaM2ViewController reloadViewDataForR2];
     } else if (GInstance().globalData.currentIndex == 8) {
         [self refreshButtonAndView:9];
-
+        [_bcjzM2ViewController reloadViewDataForR2];
     } else if (GInstance().globalData.currentIndex == 9) {
-        [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 0.0f, 152.0f, 695.0f) animated:YES];
-        [self refreshButtonAndView:0];
+        [GInstance() showInfoMessage:@"治疗结束！"];
     }
 }
 
