@@ -122,7 +122,7 @@ NSString *BackupFileName();
     objc_property_t *properties = class_copyPropertyList(theClass, &outCount);
     for (i = 0; i < outCount; i++) {
         NSString *propertyNameString = [[NSString alloc] initWithCString:property_getName(properties[i]) encoding:NSUTF8StringEncoding];
-        NSLog(@"coverToDictionaryFromObject : %@", propertyNameString);
+//        NSLog(@"coverToDictionaryFromObject : %@", propertyNameString);
         id value = [object valueForKey:propertyNameString];
         if (!value) {
             value = @"";
@@ -135,7 +135,7 @@ NSString *BackupFileName();
 - (void)coverToObject:(id)object fromDictionary:(NSMutableDictionary *)dictionary
 {
     for (NSString *dicKey in dictionary.allKeys) {
-        NSLog(@"coverToObject : %@", dicKey);
+//        NSLog(@"coverToObject : %@", dicKey);
         id dicValue = dictionary[dicKey];
         [object setValue:dicValue forKey:dicKey];
     }

@@ -40,5 +40,6 @@ typedef NS_ENUM(NSInteger, BCJZMResult) {
 - (void)changeLabelText:(BCJZResult)result;
 - (void)changedLabelTextInM2:(BCJZResult)result;
 - (void)reloadViewDataForR2;
+- (BCJZMResult)mResultFromResult:(BCJZResult)result;
 
 @end

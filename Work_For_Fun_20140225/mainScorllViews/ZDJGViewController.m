@@ -202,6 +202,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
         [GInstance() showInfoMessage:@"请完成所有的诊断 !"];
         return;
     };
+    LLGlobalData *globalData = GInstance().globalData;
     
     if (!GInstance().globalData.isFSSetp2) {
         for (UIButton *button in _lczdButtonGroup) {
@@ -210,21 +211,21 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
                 break;
             }
         }
-        GInstance().globalData.zdjgTSelectItem = _zdjglcfqTPickView.selectedOjbect;
-        GInstance().globalData.zdjgMSelectItem = _zdjglcfqMPickView.selectedOjbect;
-        GInstance().globalData.zdjgNSelectItem = _zdjglcfqNPickView.selectedOjbect;
-        GInstance().globalData.zdjgPGSelectItem = _zdjgEvaluatePickView.selectedOjbect;
+        globalData.zdjgTSelectItem = _zdjglcfqTPickView.selectedOjbect;
+        globalData.zdjgMSelectItem = _zdjglcfqMPickView.selectedOjbect;
+        globalData.zdjgNSelectItem = _zdjglcfqNPickView.selectedOjbect;
+        globalData.zdjgPGSelectItem = _zdjgEvaluatePickView.selectedOjbect;
     } else {
         for (UIButton *button in _lczdButtonGroup) {
             if (button.isSelected) {
-                GInstance().globalData.zdjgZDSelectItemR2 = [self buttonValue];
+                globalData.zdjgZDSelectItemR2 = [self buttonValue];
                 break;
             }
         }
-        GInstance().globalData.zdjgTSelectItemR2 = _zdjglcfqTPickView.selectedOjbect;
-        GInstance().globalData.zdjgMSelectItemR2 = _zdjglcfqMPickView.selectedOjbect;
-        GInstance().globalData.zdjgNSelectItemR2 = _zdjglcfqNPickView.selectedOjbect;
-        GInstance().globalData.zdjgPGSelectItemR2 = _zdjgEvaluatePickView.selectedOjbect;
+        globalData.zdjgTSelectItemR2 = _zdjglcfqTPickView.selectedOjbect;
+        globalData.zdjgMSelectItemR2 = _zdjglcfqMPickView.selectedOjbect;
+        globalData.zdjgNSelectItemR2 = _zdjglcfqNPickView.selectedOjbect;
+        globalData.zdjgPGSelectItemR2 = _zdjgEvaluatePickView.selectedOjbect;
     }
 
     if ([_scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
@@ -309,26 +310,9 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
     return index;
 }
 
-//- (PickViewSourceBean *)pingguPickviewSelectIndex:(NSString *)item
-//{
-//    if ([item isEqualToString:@"gw"]) {
-//        PickViewSourceBean *bean = [[PickViewSourceBean alloc] initWith:@"1" value:@"高危"];
-//        return bean;
-//    } else if ([item isEqualToString:@"zw"]) {
-//        PickViewSourceBean *bean = [[PickViewSourceBean alloc] initWith:@"2" value:@"中危"];
-//        return bean;
-//    } else if ([item isEqualToString:@"dw"]) {
-//        PickViewSourceBean *bean = [[PickViewSourceBean alloc] initWith:@"3" value:@"低危"];
-//        return bean;
-//    } else {
-//        PickViewSourceBean *bean = [[PickViewSourceBean alloc] initWith:@"0" value:doubleSpace];
-//        return bean;
-//    }
-//}
-
 - (void)loadDataFromGlobalData
 {
-    if (NO) {
+    if (GInstance().globalData.r2Type == M1) {
         _zdjgBGImageView.image = [UIImage imageNamed:@"zdjgStep2M1.png"];
         
         CGRect frame = _zdjglcfqTPickView.frame;

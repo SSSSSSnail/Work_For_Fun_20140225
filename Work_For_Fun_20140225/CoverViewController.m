@@ -26,8 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UISwipeGestureRecognizer *swipeGes = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeup:)];
-    swipeGes.direction = UISwipeGestureRecognizerDirectionUp;
+    UITapGestureRecognizer *swipeGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(swipeup:)];
     [self.view addGestureRecognizer:swipeGes];
 }
 
@@ -39,7 +38,33 @@
 
 - (void)swipeup:(UISwipeGestureRecognizer *)recognizer
 {
-    [self performSegueWithIdentifier:@"modalToCover2" sender:self];
+    /* request parameters
+     subject.do?step=0&action=getsubject
+     */
+    NSDictionary *parametersDictionary = @{@"step": @"0",
+                                           @"action": @"getsubject"};
+    [GInstance() httprequestWithHUD:self.view
+                     withRequestURL:SERVERURL
+                     withParameters:parametersDictionary
+                         completion:^(NSDictionary *jsonDic) {
+                             NSLog(@"responseJson: %@", jsonDic);
+                             if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                 [GInstance() loadData];
+                                 NSString *subjectid = (NSString *)jsonDic[@"subject_id"];                               
+                                 if (![subjectid isEqualToString:GInstance().globalData.subjectId]) {
+                                     if (GInstance().globalData.subjectId) {
+                                         [GInstance() backupData];
+                                     }
+                                     GInstance().globalData = [[LLGlobalData alloc] init];
+                                     GInstance().globalData.subjectId = subjectid;
+                                     GInstance().globalData.subjectName = (NSString *)jsonDic[@"subject_name"];
+                                     [GInstance() savaData];
+                                 }
+                                 [self performSegueWithIdentifier:@"modalToCover2" sender:self];
+                             } else {
+                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                             }
+                         }];
 }
 
 @end
