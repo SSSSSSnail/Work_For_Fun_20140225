@@ -159,12 +159,6 @@
         globalData.lcjcSelectedArrayStringR2 = [NSString string];
     }
 
-    NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"7",
-                                                                                                @"action": @"check",
-                                                                                                @"subject_id": globalData.subjectId,
-                                                                                                @"group_id": globalData.groupNumber,
-                                                                                                @"item": _checkingStringArray[indexPath.row]}];
-
     NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
     if (_isLocked) {
         if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
@@ -182,6 +176,12 @@
         }
     } else {
         if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+#ifndef SKIPREQUEST
+            NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"7",
+                                                                                                        @"action": @"check",
+                                                                                                        @"subject_id": globalData.subjectId,
+                                                                                                        @"group_id": globalData.groupNumber,
+                                                                                                        @"item": _checkingStringArray[indexPath.row]}];
             [GInstance() httprequestWithHUD:self.view
                              withRequestURL:STEPURL
                              withParameters:parametersDictionary
@@ -210,6 +210,25 @@
                                          }
                                      }
                                  }];
+#endif
+#ifdef SKIPREQUEST
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
+            rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
+
+            _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
+            _isLcjcDeatilView = YES;
+            globalData.lcjcSelectedArrayStringR2 = [globalData.lcjcSelectedArrayStringR2 stringByAppendingFormat:@"%ld,", (long)indexPath.row];
+            [GInstance() savaData];
+
+            [UIView transitionFromView:_tableviewLCJC
+                                toView:_lcjcResultImageView
+                              duration:1.0
+                               options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                            completion:^(BOOL finished) {
+                                [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                            }];
+#endif
         } else {
             _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
             _isLcjcDeatilView = YES;
@@ -222,27 +241,6 @@
                             }];
         }
     }
-
-//    NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
-//
-//    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]] && _isLocked == NO) {
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//        UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
-//        rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
-//        GInstance().globalData.lcjcSelectedArrayString = [GInstance().globalData.lcjcSelectedArrayString stringByAppendingFormat:@"%ld,", (long)indexPath.row];
-//    }
-//    if (GInstance().globalData.maxIndex == 6 || (GInstance().globalData.maxIndex > 6 && [selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]])) {
-//        
-//        _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
-//        _isLcjcDeatilView = YES;
-//        [UIView transitionFromView:_tableviewLCJC
-//                            toView:_lcjcResultImageView
-//                          duration:1.0
-//                           options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-//                        completion:^(BOOL finished) {
-//                            [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-//                        }];
-//    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowForR1AtIndexPath:(NSIndexPath *)indexPath
@@ -298,6 +296,7 @@
                 }
             } else {
                 if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+#ifndef SKIPREQUEST
                     [GInstance() httprequestWithHUD:self.view
                                      withRequestURL:STEPURL
                                      withParameters:parametersDictionary
@@ -326,6 +325,25 @@
                                                  }
                                              }
                                          }];
+#endif
+#ifdef SKIPREQUEST
+                    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                    UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
+                    rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
+
+                    _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
+                    _isLcjcDeatilView = YES;
+                    globalData.lcjcSelectedArrayString = [globalData.lcjcSelectedArrayString stringByAppendingFormat:@"%ld,", (long)indexPath.row];
+                    [GInstance() savaData];
+
+                    [UIView transitionFromView:_tableviewLCJC
+                                        toView:_lcjcResultImageView
+                                      duration:1.0
+                                       options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                    completion:^(BOOL finished) {
+                                        [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                    }];
+#endif
                 } else {
                     _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
                     _isLcjcDeatilView = YES;
@@ -341,91 +359,6 @@
 
         });
     });
-}
-
-- (void)requestOfStep2R1:(NSInteger)index
-{
-    NSArray *checkString = @[@"xcg", @"ncg", @"xsh", @"nxcc", @"zczz", @"xdt", @"csxd", @"xp",
-                             @"bc", @"psa", @"gt", @"gsm", @"mr", @"ecog", @"ct", @"cchj"];
-
-    LLGlobalData *globalData = GInstance().globalData;
-    NSDictionary *parametersDictionary = @{@"step": @"2",
-                                           @"action": @"check",
-                                           @"subject_id": globalData.subjectId,
-                                           @"group_id": globalData.groupNumber,
-                                           @"item": checkString[index]};
-    [GInstance() httprequestWithHUD:self.view
-                     withRequestURL:STEPURL
-                     withParameters:parametersDictionary
-                         completion:^(NSDictionary *jsonDic) {
-                             NSLog(@"responseJson: %@", jsonDic);
-                             if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                 
-                             } else {
-                                 if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                     [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                 } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                     [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
-                                 }
-                             }
-                         }];
-}
-
-- (void)requestOfStep2R1MR
-{
-    LLGlobalData *globalData = GInstance().globalData;
-    NSDictionary *parametersDictionary = @{@"step": @"2",
-                                           @"action": @"check",
-                                           @"subject_id": globalData.subjectId,
-                                           @"group_id": globalData.groupNumber,
-                                           @"item": @"mr",
-                                           @"mrpos": globalData.lcjcChuanCiBA};
-    [GInstance() httprequestWithHUD:self.view
-                     withRequestURL:STEPURL
-                     withParameters:parametersDictionary
-                         completion:^(NSDictionary *jsonDic) {
-                             NSLog(@"responseJson: %@", jsonDic);
-                             if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                 
-                             } else {
-                                 if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                     [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                 } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                     [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
-                                 }
-                             }
-                         }];
-}
-
-- (void)requestOfStep7R2:(NSInteger)index
-{
-    NSArray *checkString = @[@"xcg", @"ncg", @"xsh", @"nxcc", @"zczz", @"xdt", @"csxd", @"xp",
-                             @"bc", @"psa", @"gt", @"gsm", @"mr", @"ecog", @"ct", @"cchj"];
-    LLGlobalData *globalData = GInstance().globalData;
-    NSDictionary *parametersDictionary = @{@"step": @"7",
-                                           @"action": @"check",
-                                           @"subject_id": globalData.subjectId,
-                                           @"case_id" : @"1",
-                                           @"group_id": globalData.groupNumber,
-                                           @"item": checkString[index]};
-    [GInstance() httprequestWithHUD:self.view
-                     withRequestURL:STEPURL
-                     withParameters:parametersDictionary
-                         completion:^(NSDictionary *jsonDic) {
-                             NSLog(@"responseJson: %@", jsonDic);
-                             if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                 
-                             } else {
-                                 if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                     [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                 } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                     [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
-                                 }
-                             }
-                         }];
-
-    
-    
 }
 
 @end

@@ -12,7 +12,7 @@
 #define NSLog(...) {}
 #endif
 
-#define SKIPSERVER
+#define SKIPREQUEST
 
 #import "UIFont+MicrosoftFont.h"
 #import "UIAlertView+Blocks.h"

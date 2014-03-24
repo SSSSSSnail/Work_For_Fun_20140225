@@ -164,6 +164,7 @@
         _fuzhuSegmented.enabled = segEnabled;
         if (!segEnabled) {
             [GInstance() showInfoMessage:@"根据患者情况，不适合单一内分泌治疗"];
+#ifndef SKIPREQUEST
             NSDictionary *parametersDictionary = @{@"step": @"4",
                                                    @"action": @"checknfm2",
                                                    @"subject_id": GInstance().globalData.subjectId,
@@ -181,6 +182,7 @@
                                          }
                                      }
                                  }];
+#endif
         }
     }
 

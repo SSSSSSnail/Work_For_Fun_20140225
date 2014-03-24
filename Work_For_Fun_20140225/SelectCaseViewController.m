@@ -57,15 +57,12 @@
     }
     // 2. 请求Server拿到课题号, 并创建本次的plist。
     if (_selectedCase == 1) {
-        /*
-         subject.do?step=0&action=addgroup&subject_id=1&group_id=g1
-         */
-    
         LLGlobalData *globalData = GInstance().globalData;
         if ([globalData.hasAddtoGroup isEqualToString:@"Y"]) {
             [self performSegueWithIdentifier:@"modalToMain" sender:self];
             return;
         }
+#ifndef SKIPREQUEST
         NSDictionary *parameterDictionary = @{@"step": @"0",
                                               @"action": @"addgroup",
                                               @"subject_id": globalData.subjectId,
@@ -83,6 +80,12 @@
                                      [GInstance() showErrorMessage:@"初始化失败，请选择其他组名 !"];
                                  }
                              }];
+#endif
+#ifdef SKIPREQUEST
+        globalData.hasAddtoGroup = @"Y";
+        [GInstance() savaData];
+        [self performSegueWithIdentifier:@"modalToMain" sender:self];
+#endif
     } else {
         [GInstance() showInfoMessage:@"请先选择本次讨论Case!"];
     }

@@ -38,6 +38,7 @@
 
 - (void)swipeup:(UISwipeGestureRecognizer *)recognizer
 {
+#ifndef SKIPREQUEST
     NSDictionary *parametersDictionary = @{@"step": @"0",
                                            @"action": @"getsubject"};
     [GInstance() httprequestWithHUD:self.view
@@ -62,6 +63,21 @@
                                  [GInstance() showErrorMessage:@"服务器结果异常!"];
                              }
                          }];
+#endif
+#ifdef SKIPREQUEST
+    [GInstance() loadData];
+    NSString *subjectid = [[NSDate date] description];
+    if (![subjectid isEqualToString:GInstance().globalData.subjectId]) {
+        if (GInstance().globalData.subjectId) {
+            [GInstance() backupData];
+        }
+        GInstance().globalData = [[LLGlobalData alloc] init];
+        GInstance().globalData.subjectId = subjectid;
+        GInstance().globalData.subjectName = @"TestName";
+        [GInstance() savaData];
+    }
+    [self performSegueWithIdentifier:@"modalToCover2" sender:self];
+#endif
 }
 
 @end

@@ -311,54 +311,6 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
         _lcfqLabel.hidden = YES;
     }
 }
-//    LLGlobalData *data = GInstance().globalData;
-////    data.zdjgZDSelectItem = @"bph";
-////    data.zdjgTSelectItem = @"1c";
-////    data.zdjgMSelectItem = @"1";
-////    data.zdjgNSelectItem = @"0";
-////    data.zdjgPGSelectItem = @"gw";
-//    UIView *view = [self.view viewWithTag:[self buttonSelected:data.zdjgZDSelectItem]];
-//    if ([view isKindOfClass:[UIButton class]]) {
-//        ((UIButton *)view).selected = YES;
-//    }
-//    PickViewSourceBean *bean = [self pingguPickviewSelectIndex:data.zdjgPGSelectItem];
-//    NSString *tItem = data.zdjgTSelectItem;
-//    [_zdjglcfqTPickView selectRow:[self pickviewSelectItem:tItem key:@"201"] inComponent:0 animated:NO];
-//    [_zdjglcfqMPickView selectRow:[self pickviewSelectItem:data.zdjgMSelectItem key:@"203"] inComponent:0 animated:NO];
-//    [_zdjglcfqNPickView selectRow:[self pickviewSelectItem:data.zdjgNSelectItem key:@"202"] inComponent:0 animated:NO];
-//    [_zdjgEvaluatePickView selectRow:bean.key.integerValue inComponent:0 animated:NO];
-//    
-//    
-//    _qgRateLabel.hidden = NO;
-//    _bmRateLabel.hidden = NO;
-//    _jnRateLabel.hidden = NO;
-//    _lbjRateLabel.hidden = NO;
-//    if ([tItem isEqualToString:@"1c"]) {
-//        _qgRateLabel.text = @"器官局限性癌概率：80%";
-//        _bmRateLabel.text = @"包膜侵犯概率：18%";
-//        _jnRateLabel.text = @"精囊侵犯概率：1%";
-//        _lbjRateLabel.text = @"淋巴结转移概率：0";
-//    } else if ([tItem isEqualToString:@"2a"]) {
-//        _qgRateLabel.text = @"器官局限性癌概率：73%";
-//        _bmRateLabel.text = @"包膜侵犯概率：26%";
-//        _jnRateLabel.text = @"精囊侵犯概率：1%";
-//        _lbjRateLabel.text = @"淋巴结转移概率：0";
-//    } else if ([tItem isEqualToString:@"2b"] || [tItem isEqualToString:@"2c"]){
-//        _qgRateLabel.text = @"器官局限性癌概率：58%";
-//        _bmRateLabel.text = @"包膜侵犯概率：38%";
-//        _jnRateLabel.text = @"精囊侵犯概率：4%";
-//        _lbjRateLabel.text = @"淋巴结转移概率：1%";
-//    } else {
-//        _qgRateLabel.hidden = YES;
-//        _bmRateLabel.hidden = YES;
-//        _jnRateLabel.hidden = YES;
-//        _lbjRateLabel.hidden = YES;
-//    }
-//    
-//    _zdjgEvaluatePickView.selectedOjbect = bean.value;
-//    _lcfqLabel.text = [NSString stringWithFormat:@"T%@N%@M%@",_zdjglcfqTPickView.selectedOjbect,_zdjglcfqNPickView.selectedOjbect,_zdjglcfqMPickView.selectedOjbect];
-//    _pgjgLabel.text = bean.value;
-//}
 
 - (NSInteger)pickviewSelectItem:(NSString *)item key:(NSString *)key
 {

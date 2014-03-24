@@ -250,6 +250,7 @@ static float const DETAILVIEWIDTH = 872.0f;
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:1];
         } else {
+#ifndef SKIPREQUEST
             NSDictionary *parametersDictionary = @{@"step": @"1",
                                                    @"action": @"info",
                                                    @"subject_id": globalData.subjectId,
@@ -272,6 +273,11 @@ static float const DETAILVIEWIDTH = 872.0f;
                                          }
                                      }
                                  }];
+#endif
+#ifdef SKIPREQUEST
+            [self refreshButtonAndView:1];
+            [GInstance() savaData];
+#endif
         }
     } else if (globalData.currentIndex == 1) {
         //临床检查第一轮确定
@@ -284,6 +290,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 
             }]
                                otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+#ifndef SKIPREQUEST
                 NSDictionary *parametersDictionary = @{@"step": @"2",
                                                        @"action": @"checkconfirm",
                                                        @"subject_id": globalData.subjectId,
@@ -307,6 +314,12 @@ static float const DETAILVIEWIDTH = 872.0f;
                                              }
                                          }
                                      }];
+#endif
+#ifdef SKIPREQUEST
+                _lcjcViewController.isLocked = YES;
+                [self refreshButtonAndView:2];
+                [GInstance() savaData];
+#endif
             }], nil] show];
         }
     } else if (globalData.currentIndex == 2) {
@@ -320,6 +333,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 
             }]
                                otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+#ifndef SKIPREQUEST
                 NSDictionary *parametersDictionary = @{@"step": @"3",
                                                        @"action": @"diagnose",
                                                        @"subject_id": globalData.subjectId,
@@ -353,6 +367,16 @@ static float const DETAILVIEWIDTH = 872.0f;
                                              }
                                          }
                                      }];
+#endif
+#ifdef SKIPREQUEST
+                for (UIView *subView in [_zdjgViewController.view subviews]) {
+                    if (subView.tag != 999) {
+                        subView.userInteractionEnabled = NO;
+                    }
+                }
+                [self refreshButtonAndView:3];
+                [GInstance() savaData];
+#endif
             }], nil] show];
         }
     } else if (globalData.currentIndex == 3) {
@@ -360,6 +384,7 @@ static float const DETAILVIEWIDTH = 872.0f;
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:4];
         } else {
+#ifndef SKIPREQUEST
             NSDictionary *parametersDictionary = @{@"step": @"4",
                                                    @"action": @"solution",
                                                    @"subject_id": globalData.subjectId,
@@ -428,6 +453,17 @@ static float const DETAILVIEWIDTH = 872.0f;
                                          }
                                      }
                                  }];
+#endif
+#ifdef SKIPREQUEST
+            for (UIView *subView in [_zlfaViewController.view subviews]) {
+                if (subView.tag != 999) {
+                    subView.userInteractionEnabled = NO;
+                }
+            }
+            [self refreshButtonAndView:4];
+            [_bcjzViewController changeLabelText:[self refreshResult]];
+            [GInstance() savaData];
+#endif
         }
     } else if (globalData.currentIndex == 4) {
         //病程进展 确定
@@ -447,6 +483,7 @@ static float const DETAILVIEWIDTH = 872.0f;
             if ([globalData.zlfaFuzhuOrZhaoShe isEqualToString:@"F"]) {
                 [indexString appendFormat:@"%d,", 3];
             }
+#ifndef SKIPREQUEST
             NSDictionary *parametersDictionary = @{@"step": @"5",
                                                    @"action": @"result",
                                                    @"subject_id": globalData.subjectId,
@@ -489,6 +526,14 @@ static float const DETAILVIEWIDTH = 872.0f;
                                          }
                                      }
                                  }];
+#endif
+#ifdef SKIPREQUEST
+            [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
+            globalData.fsStep2 = YES;
+            [self refreshButtonAndView:5];
+            [_hzqkM2ViewController reloadViewDataForR2];
+            [GInstance() savaData];
+#endif
         }
     //R2
     } else if (globalData.currentIndex == 5) {
@@ -496,6 +541,7 @@ static float const DETAILVIEWIDTH = 872.0f;
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:6];
         } else {
+#ifndef SKIPREQUEST
             NSDictionary *parametersDictionary = @{@"step": @"6",
                                                    @"action": @"info",
                                                    @"subject_id": globalData.subjectId,
@@ -519,6 +565,11 @@ static float const DETAILVIEWIDTH = 872.0f;
                                          }
                                      }
                                  }];
+#endif
+#ifdef SKIPREQUEST
+            [self refreshButtonAndView:6];
+            [GInstance() savaData];
+#endif
         }
 
     } else if (globalData.currentIndex == 6) {
@@ -526,6 +577,7 @@ static float const DETAILVIEWIDTH = 872.0f;
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:7];
         } else {
+#ifndef SKIPREQUEST
             NSDictionary *parametersDictionary = @{@"step": @"7",
                                                    @"action": @"checkconfirm",
                                                    @"subject_id": globalData.subjectId,
@@ -550,6 +602,13 @@ static float const DETAILVIEWIDTH = 872.0f;
                                          }
                                      }
                                  }];
+#endif
+#ifdef SKIPREQUEST
+            [_zdjgM2ViewController loadDataFromGlobalData];
+            [self refreshButtonAndView:7];
+            [_zdjgM2ViewController reloadViewDataForR2];
+            [GInstance() savaData];
+#endif
         }
     } else if (globalData.currentIndex == 7) {
         //诊断结果 第二轮确定
@@ -572,6 +631,7 @@ static float const DETAILVIEWIDTH = 872.0f;
             if (globalData.zdjgMSelectItemR2) {
                 [parametersDictionary setObject:globalData.zdjgMSelectItemR2 forKey:@"m"];
             }
+#ifndef SKIPREQUEST
             [GInstance() httprequestWithHUD:_zdjgM2ViewController.view
                              withRequestURL:STEPURL
                              withParameters:parametersDictionary
@@ -596,12 +656,24 @@ static float const DETAILVIEWIDTH = 872.0f;
                                          }
                                      }
                                  }];
+#endif
+#ifdef SKIPREQUEST
+            for (UIView *subView in [_zdjgM2ViewController.view subviews]) {
+                if (subView.tag != 999) {
+                    subView.userInteractionEnabled = NO;
+                }
+            }
+            [self refreshButtonAndView:8];
+            [GInstance() savaData];
+            [_zlfaM2ViewController reloadViewDataForR2];
+#endif
         }
     } else if (globalData.currentIndex == 8) {
         //治疗方案 第二轮确定
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:9];
         } else {
+#ifndef SKIPREQUEST
             NSDictionary *parametersDictionary = @{@"step": @"9",
                                                    @"action": @"solution",
                                                    @"subject_id": globalData.subjectId,
@@ -663,9 +735,21 @@ static float const DETAILVIEWIDTH = 872.0f;
                                          }
                                      }
                                  }];
+#endif
+#ifdef SKIPREQUEST
+            for (UIView *subView in [_zlfaM2ViewController.view subviews]) {
+                if (subView.tag != 999) {
+                    subView.userInteractionEnabled = NO;
+                }
+            }
+            [self refreshButtonAndView:9];
+            [_bcjzM2ViewController reloadViewDataForR2];
+            [GInstance() savaData];
+#endif
         }
     } else if (globalData.currentIndex == 9) {
         // 病程进展 第二轮确定
+#ifndef SKIPREQUEST
         NSDictionary *parametersDictionary = @{@"step": @"10",
                                                @"action": @"result",
                                                @"subject_id": globalData.subjectId,
@@ -684,6 +768,11 @@ static float const DETAILVIEWIDTH = 872.0f;
                                      }
                                  }
                              }];
+#endif
+#ifdef SKIPREQUEST
+        [GInstance() showInfoMessage:@"治疗结束！"];
+        [GInstance() savaData];
+#endif
     }
 }
 
