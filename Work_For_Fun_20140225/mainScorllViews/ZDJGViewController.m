@@ -205,23 +205,13 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
     LLGlobalData *globalData = GInstance().globalData;
     
     if (!GInstance().globalData.isFSSetp2) {
-        for (UIButton *button in _lczdButtonGroup) {
-            if (button.isSelected) {
-                GInstance().globalData.zdjgZDSelectItem = [self buttonValue];
-                break;
-            }
-        }
+        GInstance().globalData.zdjgZDSelectItem = [self buttonValue];
         globalData.zdjgTSelectItem = _zdjglcfqTPickView.selectedOjbect;
         globalData.zdjgMSelectItem = _zdjglcfqMPickView.selectedOjbect;
         globalData.zdjgNSelectItem = _zdjglcfqNPickView.selectedOjbect;
         globalData.zdjgPGSelectItem = _zdjgEvaluatePickView.selectedOjbect;
     } else {
-        for (UIButton *button in _lczdButtonGroup) {
-            if (button.isSelected) {
-                globalData.zdjgZDSelectItemR2 = [self buttonValue];
-                break;
-            }
-        }
+        globalData.zdjgZDSelectItemR2 = [self buttonValue];
         globalData.zdjgTSelectItemR2 = _zdjglcfqTPickView.selectedOjbect;
         globalData.zdjgMSelectItemR2 = _zdjglcfqMPickView.selectedOjbect;
         globalData.zdjgNSelectItemR2 = _zdjglcfqNPickView.selectedOjbect;
@@ -235,16 +225,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 
 - (IBAction)refreshButtonGroup:(UIButton *)sender
 {
-    if (sender.isSelected) {
-        return;
-    }
-    for (UIButton *button in _lczdButtonGroup) {
-        if (button == sender) {
-            button.selected = YES;
-        } else {
-            button.selected = NO;
-        }
-    }
+    sender.selected = !sender.isSelected;
 }
 
 - (BOOL)checkValue
@@ -276,22 +257,19 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 
 - (NSString *)buttonValue
 {
-    NSInteger index = 0;
-    NSDictionary *sourceDictionary = @{@"204": @"bph",
-                                       @"205": @"jxa",
-                                       @"206": @"jxw",
-                                       @"207": @"zya"};
+    NSDictionary *sourceDictionary = @{@204: @"bph",
+                                       @205: @"jxa",
+                                       @206: @"jxw",
+                                       @207: @"zya"};
+
+    NSMutableString *zhenduanString = [NSMutableString string];
     for (UIButton *button in _lczdButtonGroup) {
         if (button.isSelected) {
-            index = button.tag;
-            break;
+            [zhenduanString appendFormat:@"%@,", sourceDictionary[[NSNumber numberWithInt:(int)button.tag]]];
         }
     }
-    if (index == 0) {
-        return @"";
-    } else {
-        return [sourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",index]];
-    }
+    [zhenduanString deleteCharactersInRange:NSMakeRange(zhenduanString.length - 1, 1)];
+    return zhenduanString;
 }
 
 - (NSInteger)buttonSelected:(NSString *)item

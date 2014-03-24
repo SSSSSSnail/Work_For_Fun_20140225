@@ -12,6 +12,8 @@
 #define NSLog(...) {}
 #endif
 
+#define SKIPSERVER
+
 #import "UIFont+MicrosoftFont.h"
 #import "UIAlertView+Blocks.h"
 #import "BCJZViewController.h"
@@ -67,9 +69,9 @@
 @property (copy, nonatomic) NSString *dateTimeSixMonth;
 @property (copy, nonatomic) NSString *hasAddtoGroup;
 @end
-//
-//static NSString *const SERVERURL = @"http://192.168.1.19:8080/diphereline-case/subject.do";//@"http://diphereline-case.com/subject.do";
-//static NSString *const STEPURL = @"http://192.168.1.19:8080/diphereline-case/case1.do";//@"http://diphereline-case.com/case1.do";
+
+//static NSString *const SERVERURL = @"http://192.168.1.11:8080/diphereline-case/subject.do";
+//static NSString *const STEPURL = @"http://192.168.1.11:8080/diphereline-case/case1.do";
 
 static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";
 static NSString *const STEPURL = @"http://diphereline-case.com/case1.do";

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="cHd-s7-bne">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="cHd-s7-bne">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Cover View Controller-->
@@ -434,6 +434,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="bgImageView" destination="fim-ZT-jbn" id="G7f-1w-ysD"/>
                         <outlet property="bshgImageView" destination="6fK-Lj-OED" id="Iob-EK-6x0"/>
@@ -518,6 +519,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="dateTimeLabel" destination="vv0-qA-fmh" id="0AF-sy-6pZ"/>
                         <outlet property="lcjcOkButton" destination="li9-fR-jPg" id="OXl-aR-dHO"/>
@@ -610,7 +612,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3k5-Ip-umG" userLabel="Button － 确诊">
+                            <button opaque="NO" tag="999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3k5-Ip-umG" userLabel="Button － 确诊">
                                 <rect key="frame" x="395" y="678" width="83" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -678,6 +680,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="bmRateLabel" destination="tb0-AY-Mbm" id="ciL-qf-6Bm"/>
                         <outlet property="dateTimeLabel" destination="usf-l2-YbJ" id="faK-Mj-pol"/>
@@ -1074,7 +1077,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oot-XO-Hds">
+                            <button opaque="NO" tag="999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Oot-XO-Hds">
                                 <rect key="frame" x="394" y="683" width="83" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="okButton.png">
@@ -1119,6 +1122,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="addFuzhuButton" destination="9nz-ur-Rly" id="3r5-uK-WBd"/>
                         <outlet property="danyiSegmented" destination="6Dl-a5-Bba" id="laj-Sr-rfj"/>
@@ -1204,6 +1208,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
                     <connections>
                         <outlet property="bcjzImage" destination="NkB-bv-7F8" id="di9-fS-cYd"/>
                         <outlet property="datetimeLabel" destination="3Xf-fv-PWF" id="ERR-3C-W6H"/>

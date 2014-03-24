@@ -38,9 +38,6 @@
 
 - (void)swipeup:(UISwipeGestureRecognizer *)recognizer
 {
-    /* request parameters
-     subject.do?step=0&action=getsubject
-     */
     NSDictionary *parametersDictionary = @{@"step": @"0",
                                            @"action": @"getsubject"};
     [GInstance() httprequestWithHUD:self.view

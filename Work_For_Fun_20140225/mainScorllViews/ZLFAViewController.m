@@ -164,6 +164,23 @@
         _fuzhuSegmented.enabled = segEnabled;
         if (!segEnabled) {
             [GInstance() showInfoMessage:@"根据患者情况，不适合单一内分泌治疗"];
+            NSDictionary *parametersDictionary = @{@"step": @"4",
+                                                   @"action": @"checknfm2",
+                                                   @"subject_id": GInstance().globalData.subjectId,
+                                                   @"group_id": GInstance().globalData.groupNumber};
+            [GInstance() httprequestWithHUD:self.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
         }
     }
 

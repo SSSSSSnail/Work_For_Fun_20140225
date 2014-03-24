@@ -11,6 +11,7 @@
 @interface LCJCViewController : UIViewController
 
 @property (weak, nonatomic) id<ScrollViewControllerDelegate> scrollViewDelegate;
+@property (assign, nonatomic) BOOL isLocked;
 
 - (void)reloadViewDataForR2;
 

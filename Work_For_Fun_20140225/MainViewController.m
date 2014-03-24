@@ -172,12 +172,19 @@ static float const DETAILVIEWIDTH = 872.0f;
 {
     [super viewWillAppear:animated];
 #warning TODO: 加载旧数据并赋值
-//    GInstance().globalData.currentIndex = 8;
-//    GInstance().globalData.r2Type = M6;
+//    GInstance().globalData.currentIndex = 5;
+//    GInstance().globalData.r2Type = M1;
 //    GInstance().globalData.fsStep2 = YES;
-//    [_zlfaM2ViewController reloadViewDataForR2];
-
-
+//    [_hzqkM2ViewController reloadViewDataForR2];
+    if (GInstance().globalData.fsStep2) {
+        [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:NO];
+        [_hzqkM2ViewController reloadViewDataForR2];
+        [_lcjcM2ViewController reloadViewDataForR2];
+        [_zdjgM2ViewController reloadViewDataForR2];
+        [_zdjgM2ViewController loadDataFromGlobalData];
+        [_zlfaM2ViewController reloadViewDataForR2];
+        [_bcjzM2ViewController reloadViewDataForR2];
+    }
     [self refreshButtonAndView:GInstance().globalData.currentIndex];
 }
 
@@ -238,277 +245,426 @@ static float const DETAILVIEWIDTH = 872.0f;
 - (void)didClickConfirmButton:(UIButton *)sender
 {
     LLGlobalData *globalData = GInstance().globalData;
-    if (GInstance().globalData.currentIndex == 0) {
+    if (globalData.currentIndex == 0) {
         //患者情况 确定
-        NSDictionary *parametersDictionary = @{@"step": @"1",
-                                               @"action": @"info",
-                                               @"subject_id": globalData.subjectId,
-                                               @"group_id": globalData.groupNumber};
-        [GInstance() httprequestWithHUD:_hzqkViewController.view
-                         withRequestURL:STEPURL
-                         withParameters:parametersDictionary
-                             completion:^(NSDictionary *jsonDic) {
-                                 NSLog(@"responseJson: %@", jsonDic);
-                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                     sender.hidden = YES;
-                                     [self refreshButtonAndView:1];
-                                     [GInstance() savaData];
-                                 } else {
-                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
-                                     }
-                                 }
-                             }];
-    } else if (GInstance().globalData.currentIndex == 1) {
-        //临床检查第一轮确定
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"请确认已经完成全部检查！"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-            
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-            //TODO 需要发送请求
-            //            case1.do?step=2&action=checkconfirm&subject_id=1&group_id=g1
-            NSDictionary *parametersDictionary = @{@"step": @"2",
-                                                   @"action": @"checkconfirm",
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:1];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"1",
+                                                   @"action": @"info",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber};
-            [GInstance() httprequestWithHUD:_lcjcViewController.view
+            [GInstance() httprequestWithHUD:_hzqkViewController.view
                              withRequestURL:STEPURL
                              withParameters:parametersDictionary
                                  completion:^(NSDictionary *jsonDic) {
                                      NSLog(@"responseJson: %@", jsonDic);
                                      if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                         sender.hidden = YES;
-                                         [self refreshButtonAndView:2];
-                                         [GInstance() savaData];
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             [self refreshButtonAndView:1];
+                                             [GInstance() savaData];
+                                         }
                                      } else {
                                          if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
                                              [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                         } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                          }
                                      }
                                  }];
-        }], nil] show];
-        
-    } else if (GInstance().globalData.currentIndex == 2) {
+        }
+    } else if (globalData.currentIndex == 1) {
+        //临床检查第一轮确定
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:2];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成全部检查！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                NSDictionary *parametersDictionary = @{@"step": @"2",
+                                                       @"action": @"checkconfirm",
+                                                       @"subject_id": globalData.subjectId,
+                                                       @"group_id": globalData.groupNumber};
+                [GInstance() httprequestWithHUD:_lcjcViewController.view
+                                 withRequestURL:STEPURL
+                                 withParameters:parametersDictionary
+                                     completion:^(NSDictionary *jsonDic) {
+                                         NSLog(@"responseJson: %@", jsonDic);
+                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                             _lcjcViewController.isLocked = YES;
+                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                             } else {
+                                                 [self refreshButtonAndView:2];
+                                                 [GInstance() savaData];
+                                             }
+                                         } else {
+                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                             }
+                                         }
+                                     }];
+            }], nil] show];
+        }
+    } else if (globalData.currentIndex == 2) {
         // 诊断结果 确定
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"请确认已经完成诊断！"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-            
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-            //TODO 需要发送请求
-            NSDictionary *parametersDictionary = @{@"step": @"3",
-                                                   @"action": @"diagnose",
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:3];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成诊断！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                NSDictionary *parametersDictionary = @{@"step": @"3",
+                                                       @"action": @"diagnose",
+                                                       @"subject_id": globalData.subjectId,
+                                                       @"group_id": globalData.groupNumber,
+                                                       @"zd": globalData.zdjgZDSelectItem,
+                                                       @"wxpg": globalData.zdjgPGSelectItem,
+                                                       @"t" : globalData.zdjgTSelectItem,
+                                                       @"n" : globalData.zdjgNSelectItem,
+                                                       @"m" : globalData.zdjgMSelectItem };
+
+                [GInstance() httprequestWithHUD:_zdjgViewController.view
+                                 withRequestURL:STEPURL
+                                 withParameters:parametersDictionary
+                                     completion:^(NSDictionary *jsonDic) {
+                                         NSLog(@"responseJson: %@", jsonDic);
+                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]) {
+                                             for (UIView *subView in [_zdjgViewController.view subviews]) {
+                                                 if (subView.tag != 999) {
+                                                     subView.userInteractionEnabled = NO;
+                                                 }
+                                             }
+                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                             } else {
+                                                 [self refreshButtonAndView:3];
+                                                 [GInstance() savaData];
+                                             }
+                                         } else {
+                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                             }
+                                         }
+                                     }];
+            }], nil] show];
+        }
+    } else if (globalData.currentIndex == 3) {
+        //治疗方案确定
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:4];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"4",
+                                                   @"action": @"solution",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
-                                                   @"zd": globalData.zdjgZDSelectItem,
-                                                   @"wxpg": globalData.zdjgPGSelectItem,
-                                                   @"t" : globalData.zdjgTSelectItem,
-                                                   @"n" : globalData.zdjgNSelectItem,
-                                                   @"m" : globalData.zdjgMSelectItem };
-            
-            [GInstance() httprequestWithHUD:_zdjgViewController.view
+
+                                                   @"zdjc": globalData.zlfaLeftSelectedIndex == 5 ? @"Y" : @"N",
+                                                   @"cggz": globalData.zlfaLeftSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"fqgz": globalData.zlfaLeftSelectedIndex == 2 ? @"Y" : @"N",
+                                                   @"wfl": globalData.zlfaLeftSelectedIndex == 3 ? @"Y" : @"N",
+                                                   @"nfl": globalData.zlfaLeftSelectedIndex == 4 ? @"Y" : @"N",
+
+                                                   @"xfz": globalData.zlfaRightSelectedIndex > 0 ? @"Y" : @"N",
+                                                   @"xfqs": globalData.zlfaRightSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"xfkx": globalData.zlfaRightSelectedIndex == 2 ? @"Y" : @"N",
+                                                   @"xfzd": globalData.zlfaRightSelectedIndex == 3 ? @"Y" : @"N",
+                                                   @"xfzgsrl": [self ifSelectedYaowu:@"xfzgsrl" isXinFuZhu:YES],
+                                                   @"xfzlbrl": [self ifSelectedYaowu:@"xfzlbrl" isXinFuZhu:YES],
+                                                   @"xfzdpl1": [self ifSelectedYaowu:@"xfzdpl1" isXinFuZhu:YES],
+                                                   @"xfzdpl3": [self ifSelectedYaowu:@"xfzdpl3" isXinFuZhu:YES],
+                                                   @"xfzbkla": [self ifSelectedYaowu:@"xfzbkla" isXinFuZhu:YES],
+                                                   @"xfzfta": [self ifSelectedYaowu:@"xfzfta" isXinFuZhu:YES],
+
+                                                   @"fz": [globalData.zlfaFuzhuOrZhaoShe isEqualToString:@"F"] ? @"Y" : @"N",
+                                                   @"cx": [globalData.zlfaFuzhuType isEqualToString:@"C"] ? @"Y" : @"N",
+                                                   @"jx": [globalData.zlfaFuzhuType isEqualToString:@"J"] ? @"Y" : @"N",
+                                                   @"ssqs": [self ifSelectedFuzhu:@"ssqs"],
+                                                   @"fzqs": [self ifSelectedFuzhu:@"fzqs"],
+                                                   @"fzkx": [self ifSelectedFuzhu:@"fzkx"],
+                                                   @"fzzd": [self ifSelectedFuzhu:@"fzzd"],
+
+                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isXinFuZhu:NO],
+                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isXinFuZhu:NO],
+                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isXinFuZhu:NO],
+                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isXinFuZhu:NO],
+                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isXinFuZhu:NO],
+                                                   @"fta": [self ifSelectedYaowu:@"fta" isXinFuZhu:NO],
+                                                   @"jk": [globalData.zlfaFuzhuYaoWuSeg1 isEqualToString:@"即刻"] ? @"Y" : @"N",
+                                                   @"shff": [globalData.zlfaFuzhuYaoWuSeg1 isEqualToString:@"生化复发"] ? @"Y" : @"N"
+
+                                                   };
+            for (NSString *keyString in parametersDictionary.allKeys) {
+                NSLog(@"%@ : %@", keyString, parametersDictionary[keyString]);
+            }
+
+            [GInstance() httprequestWithHUD:_zlfaViewController.view
                              withRequestURL:STEPURL
                              withParameters:parametersDictionary
                                  completion:^(NSDictionary *jsonDic) {
                                      NSLog(@"responseJson: %@", jsonDic);
-                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]) {
-                                         ((UIView *)_detailViewArray[2]).userInteractionEnabled = NO;
-                                         [self refreshButtonAndView:3];
-                                         [GInstance() savaData];
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         for (UIView *subView in [_zlfaViewController.view subviews]) {
+                                             if (subView.tag != 999) {
+                                                 subView.userInteractionEnabled = NO;
+                                             }
+                                         }
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             [self refreshButtonAndView:4];
+                                             [_bcjzViewController changeLabelText:[self refreshResult]];
+                                             [GInstance() savaData];
+                                         }
                                      } else {
                                          if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
                                              [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                         } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                          }
                                      }
                                  }];
-        }], nil] show];
-        
-    } else if (GInstance().globalData.currentIndex == 3) {
-        //治疗方案确定
-        NSDictionary *parametersDictionary = @{@"step": @"4",
-                                               @"action": @"solution",
-                                               @"subject_id": globalData.subjectId,
-                                               @"group_id": globalData.groupNumber,
-                                               @"solution": [NSString stringWithFormat:@"m%ld",[_bcjzViewController mResultFromResult:[self refreshResult]] - 20]};
-
-        [GInstance() httprequestWithHUD:_zlfaViewController.view
-                         withRequestURL:STEPURL
-                         withParameters:parametersDictionary
-                             completion:^(NSDictionary *jsonDic) {
-                                 NSLog(@"responseJson: %@", jsonDic);
-                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                     ((UIView *)_detailViewArray[3]).userInteractionEnabled = NO;
-                                     [self refreshButtonAndView:4];
-                                     sender.hidden = YES;
-                                     [_bcjzViewController changeLabelText:[self refreshResult]];
-                                     [GInstance() savaData];
-                                 } else {
-                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
-                                     }
-                                 }
-                             }];
-    } else if (GInstance().globalData.currentIndex == 4) {
+        }
+    } else if (globalData.currentIndex == 4) {
         //病程进展 确定
-        NSDictionary *parametersDictionary = @{@"step": @"5",
-                                               @"action": @"result",
-                                               @"subject_id": globalData.subjectId,
-                                               @"group_id": globalData.groupNumber};
-        [GInstance() httprequestWithHUD:_bcjzViewController.view
-                         withRequestURL:STEPURL
-                         withParameters:parametersDictionary
-                             completion:^(NSDictionary *jsonDic) {
-                                 NSLog(@"responseJson: %@", jsonDic);
-                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                     [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
-                                     GInstance().globalData.fsStep2 = YES;
-                                     [self refreshButtonAndView:5];
-                                     sender.hidden = YES;
-                                     [_hzqkM2ViewController reloadViewDataForR2];
-                                     [GInstance() savaData];
-                                 } else {
-                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:5];
+        } else {
+            NSMutableString *indexString = [NSMutableString string];
+            if (globalData.zlfaLeftSelectedIndex == 1 || globalData.zlfaLeftSelectedIndex == 2) {
+                [indexString appendFormat:@"%d,", 0];
+            }
+            if (globalData.zlfaLeftSelectedIndex == 3 || globalData.zlfaLeftSelectedIndex == 4 || [globalData.zlfaFuzhuType isEqualToString:@"W"]) {
+                [indexString appendFormat:@"%d,", 1];
+            }
+            if (globalData.zlfaRightSelectedIndex > 0) {
+                [indexString appendFormat:@"%d,", 2];
+            }
+            if ([globalData.zlfaFuzhuOrZhaoShe isEqualToString:@"F"]) {
+                [indexString appendFormat:@"%d,", 3];
+            }
+            NSDictionary *parametersDictionary = @{@"step": @"5",
+                                                   @"action": @"result",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
+                                                   @"solution": [NSString stringWithFormat:@"m%ld",[_bcjzViewController mResultFromResult:[self refreshResult]] - 20],
+                                                   @"col1": [NSString stringWithFormat:@"%ld", [self refreshResult]],
+                                                   @"col2": [_hzqkM2ViewController linchuangjiancheString],
+                                                   @"col3": [_hzqkM2ViewController zhenduanString],
+                                                   @"col4": [_hzqkM2ViewController weixianxingpingguString],
+                                                   @"col5": [NSString stringWithFormat:@"T%@N%@M%@", GInstance().globalData.zdjgTSelectItem, GInstance().globalData.zdjgNSelectItem, GInstance().globalData.zdjgNSelectItem],
+                                                   @"col6": [_hzqkM2ViewController loadZhiLiaoFangAn],
+                                                   @"col7": indexString,
+                                                   @"col8": [_hzqkM2ViewController isTypeBetween2to6] ? @"Y" : @"N",
+                                                   @"col9": [_hzqkM2ViewController loadYaoWuFangAn],
+                                                   @"col10": [_hzqkM2ViewController loadYaoWu]
+                                                   };
+
+            for (NSString *keyString in parametersDictionary.allKeys) {
+                NSLog(@"%@ : %@", keyString, parametersDictionary[keyString]);
+            }
+
+            [GInstance() httprequestWithHUD:_bcjzViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:YES];
+                                             globalData.fsStep2 = YES;
+                                             [self refreshButtonAndView:5];
+                                             [_hzqkM2ViewController reloadViewDataForR2];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
                                      }
-                                 }
-                             }];
-        
+                                 }];
+        }
     //R2
-    } else if (GInstance().globalData.currentIndex == 5) {
+    } else if (globalData.currentIndex == 5) {
         ///病史回顾确定
-        
-        /*
-         case1.do?step=6&action=info&subject_id=1&group_id=g1&detail=jsonstring
-         */
-        
-        NSDictionary *parametersDictionary = @{@"step": @"6",
-                                               @"action": @"info",
-                                               @"subject_id": globalData.subjectId,
-                                               @"group_id": globalData.groupNumber,
-                                               @"detail": [NSString stringWithFormat:@"m%ld",globalData.r1Result - 20]};
-        [GInstance() httprequestWithHUD:_hzqkM2ViewController.view
-                         withRequestURL:STEPURL
-                         withParameters:parametersDictionary
-                             completion:^(NSDictionary *jsonDic) {
-                                 NSLog(@"responseJson: %@", jsonDic);
-                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                     ((UIView *) _detailViewArray[5]).userInteractionEnabled = YES;
-                                     [self refreshButtonAndView:6];
-                                     [GInstance() savaData];
-                                 } else {
-                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:6];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"6",
+                                                   @"action": @"info",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
+                                                   @"detail": [NSString stringWithFormat:@"m%ld",globalData.r1Result - 20]};
+            [GInstance() httprequestWithHUD:_hzqkM2ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             [self refreshButtonAndView:6];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
                                      }
-                                 }
-                             }];
-    } else if (GInstance().globalData.currentIndex == 6) {
+                                 }];
+        }
+
+    } else if (globalData.currentIndex == 6) {
         //临床检查第二轮确定
-        /*
-         case1.do?step=7&action=checkconfirm&subject_id=1&group_id=g1
-         */
-        NSDictionary *parametersDictionary = @{@"step": @"7",
-                                               @"action": @"checkconfirm",
-                                               @"subject_id": globalData.subjectId,
-                                               @"group_id": globalData.groupNumber};
-        [GInstance() httprequestWithHUD:_lcjcM2ViewController.view
-                         withRequestURL:STEPURL
-                         withParameters:parametersDictionary
-                             completion:^(NSDictionary *jsonDic) {
-                                 NSLog(@"responseJson: %@", jsonDic);
-                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                     [_zdjgM2ViewController loadDataFromGlobalData];
-                                     [self refreshButtonAndView:7];
-                                     [_zdjgM2ViewController reloadViewDataForR2];
-                                     [GInstance() savaData];
-                                 } else {
-                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:7];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"7",
+                                                   @"action": @"checkconfirm",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber};
+            [GInstance() httprequestWithHUD:_lcjcM2ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             [_zdjgM2ViewController loadDataFromGlobalData];
+                                             [self refreshButtonAndView:7];
+                                             [_zdjgM2ViewController reloadViewDataForR2];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
                                      }
-                                 }
-                             }];
-        
-    } else if (GInstance().globalData.currentIndex == 7) {
+                                 }];
+        }
+    } else if (globalData.currentIndex == 7) {
         //诊断结果 第二轮确定
-        NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"8",
-                                                                                                    @"action": @"diagnose",
-                                                                                                    @"subject_id": globalData.subjectId,
-                                                                                                    @"group_id": globalData.groupNumber,
-                                                                                                    @"zd": globalData.zdjgZDSelectItemR2,
-                                                                                                    @"wxpg": globalData.zdjgPGSelectItemR2,
-                                                                                                    }];
-        if (globalData.zdjgTSelectItemR2) {
-            [parametersDictionary setObject:globalData.zdjgTSelectItemR2 forKey:@"t"];
-        }
-        if (globalData.zdjgNSelectItemR2) {
-            [parametersDictionary setObject:globalData.zdjgNSelectItemR2 forKey:@"n"];
-        }
-        if (globalData.zdjgMSelectItemR2) {
-            [parametersDictionary setObject:globalData.zdjgMSelectItemR2 forKey:@"m"];
-        }
-        [GInstance() httprequestWithHUD:_zdjgM2ViewController.view
-                         withRequestURL:STEPURL
-                         withParameters:parametersDictionary
-                             completion:^(NSDictionary *jsonDic) {
-                                 NSLog(@"responseJson: %@", jsonDic);
-                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                     ((UIView *)_detailViewArray[7]).userInteractionEnabled = NO;
-                                     [self refreshButtonAndView:8];
-                                     [GInstance() savaData];
-                                     [_zlfaM2ViewController reloadViewDataForR2];
-                                 } else {
-                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:8];
+        } else {
+            NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"8",
+                                                                                                        @"action": @"diagnose",
+                                                                                                        @"subject_id": globalData.subjectId,
+                                                                                                        @"group_id": globalData.groupNumber,
+                                                                                                        @"zd": globalData.zdjgZDSelectItemR2,
+                                                                                                        @"wxpg": globalData.zdjgPGSelectItemR2,
+                                                                                                        }];
+            if (globalData.zdjgTSelectItemR2) {
+                [parametersDictionary setObject:globalData.zdjgTSelectItemR2 forKey:@"t"];
+            }
+            if (globalData.zdjgNSelectItemR2) {
+                [parametersDictionary setObject:globalData.zdjgNSelectItemR2 forKey:@"n"];
+            }
+            if (globalData.zdjgMSelectItemR2) {
+                [parametersDictionary setObject:globalData.zdjgMSelectItemR2 forKey:@"m"];
+            }
+            [GInstance() httprequestWithHUD:_zdjgM2ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         for (UIView *subView in [_zdjgM2ViewController.view subviews]) {
+                                             if (subView.tag != 999) {
+                                                 subView.userInteractionEnabled = NO;
+                                             }
+                                         }
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             [self refreshButtonAndView:8];
+                                             [GInstance() savaData];
+                                             [_zlfaM2ViewController reloadViewDataForR2];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
                                      }
-                                 }
-                             }];
-    } else if (GInstance().globalData.currentIndex == 8) {
+                                 }];
+        }
+    } else if (globalData.currentIndex == 8) {
         //治疗方案 第二轮确定
-        NSDictionary *parametersDictionary = @{@"step": @"9",
-                                               @"action": @"solution",
-                                               @"subject_id": globalData.subjectId,
-                                               @"group_id": globalData.groupNumber,
-                                               @"solution": [NSString stringWithFormat:@"m%ld",GInstance().globalData.r2Type - 20]};
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:9];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"9",
+                                                   @"action": @"solution",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
 
-        [GInstance() httprequestWithHUD:_zlfaM2ViewController.view
-                         withRequestURL:STEPURL
-                         withParameters:parametersDictionary
-                             completion:^(NSDictionary *jsonDic) {
-                                 NSLog(@"responseJson: %@", jsonDic);
-                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                     ((UIView *)_detailViewArray[8]).userInteractionEnabled = NO;
-                                     [self refreshButtonAndView:9];
-                                     [_bcjzM2ViewController reloadViewDataForR2];
-                                     sender.hidden = YES;
-                                     [GInstance() savaData];
-                                 } else {
-                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                                   @"zdjc": globalData.zlfaLeftSelectedIndex == 5 ? @"Y" : @"N",
+                                                   @"cggz": globalData.zlfaLeftSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"fqgz": globalData.zlfaLeftSelectedIndex == 2 ? @"Y" : @"N",
+                                                   @"wfl": globalData.zlfaLeftSelectedIndex == 3 ? @"Y" : @"N",
+                                                   @"nfl": globalData.zlfaLeftSelectedIndex == 4 ? @"Y" : @"N",
+
+                                                   @"fz": globalData.zlfaR2RightSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"cx": [globalData.zlfaFuzhuType isEqualToString:@"C"] ? @"Y" : @"N",
+                                                   @"jx": [globalData.zlfaFuzhuType isEqualToString:@"J"] ? @"Y" : @"N",
+                                                   @"ssqs": [self ifSelectedFuzhu:@"ssqs"],
+                                                   @"fzqs": [self ifSelectedFuzhu:@"fzqs"],
+                                                   @"fzkx": [self ifSelectedFuzhu:@"fzkx"],
+                                                   @"fzzd": [self ifSelectedFuzhu:@"fzzd"],
+
+                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isXinFuZhu:NO],
+                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isXinFuZhu:NO],
+                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isXinFuZhu:NO],
+                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isXinFuZhu:NO],
+                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isXinFuZhu:NO],
+                                                   @"fta": [self ifSelectedYaowu:@"fta" isXinFuZhu:NO],
+
+                                                   @"zdkx": globalData.zlfaR2RightSelectedIndex == 3 ? @"Y" : @"N",
+                                                   @"hl": globalData.zlfaR2RightSelectedIndex == 2 ? @"Y" : @"N",
+                                                   @"nfm2": globalData.zlfaR2RightSelectedIndex == 4 ? @"Y" : @"N",
+                                                   @"cjs": [globalData.zlfaR2RightYaowuSelected isEqualToString:@"C"] ? @"Y" : @"N",
+                                                   @"fta2": [globalData.zlfaR2RightYaowuSelected isEqualToString:@"F"] ? @"Y" : @"N"
+                                                   };
+
+            for (NSString *keyString in parametersDictionary.allKeys) {
+                NSLog(@"%@ : %@", keyString, parametersDictionary[keyString]);
+            }
+
+            [GInstance() httprequestWithHUD:_zlfaM2ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         for (UIView *subView in [_zlfaM2ViewController.view subviews]) {
+                                             if (subView.tag != 999) {
+                                                 subView.userInteractionEnabled = NO;
+                                             }
+                                         }
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             [self refreshButtonAndView:9];
+                                             [_bcjzM2ViewController reloadViewDataForR2];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
                                      }
-                                 }
-                             }];
-
-    } else if (GInstance().globalData.currentIndex == 9) {
+                                 }];
+        }
+    } else if (globalData.currentIndex == 9) {
         // 病程进展 第二轮确定
         NSDictionary *parametersDictionary = @{@"step": @"10",
                                                @"action": @"result",
@@ -520,15 +676,11 @@ static float const DETAILVIEWIDTH = 872.0f;
                              completion:^(NSDictionary *jsonDic) {
                                  NSLog(@"responseJson: %@", jsonDic);
                                  if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                     sender.hidden = YES;
                                      [GInstance() showInfoMessage:@"治疗结束！"];
                                      [GInstance() savaData];
-//                                     [self refreshButtonAndView:1];
                                  } else {
                                      if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
                                          [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                     } else if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E2]) {
-                                         [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                      }
                                  }
                              }];
@@ -575,6 +727,59 @@ static float const DETAILVIEWIDTH = 872.0f;
     }
 
     return result;
+}
+
+- (NSString *)ifSelectedYaowu:(NSString *)yaowuName isXinFuZhu:(BOOL)isXinFuZhu
+{
+    NSDictionary *yaowuDic = @{@"达菲林 3月剂型":@[@"xfzdpl3", @"dpl3"],
+                               @"达菲林 1月剂型":@[@"xfzdpl1", @"dpl1"],
+                               @"戈舍瑞林":@[@"xfzgsrl", @"gsrl"],
+                               @"亮丙瑞林":@[@"xfzlbrl", @"lbrl"],
+                               @"比卡鲁胺":@[@"xfzbkla", @"bkla"],
+                               @"氟他胺":@[@"xfzfta", @"fta"]
+                               };
+    if (isXinFuZhu) {
+        NSString *yaowu1 = GInstance().globalData.zlfaXinFuZhuYaoWuSeg1;
+        NSString *yaowu2 = GInstance().globalData.zlfaXinFuZhuYaoWuSeg2;
+        NSString *mergeName = [NSString stringWithFormat:@"%@%@", yaowuDic[yaowu1][0], yaowuDic[yaowu2][0]];
+        if ([mergeName hasPrefix:yaowuName] || [mergeName hasSuffix:yaowuName]) {
+            return @"Y";
+        }else {
+            return @"N";
+        }
+    } else {
+        NSString *yaowu1;
+        NSString *yaowu2;
+        if (GInstance().globalData.isFSSetp2) {
+            yaowu1 = GInstance().globalData.zlfaR2FuzhuYaoWuSeg1;
+            yaowu2 = GInstance().globalData.zlfaR2FuzhuYaoWuSeg2;
+        } else {
+            yaowu1 = GInstance().globalData.zlfaFuzhuYaoWuSeg2;
+            yaowu2 = GInstance().globalData.zlfaFuzhuYaoWuSeg3;
+        }
+        NSString *mergeName = [NSString stringWithFormat:@"%@%@", yaowuDic[yaowu1][1], yaowuDic[yaowu2][1]];
+        if ([mergeName hasPrefix:yaowuName] || [mergeName hasSuffix:yaowuName]) {
+            return @"Y";
+        }else {
+            return @"N";
+        }
+    }
+}
+
+- (NSString *)ifSelectedFuzhu:(NSString *)fuzhuName
+{
+    NSArray *fuzhuArray = @[@"ssqs", @"fzqs", @"fzkx", @"fzzd"];
+    NSUInteger keyInt;
+    if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
+        keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex - 1;
+    } else {
+        keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+    }
+    if ([fuzhuArray[keyInt] isEqualToString:fuzhuName]) {
+        return @"Y";
+    } else {
+        return @"N";
+    }
 }
 
 @end

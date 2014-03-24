@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSArray *lcjcTableToImageNameArray;
 @property (assign, nonatomic) BOOL isLcjcDeatilView;
 
+@property (strong, nonatomic) NSArray *checkingStringArray;
+
 - (IBAction)confirmClick:(UIButton *)sender;
 
 @end
@@ -38,8 +40,10 @@
 {
     [super viewDidLoad];
 
-    self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查", @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
-                                         @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR", @"ECOG评分", @"穿刺活检", @"CT检查"];
+    self.lcjcTableViewLabelTextArray = @[@"血常规", @"尿常规", @"血生化", @"凝血筛查",
+                                         @"直肠指诊", @"心电图", @"超声心动", @"胸片",
+                                         @"B超", @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描",
+                                         @"盆腔核磁共振MR", @"ECOG评分", @"穿刺活检", @"CT检查"];
     self.lcjcTableToImageNameArray = @[@"xuechanggui", @"niaochanggui", @"xueshenghua", @"ningxueshaicha",
                                        @"zhichangzhizhen", @"xindiantu", @"chaoshengxindong", @"xiongpian",
                                        @"BChao", @"qianliexianteyikangyuan", @"gaotong", @"gusaomiao",
@@ -51,6 +55,10 @@
     lcjcHeaderLabel.font = [UIFont miscrosoftYaHeiFontWithSize:22.0f];
     lcjcHeaderLabel.textColor = [UIColor colorWithRed:2.0f/255 green:128.0f/255 blue:127.0f/255 alpha:1];
     _tableviewLCJC.tableHeaderView = lcjcHeaderLabel;
+
+    _isLocked = NO;
+    self.checkingStringArray = @[@"xcg", @"ncg", @"xsh", @"nxcc", @"zczz", @"xdt", @"csxd", @"xp",
+                             @"bc", @"psa", @"gt", @"gsm", @"mr", @"ecog", @"cchj", @"ct"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +117,17 @@
                             [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
                         }];
     } else {
+        if (GInstance().globalData.isFSSetp2) {
+            if (GInstance().globalData.lcjcSelectedArrayStringR2.length == 0) {
+                [GInstance() showInfoMessage:@"请完成检查步骤！"];
+                return;
+            }
+        } else {
+            if (GInstance().globalData.lcjcSelectedArrayString.length == 0) {
+                [GInstance() showInfoMessage:@"请完成检查步骤！"];
+                return;
+            }
+        }
         if ([_scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
             [_scrollViewDelegate didClickConfirmButton:sender];
         }
@@ -135,65 +154,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowForR2AtIndexPath:(NSIndexPath *)indexPath
 {
-    if (GInstance().globalData.lcjcSelectedArrayStringR2.length == 0) {
-        GInstance().globalData.lcjcSelectedArrayStringR2 = [NSString string];
+    LLGlobalData *globalData = GInstance().globalData;
+    if (globalData.lcjcSelectedArrayStringR2.length == 0) {
+        globalData.lcjcSelectedArrayStringR2 = [NSString string];
     }
-    NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
-    
-    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]] && GInstance().globalData.maxIndex == 6) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
-        rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
-        GInstance().globalData.lcjcSelectedArrayString = [GInstance().globalData.lcjcSelectedArrayString stringByAppendingFormat:@"%ld,", (long)indexPath.row];
-    }
-    if (GInstance().globalData.maxIndex == 6 || (GInstance().globalData.maxIndex > 6 && [selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]])) {
-        
-        _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
-        _isLcjcDeatilView = YES;
-        [UIView transitionFromView:_tableviewLCJC
-                            toView:_lcjcResultImageView
-                          duration:1.0
-                           options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                        completion:^(BOOL finished) {
-                            [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                        }];
-    }
-}
 
-- (void)tableView:(UITableView *)tableView didSelectRowForR1AtIndexPath:(NSIndexPath *)indexPath
-{
-    if (GInstance().globalData.lcjcSelectedArrayString.length == 0) {
-        GInstance().globalData.lcjcSelectedArrayString = [NSString string];
-    }
-    NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayString componentsSeparatedByString:@","];
-    
-    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]] && GInstance().globalData.maxIndex == 1) {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
-        rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
-        GInstance().globalData.lcjcSelectedArrayString = [GInstance().globalData.lcjcSelectedArrayString stringByAppendingFormat:@"%ld,", (long)indexPath.row];
-    }
-    dispatch_semaphore_t t = dispatch_semaphore_create(0);
-    if (indexPath.row == 12 && GInstance().globalData.lcjcChuanCiBA.length == 0 && GInstance().globalData.maxIndex == 1) {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"您在临床检查中核磁检查的时机选择？"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"穿刺活检前" action:^{
-            GInstance().globalData.lcjcChuanCiBA = @"b";
-            dispatch_semaphore_signal(t);
-            
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"穿刺活检后" action:^{
-            GInstance().globalData.lcjcChuanCiBA = @"a";
-            dispatch_semaphore_signal(t);
-        }], nil] show];
-    } else {
-        dispatch_semaphore_signal(t);
-    }
-    
-    if (GInstance().globalData.maxIndex == 1 || (GInstance().globalData.maxIndex > 1 && [selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]])) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
-            dispatch_async(dispatch_get_main_queue(), ^{
+    NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"7",
+                                                                                                @"action": @"check",
+                                                                                                @"subject_id": globalData.subjectId,
+                                                                                                @"group_id": globalData.groupNumber,
+                                                                                                @"item": _checkingStringArray[indexPath.row]}];
+
+    NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
+    if (_isLocked) {
+        if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+            if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
                 _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
                 _isLcjcDeatilView = YES;
                 [UIView transitionFromView:_tableviewLCJC
@@ -203,14 +178,173 @@
                                 completion:^(BOOL finished) {
                                     [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
                                 }];
-            });
-        });
+            }
+        }
+    } else {
+        if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+            [GInstance() httprequestWithHUD:self.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                                         UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
+                                         rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
+
+                                         _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
+                                         _isLcjcDeatilView = YES;
+                                         globalData.lcjcSelectedArrayStringR2 = [globalData.lcjcSelectedArrayStringR2 stringByAppendingFormat:@"%ld,", (long)indexPath.row];
+                                         [GInstance() savaData];
+
+                                         [UIView transitionFromView:_tableviewLCJC
+                                                             toView:_lcjcResultImageView
+                                                           duration:1.0
+                                                            options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                                         completion:^(BOOL finished) {
+                                                             [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                                         }];
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
+        } else {
+            _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
+            _isLcjcDeatilView = YES;
+            [UIView transitionFromView:_tableviewLCJC
+                                toView:_lcjcResultImageView
+                              duration:1.0
+                               options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                            completion:^(BOOL finished) {
+                                [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                            }];
+        }
     }
+
+//    NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
+//
+//    if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]] && _isLocked == NO) {
+//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//        UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
+//        rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
+//        GInstance().globalData.lcjcSelectedArrayString = [GInstance().globalData.lcjcSelectedArrayString stringByAppendingFormat:@"%ld,", (long)indexPath.row];
+//    }
+//    if (GInstance().globalData.maxIndex == 6 || (GInstance().globalData.maxIndex > 6 && [selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]])) {
+//        
+//        _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
+//        _isLcjcDeatilView = YES;
+//        [UIView transitionFromView:_tableviewLCJC
+//                            toView:_lcjcResultImageView
+//                          duration:1.0
+//                           options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+//                        completion:^(BOOL finished) {
+//                            [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+//                        }];
+//    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowForR1AtIndexPath:(NSIndexPath *)indexPath
+{
+
+    LLGlobalData *globalData = GInstance().globalData;
+    if (globalData.lcjcSelectedArrayString.length == 0) {
+        globalData.lcjcSelectedArrayString = [NSString string];
+    }
+
+    NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"2",
+                                                                                                @"action": @"check",
+                                                                                                @"subject_id": globalData.subjectId,
+                                                                                                @"group_id": globalData.groupNumber,
+                                                                                                @"item": _checkingStringArray[indexPath.row]}];
+    dispatch_semaphore_t t = dispatch_semaphore_create(0);
+    if (indexPath.row == 12 && globalData.lcjcChuanCiBA.length == 0 && !_isLocked) {
+        [[[UIAlertView alloc] initWithTitle:nil
+                                    message:@"您在临床检查中核磁检查的时机选择？"
+                           cancelButtonItem:[RIButtonItem itemWithLabel:@"穿刺活检前" action:^{
+            globalData.lcjcChuanCiBA = @"b";
+            [parametersDictionary setObject:globalData.lcjcChuanCiBA forKey:@"mrpos"];
+            dispatch_semaphore_signal(t);
+        }]
+                           otherButtonItems:[RIButtonItem itemWithLabel:@"穿刺活检后" action:^{
+            globalData.lcjcChuanCiBA = @"a";
+            [parametersDictionary setObject:globalData.lcjcChuanCiBA forKey:@"mrpos"];
+            dispatch_semaphore_signal(t);
+        }], nil] show];
+        [parametersDictionary setObject:@"checkMR" forKey:@"action"];
+    } else {
+        dispatch_semaphore_signal(t);
+        [parametersDictionary setObject:@"check" forKey:@"action"];
+    }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayString componentsSeparatedByString:@","];
+            if (_isLocked) {
+                if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+                    if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+                        _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
+                        _isLcjcDeatilView = YES;
+                        [UIView transitionFromView:_tableviewLCJC
+                                            toView:_lcjcResultImageView
+                                          duration:1.0
+                                           options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                        completion:^(BOOL finished) {
+                                            [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                        }];
+                    }
+                }
+            } else {
+                if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+                    [GInstance() httprequestWithHUD:self.view
+                                     withRequestURL:STEPURL
+                                     withParameters:parametersDictionary
+                                         completion:^(NSDictionary *jsonDic) {
+                                             NSLog(@"responseJson: %@", jsonDic);
+                                             if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                                 UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+                                                 UIImageView *rightImageView = (UIImageView *)[cell viewWithTag:1];
+                                                 rightImageView.image = [UIImage imageNamed:@"lcjcCellRightButtonSelected.png"];
+
+                                                 _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
+                                                 _isLcjcDeatilView = YES;
+                                                 globalData.lcjcSelectedArrayString = [globalData.lcjcSelectedArrayString stringByAppendingFormat:@"%ld,", (long)indexPath.row];
+                                                 [GInstance() savaData];
+
+                                                 [UIView transitionFromView:_tableviewLCJC
+                                                                     toView:_lcjcResultImageView
+                                                                   duration:1.0
+                                                                    options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                                                 completion:^(BOOL finished) {
+                                                                     [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                                                 }];
+                                             } else {
+                                                 if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                     [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                                 }
+                                             }
+                                         }];
+                } else {
+                    _lcjcResultImageView.image = [UIImage imageNamed: [self r2TyeString:indexPath.row]];
+                    _isLcjcDeatilView = YES;
+                    [UIView transitionFromView:_tableviewLCJC
+                                        toView:_lcjcResultImageView
+                                      duration:1.0
+                                       options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                    completion:^(BOOL finished) {
+                                        [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                    }];
+                }
+            }
+
+        });
+    });
 }
 
 - (void)requestOfStep2R1:(NSInteger)index
 {
-//    case1.do?step=2&action=check&subject_id=1&group_id=g1&item=xcg
     NSArray *checkString = @[@"xcg", @"ncg", @"xsh", @"nxcc", @"zczz", @"xdt", @"csxd", @"xp",
                              @"bc", @"psa", @"gt", @"gsm", @"mr", @"ecog", @"ct", @"cchj"];
 
@@ -239,7 +373,6 @@
 
 - (void)requestOfStep2R1MR
 {
-//    case1.do?step=2&action=checkMR&subject_id=1&group_id=g1&item=mr&mrpos=b
     LLGlobalData *globalData = GInstance().globalData;
     NSDictionary *parametersDictionary = @{@"step": @"2",
                                            @"action": @"check",
@@ -266,7 +399,6 @@
 
 - (void)requestOfStep7R2:(NSInteger)index
 {
-//    case1.do?step=7&action=check&subject_id=1&case_id=1&group_id=g1&item=xcg
     NSArray *checkString = @[@"xcg", @"ncg", @"xsh", @"nxcc", @"zczz", @"xdt", @"csxd", @"xp",
                              @"bc", @"psa", @"gt", @"gsm", @"mr", @"ecog", @"ct", @"cchj"];
     LLGlobalData *globalData = GInstance().globalData;

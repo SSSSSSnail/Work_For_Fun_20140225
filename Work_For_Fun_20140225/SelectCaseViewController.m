@@ -75,13 +75,12 @@
                          withParameters:parameterDictionary
                              completion:^(NSDictionary *jsonDic) {
                                  NSLog(@"responseJson: %@", jsonDic);
-#warning TODO: 请求服务器创建分组
                                  if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
                                      globalData.hasAddtoGroup = @"Y";
                                      [GInstance() savaData];
                                      [self performSegueWithIdentifier:@"modalToMain" sender:self];
                                  } else {
-                                     [GInstance() showErrorMessage:@"初始化失败，请检查组名 !"];
+                                     [GInstance() showErrorMessage:@"初始化失败，请选择其他组名 !"];
                                  }
                              }];
     } else {
