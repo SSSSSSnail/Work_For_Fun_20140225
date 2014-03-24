@@ -444,6 +444,7 @@ static float const DETAILVIEWIDTH = 872.0f;
                                              [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                          } else {
                                              [self refreshButtonAndView:4];
+                                             [_zlfaViewController rollToTopView];
                                              [_bcjzViewController changeLabelText:[self refreshResult]];
                                              [GInstance() savaData];
                                          }
@@ -461,6 +462,7 @@ static float const DETAILVIEWIDTH = 872.0f;
                 }
             }
             [self refreshButtonAndView:4];
+            [_zlfaViewController rollToTopView];
             [_bcjzViewController changeLabelText:[self refreshResult]];
             [GInstance() savaData];
 #endif
@@ -604,6 +606,7 @@ static float const DETAILVIEWIDTH = 872.0f;
                                  }];
 #endif
 #ifdef SKIPREQUEST
+            _lcjcM2ViewController.isLocked = YES;
             [_zdjgM2ViewController loadDataFromGlobalData];
             [self refreshButtonAndView:7];
             [_zdjgM2ViewController reloadViewDataForR2];
@@ -726,6 +729,7 @@ static float const DETAILVIEWIDTH = 872.0f;
                                              [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                          } else {
                                              [self refreshButtonAndView:9];
+                                             [_zlfaM2ViewController rollToTopView];
                                              [_bcjzM2ViewController reloadViewDataForR2];
                                              [GInstance() savaData];
                                          }
@@ -743,6 +747,7 @@ static float const DETAILVIEWIDTH = 872.0f;
                 }
             }
             [self refreshButtonAndView:9];
+            [_zlfaM2ViewController rollToTopView];
             [_bcjzM2ViewController reloadViewDataForR2];
             [GInstance() savaData];
 #endif

@@ -1049,4 +1049,25 @@
         }
     }
 }
+
+- (void)rollToTopView
+{
+    if (!GInstance().globalData.isFSSetp2) {
+        [self.view bringSubviewToFront:_section1View];
+        _section2View.hidden = YES;
+        _section1View.hidden = NO;
+        _addFuzhuButton.hidden = YES;
+        _titleLabel.text = @"选择治疗方案";
+        _rightView1.hidden = NO;
+        _rightView2.hidden = YES;
+    } else {
+        [self.view bringSubviewToFront:_section1View];
+        _section2View.hidden = YES;
+        _section1View.hidden = NO;
+        _addFuzhuButton.hidden = YES;
+        _titleLabel.text = @"选择治疗方案";
+        _rightView2.hidden = YES;
+        _rightViewR2.hidden = NO;
+    }
+}
 @end

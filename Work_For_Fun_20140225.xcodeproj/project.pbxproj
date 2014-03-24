@@ -65,6 +65,7 @@
 		0762576618D2E6A70080B9DC /* HZQKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0762576518D2E6A70080B9DC /* HZQKViewController.m */; };
 		076CFEB718CC146B000F298E /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB618CC146B000F298E /* UIAlertView+Blocks.m */; };
 		076CFEBA18CC1534000F298E /* RIButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 076CFEB918CC1534000F298E /* RIButtonItem.m */; };
+		07A30F1418E08BEA00C41586 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A30F1318E08BEA00C41586 /* logo.png */; };
 		07AF0AAD18BCDC8C002356CE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AF0AAC18BCDC8C002356CE /* Foundation.framework */; };
 		07AF0AAF18BCDC8C002356CE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AF0AAE18BCDC8C002356CE /* CoreGraphics.framework */; };
 		07AF0AB118BCDC8C002356CE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AF0AB018BCDC8C002356CE /* UIKit.framework */; };
@@ -367,6 +368,7 @@
 		076CFEB618CC146B000F298E /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Blocks.m"; sourceTree = "<group>"; };
 		076CFEB818CC1534000F298E /* RIButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RIButtonItem.h; sourceTree = "<group>"; };
 		076CFEB918CC1534000F298E /* RIButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RIButtonItem.m; sourceTree = "<group>"; };
+		07A30F1318E08BEA00C41586 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		07AF0AA918BCDC8C002356CE /* Work_For_Fun_20140225.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Work_For_Fun_20140225.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AF0AAC18BCDC8C002356CE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07AF0AAE18BCDC8C002356CE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -867,6 +869,7 @@
 		07AF0AB318BCDC8C002356CE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				07A30F1318E08BEA00C41586 /* logo.png */,
 				CEB92C2218C63339009928EB /* Fonts */,
 				07B52C2B18C62BEF0003B3C2 /* Settings */,
 				07D2AD7018C3473F00FEC498 /* Vendor */,
@@ -1371,6 +1374,7 @@
 				CE7B93D518D71959008B0363 /* gusaomiaoM2@2x.png in Resources */,
 				07BF9FA918CB7B8700FABFB9 /* xiongpian@2x.png in Resources */,
 				CE80216318D54F5D0051F86D /* bcjz7@2x.png in Resources */,
+				07A30F1418E08BEA00C41586 /* logo.png in Resources */,
 				CE7B93EA18D71959008B0363 /* xiongpianM3@2x.png in Resources */,
 				CE7B945718D71970008B0363 /* xindiantuM6@2x.png in Resources */,
 				CE80215E18D54F5D0051F86D /* bcjz2@2x.png in Resources */,
