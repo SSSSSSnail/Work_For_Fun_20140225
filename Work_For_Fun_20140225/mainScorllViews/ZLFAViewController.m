@@ -41,6 +41,7 @@
 @property (assign, nonatomic) BOOL showFuzhu;
 @property (assign, nonatomic) BOOL section2FirtLanuch;
 @property (assign, nonatomic) BOOL showFuzhuDetail;
+@property (assign, nonatomic) BOOL clickAddFuzhu;
 
 //R2
 @property (strong, nonatomic) IBOutletCollection(UISegmentedControl) NSArray *r2RightSegCollection;
@@ -111,7 +112,7 @@
 
 - (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender
 {
-    if (_showFuzhu) {
+    if (_clickAddFuzhu && !GInstance().globalData.fsStep2) {
         BOOL fuzhuEnable = sender.selectedSegmentIndex == 0 ? NO : YES;
         if (sender.tag == 3) {
             _right2FuzhuSegmentControl.enabled = fuzhuEnable;
@@ -283,6 +284,7 @@
     _shouldToNext = YES;
     _rightView2.hidden = NO;
     _rightView1.hidden = YES;
+    _clickAddFuzhu = YES;
 
     for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
         segmentedControl.enabled = NO;
@@ -660,7 +662,7 @@
                 _section2Picker1.hidden = YES;
                 _section2Picker2.hidden = YES;
                 _section2Picker3.hidden = YES;
-                imageName = [NSString stringWithFormat:@"zlfaSection2LeftBG_%ld.png", GInstance().globalData.zlfaLeftSelectedIndex];
+                imageName = [NSString stringWithFormat:@"zlfaSection2LeftBG_%ld.png", (unsigned long)GInstance().globalData.zlfaLeftSelectedIndex];
             }
             _shouldToNext = YES;
         } else {
@@ -672,7 +674,7 @@
                 _section2Picker2.hidden = YES;
                 _section2Picker3.hidden = YES;
 
-                imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", GInstance().globalData.zlfaRightSelectedIndex];
+                imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
             } else if (GInstance().globalData.zlfaRightSelectedIndex == 3) {
                 _section2Picker1.hidden = NO;
                 _section2Picker1.frame = CGRectMake(157.0f, 149.0f, 200.0f, 216.0f);
@@ -684,7 +686,7 @@
                 [_section2Picker2 reloadAllComponents];
                 _section2Picker3.hidden = YES;
 
-                imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", GInstance().globalData.zlfaRightSelectedIndex];
+                imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
             }
             _section2FirtLanuch = YES;
             _shouldShowLeft = YES;
@@ -694,7 +696,7 @@
             _section2Picker1.hidden = YES;
             _section2Picker2.hidden = YES;
             _section2Picker3.hidden = YES;
-            imageName = [NSString stringWithFormat:@"zlfaSection2LeftBG_%ld.png", GInstance().globalData.zlfaLeftSelectedIndex];
+            imageName = [NSString stringWithFormat:@"zlfaSection2LeftBG_%ld.png", (unsigned long)GInstance().globalData.zlfaLeftSelectedIndex];
         }
         _shouldToNext = YES;
     }
@@ -772,7 +774,7 @@
                 _section2Picker3.hidden = YES;
             }
             titleString = @"选择具体治疗方法";
-            imageName = [NSString stringWithFormat:@"zlfaR2FuzhuDetail_%lu.png", iamgeIndex];
+            imageName = [NSString stringWithFormat:@"zlfaR2FuzhuDetail_%lu.png", (unsigned long)iamgeIndex];
 
         } else {
             if (iamgeIndex == 2) {
@@ -815,7 +817,7 @@
                 _section2Picker3.hidden = YES;
             }
             titleString = @"选择具体治疗方法";
-            imageName = [NSString stringWithFormat:@"zlfaFuzhuDetail_%lu.png", iamgeIndex];
+            imageName = [NSString stringWithFormat:@"zlfaFuzhuDetail_%lu.png", (unsigned long)iamgeIndex];
         }
     } else {
         imageName = @"zlfaSection2LeftBG_3.png";
@@ -931,7 +933,7 @@
         } else {
             keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
         }
-        dicKeyString = [NSString stringWithFormat:@"%ld_%lu",(long)pickerView.tag, keyInt];
+        dicKeyString = [NSString stringWithFormat:@"%ld_%lu",(long)pickerView.tag, (unsigned long)keyInt];
     } else if (_showR2FuzhuDetail) {
         NSUInteger keyInt;
         if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
@@ -939,7 +941,7 @@
         } else {
             keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
         }
-        dicKeyString = [NSString stringWithFormat:@"%ld,%lu",(long)pickerView.tag, keyInt];
+        dicKeyString = [NSString stringWithFormat:@"%ld,%lu",(long)pickerView.tag, (unsigned long)keyInt];
     } else {
         dicKeyString = [NSString stringWithFormat:@"%ld%lu",(long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
     }
@@ -954,6 +956,9 @@
     _rightView2.hidden = YES;
     _rightViewR2.hidden = NO;
 
+    GInstance().globalData.zlfaFuzhuType = @"";
+    GInstance().globalData.zlfaFuzhuSelectedIndex = 0;
+
     if (GInstance().globalData.r2Type == M1) {
         for (UISegmentedControl *segmentControl in _r2RightSegCollection) {
             if (segmentControl.tag != 301) {
@@ -962,7 +967,7 @@
         }
     } else if (GInstance().globalData.r2Type == M2) {
         for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
-            if (segmentControl.tag != 3 && segmentControl.tag != 4) {
+            if (segmentControl.tag != 3) {
                 segmentControl.enabled = NO;
             }
         }

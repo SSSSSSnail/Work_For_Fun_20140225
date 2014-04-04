@@ -66,6 +66,8 @@
     CGFloat yPosition = isTypeBetween2to6 ? 442.0f : 387;
     _bshgImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"bshg%ld.png",GInstance().globalData.r1Result]];
     _bshgImageView.frame = CGRectMake(CGRectGetMinX(frame), yPosition, CGRectGetWidth(frame), CGRectGetHeight(frame));
+
+    _dateTimeLabel.text = GInstance().globalData.dateTimeOneMonth;
 }
 
 - (IBAction)confirmClick:(UIButton *)sender
@@ -129,7 +131,7 @@
 //        临床分期cTNM：T2aN0M0
         cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
-        lab.text = [NSString stringWithFormat:@"临床分期cTNM：T%@N%@M%@",GInstance().globalData.zdjgTSelectItem, GInstance().globalData.zdjgNSelectItem, GInstance().globalData.zdjgNSelectItem];
+        lab.text = [NSString stringWithFormat:@"临床分期cTNM：T%@N%@M%@",GInstance().globalData.zdjgTSelectItem, GInstance().globalData.zdjgNSelectItem, GInstance().globalData.zdjgMSelectItem];
     } else if (indexPath.row == 7) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"buttonLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
@@ -140,7 +142,7 @@
             button1.selected = YES;
         }
         UIButton *button2 = (UIButton *)[cell viewWithTag:3];
-        if (gdata.zlfaLeftSelectedIndex == 3 || gdata.zlfaLeftSelectedIndex == 4 || [gdata.zlfaFuzhuType isEqualToString:@"W"]) {
+        if (gdata.zlfaLeftSelectedIndex == 3 || gdata.zlfaLeftSelectedIndex == 4 || [gdata.zlfaFuzhuOrZhaoShe isEqualToString:@"W"]) {
             button2.selected = YES;
         }
         UIButton *button3 = (UIButton *)[cell viewWithTag:4];
@@ -216,17 +218,23 @@
 
 - (NSString *)zhenduanString
 {
-    NSString *string = GInstance().globalData.zdjgZDSelectItem;
-    if ([string isEqualToString:@"bph"]) {
-        return @"前列腺增生";
-    } else if ([string isEqualToString:@"jxa"]) {
-        return @"局限性前列腺癌";
-    } else if ([string isEqualToString:@"jxw"]) {
-        return @"局部晚期前列腺癌";
-    } else if ([string isEqualToString:@"zya"]) {
-        return @"转移性前列腺癌";
+    NSArray *itemsArray = [GInstance().globalData.zdjgZDSelectItem componentsSeparatedByString:@","];
+    NSMutableString *itemsString = [NSMutableString string];
+    for (NSString *item in itemsArray) {
+        if ([item isEqualToString:@"bph"]) {
+            [itemsString appendFormat:@"%@, ", @"前列腺增生"];
+        } else if ([item isEqualToString:@"jxa"]) {
+            [itemsString appendFormat:@"%@, ", @"局限性前列腺癌"];
+        } else if ([item isEqualToString:@"jxw"]) {
+            [itemsString appendFormat:@"%@, ", @"局部晚期前列腺癌"];
+        } else if ([item isEqualToString:@"zya"]) {
+            [itemsString appendFormat:@"%@, ", @"转移性前列腺癌"];
+        }
     }
-    return @"";
+    if (itemsString.length > 2) {
+        [itemsString deleteCharactersInRange:NSMakeRange(itemsString.length - 2, 2)];
+    }
+    return itemsString;
 }
 
 - (NSString *)weixianxingpingguString

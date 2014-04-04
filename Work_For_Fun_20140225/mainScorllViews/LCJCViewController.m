@@ -138,7 +138,6 @@
 - (void)reloadViewDataForR2
 {
     _dateTimeLabel.text = GInstance().globalData.dateTimeOneMonth;
-    [_tableviewLCJC reloadData];
 }
 
 #pragma mark - Private Method

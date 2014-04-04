@@ -1095,7 +1095,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9nz-ur-Rly">
-                                <rect key="frame" x="705" y="85" width="117" height="31"/>
+                                <rect key="frame" x="700" y="78" width="140" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="zlfaSection2RightButtonSelected.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1251,7 +1251,7 @@
         <image name="zlfaBGRight1.png" width="400" height="471"/>
         <image name="zlfaBGRight2.png" width="352" height="145"/>
         <image name="zlfaSection1BG.png" width="853" height="513"/>
-        <image name="zlfaSection2RightButtonSelected.png" width="117" height="31"/>
+        <image name="zlfaSection2RightButtonSelected.png" width="140" height="37"/>
         <image name="zlfaSelected.png" width="131" height="126"/>
         <image name="zlfaUnselected.png" width="131" height="126"/>
     </resources>
