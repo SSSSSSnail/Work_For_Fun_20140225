@@ -145,7 +145,7 @@
 - (NSString *)r2TyeString:(NSInteger)row
 {
     if (GInstance().globalData.r2Type > 0) {
-        return [NSString stringWithFormat:@"%@M%ld", _lcjcTableToImageNameArray[row],GInstance().globalData.r2Type - 20];
+        return [NSString stringWithFormat:@"%@M%d", _lcjcTableToImageNameArray[row],GInstance().globalData.r2Type - 20];
     } else {
         return [NSString stringWithFormat:@"%@", _lcjcTableToImageNameArray[row]];
     }

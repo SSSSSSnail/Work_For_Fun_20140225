@@ -68,7 +68,7 @@ static NSString *sixMonthCase5           = @"2002/12/18 星期一";//twoyear thr
 {
     //切换图片
     GInstance().globalData.r1Result = result;
-    _bcjzImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bcjz%ld.png", result]];
+    _bcjzImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bcjz%d.png", result]];
     GInstance().globalData.r2Type = [self mResultFromResult:result];
     //切换Label
     switch (result) {

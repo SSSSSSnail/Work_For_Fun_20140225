@@ -64,7 +64,7 @@
     [_bshgTable reloadData];
     frame = _bshgImageView.frame;
     CGFloat yPosition = isTypeBetween2to6 ? 442.0f : 387;
-    _bshgImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"bshg%ld.png",GInstance().globalData.r1Result]];
+    _bshgImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"bshg%d.png",GInstance().globalData.r1Result]];
     _bshgImageView.frame = CGRectMake(CGRectGetMinX(frame), yPosition, CGRectGetWidth(frame), CGRectGetHeight(frame));
 
     _dateTimeLabel.text = GInstance().globalData.dateTimeOneMonth;

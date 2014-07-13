@@ -175,7 +175,6 @@ static float const DETAILVIEWIDTH = 872.0f;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-#warning TODO: 加载旧数据并赋值
 //    GInstance().globalData.currentIndex = 5;
 //    GInstance().globalData.r2Type = M1;
 //    GInstance().globalData.fsStep2 = YES;
@@ -496,8 +495,8 @@ static float const DETAILVIEWIDTH = 872.0f;
                                                    @"action": @"result",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
-                                                   @"solution": [NSString stringWithFormat:@"m%ld",[_bcjzViewController mResultFromResult:[self refreshResult]] - 20],
-                                                   @"col1": [NSString stringWithFormat:@"%ld", [self refreshResult]],
+                                                   @"solution": [NSString stringWithFormat:@"m%d",[_bcjzViewController mResultFromResult:[self refreshResult]] - 20],
+                                                   @"col1": [NSString stringWithFormat:@"%d", [self refreshResult]],
                                                    @"col2": [_hzqkM2ViewController linchuangjiancheString],
                                                    @"col3": [_hzqkM2ViewController zhenduanString],
                                                    @"col4": [_hzqkM2ViewController weixianxingpingguString],
@@ -703,7 +702,7 @@ static float const DETAILVIEWIDTH = 872.0f;
                                                    @"action": @"solution",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
-                                                   @"solution": [NSString stringWithFormat:@"m%ld",[_bcjzViewController mResultFromResult:globalData.r1Result] - 20],
+                                                   @"solution": [NSString stringWithFormat:@"m%d",[_bcjzViewController mResultFromResult:globalData.r1Result] - 20],
 
                                                    @"zdjc": globalData.zlfaLeftSelectedIndex == 5 ? @"Y" : @"N",
                                                    @"cggz": globalData.zlfaLeftSelectedIndex == 1 ? @"Y" : @"N",

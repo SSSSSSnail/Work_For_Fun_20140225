@@ -83,7 +83,7 @@
 #endif
 #ifdef SKIPREQUEST
         globalData.hasAddtoGroup = @"Y";
-        [GInstance() savaData];
+        [GInstance() savaData:globalData];
         [self performSegueWithIdentifier:@"modalToMain" sender:self];
 #endif
     } else {
