@@ -211,7 +211,9 @@
                                           duration:1.0
                                            options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
                                         completion:^(BOOL finished) {
-                                            _lcjcResultImageViewFull.hidden = hideFullImage;
+                                            if (_isLcjcDeatilView) {
+                                                _lcjcResultImageViewFull.hidden = hideFullImage;
+                                            }
                                             [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
                                         }];
                     }
@@ -233,7 +235,9 @@
                                                                    duration:1.0
                                                                     options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
                                                                  completion:^(BOOL finished) {
-                                                                     _lcjcResultImageViewFull.hidden = hideFullImage;
+                                                                     if (_isLcjcDeatilView) {
+                                                                         _lcjcResultImageViewFull.hidden = hideFullImage;
+                                                                     }
                                                                      [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
                                                                  }];
                                              } else {
@@ -249,7 +253,9 @@
                                       duration:1.0
                                        options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
                                     completion:^(BOOL finished) {
-                                        _lcjcResultImageViewFull.hidden = hideFullImage;
+                                        if (_isLcjcDeatilView) {
+                                            _lcjcResultImageViewFull.hidden = hideFullImage;
+                                        }
                                         [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
                                     }];
                 }
@@ -274,87 +280,68 @@
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
                                                    @"item": _checkingStringArray[indexPath.row]} mutableCopy];
-    dispatch_semaphore_t t = dispatch_semaphore_create(0);
-    if (indexPath.row == 12 && globalData.lcjcChuanCiBA.length == 0 && !_isLocked) {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"您在临床检查中核磁检查的时机选择？"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"穿刺活检前" action:^{
-            globalData.lcjcChuanCiBA = @"b";
-            [parametersDictionary setObject:globalData.lcjcChuanCiBA forKey:@"mrpos"];
-            dispatch_semaphore_signal(t);
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"穿刺活检后" action:^{
-            globalData.lcjcChuanCiBA = @"a";
-            [parametersDictionary setObject:globalData.lcjcChuanCiBA forKey:@"mrpos"];
-            dispatch_semaphore_signal(t);
-        }], nil] show];
-        [parametersDictionary setObject:@"checkMR" forKey:@"action"];
-    } else {
-        dispatch_semaphore_signal(t);
-        [parametersDictionary setObject:@"check" forKey:@"action"];
-    }
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR1 componentsSeparatedByString:@","];
-            BOOL hideFullImage = [self reloadResultImageView:indexPath.row];
+    NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
+    BOOL hideFullImage = [self reloadResultImageView:indexPath.row];
 
-            if (_isLocked) {
-                if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
-                    if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
-                        _isLcjcDeatilView = YES;
-                        [UIView transitionFromView:_tableviewLCJC
-                                            toView:_lcjcResultImageView
-                                          duration:1.0
-                                           options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                                        completion:^(BOOL finished) {
-                                            _lcjcResultImageViewFull.hidden = hideFullImage;
-                                            [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                                        }];
-                    }
-                }
-            } else {
-                if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
-                    [GInstance() httprequestWithHUD:self.view
-                                     withRequestURL:STEPURL
-                                     withParameters:parametersDictionary
-                                         completion:^(NSDictionary *jsonDic) {
-                                             NSLog(@"responseJson: %@", jsonDic);
-                                             if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                                 _isLcjcDeatilView = YES;
-                                                 globalData.lcjcSelectedArrayStringR1 = [globalData.lcjcSelectedArrayStringR1 stringByAppendingFormat:@"%ld,", (long)indexPath.row];
-                                                 [GInstance() savaData];
-
-                                                 [UIView transitionFromView:_tableviewLCJC
-                                                                     toView:_lcjcResultImageView
-                                                                   duration:1.0
-                                                                    options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                                                                 completion:^(BOOL finished) {
-                                                                     _lcjcResultImageViewFull.hidden = hideFullImage;
-                                                                     [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                                                                 }];
-                                             } else {
-                                                 if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                                     [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                                 }
-                                             }
-                                         }];
-                } else {
-                    _isLcjcDeatilView = YES;
-                    [UIView transitionFromView:_tableviewLCJC
-                                        toView:_lcjcResultImageView
-                                      duration:1.0
-                                       options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                                    completion:^(BOOL finished) {
+    if (_isLocked) {
+        if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+            if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+                _isLcjcDeatilView = YES;
+                [UIView transitionFromView:_tableviewLCJC
+                                    toView:_lcjcResultImageView
+                                  duration:1.0
+                                   options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                completion:^(BOOL finished) {
+                                    if (_isLcjcDeatilView) {
                                         _lcjcResultImageViewFull.hidden = hideFullImage;
-                                        [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                                    }];
-                }
+                                    }
+                                    [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                }];
             }
-            
-        });
-    });
+        }
+    } else {
+        if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+            [GInstance() httprequestWithHUD:self.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         _isLcjcDeatilView = YES;
+                                         globalData.lcjcSelectedArrayStringR2 = [globalData.lcjcSelectedArrayStringR2 stringByAppendingFormat:@"%ld,", (long)indexPath.row];
+                                         [GInstance() savaData];
+
+                                         [UIView transitionFromView:_tableviewLCJC
+                                                             toView:_lcjcResultImageView
+                                                           duration:1.0
+                                                            options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                                         completion:^(BOOL finished) {
+                                                             if (_isLcjcDeatilView) {
+                                                                 _lcjcResultImageViewFull.hidden = hideFullImage;
+                                                             }
+                                                             [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                                         }];
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
+        } else {
+            _isLcjcDeatilView = YES;
+            [UIView transitionFromView:_tableviewLCJC
+                                toView:_lcjcResultImageView
+                              duration:1.0
+                               options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                            completion:^(BOOL finished) {
+                                if (_isLcjcDeatilView) {
+                                    _lcjcResultImageViewFull.hidden = hideFullImage;
+                                }
+                                [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                            }];
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowForR3AtIndexPath:(NSIndexPath *)indexPath

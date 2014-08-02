@@ -43,7 +43,7 @@
     if (mNumber == 3 || mNumber == 5) {
         lastNumber = GCase2().zlfaFuzhuChixuJianxieSelectedIndex;
     }
-    if (mNumber == 7 || mNumber == 8 || mNumber == 9) {
+    if (mNumber == 8 || mNumber == 9) {
         lastNumber = GCase2().zlfaChixuJianxieSelectedIndex;
     }
     _bcjzContentImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"c2bqjzM%ld_%ld", (long)mNumber, (long)lastNumber]];

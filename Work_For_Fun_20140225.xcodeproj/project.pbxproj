@@ -24,6 +24,8 @@
 		072D1C22198BEE6C00703757 /* c2bqjzM8_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 072D1C16198BEE6C00703757 /* c2bqjzM8_2@2x.png */; };
 		072D1C23198BEE6C00703757 /* c2bqjzM9_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 072D1C17198BEE6C00703757 /* c2bqjzM9_1@2x.png */; };
 		072D1C24198BEE6C00703757 /* c2bqjzM9_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 072D1C18198BEE6C00703757 /* c2bqjzM9_2@2x.png */; };
+		073803FE198CF61400848C86 /* ZDJGS2C2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 073803FD198CF61400848C86 /* ZDJGS2C2ViewController.m */; };
+		07380403198D017900848C86 /* ZLFAS2C2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07380402198D017900848C86 /* ZLFAS2C2ViewController.m */; };
 		0750C73818C1B23A00640D1F /* cover1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0750C73718C1B23A00640D1F /* cover1@2x.png */; };
 		0750C73B18C1B35200640D1F /* Cover2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750C73A18C1B35200640D1F /* Cover2ViewController.m */; };
 		0750C73D18C1B45500640D1F /* cover2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0750C73C18C1B45500640D1F /* cover2@2x.png */; };
@@ -156,6 +158,9 @@
 		07C1C9EE1986824400D62F85 /* c2gusaomiao_full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07C1C9EA1986824400D62F85 /* c2gusaomiao_full@2x.png */; };
 		07C1C9EF1986824400D62F85 /* c2penqianghecigongzhen_full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07C1C9EB1986824400D62F85 /* c2penqianghecigongzhen_full@2x.png */; };
 		07CF0080198C0F4700C26F63 /* c2leftMenuBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07CF007F198C0F4700C26F63 /* c2leftMenuBG@2x.png */; };
+		07CF0083198CA11200C26F63 /* BSHGC2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CF0082198CA11200C26F63 /* BSHGC2ViewController.m */; };
+		07CF0085198CCA5100C26F63 /* c2waifangliao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07CF0084198CCA5100C26F63 /* c2waifangliao@2x.png */; };
+		07CF0087198CF33400C26F63 /* zdjgBG2_C2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07CF0086198CF33400C26F63 /* zdjgBG2_C2@2x.png */; };
 		07D0C6ED18DD2A69007D6235 /* gusaomiao@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07BF9FAF18CB7DFC00FABFB9 /* gusaomiao@2x.png */; };
 		07D0C6EE18DD2A69007D6235 /* bcjz9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE80215A18D54F5D0051F86D /* bcjz9@2x.png */; };
 		07D2AD6918C3468300FEC498 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D2AD6818C3468300FEC498 /* MobileCoreServices.framework */; };
@@ -379,6 +384,10 @@
 		072D1C16198BEE6C00703757 /* c2bqjzM8_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c2bqjzM8_2@2x.png"; sourceTree = "<group>"; };
 		072D1C17198BEE6C00703757 /* c2bqjzM9_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c2bqjzM9_1@2x.png"; sourceTree = "<group>"; };
 		072D1C18198BEE6C00703757 /* c2bqjzM9_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c2bqjzM9_2@2x.png"; sourceTree = "<group>"; };
+		073803FC198CF61400848C86 /* ZDJGS2C2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDJGS2C2ViewController.h; sourceTree = "<group>"; };
+		073803FD198CF61400848C86 /* ZDJGS2C2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDJGS2C2ViewController.m; sourceTree = "<group>"; };
+		07380401198D017900848C86 /* ZLFAS2C2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLFAS2C2ViewController.h; sourceTree = "<group>"; };
+		07380402198D017900848C86 /* ZLFAS2C2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLFAS2C2ViewController.m; sourceTree = "<group>"; };
 		0750C73718C1B23A00640D1F /* cover1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cover1@2x.png"; sourceTree = "<group>"; };
 		0750C73918C1B35200640D1F /* Cover2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cover2ViewController.h; sourceTree = "<group>"; };
 		0750C73A18C1B35200640D1F /* Cover2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cover2ViewController.m; sourceTree = "<group>"; };
@@ -534,6 +543,10 @@
 		07C1C9EA1986824400D62F85 /* c2gusaomiao_full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c2gusaomiao_full@2x.png"; sourceTree = "<group>"; };
 		07C1C9EB1986824400D62F85 /* c2penqianghecigongzhen_full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c2penqianghecigongzhen_full@2x.png"; sourceTree = "<group>"; };
 		07CF007F198C0F4700C26F63 /* c2leftMenuBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c2leftMenuBG@2x.png"; sourceTree = "<group>"; };
+		07CF0081198CA11200C26F63 /* BSHGC2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSHGC2ViewController.h; sourceTree = "<group>"; };
+		07CF0082198CA11200C26F63 /* BSHGC2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSHGC2ViewController.m; sourceTree = "<group>"; };
+		07CF0084198CCA5100C26F63 /* c2waifangliao@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c2waifangliao@2x.png"; sourceTree = "<group>"; };
+		07CF0086198CF33400C26F63 /* zdjgBG2_C2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zdjgBG2_C2@2x.png"; sourceTree = "<group>"; };
 		07D2AD6818C3468300FEC498 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		07D2AD6A18C3468D00FEC498 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		07D2AD6C18C3469400FEC498 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -787,6 +800,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		073803FF198CF61A00848C86 /* Round2 */ = {
+			isa = PBXGroup;
+			children = (
+				07CF0081198CA11200C26F63 /* BSHGC2ViewController.h */,
+				07CF0082198CA11200C26F63 /* BSHGC2ViewController.m */,
+				073803FC198CF61400848C86 /* ZDJGS2C2ViewController.h */,
+				073803FD198CF61400848C86 /* ZDJGS2C2ViewController.m */,
+				07380401198D017900848C86 /* ZLFAS2C2ViewController.h */,
+				07380402198D017900848C86 /* ZLFAS2C2ViewController.m */,
+			);
+			name = Round2;
+			sourceTree = "<group>";
+		};
+		07380400198CF63100848C86 /* Round1 */ = {
+			isa = PBXGroup;
+			children = (
+				07E54EB91984B2DE001D5C15 /* HZQKC2ViewController.h */,
+				07E54EBA1984B2DE001D5C15 /* HZQKC2ViewController.m */,
+				07E54EBF1984B32F001D5C15 /* ZDJGC2ViewController.h */,
+				07E54EC01984B32F001D5C15 /* ZDJGC2ViewController.m */,
+				07E54EC21984B340001D5C15 /* ZLFAC2ViewController.h */,
+				07E54EC31984B340001D5C15 /* ZLFAC2ViewController.m */,
+				07E54EC51984B356001D5C15 /* BCJZC2ViewController.h */,
+				07E54EC61984B356001D5C15 /* BCJZC2ViewController.m */,
+			);
+			name = Round1;
+			sourceTree = "<group>";
+		};
 		0750C73618C1B13A00640D1F /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1129,16 +1170,10 @@
 		07E54EB519827A13001D5C15 /* Case2ScrollViews */ = {
 			isa = PBXGroup;
 			children = (
-				07E54EB91984B2DE001D5C15 /* HZQKC2ViewController.h */,
-				07E54EBA1984B2DE001D5C15 /* HZQKC2ViewController.m */,
+				07380400198CF63100848C86 /* Round1 */,
+				073803FF198CF61A00848C86 /* Round2 */,
 				07E54EBC1984B2FE001D5C15 /* LCJCC2ViewController.h */,
 				07E54EBD1984B2FE001D5C15 /* LCJCC2ViewController.m */,
-				07E54EBF1984B32F001D5C15 /* ZDJGC2ViewController.h */,
-				07E54EC01984B32F001D5C15 /* ZDJGC2ViewController.m */,
-				07E54EC21984B340001D5C15 /* ZLFAC2ViewController.h */,
-				07E54EC31984B340001D5C15 /* ZLFAC2ViewController.m */,
-				07E54EC51984B356001D5C15 /* BCJZC2ViewController.h */,
-				07E54EC61984B356001D5C15 /* BCJZC2ViewController.m */,
 				07E54EC81984B451001D5C15 /* Case2SuperViewController.h */,
 				07E54EC91984B451001D5C15 /* Case2SuperViewController.m */,
 			);
@@ -1148,6 +1183,8 @@
 		07E54ECB1985029C001D5C15 /* c2images */ = {
 			isa = PBXGroup;
 			children = (
+				07CF0086198CF33400C26F63 /* zdjgBG2_C2@2x.png */,
+				07CF0084198CCA5100C26F63 /* c2waifangliao@2x.png */,
 				07CF007F198C0F4700C26F63 /* c2leftMenuBG@2x.png */,
 				072D1C0D198BEE6C00703757 /* c2bqjzM2_0@2x.png */,
 				072D1C0E198BEE6C00703757 /* c2bqjzM3_1@2x.png */,
@@ -1491,6 +1528,7 @@
 				CE7B945C18D71970008B0363 /* BChaoM8@2x.png in Resources */,
 				CE7B93EF18D71959008B0363 /* chaoshengxindongM4@2x.png in Resources */,
 				CE7B93D918D71959008B0363 /* qianliexianteyikangyuanM2@2x.png in Resources */,
+				07CF0087198CF33400C26F63 /* zdjgBG2_C2@2x.png in Resources */,
 				CE80215D18D54F5D0051F86D /* bcjz1@2x.png in Resources */,
 				CE7B946718D71970008B0363 /* xindiantuM8@2x.png in Resources */,
 				CE7B940218D71959008B0363 /* gaotongM7@2x.png in Resources */,
@@ -1721,6 +1759,7 @@
 				075CC85918D555F50099F1D9 /* zlfaSection2LeftBG_3@2x.png in Resources */,
 				CE7B946318D71970008B0363 /* niaochangguiM8@2x.png in Resources */,
 				CE7B93DB18D71959008B0363 /* xiongpianM2@2x.png in Resources */,
+				07CF0085198CCA5100C26F63 /* c2waifangliao@2x.png in Resources */,
 				CE7B93E218D71959008B0363 /* ECOGpingfenM3@2x.png in Resources */,
 				0759650A18C1D55700B17B2D /* zlfaSelected@2x.png in Resources */,
 				CE7B946518D71970008B0363 /* penqianghecigongzhenM8@2x.png in Resources */,
@@ -1813,10 +1852,13 @@
 				CEA76BBD18CB860400BF1EF6 /* LLCheckButton.m in Sources */,
 				07AF0ABD18BCDC8C002356CE /* AppDelegate.m in Sources */,
 				07E54EC11984B32F001D5C15 /* ZDJGC2ViewController.m in Sources */,
+				07380403198D017900848C86 /* ZLFAS2C2ViewController.m in Sources */,
 				CE978C5B18D5CEC700A06F40 /* PickViewSourceBean.m in Sources */,
+				073803FE198CF61400848C86 /* ZDJGS2C2ViewController.m in Sources */,
 				07D2AD9818C3473F00FEC498 /* AFHTTPRequestOperationManager.m in Sources */,
 				076CFEBA18CC1534000F298E /* RIButtonItem.m in Sources */,
 				07E54EBB1984B2DE001D5C15 /* HZQKC2ViewController.m in Sources */,
+				07CF0083198CA11200C26F63 /* BSHGC2ViewController.m in Sources */,
 				07D2ADA518C3473F00FEC498 /* UIProgressView+AFNetworking.m in Sources */,
 				0750C73B18C1B35200640D1F /* Cover2ViewController.m in Sources */,
 				CEA743F218CA2037003CF3F8 /* LLUIPickView.m in Sources */,

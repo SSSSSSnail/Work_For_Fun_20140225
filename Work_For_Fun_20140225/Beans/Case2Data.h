@@ -47,4 +47,9 @@ typedef NS_ENUM(NSInteger, Case2Step) {
 
 @property (assign, nonatomic) NSUInteger step1MNumber;
 
+/**************** 访视2 ******************/
+@property (copy, nonatomic) NSString *zdjg2ZDSelectItem;
+
+/**************** 访视3 ******************/
+
 @end

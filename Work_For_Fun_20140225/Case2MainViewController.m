@@ -13,6 +13,8 @@
 #import "ZLFAC2ViewController.h"
 #import "BCJZC2ViewController.h"
 
+#import "BSHGC2ViewController.h"
+
 #import "Case2Data.h"
 
 #import "LLUIButton.h"
@@ -63,7 +65,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
 @property (strong, nonatomic) ZLFAC2ViewController *zlfa1ViewController;
 @property (strong, nonatomic) BCJZC2ViewController *bcjz1ViewController;
 
-@property (strong, nonatomic) HZQKC2ViewController *hzqk2ViewController;
+@property (strong, nonatomic) BSHGC2ViewController *hzqk2ViewController;
 @property (strong, nonatomic) LCJCC2ViewController *lcjc2ViewController;
 @property (strong, nonatomic) ZDJGC2ViewController *zdjg2ViewController;
 @property (strong, nonatomic) ZLFAC2ViewController *zlfa2ViewController;
@@ -111,18 +113,20 @@ static float const MASTERVIEWWIDTH = 152.0f;
 
     self.masterButtonArray = [NSMutableArray array];
 
+    //访视1
     self.hzqk1ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"hzqkVC"];
     self.lcjc1ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
     self.zdjg1ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjgVC"];
     self.zlfa1ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfaVC"];
     self.bcjz1ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
 
-    self.hzqk2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"hzqkVC"];
+    //访视2
+    self.hzqk2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bshgVC"];
     self.lcjc2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
-    self.zdjg2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjgVC"];
-    self.zlfa2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfaVC"];
+    self.zdjg2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjg2VC"];
+    self.zlfa2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfa2VC"];
     self.bcjz2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
-
+    //访视3
     self.hzqk3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"hzqkVC"];
     self.lcjc3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
     self.zdjg3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjgVC"];
@@ -190,9 +194,9 @@ static float const MASTERVIEWWIDTH = 152.0f;
                              _bcjz1ViewController.view,
 
                              _hzqk2ViewController.view,
-                             _lcjc2ViewController.view
-//                             _zdjg2ViewController.view,
-//                             _zlfa2ViewController.view,
+                             _lcjc2ViewController.view,
+                             _zdjg2ViewController.view,
+                             _zlfa2ViewController.view
 //                             _bcjz2ViewController.view,
 //                             
 //                             _hzqk3ViewController.view,
@@ -219,9 +223,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
 {
     [super viewDidAppear:animated];
     [self refreshButtonAndView:GCase2().currentIndex];
-//    [self refreshButtonAndView:6];
-//    GCase2().currentStep = Case2Step2;
-//    GCase2().step1MNumber = 1;
+
+    GCase2().currentStep = Case2Step2;
+    GCase2().step1MNumber = 1;
+    [self refreshButtonAndView:8];
 }
 
 - (void)refreshButtonAndView:(long)toIndex
@@ -242,7 +247,8 @@ static float const MASTERVIEWWIDTH = 152.0f;
     GCase2().currentIndex = toIndex;
     GCase2().maxIndex = MAX(toIndex, GCase2().maxIndex);
     [_detailScrollView scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
-//    [_masterScrollView scrollRectToVisible:CGRectMake(0, MASTERVIEWHEIGHT*GCase2().currentStep, MASTERVIEWWIDTH, MASTERVIEWHEIGHT) animated:YES];
+
+    [_masterScrollView scrollRectToVisible:CGRectMake(0, MASTERVIEWHEIGHT*GCase2().currentStep, MASTERVIEWWIDTH, MASTERVIEWHEIGHT) animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -475,9 +481,87 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                      }
                                  }];
         }
+    } else if (globalData.currentIndex == 6) {
+        //临床检查第二轮确定
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:7];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成诊断！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                NSDictionary *parametersDictionary = @{@"step": @"7",
+                                                       @"action": @"checkconfirm",
+                                                       @"subject_id": globalData.subjectId,
+                                                       @"group_id": globalData.groupNumber};
+                [GInstance() httprequestWithHUD:_lcjc2ViewController.view
+                                 withRequestURL:STEPURL
+                                 withParameters:parametersDictionary
+                                     completion:^(NSDictionary *jsonDic) {
+                                         NSLog(@"responseJson: %@", jsonDic);
+                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                             } else {
+                                                 _lcjc2ViewController.isLocked = YES;
+                                                 [self refreshButtonAndView:7];
+                                                 [GInstance() savaData];
+                                             }
+                                         } else {
+                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                             }
+                                         }
+                                     }];
+            }], nil] show];
+        }
+    } else if (globalData.currentIndex == 7) {
+        //诊断结果 第二轮确定
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:8];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成诊断！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"8",
+                                                                                                            @"action": @"diagnose",
+                                                                                                            @"subject_id": globalData.subjectId,
+                                                                                                            @"group_id": globalData.groupNumber,
+                                                                                                            @"zd": globalData.zdjg2ZDSelectItem}];
+                [GInstance() httprequestWithHUD:_zdjg2ViewController.view
+                                 withRequestURL:STEPURL
+                                 withParameters:parametersDictionary
+                                     completion:^(NSDictionary *jsonDic) {
+                                         NSLog(@"responseJson: %@", jsonDic);
+                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                             for (UIView *subView in [_zdjg2ViewController.view subviews]) {
+                                                 if (subView.tag != 999) {
+                                                     subView.userInteractionEnabled = NO;
+                                                 }
+                                             }
+                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                             } else {
+                                                 [self refreshButtonAndView:8];
+                                                 [GInstance() savaData];
+                                             }
+                                         } else {
+                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                             }
+                                         }
+                                     }];
+            }], nil] show];
+        }
     }
 
-    
+
+
 }
 
 - (NSUInteger)countStep1MNumber
@@ -509,6 +593,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
         }
     } else if (GCase2().zlfaLeftSelectedIndex == 3) {
         mNumber = 8;
+    }
+
+    if (GCase2().zlfaRightSelectedIndex == 1) {
+        mNumber = 9;
     }
 
     GCase2().step1MNumber = mNumber;

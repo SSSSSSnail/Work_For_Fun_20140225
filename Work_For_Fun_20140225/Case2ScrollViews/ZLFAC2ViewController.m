@@ -91,6 +91,10 @@ static NSString * const DoubleSpace = @"  ";
 @property (assign, nonatomic) BOOL xinfuzhuMaskShowed;
 @property (assign, nonatomic) BOOL danyiMaskShowed;
 @property (strong, nonatomic) NSDictionary *pickViewSourceDictionary;
+
+@property (assign, nonatomic) NSUInteger pickViewSubIndex;
+
+@property (assign, nonatomic, getter = isBackStep) BOOL backStep;
 @end
 
 @implementation ZLFAC2ViewController
@@ -638,21 +642,21 @@ static NSString * const DoubleSpace = @"  ";
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    NSArray *pickViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld%ld", (long)pickerView.tag, (long)MAX(GCase2().zlfaChixujianxieDetailSelectedIndex, GCase2().zlfaFuzhuChixujianxieDetailSelectedIndex)]];
+    NSArray *pickViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld%ld", (long)pickerView.tag, (long)_pickViewSubIndex]];
     return [pickViewSource count];
 }
 
 #pragma mark UIPickerView Delegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld%ld", (long)pickerView.tag, (long)MAX(GCase2().zlfaChixujianxieDetailSelectedIndex, GCase2().zlfaFuzhuChixujianxieDetailSelectedIndex)]];
+    NSArray *pickViewSource = [self.pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld%ld", (long)pickerView.tag, (long)_pickViewSubIndex]];
     return pickViewSource[row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     Case2Data *globalData = GCase2();
-    NSArray *pickerViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld%ld", (long)pickerView.tag, (long)MAX(GCase2().zlfaChixujianxieDetailSelectedIndex, GCase2().zlfaFuzhuChixujianxieDetailSelectedIndex)]];
+    NSArray *pickerViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld%ld", (long)pickerView.tag, (long)_pickViewSubIndex]];
     NSString *selectedString = pickerViewSource[row];
     selectedString = [selectedString isEqualToString:DoubleSpace]? nil : selectedString;
     if (pickerView.tag == 1) {
@@ -669,142 +673,129 @@ static NSString * const DoubleSpace = @"  ";
         return;
     }
 
+    _section2PickerView1.hidden = YES;
+    _section2PickerView2.hidden = YES;
+
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:@"治疗方案确认后不能修改!"
                        cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
 
     }]
                        otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-        if (_currentStep == CurrentStepOne) {
-            if (GCase2().zlfaRightSelectedIndex == 1) {
-                //?需确认
-                if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
-                    [self.scrollViewDelegate didClickConfirmButton:sender];
-                }
-            } else {
-                _currentStep = CurrentStepTwo;
-                _titleLabel.text = @"治疗方案记录";
-                UIImage *section2BGImage;
+        [self taskList:sender];
+    }], nil] show];
+}
+
+- (void)taskList:(UIButton *)sender
+{
+    if (_currentStep == CurrentStepOne) {
+        _currentStep = CurrentStepTwo;
+        if (GCase2().zlfaRightSelectedIndex == 1 || (GCase2().zlfaRightSelectedIndex == 2 && !_backStep)) {
+            [self taskList:nil];
+        } else {
+            _titleLabel.text = @"治疗方案记录";
+            UIImage *section2BGImage;
+            if (GCase2().zlfaWaifangliao != 1) {
                 if (GCase2().zlfaLeftSelectedIndex == 1) {
                     section2BGImage = [UIImage imageNamed:@"c2chiguhou"];
                     _buchongfanganButton.hidden = NO;
                 } else if (GCase2().zlfaLeftSelectedIndex == 2) {
                     section2BGImage = [UIImage imageNamed:@"c2fuqiangjing"];
                     _buchongfanganButton.hidden = NO;
-
                 } else if (GCase2().zlfaLeftSelectedIndex == 3) {
+                    section2BGImage = [UIImage imageNamed:@"c2waifangliao"];
                     _buchongfanganButton.hidden = YES;
-                    GCase2().zlfaYaowuName1 = nil;
-                    GCase2().zlfaYaowuName2 = nil;
-                    section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", GCase2().zlfaChixujianxieDetailSelectedIndex]];
-                    if (GCase2().zlfaChixujianxieDetailSelectedIndex == 1) {
-                        _section2PickerView1.hidden = NO;
-                        _section2PickerView2.hidden = YES;
-                        _section2PickerView1.frame = CGRectMake(302.0f, 209.0f, 220.0f, 216.0f);
-                        [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
-                        [_section2PickerView1 reloadAllComponents];
-                    } else if (GCase2().zlfaChixujianxieDetailSelectedIndex == 2) {
-                        _section2PickerView1.hidden = NO;
-                        _section2PickerView2.hidden = YES;
-                        _section2PickerView1.frame = CGRectMake(312.0f, 209.0f, 220.0f, 216.0f);
-                        [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
-                        [_section2PickerView1 reloadAllComponents];
-                    } else if (GCase2().zlfaChixujianxieDetailSelectedIndex == 3) {
-                        _section2PickerView1.hidden = NO;
-                        _section2PickerView2.hidden = NO;
-                        _section2PickerView1.frame = CGRectMake(142.0f, 209.0f, 220.0f, 216.0f);
-                        [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
-                        [_section2PickerView1 reloadAllComponents];
-                        _section2PickerView2.frame = CGRectMake(448.0f, 209.0f, 220.0f, 216.0f);
-                        [_section2PickerView2 selectRow:0 inComponent:0 animated:NO];
-                        [_section2PickerView2 reloadAllComponents];
-                    } else if (GCase2().zlfaChixujianxieDetailSelectedIndex == 4) {
-                        _section2PickerView1.hidden = YES;
-                        _section2PickerView2.hidden = YES;
-                    }
-                }
-
-                _section2BGImageView.image = section2BGImage;
-                [UIView transitionWithView:_sectionAnimationView
-                                  duration:0.8
-                                   options:UIViewAnimationOptionTransitionFlipFromLeft | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionShowHideTransitionViews
-                                animations:^{
-                                    _section1View.hidden = YES;
-                                    _section2View.hidden = NO;
-                                }
-                                completion:^(BOOL finished){
-
-                                }];
-            }
-        } else if (_currentStep == CurrentStepTwo) {
-            if (GCase2().zlfaLeftSelectedIndex == 3) {
-                if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
-                    [self.scrollViewDelegate didClickConfirmButton:sender];
                 }
             } else {
-                _currentStep = CurrentStepThree;
-
-                if (GCase2().zlfaLianheSelectedIndex == 1 || GCase2().zlfaFuzhuSelectedIndex == 1) {
-                    UIImage *section2BGImage;
-                    NSUInteger detailSelectedIndex;
-
-                    if (GCase2().zlfaWaifangliao == 1) {
-                        detailSelectedIndex = GCase2().zlfaChixujianxieDetailSelectedIndex;
-                    } else {
-                        detailSelectedIndex = GCase2().zlfaFuzhuChixujianxieDetailSelectedIndex;;
-                    }
-                    _buchongfanganButton.hidden = YES;
-                    GCase2().zlfaYaowuName1 = nil;
-                    GCase2().zlfaYaowuName2 = nil;
-                    section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", detailSelectedIndex]];
-                    if (detailSelectedIndex == 1) {
-                        _section2PickerView1.hidden = NO;
-                        _section2PickerView2.hidden = YES;
-                        _section2PickerView1.frame = CGRectMake(302.0f, 209.0f, 220.0f, 216.0f);
-                        [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
-                        [_section2PickerView1 reloadAllComponents];
-                    } else if (detailSelectedIndex == 2) {
-                        _section2PickerView1.hidden = NO;
-                        _section2PickerView2.hidden = YES;
-                        _section2PickerView1.frame = CGRectMake(312.0f, 209.0f, 220.0f, 216.0f);
-                        [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
-                        [_section2PickerView1 reloadAllComponents];
-                    } else if (detailSelectedIndex == 3) {
-                        _section2PickerView1.hidden = NO;
-                        _section2PickerView2.hidden = NO;
-                        _section2PickerView1.frame = CGRectMake(142.0f, 209.0f, 220.0f, 216.0f);
-                        [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
-                        [_section2PickerView1 reloadAllComponents];
-                        _section2PickerView2.frame = CGRectMake(448.0f, 209.0f, 220.0f, 216.0f);
-                        [_section2PickerView2 selectRow:0 inComponent:0 animated:NO];
-                        [_section2PickerView2 reloadAllComponents];
-                    } else if (detailSelectedIndex == 4) {
-                        _section2PickerView1.hidden = YES;
-                        _section2PickerView2.hidden = YES;
-                    }
-                    _section2BGImageView.image = section2BGImage;
-                    [UIView transitionWithView:_sectionAnimationView
-                                      duration:0.8
-                                       options:UIViewAnimationOptionTransitionFlipFromLeft | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionShowHideTransitionViews
-                                    animations:^{
-                                        _section1View.hidden = YES;
-                                        _section2View.hidden = NO;
-                                    }
-                                    completion:^(BOOL finished){
-                                        
-                                    }];
-                } else {
-                    if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
-                        [self.scrollViewDelegate didClickConfirmButton:sender];
-                    }
-                }
+                section2BGImage = [UIImage imageNamed:@"c2waifangliao"];
+                _buchongfanganButton.hidden = YES;
             }
-        } else if (_currentStep == CurrentStepThree) {
+            _section2BGImageView.image = section2BGImage;
+            [UIView transitionWithView:_sectionAnimationView
+                              duration:0.8
+                               options:UIViewAnimationOptionTransitionFlipFromLeft | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionShowHideTransitionViews
+                            animations:^{
+                                _section1View.hidden = YES;
+                                _section2View.hidden = NO;
+                            }
+                            completion:^(BOOL finished){
+
+                            }];
+        }
+    } else if (_currentStep == CurrentStepTwo) {
+        _currentStep = CurrentStepThree;
+
+        if (GCase2().zlfaLianheSelectedIndex == 1 ||
+            GCase2().zlfaFuzhuSelectedIndex == 1 ||
+            GCase2().zlfaRightSelectedIndex == 1 ||
+            (GCase2().zlfaRightSelectedIndex == 2 && !_backStep)) {
+            UIImage *section2BGImage;
+            NSUInteger detailSelectedIndex;
+
+            if (GCase2().zlfaFuzhuSelectedIndex == 1) {
+                detailSelectedIndex = GCase2().zlfaFuzhuChixujianxieDetailSelectedIndex;
+            } else {
+                detailSelectedIndex = GCase2().zlfaChixujianxieDetailSelectedIndex;
+            }
+            _buchongfanganButton.hidden = YES;
+            GCase2().zlfaYaowuName1 = nil;
+            GCase2().zlfaYaowuName2 = nil;
+            section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", detailSelectedIndex]];
+            _pickViewSubIndex = detailSelectedIndex;
+            if (detailSelectedIndex == 1) {
+                _section2PickerView1.hidden = NO;
+                _section2PickerView2.hidden = YES;
+                _section2PickerView1.frame = CGRectMake(302.0f, 209.0f, 220.0f, 216.0f);
+                [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
+                [_section2PickerView1 reloadAllComponents];
+            } else if (detailSelectedIndex == 2) {
+                _section2PickerView1.hidden = NO;
+                _section2PickerView2.hidden = YES;
+                _section2PickerView1.frame = CGRectMake(312.0f, 209.0f, 220.0f, 216.0f);
+                [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
+                [_section2PickerView1 reloadAllComponents];
+            } else if (detailSelectedIndex == 3) {
+                _section2PickerView1.hidden = NO;
+                _section2PickerView2.hidden = NO;
+                _section2PickerView1.frame = CGRectMake(142.0f, 209.0f, 220.0f, 216.0f);
+                [_section2PickerView1 selectRow:0 inComponent:0 animated:NO];
+                [_section2PickerView1 reloadAllComponents];
+                _section2PickerView2.frame = CGRectMake(448.0f, 209.0f, 220.0f, 216.0f);
+                [_section2PickerView2 selectRow:0 inComponent:0 animated:NO];
+                [_section2PickerView2 reloadAllComponents];
+            } else if (detailSelectedIndex == 4) {
+                _section2PickerView1.hidden = YES;
+                _section2PickerView2.hidden = YES;
+            }
+            _section2BGImageView.image = section2BGImage;
+            [UIView transitionWithView:_sectionAnimationView
+                              duration:0.8
+                               options:UIViewAnimationOptionTransitionFlipFromLeft | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionShowHideTransitionViews
+                            animations:^{
+                                _section1View.hidden = YES;
+                                _section2View.hidden = NO;
+                            }
+                            completion:^(BOOL finished){
+
+                            }];
+        } else {
+            if (GCase2().zlfaWaifangliao == 1 && !_backStep) {
+                _currentStep = CurrentStepOne;
+                _backStep = YES;
+            }
+            [self taskList:nil];
+        }
+    } else if (_currentStep == CurrentStepThree) {
+        if (GCase2().zlfaRightSelectedIndex == 2 && !_backStep) {
+            _currentStep = CurrentStepOne;
+            _backStep = YES;
+            [self taskList:nil];
+        } else {
             if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
                 [self.scrollViewDelegate didClickConfirmButton:sender];
             }
         }
-    }], nil] show];
+    }
 }
 
 - (BOOL)checkValues
@@ -855,19 +846,6 @@ static NSString * const DoubleSpace = @"  ";
         }
     }
     if (_currentStep == CurrentStepTwo) {
-        if (globalData.zlfaLeftSelectedIndex == 3) {
-            if (globalData.zlfaChixujianxieDetailSelectedIndex == 1 || globalData.zlfaChixujianxieDetailSelectedIndex == 2) {
-                if (!globalData.zlfaYaowuName1) {
-                    [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
-                    return NO;
-                }
-            } else if (globalData.zlfaChixujianxieDetailSelectedIndex == 3) {
-                if (!globalData.zlfaYaowuName1 || !globalData.zlfaYaowuName2) {
-                    [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
-                    return NO;
-                }
-            }
-        }
         if (globalData.zlfaWaifangliao == 0 && globalData.zlfaFuzhuSelectedIndex == 1) {
             if (globalData.zlfaFuzhuChixuJianxieSelectedIndex == 0) {
                 [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
@@ -892,6 +870,20 @@ static NSString * const DoubleSpace = @"  ";
         }
     }
     if (_currentStep == CurrentStepThree) {
+        if (globalData.zlfaLeftSelectedIndex == 3) {
+            if (globalData.zlfaChixujianxieDetailSelectedIndex == 1 || globalData.zlfaChixujianxieDetailSelectedIndex == 2) {
+                if (!globalData.zlfaYaowuName1) {
+                    [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                    return NO;
+                }
+            } else if (globalData.zlfaChixujianxieDetailSelectedIndex == 3) {
+                if (!globalData.zlfaYaowuName1 || !globalData.zlfaYaowuName2) {
+                    [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                    return NO;
+                }
+            }
+        }
+
         NSUInteger selectedIndex = 0;
         if (globalData.zlfaWaifangliao == 1 && globalData.zlfaLianheSelectedIndex == 1) {
             selectedIndex = globalData.zlfaChixujianxieDetailSelectedIndex;
@@ -899,6 +891,10 @@ static NSString * const DoubleSpace = @"  ";
 
         if (globalData.zlfaWaifangliao == 0 && globalData.zlfaFuzhuSelectedIndex == 1) {
             selectedIndex = globalData.zlfaFuzhuChixujianxieDetailSelectedIndex;
+        }
+
+        if (globalData.zlfaRightSelectedIndex == 1) {
+            selectedIndex = globalData.zlfaChixujianxieDetailSelectedIndex;
         }
 
         if (selectedIndex == 1 || selectedIndex == 2) {
