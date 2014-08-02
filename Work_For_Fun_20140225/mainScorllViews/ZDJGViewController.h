@@ -16,5 +16,4 @@
 
 - (void)reloadViewDataForR2;
 
-
 @end

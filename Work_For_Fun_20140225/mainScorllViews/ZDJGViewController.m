@@ -9,6 +9,8 @@
 #import "ZDJGViewController.h"
 #import "LLUIPickView.h"
 #import "PickViewSourceBean.h"
+#import "Case1Data.h"
+
 typedef NS_ENUM(NSInteger, ComponentsTag)
 {
     UIPickViewZDJG1Evalute = 200,
@@ -93,7 +95,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
             NSArray *pickerViewSource = [_pickViewSourceDictionary objectForKey:[NSString stringWithFormat:@"%ld",(long)pickerView.tag]];
             NSString *selectedString = pickerViewSource[row];
             ((LLUIPickView *)pickerView).selectedOjbect = selectedString;
-            if (!GInstance().globalData.isFSSetp2) {
+            if (!GCase1().isFSSetp2) {
                 _qgRateLabel.hidden = NO;
                 _bmRateLabel.hidden = NO;
                 _jnRateLabel.hidden = NO;
@@ -202,10 +204,10 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
         [GInstance() showInfoMessage:@"请完成所有的诊断 !"];
         return;
     };
-    LLGlobalData *globalData = GInstance().globalData;
+    Case1Data *globalData = GCase1();
     
-    if (!GInstance().globalData.isFSSetp2) {
-        GInstance().globalData.zdjgZDSelectItem = [self buttonValue];
+    if (!globalData.isFSSetp2) {
+        globalData.zdjgZDSelectItem = [self buttonValue];
         globalData.zdjgTSelectItem = _zdjglcfqTPickView.selectedOjbect;
         globalData.zdjgMSelectItem = _zdjglcfqMPickView.selectedOjbect;
         globalData.zdjgNSelectItem = _zdjglcfqNPickView.selectedOjbect;
@@ -290,7 +292,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 
 - (void)loadDataFromGlobalData
 {
-    if (GInstance().globalData.r2Type == M1) {
+    if (((Case1Data *)GInstance().globalData).r2Type == M1) {
         _zdjgBGImageView.image = [UIImage imageNamed:@"zdjgStep2M1.png"];
         
         CGRect frame = _zdjglcfqTPickView.frame;
@@ -325,7 +327,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 #pragma mark - Reload Data
 - (void)reloadViewDataForR2
 {
-    _dateTimeLabel.text = GInstance().globalData.dateTimeOneMonth;
+    _dateTimeLabel.text = ((Case1Data *)GInstance().globalData).dateTimeOneMonth;
 }
 
 @end

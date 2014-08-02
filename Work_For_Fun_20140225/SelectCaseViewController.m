@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 @interface SelectCaseViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (assign, nonatomic) NSInteger selectedCase;
 
 - (IBAction)clickCaseButton:(UIButton *)sender;
@@ -31,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (GInstance().caseNumber == CaseNumberTwo) {
+        _bgImageView.image = [UIImage imageNamed:@"selectCase2"];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,8 +44,10 @@
 }
 
 - (IBAction)clickCaseButton:(UIButton *)sender {
-    sender.selected = YES;
-    _selectedCase = 1;
+    if (sender.tag == GInstance().caseNumber) {
+        sender.selected = YES;
+        _selectedCase = sender.tag;
+    }
 }
 
 - (IBAction)clickStartButton:(UIButton *)sender {
@@ -62,7 +68,6 @@
             [self performSegueWithIdentifier:@"modalToMain" sender:self];
             return;
         }
-#ifndef SKIPREQUEST
         NSDictionary *parameterDictionary = @{@"step": @"0",
                                               @"action": @"addgroup",
                                               @"subject_id": globalData.subjectId,
@@ -80,12 +85,19 @@
                                      [GInstance() showErrorMessage:@"初始化失败，请选择其他组名 !"];
                                  }
                              }];
-#endif
-#ifdef SKIPREQUEST
+    } else if (_selectedCase == 2) {
+        LLGlobalData *globalData = GInstance().globalData;
+        if ([globalData.hasAddtoGroup isEqualToString:@"Y"]) {
+            [self performSegueWithIdentifier:@"modalToMain" sender:self];
+            return;
+        }
         globalData.hasAddtoGroup = @"Y";
-        [GInstance() savaData:globalData];
-        [self performSegueWithIdentifier:@"modalToMain" sender:self];
-#endif
+        [GInstance() savaData];
+        //To Stroyboard 2
+
+        UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"Case2" bundle:nil];
+        UIViewController* case2mainViewController = [secondStoryBoard instantiateViewControllerWithIdentifier:@"Case2MainViewController"];
+        [self presentViewController:case2mainViewController animated:YES completion:^{}];
     } else {
         [GInstance() showInfoMessage:@"请先选择本次讨论Case!"];
     }

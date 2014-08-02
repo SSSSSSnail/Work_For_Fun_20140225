@@ -18,6 +18,8 @@
 #import "LLCheckButton.h"
 #import "LLCheckButtonGroup.h"
 
+#import "Case1Data.h"
+
 typedef NS_ENUM(NSUInteger, ScrollSubButtonTag)
 {
     HZQKButton1 = 10, //患者情况
@@ -32,8 +34,6 @@ typedef NS_ENUM(NSUInteger, ScrollSubButtonTag)
     ZLFAButton2 = 18, //治疗方案
     LCJJButton2 = 19  //临床结局
 };
-
-
 
 static float const DETAILVIEWHEIGHT = 768.0f;
 static float const DETAILVIEWIDTH = 872.0f;
@@ -62,10 +62,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 
 @property (strong, nonatomic) NSArray *masterTagArray;
 
-
-
 - (IBAction)clickNext:(LLUIButton *)sender;
-
 
 @end
 
@@ -175,11 +172,11 @@ static float const DETAILVIEWIDTH = 872.0f;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    GInstance().globalData.currentIndex = 5;
-//    GInstance().globalData.r2Type = M1;
-//    GInstance().globalData.fsStep2 = YES;
+//    GCase1().currentIndex = 5;
+//    GCase1().r2Type = M1;
+//    GCase1().fsStep2 = YES;
 //    [_hzqkM2ViewController reloadViewDataForR2];
-    if (GInstance().globalData.fsStep2) {
+    if (GCase1().fsStep2) {
         [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 695.0f, 152.0f, 695.0f) animated:NO];
         [_hzqkM2ViewController reloadViewDataForR2];
         [_lcjcM2ViewController reloadViewDataForR2];
@@ -188,7 +185,7 @@ static float const DETAILVIEWIDTH = 872.0f;
         [_zlfaM2ViewController reloadViewDataForR2];
         [_bcjzM2ViewController reloadViewDataForR2];
     }
-    [self refreshButtonAndView:GInstance().globalData.currentIndex];
+    [self refreshButtonAndView:GCase1().currentIndex];
 }
 
 - (void)didReceiveMemoryWarning
@@ -199,7 +196,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 
 - (IBAction)clickNext:(LLUIButton *)sender
 {
-    if (sender.tag - 10 > GInstance().globalData.maxIndex) {
+    if (sender.tag - 10 > GCase1().maxIndex) {
         [GInstance() showInfoMessage:@"请完成当前步骤！"];
         return;
     }
@@ -221,8 +218,8 @@ static float const DETAILVIEWIDTH = 872.0f;
         }
     }
 
-    GInstance().globalData.currentIndex = toIndex;
-    GInstance().globalData.maxIndex = MAX(toIndex, GInstance().globalData.maxIndex);
+    GCase1().currentIndex = toIndex;
+    GCase1().maxIndex = MAX(toIndex, GCase1().maxIndex);
     [_detailScrollView scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 //    switch (toIndex) {
 //        case 5:
@@ -247,7 +244,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 #pragma mark - ScrollViewController Delegate
 - (void)didClickConfirmButton:(UIButton *)sender
 {
-    LLGlobalData *globalData = GInstance().globalData;
+    Case1Data *globalData = GCase1();
     if (globalData.currentIndex == 0) {
         //患者情况 确定
         if (globalData.maxIndex > globalData.currentIndex) {
@@ -500,7 +497,7 @@ static float const DETAILVIEWIDTH = 872.0f;
                                                    @"col2": [_hzqkM2ViewController linchuangjiancheString],
                                                    @"col3": [_hzqkM2ViewController zhenduanString],
                                                    @"col4": [_hzqkM2ViewController weixianxingpingguString],
-                                                   @"col5": [NSString stringWithFormat:@"T%@N%@M%@", GInstance().globalData.zdjgTSelectItem, GInstance().globalData.zdjgNSelectItem, GInstance().globalData.zdjgMSelectItem],
+                                                   @"col5": [NSString stringWithFormat:@"T%@N%@M%@", GCase1().zdjgTSelectItem, GCase1().zdjgNSelectItem, GCase1().zdjgMSelectItem],
                                                    @"col6": [_hzqkM2ViewController loadZhiLiaoFangAn],
                                                    @"col7": indexString,
                                                    @"col8": [_hzqkM2ViewController isTypeBetween2to6] ? @"Y" : @"N",
@@ -806,7 +803,7 @@ static float const DETAILVIEWIDTH = 872.0f;
 - (BCJZResult)refreshResult
 {
     BCJZResult result;
-    LLGlobalData *gData = GInstance().globalData;
+    Case1Data *gData = GCase1();
 
     if (gData.zlfaLeftSelectedIndex == 1 || gData.zlfaLeftSelectedIndex == 2) { //选择手术
         if (gData.zlfaRightSelectedIndex > 0) { //选择新辅助
@@ -855,8 +852,8 @@ static float const DETAILVIEWIDTH = 872.0f;
                                @"氟他胺":@[@"xfzfta", @"fta"]
                                };
     if (isXinFuZhu) {
-        NSString *yaowu1 = GInstance().globalData.zlfaXinFuZhuYaoWuSeg1;
-        NSString *yaowu2 = GInstance().globalData.zlfaXinFuZhuYaoWuSeg2;
+        NSString *yaowu1 = GCase1().zlfaXinFuZhuYaoWuSeg1;
+        NSString *yaowu2 = GCase1().zlfaXinFuZhuYaoWuSeg2;
         NSString *mergeName = [NSString stringWithFormat:@"%@%@", yaowuDic[yaowu1][0], yaowuDic[yaowu2][0]];
         if ([mergeName hasPrefix:yaowuName] || [mergeName hasSuffix:yaowuName]) {
             return @"Y";
@@ -866,12 +863,12 @@ static float const DETAILVIEWIDTH = 872.0f;
     } else {
         NSString *yaowu1;
         NSString *yaowu2;
-        if (GInstance().globalData.isFSSetp2) {
-            yaowu1 = GInstance().globalData.zlfaR2FuzhuYaoWuSeg1;
-            yaowu2 = GInstance().globalData.zlfaR2FuzhuYaoWuSeg2;
+        if (GCase1().isFSSetp2) {
+            yaowu1 = GCase1().zlfaR2FuzhuYaoWuSeg1;
+            yaowu2 = GCase1().zlfaR2FuzhuYaoWuSeg2;
         } else {
-            yaowu1 = GInstance().globalData.zlfaFuzhuYaoWuSeg2;
-            yaowu2 = GInstance().globalData.zlfaFuzhuYaoWuSeg3;
+            yaowu1 = GCase1().zlfaFuzhuYaoWuSeg2;
+            yaowu2 = GCase1().zlfaFuzhuYaoWuSeg3;
         }
         NSString *mergeName = [NSString stringWithFormat:@"%@%@", yaowuDic[yaowu1][1], yaowuDic[yaowu2][1]];
         if ([mergeName hasPrefix:yaowuName] || [mergeName hasSuffix:yaowuName]) {
@@ -886,10 +883,10 @@ static float const DETAILVIEWIDTH = 872.0f;
 {
     NSArray *fuzhuArray = @[@"ssqs", @"fzqs", @"fzkx", @"fzzd"];
     NSUInteger keyInt;
-    if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-        keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex - 1;
-    } else if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"J"]){
-        keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+    if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+        keyInt = GCase1().zlfaFuzhuSelectedIndex - 1;
+    } else if ([GCase1().zlfaFuzhuType isEqualToString:@"J"]){
+        keyInt = GCase1().zlfaFuzhuSelectedIndex;
     } else {
         return @"N";
     }
@@ -903,8 +900,8 @@ static float const DETAILVIEWIDTH = 872.0f;
 - (void)swipeDown:(id)sender
 {
     [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, 0.0f, 152.0f, 695.0f) animated:YES];
-    GInstance().globalData.currentIndex = 0;
-    GInstance().globalData.fsStep2 = NO;
+    GCase1().currentIndex = 0;
+    GCase1().fsStep2 = NO;
     [self refreshButtonAndView:0];
 }
 

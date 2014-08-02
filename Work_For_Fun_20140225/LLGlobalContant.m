@@ -8,8 +8,18 @@
 
 #import "LLGlobalContant.h"
 #import <objc/runtime.h>
+#import "Case1Data.h"
+#import "Case2Data.h"
+
+static NSString *kDataClass = @"dataClass";
 
 @implementation LLGlobalData
+
+- (NSString *)dataClass
+{
+    NSAssert(NO, @"请在子类实现");
+    return nil;
+}
 
 @end
 
@@ -36,12 +46,26 @@ NSString *BackupFileName();
     return sharedInstance;
 }
 
+- (void)initData
+{
+    switch (_caseNumber) {
+        case CaseNumberOne:
+            self.globalData = [[Case1Data alloc] init];
+            break;
+        case CaseNumberTwo:
+            self.globalData = [[Case2Data alloc] init];
+            break;
+
+        default:
+            break;
+    }
+}
+
 //从Documents/data.plist读取数据并替换当前全局的GlobalData
 - (void)loadData
 {
     self.globalDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:DataFileName()];
-    self.globalData = [[LLGlobalData alloc] init];
-    [GInstance() coverToObject:_globalData fromDictionary:_globalDictionary];
+    self.globalData = [self coverToObject:_globalDictionary];
 }
 
 //将已存在plist备份至backup文件夹
@@ -87,6 +111,11 @@ NSString *BackupFileName();
             withParameters:(NSDictionary *)parameters
                 completion:(void(^)(NSDictionary *responseJsonDic))requestFinish
 {
+#ifdef SKIPREQUEST
+    requestFinish(@{@"result": @"true"});
+#endif
+
+#ifndef SKIPREQUEST
     [MBProgressHUD showHUDAddedTo:addToView animated:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer.timeoutInterval = 15.0f;
@@ -106,34 +135,51 @@ NSString *BackupFileName();
         [self showInfoMessage:@"网络异常，请检查网络后重试！"];
         NSLog(@"Error: %@", error);
     }];
+#endif
 }
 
 - (NSMutableDictionary *)coverToDictionaryFromObject:(id)object
 {
     NSMutableDictionary *theDictionary = [NSMutableDictionary dictionary];
-    NSString *className = NSStringFromClass([object class]);
-    id theClass = objc_getClass([className UTF8String]);
     unsigned int outCount, i;
-    objc_property_t *properties = class_copyPropertyList(theClass, &outCount);
+    objc_property_t *properties = class_copyPropertyList([object class], &outCount);
     for (i = 0; i < outCount; i++) {
         NSString *propertyNameString = [[NSString alloc] initWithCString:property_getName(properties[i]) encoding:NSUTF8StringEncoding];
-//        NSLog(@"coverToDictionaryFromObject : %@", propertyNameString);
+        id value = [object valueForKey:propertyNameString];
+        if (!value) {
+            value = @"";
+        }
+
+        NSLog(@"Object2Dic : %@ -> %@", propertyNameString, value);
+        [theDictionary setObject:value forKey:propertyNameString];
+    }
+
+    objc_property_t *superProperties = class_copyPropertyList(class_getSuperclass([object class]), &outCount);
+    for (i = 0; i < outCount; i++) {
+        NSString *propertyNameString = [[NSString alloc] initWithCString:property_getName(superProperties[i]) encoding:NSUTF8StringEncoding];
         id value = [object valueForKey:propertyNameString];
         if (!value) {
             value = @"";
         }
         [theDictionary setObject:value forKey:propertyNameString];
+        NSLog(@"Object2Dic(Super) : %@ -> %@", propertyNameString, value);
     }
     return theDictionary;
 }
 
-- (void)coverToObject:(id)object fromDictionary:(NSMutableDictionary *)dictionary
+- (id)coverToObject:(NSMutableDictionary *)dictionary
 {
+    NSString *className = dictionary[kDataClass];
+    id instance = [NSClassFromString(className) new];
     for (NSString *dicKey in dictionary.allKeys) {
-//        NSLog(@"coverToObject : %@", dicKey);
+        if ([dicKey isEqualToString:kDataClass]) {
+            continue;
+        }
         id dicValue = dictionary[dicKey];
-        [object setValue:dicValue forKey:dicKey];
+        [instance setValue:dicValue forKey:dicKey];
+        NSLog(@"Dic2Object : %@ -> %@", dicKey, dicValue);
     }
+    return instance;
 }
 
 @end
@@ -155,4 +201,14 @@ NSString *BackupFileName()
 LLGlobalContant *GInstance()
 {
     return [LLGlobalContant sharedInstance];
+}
+
+Case1Data *GCase1()
+{
+    return (Case1Data *)GInstance().globalData;
+}
+
+Case2Data *GCase2()
+{
+    return (Case2Data *)GInstance().globalData;
 }

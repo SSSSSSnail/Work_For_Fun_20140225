@@ -47,13 +47,14 @@
                          completion:^(NSDictionary *jsonDic) {
                              NSLog(@"responseJson: %@", jsonDic);
                              if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                 GInstance().caseNumber = CaseNumberTwo;
                                  [GInstance() loadData];
                                  NSString *subjectid = (NSString *)jsonDic[@"subject_id"];                               
                                  if (![subjectid isEqualToString:GInstance().globalData.subjectId]) {
                                      if (GInstance().globalData.subjectId) {
                                          [GInstance() backupData];
                                      }
-                                     GInstance().globalData = [[LLGlobalData alloc] init];
+                                     [GInstance() initData];
                                      GInstance().globalData.subjectId = subjectid;
                                      GInstance().globalData.subjectName = (NSString *)jsonDic[@"subject_name"];
                                      [GInstance() savaData];
@@ -65,18 +66,24 @@
                          }];
 #endif
 #ifdef SKIPREQUEST
+    GInstance().caseNumber = CaseNumberTwo;
     [GInstance() loadData];
     NSString *subjectid = [[NSDate date] description];
     if (![subjectid isEqualToString:GInstance().globalData.subjectId]) {
         if (GInstance().globalData.subjectId) {
             [GInstance() backupData];
         }
-        GInstance().globalData = [[LLGlobalData alloc] init];
+        [GInstance() initData];
         GInstance().globalData.subjectId = subjectid;
         GInstance().globalData.subjectName = @"TestName";
         [GInstance() savaData];
     }
-    [self performSegueWithIdentifier:@"modalToCover2" sender:self];
+//    [self performSegueWithIdentifier:@"modalToCover2" sender:self];
+
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"Case2" bundle:nil];
+    UIViewController* case2mainViewController = [secondStoryBoard instantiateViewControllerWithIdentifier:@"Case2MainViewController"];
+    GInstance().globalData.groupNumber = @"G1";
+    [self presentViewController:case2mainViewController animated:YES completion:^{}];
 #endif
 }
 

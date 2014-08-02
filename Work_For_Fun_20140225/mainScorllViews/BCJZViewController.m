@@ -7,6 +7,7 @@
 //
 
 #import "BCJZViewController.h"
+#import "Case1Data.h"
 
 static NSString *originDateString        = @"2000/1/18 星期五";
 static NSString *oneYearLater            = @"2001/2/18 星期日"; //case 1 13月
@@ -67,16 +68,16 @@ static NSString *sixMonthCase5           = @"2002/12/18 星期一";//twoyear thr
 - (void)changeLabelText:(BCJZResult)result
 {
     //切换图片
-    GInstance().globalData.r1Result = result;
-    _bcjzImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bcjz%d.png", result]];
-    GInstance().globalData.r2Type = [self mResultFromResult:result];
+    GCase1().r1Result = result;
+    _bcjzImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bcjz%ld.png", (long)result]];
+    GCase1().r2Type = [self mResultFromResult:result];
     //切换Label
     switch (result) {
         case ZDJC:      //主动监测 case 1
         {
             _datetimeLabel.text = oneYearLater;
-            GInstance().globalData.dateTimeOneMonth = oneMonthCase1;
-            GInstance().globalData.dateTimeSixMonth = sixMonthCase1;
+            GCase1().dateTimeOneMonth = oneMonthCase1;
+            GCase1().dateTimeSixMonth = sixMonthCase1;
         }
             break;
         case GZS:       //M2 根治术
@@ -84,8 +85,8 @@ static NSString *sixMonthCase5           = @"2002/12/18 星期一";//twoyear thr
         case FL:        //M7 放疗 case 2
         {
             _datetimeLabel.text = twoYearLater;
-            GInstance().globalData.dateTimeOneMonth = oneMonthCase2;
-            GInstance().globalData.dateTimeSixMonth = sixMonthCase2;
+            GCase1().dateTimeOneMonth = oneMonthCase2;
+            GCase1().dateTimeSixMonth = sixMonthCase2;
         }
             break;
         case GZSFZNFMCX: //M3 根治术+辅助 持续
@@ -94,23 +95,23 @@ static NSString *sixMonthCase5           = @"2002/12/18 星期一";//twoyear thr
         case XFZNFMGZSFZNFMJX: //M5 新辅助+根治术+辅助 间歇 case 3
         {
             _datetimeLabel.text = twoYearNineMonthLater;
-            GInstance().globalData.dateTimeOneMonth = oneMonthCase3;
-            GInstance().globalData.dateTimeSixMonth = sixMonthCase3;
+            GCase1().dateTimeOneMonth = oneMonthCase3;
+            GCase1().dateTimeSixMonth = sixMonthCase3;
         }
             break;
         case XFZNFMGZS: //M4 新辅助+根治术 case 4
         {
             _datetimeLabel.text = twoYearSixMonthLater;
-            GInstance().globalData.dateTimeOneMonth = oneMonthCase4;
-            GInstance().globalData.dateTimeSixMonth = sixMonthCase4;
+            GCase1().dateTimeOneMonth = oneMonthCase4;
+            GCase1().dateTimeSixMonth = sixMonthCase4;
         }
             break;
         case FLFZNFMCX: //M8 放疗+辅助 持续
         case FLFZNFMJX: //M8 放疗+辅助 间歇 case 5
         {
             _datetimeLabel.text = twoYearsThreeMonthLater;
-            GInstance().globalData.dateTimeOneMonth = oneMonthCase5;
-            GInstance().globalData.dateTimeSixMonth = sixMonthCase5;
+            GCase1().dateTimeOneMonth = oneMonthCase5;
+            GCase1().dateTimeSixMonth = sixMonthCase5;
         }
             break;
         default:
@@ -121,7 +122,7 @@ static NSString *sixMonthCase5           = @"2002/12/18 星期一";//twoyear thr
 //step 10
 - (void)changedLabelTextInM2:(BCJZResult)result
 {
-    _datetimeLabel.text = GInstance().globalData.dateTimeSixMonth;
+    _datetimeLabel.text = GCase1().dateTimeSixMonth;
 //    _datetimeLabel.hidden = NO;
 //    switch (result) {
 //        case ZDJC:      //主动监测 case 1 one year
@@ -218,27 +219,27 @@ static NSString *sixMonthCase5           = @"2002/12/18 星期一";//twoyear thr
 #pragma mark - Reload Data
 - (void)reloadViewDataForR2
 {
-    _datetimeLabel.text = GInstance().globalData.dateTimeSixMonth;
+    _datetimeLabel.text = GCase1().dateTimeSixMonth;
 
     _bcjzImage.frame = CGRectMake(0, 0, 872.0f, 768.0f);
     NSString *imageName;
-    if (GInstance().globalData.zlfaLeftSelectedIndex == 1 ||
-        GInstance().globalData.zlfaLeftSelectedIndex == 2) {
+    if (GCase1().zlfaLeftSelectedIndex == 1 ||
+        GCase1().zlfaLeftSelectedIndex == 2) {
         imageName = @"bcjzR2_Shoushu.png"; //手术
-    } else if (GInstance().globalData.zlfaLeftSelectedIndex == 3 ||
-               GInstance().globalData.zlfaLeftSelectedIndex == 4) {
+    } else if (GCase1().zlfaLeftSelectedIndex == 3 ||
+               GCase1().zlfaLeftSelectedIndex == 4) {
         imageName = @"bcjzR2_Fangliao.png"; //放疗
-    } else if (GInstance().globalData.zlfaLeftSelectedIndex == 5) {
+    } else if (GCase1().zlfaLeftSelectedIndex == 5) {
         imageName = @"bcjzR2_Zhudong.png"; //主动监测
     }
 
-    if (GInstance().globalData.zlfaR2RightSelectedIndex == 1) {
+    if (GCase1().zlfaR2RightSelectedIndex == 1) {
         imageName = @"bcjzR2_Fuzhu.png"; //辅助内分泌
-    } else if (GInstance().globalData.zlfaR2RightSelectedIndex == 2) {
+    } else if (GCase1().zlfaR2RightSelectedIndex == 2) {
         imageName = @"bcjzR2_Hualiao.png"; //化疗
-    } else if (GInstance().globalData.zlfaR2RightSelectedIndex == 3) {
+    } else if (GCase1().zlfaR2RightSelectedIndex == 3) {
         imageName = @"bcjzR2_Kangxiong.png"; //中断抗雄治疗
-    } else if (GInstance().globalData.zlfaR2RightSelectedIndex == 4) {
+    } else if (GCase1().zlfaR2RightSelectedIndex == 4) {
         imageName = @"bcjzR2_Neifenmi.png"; //二线内分泌
     }
 

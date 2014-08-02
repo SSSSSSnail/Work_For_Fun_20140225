@@ -12,62 +12,27 @@
 #define NSLog(...) {}
 #endif
 
-//#define SKIPREQUEST
+#define SKIPREQUEST
 
 #import "UIFont+MicrosoftFont.h"
 #import "UIAlertView+Blocks.h"
 #import "BCJZViewController.h"
+
+@class Case1Data;
+@class Case2Data;
 @interface LLGlobalData : NSObject
 
 @property (copy, nonatomic) NSString *subjectName;
 @property (copy, nonatomic) NSString *subjectId;
 @property (copy, nonatomic) NSString *groupNumber;
 
-@property (copy, nonatomic) NSString *lcjcSelectedArrayString;
-@property (copy, nonatomic) NSString *lcjcSelectedArrayStringR2;
-@property (copy, nonatomic) NSString *lcjcChuanCiBA;
-
-@property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 1 2 3 4 5
-@property (assign, nonatomic) NSUInteger zlfaRightSelectedIndex; // 1 2 3   0标示未选择
-@property (copy, nonatomic) NSString *zlfaFuzhuType; // C : 持续 J : 间歇
-@property (copy, nonatomic) NSString *zlfaFuzhuOrZhaoShe; // F : 辅助 W : 外照射
-@property (assign, nonatomic) NSUInteger zlfaFuzhuSelectedIndex; // 1 2 3 4
-
-@property (copy, nonatomic) NSString *zlfaXinFuZhuYaoWuSeg1;
-@property (copy, nonatomic) NSString *zlfaXinFuZhuYaoWuSeg2;
-
-@property (copy, nonatomic) NSString *zlfaFuzhuYaoWuSeg1;
-@property (copy, nonatomic) NSString *zlfaFuzhuYaoWuSeg2;
-@property (copy, nonatomic) NSString *zlfaFuzhuYaoWuSeg3;
-
-@property (copy, nonatomic) NSString *zlfaR2FuzhuYaoWuSeg1;
-@property (copy, nonatomic) NSString *zlfaR2FuzhuYaoWuSeg2;
-@property (copy, nonatomic) NSString *zlfaR2FuzhuYaoWuSeg3;
-
-//R2
-@property (assign, nonatomic) NSUInteger zlfaR2RightSelectedIndex;
-@property (copy, nonatomic) NSString *zlfaR2RightYaowuSelected; //C : 雌激素 F : 氟他胺
-
 @property (assign, nonatomic) NSUInteger currentIndex;
 @property (assign, nonatomic) NSUInteger maxIndex;
 
-@property (copy, nonatomic) NSString *zdjgZDSelectItem;
-@property (copy, nonatomic) NSString *zdjgPGSelectItem;
-@property (copy, nonatomic) NSString *zdjgTSelectItem;
-@property (copy, nonatomic) NSString *zdjgMSelectItem;
-@property (copy, nonatomic) NSString *zdjgNSelectItem;
-@property (copy, nonatomic) NSString *zdjgZDSelectItemR2;
-@property (copy, nonatomic) NSString *zdjgPGSelectItemR2;
-@property (copy, nonatomic) NSString *zdjgTSelectItemR2;
-@property (copy, nonatomic) NSString *zdjgMSelectItemR2;
-@property (copy, nonatomic) NSString *zdjgNSelectItemR2;
-@property (getter = isFSSetp2, nonatomic) BOOL fsStep2;
-@property (assign, nonatomic) BCJZMResult r2Type;
-@property (assign, nonatomic) BCJZResult r1Result;
-@property (assign, nonatomic) BCJZResult r2Result;
-@property (copy, nonatomic) NSString *dateTimeOneMonth;
-@property (copy, nonatomic) NSString *dateTimeSixMonth;
 @property (copy, nonatomic) NSString *hasAddtoGroup;
+
+@property (copy, nonatomic, readonly) NSString *dataClass;
+
 @end
 
 //static NSString *const SERVERURL = @"http://192.168.1.11:8080/diphereline-case/subject.do";
@@ -79,10 +44,18 @@ static NSString *const STEPURL = @"http://diphereline-case.com/case1.do";
 static NSString *const E1 = @"E01";
 static NSString *const E2 = @"E02";
 
+typedef NS_ENUM (NSUInteger, CaseNumber) {
+    CaseNumberOne = 1,
+    CaseNumberTwo = 2
+};
+
 @interface LLGlobalContant : NSObject
+
+@property (nonatomic, assign) CaseNumber caseNumber;
 
 + (instancetype)sharedInstance;
 
+- (void)initData;
 - (void)loadData;
 - (void)backupData;
 - (void)savaData;
@@ -103,11 +76,10 @@ static NSString *const E2 = @"E02";
             withParameters:(NSDictionary *)parameters
                 completion:(void(^)(NSDictionary *responseJsonDic))requestFinish;
 
-- (NSMutableDictionary *)coverToDictionaryFromObject:(id)object;
-- (void)coverToObject:(id)object fromDictionary:(NSMutableDictionary *)dictionary;
-
 @property (strong, nonatomic) LLGlobalData *globalData;
 
 @end
 
 LLGlobalContant *GInstance();
+Case1Data *GCase1();
+Case2Data *GCase2();

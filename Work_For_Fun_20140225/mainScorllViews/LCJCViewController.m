@@ -7,6 +7,7 @@
 //
 
 #import "LCJCViewController.h"
+#import "Case1Data.h"
 
 @interface LCJCViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -77,10 +78,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *selectedString;
-    if (GInstance().globalData.isFSSetp2) {
-        selectedString = GInstance().globalData.lcjcSelectedArrayStringR2;
+    if (GCase1().isFSSetp2) {
+        selectedString = GCase1().lcjcSelectedArrayStringR2;
     } else {
-        selectedString = GInstance().globalData.lcjcSelectedArrayString;
+        selectedString = GCase1().lcjcSelectedArrayString;
     }
     
     BOOL isSelected = [[selectedString componentsSeparatedByString:@","] containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
@@ -99,7 +100,7 @@
 #pragma mark TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (GInstance().globalData.isFSSetp2) {
+    if (GCase1().isFSSetp2) {
         [self tableView:tableView didSelectRowForR2AtIndexPath:indexPath];
     } else {
         [self tableView:tableView didSelectRowForR1AtIndexPath:indexPath];
@@ -117,13 +118,13 @@
                             [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
                         }];
     } else {
-        if (GInstance().globalData.isFSSetp2) {
-            if (GInstance().globalData.lcjcSelectedArrayStringR2.length == 0) {
+        if (GCase1().isFSSetp2) {
+            if (GCase1().lcjcSelectedArrayStringR2.length == 0) {
                 [GInstance() showInfoMessage:@"请完成检查步骤！"];
                 return;
             }
         } else {
-            if (GInstance().globalData.lcjcSelectedArrayString.length == 0) {
+            if (GCase1().lcjcSelectedArrayString.length == 0) {
                 [GInstance() showInfoMessage:@"请完成检查步骤！"];
                 return;
             }
@@ -137,15 +138,15 @@
 #pragma mark - Reload Data
 - (void)reloadViewDataForR2
 {
-    _dateTimeLabel.text = GInstance().globalData.dateTimeOneMonth;
+    _dateTimeLabel.text = GCase1().dateTimeOneMonth;
 }
 
 #pragma mark - Private Method
 
 - (NSString *)r2TyeString:(NSInteger)row
 {
-    if (GInstance().globalData.r2Type > 0) {
-        return [NSString stringWithFormat:@"%@M%d", _lcjcTableToImageNameArray[row],GInstance().globalData.r2Type - 20];
+    if (GCase1().r2Type > 0) {
+        return [NSString stringWithFormat:@"%@M%ld", _lcjcTableToImageNameArray[row], (long)GCase1().r2Type - 20];
     } else {
         return [NSString stringWithFormat:@"%@", _lcjcTableToImageNameArray[row]];
     }
@@ -153,12 +154,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowForR2AtIndexPath:(NSIndexPath *)indexPath
 {
-    LLGlobalData *globalData = GInstance().globalData;
+    Case1Data *globalData = GCase1();
     if (globalData.lcjcSelectedArrayStringR2.length == 0) {
         globalData.lcjcSelectedArrayStringR2 = [NSString string];
     }
 
-    NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
+    NSArray *selectedArray = [GCase1().lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
     if (_isLocked) {
         if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
             if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
@@ -245,7 +246,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowForR1AtIndexPath:(NSIndexPath *)indexPath
 {
 
-    LLGlobalData *globalData = GInstance().globalData;
+    Case1Data *globalData = GCase1();
     if (globalData.lcjcSelectedArrayString.length == 0) {
         globalData.lcjcSelectedArrayString = [NSString string];
     }
@@ -278,7 +279,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSArray *selectedArray = [GInstance().globalData.lcjcSelectedArrayString componentsSeparatedByString:@","];
+            NSArray *selectedArray = [GCase1().lcjcSelectedArrayString componentsSeparatedByString:@","];
             if (_isLocked) {
                 if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
                     if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {

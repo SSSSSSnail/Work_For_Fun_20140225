@@ -7,6 +7,7 @@
 //
 
 #import "ZLFAViewController.h"
+#import "Case1Data.h"
 
 @interface ZLFAViewController ()
 
@@ -112,11 +113,11 @@
 
 - (IBAction)zlfaLeftSegmentedChanged:(UISegmentedControl *)sender
 {
-    if (_clickAddFuzhu && !GInstance().globalData.fsStep2) {
+    if (_clickAddFuzhu && !((Case1Data *)GCase1()).fsStep2) {
         BOOL fuzhuEnable = sender.selectedSegmentIndex == 0 ? NO : YES;
         if (sender.tag == 3) {
             _right2FuzhuSegmentControl.enabled = fuzhuEnable;
-            GInstance().globalData.zlfaFuzhuOrZhaoShe = fuzhuEnable ? @"" : @"W";
+            ((Case1Data *)GCase1()).zlfaFuzhuOrZhaoShe = fuzhuEnable ? @"" : @"W";
         }
     } else {
         if (sender.selectedSegmentIndex == 0) {
@@ -131,9 +132,9 @@
                 _fuzhuSegmented.enabled = YES;
             }
             _danyiSegmented.enabled = NO;
-            GInstance().globalData.zlfaLeftSelectedIndex = sender.tag;
-            if (GInstance().globalData.zlfaR2RightSelectedIndex != 0) {
-                GInstance().globalData.zlfaR2RightSelectedIndex = 0;
+            GCase1().zlfaLeftSelectedIndex = sender.tag;
+            if (GCase1().zlfaR2RightSelectedIndex != 0) {
+                GCase1().zlfaR2RightSelectedIndex = 0;
                 [self transitionR2AndRight];
             }
         } else {
@@ -141,10 +142,10 @@
                 _danyiSegmented.enabled = YES;
             }
             _fuzhuSegmented.enabled = YES;
-            GInstance().globalData.zlfaLeftSelectedIndex = 0;
+            GCase1().zlfaLeftSelectedIndex = 0;
         }
     }
-    if (GInstance().globalData.fsStep2) {
+    if (GCase1().fsStep2) {
         if (sender.selectedSegmentIndex == 0) {
             for (UISegmentedControl *segmentControl in _r2RightSegCollection) {
                 segmentControl.selectedSegmentIndex = 1;
@@ -168,8 +169,8 @@
 #ifndef SKIPREQUEST
             NSDictionary *parametersDictionary = @{@"step": @"4",
                                                    @"action": @"checknfm2",
-                                                   @"subject_id": GInstance().globalData.subjectId,
-                                                   @"group_id": GInstance().globalData.groupNumber};
+                                                   @"subject_id": GCase1().subjectId,
+                                                   @"group_id": GCase1().groupNumber};
             [GInstance() httprequestWithHUD:self.view
                              withRequestURL:STEPURL
                              withParameters:parametersDictionary
@@ -215,7 +216,7 @@
                             completion:^(BOOL finished){
                             }];
         } else {
-            GInstance().globalData.zlfaRightSelectedIndex = 0;
+            GCase1().zlfaRightSelectedIndex = 0;
             for (UIButton *button in _fuzhuSubCollection) {
                 if (button.isSelected) {
                     button.selected = NO;
@@ -243,7 +244,7 @@
             button.selected = NO;
         }
     }
-    GInstance().globalData.zlfaRightSelectedIndex = sender.tag - 20;
+    GCase1().zlfaRightSelectedIndex = sender.tag - 20;
 }
 
 - (IBAction)confirmClick:(UIButton *)sender
@@ -258,7 +259,7 @@
 
     }]
                        otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-        if (GInstance().globalData.zlfaLeftSelectedIndex == 5) {
+        if (GCase1().zlfaLeftSelectedIndex == 5) {
             if ([_scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
                 [_scrollViewDelegate didClickConfirmButton:sender];
             }
@@ -296,7 +297,7 @@
                     break;
                 }
             }
-            if (segmentedControl.enabled && GInstance().globalData.zlfaRightSelectedIndex > 0) {
+            if (segmentedControl.enabled && GCase1().zlfaRightSelectedIndex > 0) {
                 segmentedControl.enabled = NO;
             }
         }
@@ -322,7 +323,7 @@
             button.selected = NO;
         }
     }
-    GInstance().globalData.zlfaFuzhuSelectedIndex = sender.tag - 200;
+    GCase1().zlfaFuzhuSelectedIndex = sender.tag - 200;
 }
 
 - (IBAction)rightView2SegmentControlerValueChange:(UISegmentedControl *)sender
@@ -330,13 +331,13 @@
     if (sender == _right2FuzhuSegmentControl) {
         if (sender.selectedSegmentIndex == 0) {
             _right2ChixuJianxieSegmentControl.hidden = NO;
-            if (!GInstance().globalData.isFSSetp2) {
+            if (!GCase1().isFSSetp2) {
                 for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
                     if (segmentControl.tag == 3) {
                         segmentControl.enabled = NO;
                     }
                 }
-                GInstance().globalData.zlfaFuzhuOrZhaoShe = @"F";
+                GCase1().zlfaFuzhuOrZhaoShe = @"F";
                 _showFuzhu = YES;
                 _shouldToNext = NO;
             }
@@ -348,30 +349,30 @@
                 button.selected = NO;
             }
 
-            if ((GInstance().globalData.zlfaLeftSelectedIndex == 1 ||
-                 GInstance().globalData.zlfaLeftSelectedIndex == 2) &&
-                GInstance().globalData.zlfaRightSelectedIndex == 0) {
+            if ((GCase1().zlfaLeftSelectedIndex == 1 ||
+                 GCase1().zlfaLeftSelectedIndex == 2) &&
+                GCase1().zlfaRightSelectedIndex == 0) {
                 for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
                     if (segmentControl.tag == 3) {
                         segmentControl.enabled = YES;
                     }
                 }
             }
-            if (!GInstance().globalData.isFSSetp2) {
-                GInstance().globalData.zlfaFuzhuOrZhaoShe = @"";
-                GInstance().globalData.zlfaFuzhuType = @"";
-                GInstance().globalData.zlfaFuzhuSelectedIndex = 0;
+            if (!GCase1().isFSSetp2) {
+                GCase1().zlfaFuzhuOrZhaoShe = @"";
+                GCase1().zlfaFuzhuType = @"";
+                GCase1().zlfaFuzhuSelectedIndex = 0;
                 _showFuzhu = NO;
                 _shouldToNext = YES;
             } else {
-                GInstance().globalData.zlfaR2RightSelectedIndex = 0;
+                GCase1().zlfaR2RightSelectedIndex = 0;
                 [self transitionR2AndRight];
             }
         }
     } else if (sender == _right2ChixuJianxieSegmentControl) {
         _rightViw2SubView.hidden = NO;
         UIViewAnimationOptions option;
-        GInstance().globalData.zlfaFuzhuSelectedIndex = 0;
+        GCase1().zlfaFuzhuSelectedIndex = 0;
         if (sender.selectedSegmentIndex == 0) {
             _rightView2SubImageView.image = [UIImage imageNamed:@"zlfaBG2Right2.png"];
             for (UIButton *button in _fuzhuButtonCollection) {
@@ -381,7 +382,7 @@
                 button.selected = NO;
             }
             option = UIViewAnimationOptionTransitionFlipFromLeft;
-            GInstance().globalData.zlfaFuzhuType = @"C";
+            GCase1().zlfaFuzhuType = @"C";
         } else {
             _rightView2SubImageView.image = [UIImage imageNamed:@"zlfaBG2Right3.png"];
             for (UIButton *button in _fuzhuButtonCollection) {
@@ -391,7 +392,7 @@
                 button.selected = NO;
             }
             option = UIViewAnimationOptionTransitionFlipFromRight;
-            GInstance().globalData.zlfaFuzhuType = @"J";
+            GCase1().zlfaFuzhuType = @"J";
         }
         [UIView transitionWithView:_rightViw2SubView
                           duration:0.8
@@ -406,21 +407,21 @@
 
 - (BOOL)checkValues
 {
-    if (GInstance().globalData.isFSSetp2) {
-        if (GInstance().globalData.r2Type == M1) {
+    if (GCase1().isFSSetp2) {
+        if (GCase1().r2Type == M1) {
             if (_showR2FuzhuDetail) {
                 NSUInteger keyInt;
                 BOOL checkResult =  YES;
-                if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-                    keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+                if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+                    keyInt = GCase1().zlfaFuzhuSelectedIndex;
                 } else {
-                    keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+                    keyInt = GCase1().zlfaFuzhuSelectedIndex + 1;
                 }
                 if (keyInt == 2 || keyInt == 3) {
-                    checkResult = GInstance().globalData.zlfaR2FuzhuYaoWuSeg1.length > 0 ? YES : NO;
+                    checkResult = GCase1().zlfaR2FuzhuYaoWuSeg1.length > 0 ? YES : NO;
                 } else if (keyInt == 4){
-                    checkResult = (GInstance().globalData.zlfaR2FuzhuYaoWuSeg1.length > 0) &&
-                    (GInstance().globalData.zlfaR2FuzhuYaoWuSeg2.length > 0);
+                    checkResult = (GCase1().zlfaR2FuzhuYaoWuSeg1.length > 0) &&
+                    (GCase1().zlfaR2FuzhuYaoWuSeg2.length > 0);
                 }
                 if (!checkResult) {
                     [GInstance() showInfoMessage:@"请完成治疗方案"];
@@ -435,26 +436,26 @@
                     }
                 }
                 if (!selectedLeft) {
-                    if (GInstance().globalData.zlfaFuzhuSelectedIndex == 0) {
+                    if (GCase1().zlfaFuzhuSelectedIndex == 0) {
                         [GInstance() showInfoMessage:@"请完成治疗方案"];
                         return NO;
                     }
                 }
             }
-        } else if (GInstance().globalData.r2Type == M2) {
+        } else if (GCase1().r2Type == M2) {
             if (_showR2FuzhuDetail) {
                 NSUInteger keyInt;
                 BOOL checkResult =  YES;
-                if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-                    keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+                if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+                    keyInt = GCase1().zlfaFuzhuSelectedIndex;
                 } else {
-                    keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+                    keyInt = GCase1().zlfaFuzhuSelectedIndex + 1;
                 }
                 if (keyInt == 2 || keyInt == 3) {
-                    checkResult = GInstance().globalData.zlfaR2FuzhuYaoWuSeg1.length > 0 ? YES : NO;
+                    checkResult = GCase1().zlfaR2FuzhuYaoWuSeg1.length > 0 ? YES : NO;
                 } else if (keyInt == 4){
-                    checkResult = (GInstance().globalData.zlfaR2FuzhuYaoWuSeg1.length > 0) &&
-                    (GInstance().globalData.zlfaR2FuzhuYaoWuSeg2.length > 0);
+                    checkResult = (GCase1().zlfaR2FuzhuYaoWuSeg1.length > 0) &&
+                    (GCase1().zlfaR2FuzhuYaoWuSeg2.length > 0);
                 }
                 if (!checkResult) {
                     [GInstance() showInfoMessage:@"请完成治疗方案"];
@@ -470,64 +471,64 @@
                     }
                 }
                 if (!selectedLeft) {
-                    if (GInstance().globalData.zlfaFuzhuSelectedIndex == 0) {
+                    if (GCase1().zlfaFuzhuSelectedIndex == 0) {
                         [GInstance() showInfoMessage:@"请完成治疗方案"];
                         return NO;
                     }
                 }
             }
-        } else if (GInstance().globalData.r2Type == M3 ||
-                   GInstance().globalData.r2Type == M4 ||
-                   GInstance().globalData.r2Type == M5 ||
-                   GInstance().globalData.r2Type == M8) {
-            if (GInstance().globalData.zlfaR2RightSelectedIndex < 2 ||
-                GInstance().globalData.zlfaR2RightSelectedIndex > 4){
+        } else if (GCase1().r2Type == M3 ||
+                   GCase1().r2Type == M4 ||
+                   GCase1().r2Type == M5 ||
+                   GCase1().r2Type == M8) {
+            if (GCase1().zlfaR2RightSelectedIndex < 2 ||
+                GCase1().zlfaR2RightSelectedIndex > 4){
                 [GInstance() showInfoMessage:@"请完成治疗方案"];
                 return NO;
             }
-            if (GInstance().globalData.zlfaR2RightSelectedIndex == 4 &&
-                GInstance().globalData.zlfaR2RightYaowuSelected.length == 0) {
+            if (GCase1().zlfaR2RightSelectedIndex == 4 &&
+                GCase1().zlfaR2RightYaowuSelected.length == 0) {
                 [GInstance() showInfoMessage:@"请完成治疗方案"];
                 return NO;
             }
-        } else if (GInstance().globalData.r2Type == M6) {
-            if (GInstance().globalData.zlfaFuzhuSelectedIndex == 0) {
+        } else if (GCase1().r2Type == M6) {
+            if (GCase1().zlfaFuzhuSelectedIndex == 0) {
                 [GInstance() showInfoMessage:@"请完成治疗方案"];
                 return NO;
             }
             if (_showR2FuzhuDetail) {
                 NSUInteger keyInt;
                 BOOL checkResult =  YES;
-                if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-                    keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+                if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+                    keyInt = GCase1().zlfaFuzhuSelectedIndex;
                 } else {
-                    keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+                    keyInt = GCase1().zlfaFuzhuSelectedIndex + 1;
                 }
                 if (keyInt == 2 || keyInt == 3) {
-                    checkResult = GInstance().globalData.zlfaR2FuzhuYaoWuSeg1.length > 0 ? YES : NO;
+                    checkResult = GCase1().zlfaR2FuzhuYaoWuSeg1.length > 0 ? YES : NO;
                 } else if (keyInt == 4){
-                    checkResult = (GInstance().globalData.zlfaR2FuzhuYaoWuSeg1.length > 0) &&
-                    (GInstance().globalData.zlfaR2FuzhuYaoWuSeg2.length > 0);
+                    checkResult = (GCase1().zlfaR2FuzhuYaoWuSeg1.length > 0) &&
+                    (GCase1().zlfaR2FuzhuYaoWuSeg2.length > 0);
                 }
                 if (!checkResult) {
                     [GInstance() showInfoMessage:@"请完成治疗方案"];
                     return NO;
                 }
             }
-        } else if (GInstance().globalData.r2Type == M7) {
+        } else if (GCase1().r2Type == M7) {
             if (_showR2FuzhuDetail) {
                 NSUInteger keyInt;
                 BOOL checkResult =  YES;
-                if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-                    keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+                if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+                    keyInt = GCase1().zlfaFuzhuSelectedIndex;
                 } else {
-                    keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+                    keyInt = GCase1().zlfaFuzhuSelectedIndex + 1;
                 }
                 if (keyInt == 2 || keyInt == 3) {
-                    checkResult = GInstance().globalData.zlfaR2FuzhuYaoWuSeg1.length > 0 ? YES : NO;
+                    checkResult = GCase1().zlfaR2FuzhuYaoWuSeg1.length > 0 ? YES : NO;
                 } else if (keyInt == 4){
-                    checkResult = (GInstance().globalData.zlfaR2FuzhuYaoWuSeg1.length > 0) &&
-                    (GInstance().globalData.zlfaR2FuzhuYaoWuSeg2.length > 0);
+                    checkResult = (GCase1().zlfaR2FuzhuYaoWuSeg1.length > 0) &&
+                    (GCase1().zlfaR2FuzhuYaoWuSeg2.length > 0);
                 }
                 if (!checkResult) {
                     [GInstance() showInfoMessage:@"请完成治疗方案"];
@@ -544,7 +545,7 @@
                     }
                 }
                 if (!selectedLeft) {
-                    if (GInstance().globalData.zlfaFuzhuSelectedIndex == 0) {
+                    if (GCase1().zlfaFuzhuSelectedIndex == 0) {
                         [GInstance() showInfoMessage:@"请完成治疗方案"];
                         return NO;
                     }
@@ -612,18 +613,18 @@
         if (_showFuzhuDetail) {
             NSUInteger keyInt;
             BOOL checkResult =  YES;
-            if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-                keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+            if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+                keyInt = GCase1().zlfaFuzhuSelectedIndex;
             } else {
-                keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+                keyInt = GCase1().zlfaFuzhuSelectedIndex + 1;
             }
             if (keyInt == 2 || keyInt == 3) {
-                checkResult = (GInstance().globalData.zlfaFuzhuYaoWuSeg1.length > 0) &&
-                (GInstance().globalData.zlfaFuzhuYaoWuSeg2.length > 0);
+                checkResult = (GCase1().zlfaFuzhuYaoWuSeg1.length > 0) &&
+                (GCase1().zlfaFuzhuYaoWuSeg2.length > 0);
             } else if (keyInt == 4){
-                checkResult = (GInstance().globalData.zlfaFuzhuYaoWuSeg1.length > 0) &&
-                (GInstance().globalData.zlfaFuzhuYaoWuSeg2.length > 0) &&
-                (GInstance().globalData.zlfaFuzhuYaoWuSeg3.length > 0);
+                checkResult = (GCase1().zlfaFuzhuYaoWuSeg1.length > 0) &&
+                (GCase1().zlfaFuzhuYaoWuSeg2.length > 0) &&
+                (GCase1().zlfaFuzhuYaoWuSeg3.length > 0);
             }
             if (!checkResult) {
                 [GInstance() showInfoMessage:@"请完成治疗方案"];
@@ -631,15 +632,15 @@
             }
         }
 
-        if (GInstance().globalData.zlfaRightSelectedIndex > 0 && _section2FirtLanuch) {
+        if (GCase1().zlfaRightSelectedIndex > 0 && _section2FirtLanuch) {
             NSUInteger keyInt;
             BOOL checkResult = YES;
-            keyInt = GInstance().globalData.zlfaRightSelectedIndex;
+            keyInt = GCase1().zlfaRightSelectedIndex;
             if (keyInt == 1 || keyInt == 2) {
-                checkResult = GInstance().globalData.zlfaXinFuZhuYaoWuSeg1.length > 0 ? YES : NO;
+                checkResult = GCase1().zlfaXinFuZhuYaoWuSeg1.length > 0 ? YES : NO;
             } else {
-                checkResult = (GInstance().globalData.zlfaXinFuZhuYaoWuSeg1.length > 0) &&
-                (GInstance().globalData.zlfaXinFuZhuYaoWuSeg2.length > 0);
+                checkResult = (GCase1().zlfaXinFuZhuYaoWuSeg1.length > 0) &&
+                (GCase1().zlfaXinFuZhuYaoWuSeg2.length > 0);
             }
             if (!checkResult) {
                 [GInstance() showInfoMessage:@"请完成治疗方案"];
@@ -656,17 +657,17 @@
 {
     NSString *imageName = nil;
     _section2FirtLanuch = NO;
-    if (GInstance().globalData.zlfaRightSelectedIndex > 0) {
+    if (GCase1().zlfaRightSelectedIndex > 0) {
         if (_shouldShowLeft) {
-            if (GInstance().globalData.zlfaLeftSelectedIndex > 0 && GInstance().globalData.zlfaLeftSelectedIndex < 5) {
+            if (GCase1().zlfaLeftSelectedIndex > 0 && GCase1().zlfaLeftSelectedIndex < 5) {
                 _section2Picker1.hidden = YES;
                 _section2Picker2.hidden = YES;
                 _section2Picker3.hidden = YES;
-                imageName = [NSString stringWithFormat:@"zlfaSection2LeftBG_%ld.png", (unsigned long)GInstance().globalData.zlfaLeftSelectedIndex];
+                imageName = [NSString stringWithFormat:@"zlfaSection2LeftBG_%ld.png", (unsigned long)GCase1().zlfaLeftSelectedIndex];
             }
             _shouldToNext = YES;
         } else {
-            if (GInstance().globalData.zlfaRightSelectedIndex == 1 || GInstance().globalData.zlfaRightSelectedIndex == 2) {
+            if (GCase1().zlfaRightSelectedIndex == 1 || GCase1().zlfaRightSelectedIndex == 2) {
                 _section2Picker1.hidden = NO;
                 _section2Picker1.frame = CGRectMake(327.0f, 149.0f, 200.0f, 216.0f);
                 [_section2Picker1 selectRow:0 inComponent:0 animated:NO];
@@ -674,8 +675,8 @@
                 _section2Picker2.hidden = YES;
                 _section2Picker3.hidden = YES;
 
-                imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
-            } else if (GInstance().globalData.zlfaRightSelectedIndex == 3) {
+                imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", (unsigned long)GCase1().zlfaRightSelectedIndex];
+            } else if (GCase1().zlfaRightSelectedIndex == 3) {
                 _section2Picker1.hidden = NO;
                 _section2Picker1.frame = CGRectMake(157.0f, 149.0f, 200.0f, 216.0f);
                 [_section2Picker1 selectRow:0 inComponent:0 animated:NO];
@@ -686,17 +687,17 @@
                 [_section2Picker2 reloadAllComponents];
                 _section2Picker3.hidden = YES;
 
-                imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
+                imageName = [NSString stringWithFormat:@"zlfaSection2BG_%ld.png", (unsigned long)GCase1().zlfaRightSelectedIndex];
             }
             _section2FirtLanuch = YES;
             _shouldShowLeft = YES;
         }
     } else {
-        if (GInstance().globalData.zlfaLeftSelectedIndex > 0 && GInstance().globalData.zlfaLeftSelectedIndex < 5) {
+        if (GCase1().zlfaLeftSelectedIndex > 0 && GCase1().zlfaLeftSelectedIndex < 5) {
             _section2Picker1.hidden = YES;
             _section2Picker2.hidden = YES;
             _section2Picker3.hidden = YES;
-            imageName = [NSString stringWithFormat:@"zlfaSection2LeftBG_%ld.png", (unsigned long)GInstance().globalData.zlfaLeftSelectedIndex];
+            imageName = [NSString stringWithFormat:@"zlfaSection2LeftBG_%ld.png", (unsigned long)GCase1().zlfaLeftSelectedIndex];
         }
         _shouldToNext = YES;
     }
@@ -709,7 +710,7 @@
                     completion:^(BOOL finished) {
                         _section1View.hidden = YES;
 
-                        if (GInstance().globalData.zlfaRightSelectedIndex > 0) {
+                        if (GCase1().zlfaRightSelectedIndex > 0) {
                             if (_shouldShowLeft && !_section2FirtLanuch) {
                                 _titleLabel.text = @"治疗方案记录";
                                 _addFuzhuButton.hidden = NO;
@@ -718,7 +719,7 @@
                             }
                         } else {
                             _titleLabel.text = @"治疗方案记录";
-                            if (!GInstance().globalData.isFSSetp2) {
+                            if (!GCase1().isFSSetp2) {
                                 _addFuzhuButton.hidden = NO;
                             }
                         }
@@ -727,7 +728,7 @@
 
 - (void)transitionToSectionThree
 {
-    if (!GInstance().globalData.isFSSetp2) {
+    if (!GCase1().isFSSetp2) {
         _showFuzhuDetail = YES;
     } else {
         _showR2FuzhuDetail = YES;
@@ -736,14 +737,14 @@
 
     NSString *imageName;
     NSString *titleString;
-    if ([GInstance().globalData.zlfaFuzhuOrZhaoShe isEqualToString:@"F"]) {
+    if ([GCase1().zlfaFuzhuOrZhaoShe isEqualToString:@"F"]) {
         NSUInteger iamgeIndex;
-        if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-            iamgeIndex = GInstance().globalData.zlfaFuzhuSelectedIndex;
+        if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+            iamgeIndex = GCase1().zlfaFuzhuSelectedIndex;
         } else {
-            iamgeIndex = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+            iamgeIndex = GCase1().zlfaFuzhuSelectedIndex + 1;
         }
-        if (GInstance().globalData.isFSSetp2) {
+        if (GCase1().isFSSetp2) {
             if (iamgeIndex == 2) {
                 _section2Picker1.hidden = NO;
                 _section2Picker1.frame = CGRectMake(327.0f, 179.0f, 200.0f, 216.0f);
@@ -838,8 +839,8 @@
 
 - (void)transitionR2AndRight
 {
-    if (GInstance().globalData.zlfaR2RightSelectedIndex == 1) {
-        GInstance().globalData.zlfaFuzhuOrZhaoShe = @"F";
+    if (GCase1().zlfaR2RightSelectedIndex == 1) {
+        GCase1().zlfaFuzhuOrZhaoShe = @"F";
         _showR2Fuzhu = YES;
         _right2FuzhuSegmentControl.selectedSegmentIndex = 0;
         _right2ChixuJianxieSegmentControl.hidden = NO;
@@ -901,25 +902,25 @@
     if ([dicKeyString isEqualToString:@"1011"] ||
         [dicKeyString isEqualToString:@"1012"] ||
         [dicKeyString isEqualToString:@"1013"]) {
-        GInstance().globalData.zlfaXinFuZhuYaoWuSeg1 = selectedString;
+        GCase1().zlfaXinFuZhuYaoWuSeg1 = selectedString;
     } else if ([dicKeyString isEqualToString:@"1023"]) {
-        GInstance().globalData.zlfaXinFuZhuYaoWuSeg2 = selectedString;
+        GCase1().zlfaXinFuZhuYaoWuSeg2 = selectedString;
     } else if ([dicKeyString isEqualToString:@"101_2"] ||
                [dicKeyString isEqualToString:@"101_3"] ||
                [dicKeyString isEqualToString:@"101_4"]) {
-        GInstance().globalData.zlfaFuzhuYaoWuSeg1 = selectedString;
+        GCase1().zlfaFuzhuYaoWuSeg1 = selectedString;
     } else if ([dicKeyString isEqualToString:@"102_2"] ||
                [dicKeyString isEqualToString:@"102_3"] ||
                [dicKeyString isEqualToString:@"102_4"]) {
-        GInstance().globalData.zlfaFuzhuYaoWuSeg2 = selectedString;
+        GCase1().zlfaFuzhuYaoWuSeg2 = selectedString;
     } else if ([dicKeyString isEqualToString:@"103_4"]) {
-        GInstance().globalData.zlfaFuzhuYaoWuSeg3 = selectedString;
+        GCase1().zlfaFuzhuYaoWuSeg3 = selectedString;
     } else if ([dicKeyString isEqualToString:@"101,2"] ||
                [dicKeyString isEqualToString:@"101,3"] ||
                [dicKeyString isEqualToString:@"101,4"]) {
-        GInstance().globalData.zlfaR2FuzhuYaoWuSeg1 = selectedString;
+        GCase1().zlfaR2FuzhuYaoWuSeg1 = selectedString;
     } else if ([dicKeyString isEqualToString:@"102,4"]) {
-        GInstance().globalData.zlfaR2FuzhuYaoWuSeg2 = selectedString;
+        GCase1().zlfaR2FuzhuYaoWuSeg2 = selectedString;
     }
 }
 
@@ -928,22 +929,22 @@
     NSString *dicKeyString;
     if (_showFuzhuDetail) {
         NSUInteger keyInt;
-        if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+        if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+            keyInt = GCase1().zlfaFuzhuSelectedIndex;
         } else {
-            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+            keyInt = GCase1().zlfaFuzhuSelectedIndex + 1;
         }
         dicKeyString = [NSString stringWithFormat:@"%ld_%lu",(long)pickerView.tag, (unsigned long)keyInt];
     } else if (_showR2FuzhuDetail) {
         NSUInteger keyInt;
-        if ([GInstance().globalData.zlfaFuzhuType isEqualToString:@"C"]) {
-            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex;
+        if ([GCase1().zlfaFuzhuType isEqualToString:@"C"]) {
+            keyInt = GCase1().zlfaFuzhuSelectedIndex;
         } else {
-            keyInt = GInstance().globalData.zlfaFuzhuSelectedIndex + 1;
+            keyInt = GCase1().zlfaFuzhuSelectedIndex + 1;
         }
         dicKeyString = [NSString stringWithFormat:@"%ld,%lu",(long)pickerView.tag, (unsigned long)keyInt];
     } else {
-        dicKeyString = [NSString stringWithFormat:@"%ld%lu",(long)pickerView.tag, (unsigned long)GInstance().globalData.zlfaRightSelectedIndex];
+        dicKeyString = [NSString stringWithFormat:@"%ld%lu",(long)pickerView.tag, (unsigned long)GCase1().zlfaRightSelectedIndex];
     }
     return dicKeyString;
 }
@@ -952,20 +953,20 @@
 - (void)reloadViewDataForR2
 {
     _titleLabel.text = @"选择您认为最合理的治疗方案组合";
-    _dateTimeLabel.text = GInstance().globalData.dateTimeOneMonth;
+    _dateTimeLabel.text = GCase1().dateTimeOneMonth;
     _rightView2.hidden = YES;
     _rightViewR2.hidden = NO;
 
-    GInstance().globalData.zlfaFuzhuType = @"";
-    GInstance().globalData.zlfaFuzhuSelectedIndex = 0;
+    GCase1().zlfaFuzhuType = @"";
+    GCase1().zlfaFuzhuSelectedIndex = 0;
 
-    if (GInstance().globalData.r2Type == M1) {
+    if (GCase1().r2Type == M1) {
         for (UISegmentedControl *segmentControl in _r2RightSegCollection) {
             if (segmentControl.tag != 301) {
                 segmentControl.enabled = NO;
             }
         }
-    } else if (GInstance().globalData.r2Type == M2) {
+    } else if (GCase1().r2Type == M2) {
         for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
             if (segmentControl.tag != 3) {
                 segmentControl.enabled = NO;
@@ -976,10 +977,10 @@
                 segmentControl.enabled = NO;
             }
         }
-    } else if (GInstance().globalData.r2Type == M3 ||
-               GInstance().globalData.r2Type == M4 ||
-               GInstance().globalData.r2Type == M5 ||
-               GInstance().globalData.r2Type == M8) {
+    } else if (GCase1().r2Type == M3 ||
+               GCase1().r2Type == M4 ||
+               GCase1().r2Type == M5 ||
+               GCase1().r2Type == M8) {
         for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
             segmentControl.enabled = NO;
         }
@@ -988,7 +989,7 @@
                 segmentControl.enabled = NO;
             }
         }
-    } else if (GInstance().globalData.r2Type == M6) {
+    } else if (GCase1().r2Type == M6) {
         for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
             segmentControl.enabled = NO;
         }
@@ -997,7 +998,7 @@
                 segmentControl.enabled = NO;
             }
         }
-    } else if (GInstance().globalData.r2Type == M7) {
+    } else if (GCase1().r2Type == M7) {
         for (UISegmentedControl *segmentControl in _zlfaLeftSegmentedCollection) {
             if (segmentControl.tag == 3 || segmentControl.tag == 4) {
                 segmentControl.enabled = NO;
@@ -1016,16 +1017,16 @@
 {
     if (sender == _r2RightYaoWuSeg) {
         if (sender.selectedSegmentIndex == 0) {
-            GInstance().globalData.zlfaR2RightYaowuSelected = @"C";
+            GCase1().zlfaR2RightYaowuSelected = @"C";
         } else {
-            GInstance().globalData.zlfaR2RightYaowuSelected = @"F";
+            GCase1().zlfaR2RightYaowuSelected = @"F";
         }
     } else {
         if (sender.selectedSegmentIndex == 0) {
-            GInstance().globalData.zlfaR2RightSelectedIndex = sender.tag - 300;
-            GInstance().globalData.zlfaLeftSelectedIndex = 0;
+            GCase1().zlfaR2RightSelectedIndex = sender.tag - 300;
+            GCase1().zlfaLeftSelectedIndex = 0;
         } else {
-            GInstance().globalData.zlfaR2RightSelectedIndex = 0;
+            GCase1().zlfaR2RightSelectedIndex = 0;
         }
         if (sender.tag == 301) {
             [self transitionR2AndRight];
@@ -1045,9 +1046,9 @@
         } else {
             _r2RightYaoWuSeg.hidden = YES;
             _r2RightYaoWuSeg.selectedSegmentIndex = -1;
-            GInstance().globalData.zlfaR2RightYaowuSelected = @"";
+            GCase1().zlfaR2RightYaowuSelected = @"";
         }
-        if (GInstance().globalData.zlfaR2RightSelectedIndex > 1) {
+        if (GCase1().zlfaR2RightSelectedIndex > 1) {
             _shouldToNext = YES;
         } else {
             _shouldToNext = NO;
@@ -1057,7 +1058,7 @@
 
 - (void)rollToTopView
 {
-    if (!GInstance().globalData.isFSSetp2) {
+    if (!GCase1().isFSSetp2) {
         [self.view bringSubviewToFront:_section1View];
         _section2View.hidden = YES;
         _section1View.hidden = NO;

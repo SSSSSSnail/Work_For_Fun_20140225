@@ -7,6 +7,7 @@
 //
 
 #import "HZQKViewController.h"
+#import "Case1Data.h"
 
 @interface HZQKViewController ()<UITableViewDataSource>
 
@@ -64,10 +65,10 @@
     [_bshgTable reloadData];
     frame = _bshgImageView.frame;
     CGFloat yPosition = isTypeBetween2to6 ? 442.0f : 387;
-    _bshgImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"bshg%d.png",GInstance().globalData.r1Result]];
+    _bshgImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"bshg%ld.png", (long)GCase1().r1Result]];
     _bshgImageView.frame = CGRectMake(CGRectGetMinX(frame), yPosition, CGRectGetWidth(frame), CGRectGetHeight(frame));
 
-    _dateTimeLabel.text = GInstance().globalData.dateTimeOneMonth;
+    _dateTimeLabel.text = GCase1().dateTimeOneMonth;
 }
 
 - (IBAction)confirmClick:(UIButton *)sender
@@ -131,13 +132,13 @@
 //        临床分期cTNM：T2aN0M0
         cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
-        lab.text = [NSString stringWithFormat:@"临床分期cTNM：T%@N%@M%@",GInstance().globalData.zdjgTSelectItem, GInstance().globalData.zdjgNSelectItem, GInstance().globalData.zdjgMSelectItem];
+        lab.text = [NSString stringWithFormat:@"临床分期cTNM：T%@N%@M%@",GCase1().zdjgTSelectItem, GCase1().zdjgNSelectItem, GCase1().zdjgMSelectItem];
     } else if (indexPath.row == 7) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"buttonLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
         lab.text = [NSString stringWithFormat:@"曾接受过：%@", [self loadZhiLiaoFangAn]];
         UIButton *button1 = (UIButton *)[cell viewWithTag:2];
-        LLGlobalData *gdata = GInstance().globalData;
+        Case1Data *gdata = GCase1();
         if (gdata.zlfaLeftSelectedIndex == 1 || gdata.zlfaLeftSelectedIndex == 2) {
             button1.selected = YES;
         }
@@ -208,7 +209,7 @@
 
 - (BOOL)isTypeBetween2to6
 {
-    BCJZMResult r2Type = GInstance().globalData.r2Type;
+    BCJZMResult r2Type = GCase1().r2Type;
     if (r2Type >= M2 && r2Type <= M6) {
         return YES;
     } else {
@@ -218,7 +219,7 @@
 
 - (NSString *)zhenduanString
 {
-    NSArray *itemsArray = [GInstance().globalData.zdjgZDSelectItem componentsSeparatedByString:@","];
+    NSArray *itemsArray = [GCase1().zdjgZDSelectItem componentsSeparatedByString:@","];
     NSMutableString *itemsString = [NSMutableString string];
     for (NSString *item in itemsArray) {
         if ([item isEqualToString:@"bph"]) {
@@ -239,7 +240,7 @@
 
 - (NSString *)weixianxingpingguString
 {
-    NSString *string = GInstance().globalData.zdjgPGSelectItem;
+    NSString *string = GCase1().zdjgPGSelectItem;
     if ([string isEqualToString:@"dw"]) {
         return @"低危";
     } else if ([string isEqualToString:@"zw"]) {
@@ -257,7 +258,7 @@
                       @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
                       @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR",
                       @"ECOG评分", @"穿刺活检", @"CT检查"];
-    NSArray *indexArray = [GInstance().globalData.lcjcSelectedArrayString componentsSeparatedByString:@","];
+    NSArray *indexArray = [GCase1().lcjcSelectedArrayString componentsSeparatedByString:@","];
     if (indexArray.count > 0) {
         for (int i = 0; i < indexArray.count; i++) {
             if ([indexArray[i] isEqualToString:@""]) {
@@ -275,7 +276,7 @@
 
 - (NSString *)loadZhiLiaoFangAn
 {
-    LLGlobalData *gdata = GInstance().globalData;
+    Case1Data *gdata = GCase1();
     NSMutableString *fanganString = [NSMutableString string];
     if (gdata.zlfaLeftSelectedIndex == 1) {
         [fanganString appendFormat:@"%@, ", @"耻骨后根治性前列腺切除术"];
@@ -305,7 +306,7 @@
 
 - (NSString *)loadYaoWuFangAn
 {
-    LLGlobalData *gdata = GInstance().globalData;
+    Case1Data *gdata = GCase1();
     NSMutableString *yaowufanganString = [NSMutableString string];
     if (gdata.zlfaRightSelectedIndex == 1) {
         [yaowufanganString appendFormat:@"%@, ", @"单一药物去势治疗"];
@@ -339,7 +340,7 @@
 
 - (NSString *)loadYaoWu
 {
-    LLGlobalData *gdata = GInstance().globalData;
+    Case1Data *gdata = GCase1();
     NSMutableString *yaowuString = [NSMutableString string];
     if (gdata.zlfaXinFuZhuYaoWuSeg1.length > 1) {
         [yaowuString appendFormat:@"%@, ", gdata.zlfaXinFuZhuYaoWuSeg1];
