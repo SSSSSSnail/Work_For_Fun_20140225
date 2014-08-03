@@ -32,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (GInstance().caseNumber == CaseNumberOne) {
+        _bgImageView.image = [UIImage imageNamed:@"selectCase"];
+    }
     if (GInstance().caseNumber == CaseNumberTwo) {
         _bgImageView.image = [UIImage imageNamed:@"selectCase2"];
     }
@@ -87,17 +90,31 @@
                              }];
     } else if (_selectedCase == 2) {
         LLGlobalData *globalData = GInstance().globalData;
-        if ([globalData.hasAddtoGroup isEqualToString:@"Y"]) {
-            [self performSegueWithIdentifier:@"modalToMain" sender:self];
-            return;
-        }
-        globalData.hasAddtoGroup = @"Y";
-        [GInstance() savaData];
-        //To Stroyboard 2
-
         UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"Case2" bundle:nil];
         UIViewController* case2mainViewController = [secondStoryBoard instantiateViewControllerWithIdentifier:@"Case2MainViewController"];
+        
+        if ([globalData.hasAddtoGroup isEqualToString:@"Y"]) {
+            [self presentViewController:case2mainViewController animated:YES completion:^{}];
+            return;
+        }
+        
+        NSDictionary *parameterDictionary = @{@"step": @"0",
+                                              @"action": @"addgroup",
+                                              @"subject_id": globalData.subjectId,
+                                              @"group_id": groupNumber};
+        [GInstance() httprequestWithHUD:self.view
+                         withRequestURL:SERVERURL
+                         withParameters:parameterDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+        globalData.hasAddtoGroup = @"Y";
+        [GInstance() savaData];
         [self presentViewController:case2mainViewController animated:YES completion:^{}];
+    } else {
+                                     [GInstance() showErrorMessage:@"初始化失败，请选择其他组名 !"];
+                                 }
+                             }];
     } else {
         [GInstance() showInfoMessage:@"请先选择本次讨论Case!"];
     }

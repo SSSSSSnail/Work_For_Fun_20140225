@@ -14,6 +14,8 @@
 #import "BCJZC2ViewController.h"
 
 #import "BSHGC2ViewController.h"
+#import "ZDJGS2C2ViewController.h"
+#import "ZLFAS2C2ViewController.h"
 
 #import "Case2Data.h"
 
@@ -65,11 +67,11 @@ static float const MASTERVIEWWIDTH = 152.0f;
 @property (strong, nonatomic) ZLFAC2ViewController *zlfa1ViewController;
 @property (strong, nonatomic) BCJZC2ViewController *bcjz1ViewController;
 
-@property (strong, nonatomic) BSHGC2ViewController *hzqk2ViewController;
-@property (strong, nonatomic) LCJCC2ViewController *lcjc2ViewController;
-@property (strong, nonatomic) ZDJGC2ViewController *zdjg2ViewController;
-@property (strong, nonatomic) ZLFAC2ViewController *zlfa2ViewController;
-@property (strong, nonatomic) BCJZC2ViewController *bcjz2ViewController;
+@property (strong, nonatomic) BSHGC2ViewController   *hzqk2ViewController;
+@property (strong, nonatomic) LCJCC2ViewController   *lcjc2ViewController;
+@property (strong, nonatomic) ZDJGS2C2ViewController *zdjg2ViewController;
+@property (strong, nonatomic) ZLFAS2C2ViewController *zlfa2ViewController;
+@property (strong, nonatomic) BCJZC2ViewController   *bcjz2ViewController;
 
 @property (strong, nonatomic) HZQKC2ViewController *hzqk3ViewController;
 @property (strong, nonatomic) LCJCC2ViewController *lcjc3ViewController;
@@ -196,9 +198,9 @@ static float const MASTERVIEWWIDTH = 152.0f;
                              _hzqk2ViewController.view,
                              _lcjc2ViewController.view,
                              _zdjg2ViewController.view,
-                             _zlfa2ViewController.view
-//                             _bcjz2ViewController.view,
-//                             
+                             _zlfa2ViewController.view,
+                             _bcjz2ViewController.view
+//
 //                             _hzqk3ViewController.view,
 //                             _lcjc3ViewController.view,
 //                             _zdjg3ViewController.view,
@@ -222,11 +224,16 @@ static float const MASTERVIEWWIDTH = 152.0f;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+#ifndef SKIPREQUEST
     [self refreshButtonAndView:GCase2().currentIndex];
+#endif
 
+#ifdef SKIPREQUEST
     GCase2().currentStep = Case2Step2;
-    GCase2().step1MNumber = 1;
+    GCase2().step1MNumber = 2;
     [self refreshButtonAndView:8];
+    [_hzqk2ViewController refresh];
+#endif
 }
 
 - (void)refreshButtonAndView:(long)toIndex
@@ -270,7 +277,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
 {
     Case2Data *globalData = GCase2();
     if (globalData.currentIndex == 0) {
-        //患者情况 确定
+#pragma mark 患者情况访视一
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:1];
         } else {
@@ -298,7 +305,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                  }];
         }
     } else if (globalData.currentIndex == 1) {
-        //临床检查第一轮确定
+#pragma mark 临床检查访视一
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:2];
         } else {
@@ -334,7 +341,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
             }], nil] show];
         }
     } else if (globalData.currentIndex == 2) {
-        // 诊断结果 确定
+#pragma mark 诊断结果访视一
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:3];
         } else {
@@ -380,8 +387,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
             }], nil] show];
         }
     } else if (globalData.currentIndex == 3) {
-        //治疗方案确定
-
+#pragma mark 治疗方案访视一
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:4];
         } else {
@@ -389,7 +395,47 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"action": @"solution",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
+                                                   @"ddgc": globalData.zlfaLeftSelectedIndex == 4 ? @"Y" : @"N",
+                                                   @"cggz": globalData.zlfaLeftSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"fqgz": globalData.zlfaLeftSelectedIndex == 2 ? @"Y" : @"N",
+                                                   @"wfl": (globalData.zlfaLeftSelectedIndex == 2 || globalData.zlfaWaifangliao == 1)? @"Y" : @"N",
+                                                   @"dynf": globalData.zlfaRightSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"lhnf": globalData.zlfaLianheSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"xfz": globalData.zlfaRightSelectedIndex == 2 ? @"Y" : @"N",
+                                                   @"fz": globalData.zlfaFuzhuSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"xfqs": globalData.zlfaChixujianxieDetailSelectedIndex == 1 ? @"Y" : @"N",
+                                                   @"xfkx": globalData.zlfaChixujianxieDetailSelectedIndex == 2 ? @"Y" : @"N",
+                                                   @"xfzd": globalData.zlfaChixujianxieDetailSelectedIndex == 3 ? @"Y" : @"N",
+                                                   @"xfzgsrl": [self ifSelectedYaowu:@"xfzgsrl" isXinFuZhu:YES],
+                                                   @"xfzlbrl": [self ifSelectedYaowu:@"xfzlbrl" isXinFuZhu:YES],
+                                                   @"xfzdpl1": [self ifSelectedYaowu:@"xfzdpl1" isXinFuZhu:YES],
+                                                   @"xfzdpl3": [self ifSelectedYaowu:@"xfzdpl3" isXinFuZhu:YES],
+                                                   @"xfzbkla": [self ifSelectedYaowu:@"xfzbkla" isXinFuZhu:YES],
+                                                   @"xfzfta": [self ifSelectedYaowu:@"xfzfta" isXinFuZhu:YES],
+                                                   
+                                                   @"cx": (globalData.zlfaFuzhuChixuJianxieSelectedIndex == 1 ||
+                                                           (globalData.zlfaChixuJianxieSelectedIndex == 1 && globalData.zlfaRightSelectedIndex != 2))? @"Y" : @"N",
+                                                   @"jx": (globalData.zlfaFuzhuChixuJianxieSelectedIndex == 2 ||
+                                                           (globalData.zlfaChixuJianxieSelectedIndex == 2 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
+                                                   @"ssqs": (globalData.zlfaFuzhuChixujianxieDetailSelectedIndex == 4 ||
+                                                             (globalData.zlfaChixujianxieDetailSelectedIndex == 4 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
+                                                   @"fzqs": (globalData.zlfaFuzhuChixujianxieDetailSelectedIndex == 1 ||
+                                                             (globalData.zlfaChixujianxieDetailSelectedIndex == 1 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
+                                                   @"fzkx": (globalData.zlfaFuzhuChixujianxieDetailSelectedIndex == 2 ||
+                                                             (globalData.zlfaChixujianxieDetailSelectedIndex == 2 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
+                                                   @"fzzd": (globalData.zlfaFuzhuChixujianxieDetailSelectedIndex == 3 ||
+                                                             (globalData.zlfaChixujianxieDetailSelectedIndex == 3 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
+
+                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isXinFuZhu:NO],
+                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isXinFuZhu:NO],
+                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isXinFuZhu:NO],
+                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isXinFuZhu:NO],
+                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isXinFuZhu:NO],
+                                                   @"fta": [self ifSelectedYaowu:@"fta" isXinFuZhu:NO],
+                                                   @"solution": [NSString stringWithFormat:@"m%ld", (long)[self countStep1MNumber]]
                                                    };
+
+            NSLog(@"%@", parametersDictionary);
 
             [GInstance() httprequestWithHUD:_zlfa1ViewController.view
                              withRequestURL:STEPURL
@@ -417,17 +463,27 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                  }];
         }
     } else if (globalData.currentIndex == 4) {
-        //病程进展 确定
+#pragma mark 病程进展访视一
         if (globalData.maxIndex > globalData.currentIndex) {
-            [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, MASTERVIEWHEIGHT, MASTERVIEWWIDTH, MASTERVIEWHEIGHT) animated:YES];
             _masterBGImageView.image = [UIImage imageNamed:@"c2leftMenuBG"];
-            [self refreshButtonAndView:5];
             globalData.currentStep = Case2Step2;
+            [self refreshButtonAndView:5];
         } else {
             NSDictionary *parametersDictionary = @{@"step": @"5",
                                                    @"action": @"result",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
+                                                   @"col1": [NSString stringWithFormat:@"m%ld|%@", (long)GCase2().step1MNumber, [_hzqk2ViewController chixujianxieString2]],
+                                                   @"col2": [_hzqk2ViewController linchuangjiancheString2],
+                                                   @"col3": [_hzqk2ViewController zhenduanString2],
+                                                   @"col4": [_hzqk2ViewController weixianxingpingguString2],
+                                                   @"col5": [NSString stringWithFormat:@"T%@N%@M%@", GCase2().zdjgTSelectItem, GCase2().zdjgNSelectItem, GCase2().zdjgMSelectItem],
+                                                   @"col6": [_hzqk2ViewController loadZhiLiaoFangAn2],
+                                                   @"col7": [_hzqk2ViewController loadButtonString2],
+                                                   @"col8": [_hzqk2ViewController isTypeBetween2to7] ? @"Y" : @"N",
+                                                   @"col9": [_hzqk2ViewController loadYaoWuFangAn2],
+                                                   @"col10": [_hzqk2ViewController loadYaoWu2],
+
                                                    };
 
             [GInstance() httprequestWithHUD:_bcjz1ViewController.view
@@ -439,11 +495,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                          if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
                                              [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                          } else {
-                                             [_masterScrollView scrollRectToVisible:CGRectMake(0.0f, MASTERVIEWHEIGHT, MASTERVIEWWIDTH, MASTERVIEWHEIGHT) animated:YES];
                                              _masterBGImageView.image = [UIImage imageNamed:@"c2leftMenuBG"];
                                              globalData.currentStep = Case2Step2;
                                              [self refreshButtonAndView:5];
-//                                             [_hzqkM2ViewController reloadViewDataForR2];
+                                             [_hzqk2ViewController refresh];
                                              [GInstance() savaData];
                                          }
                                      } else {
@@ -454,7 +509,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                  }];
         }
     } else if (globalData.currentIndex == 5) {
-        ///病史回顾确定
+#pragma mark 病史回顾访视二
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:6];
         } else {
@@ -471,6 +526,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                          if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
                                              [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                          } else {
+                                             [_lcjc2ViewController refresh];
                                              [self refreshButtonAndView:6];
                                              [GInstance() savaData];
                                          }
@@ -482,7 +538,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                  }];
         }
     } else if (globalData.currentIndex == 6) {
-        //临床检查第二轮确定
+#pragma mark 临床检查访视二
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:7];
         } else {
@@ -518,7 +574,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
             }], nil] show];
         }
     } else if (globalData.currentIndex == 7) {
-        //诊断结果 第二轮确定
+#pragma mark 诊断结果访视二
         if (globalData.maxIndex > globalData.currentIndex) {
             [self refreshButtonAndView:8];
         } else {
@@ -548,6 +604,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                  [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                              } else {
                                                  [self refreshButtonAndView:8];
+                                                 [_zlfa2ViewController refresh];
                                                  [GInstance() savaData];
                                              }
                                          } else {
@@ -557,6 +614,75 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                          }
                                      }];
             }], nil] show];
+        }
+    } else if (globalData.currentIndex == 8) {
+#pragma mark 治疗方案访视二
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:9];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"9",
+                                                   @"action": @"solution",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
+                                                   @"solution": [NSString stringWithFormat:@"m%lds%ld", GCase2().step1MNumber, [self countStep2SNumber]],
+
+                                                   @"cggz": globalData.zlfa2SegmentSelectedIndex == 1 ? @"Y" :@"N",
+                                                   @"fqgz": globalData.zlfa2SegmentSelectedIndex == 2 ? @"Y" :@"N",
+                                                   @"wfl": globalData.zlfa2SegmentSelectedIndex == 3 ? @"Y" :@"N",
+                                                   @"nfm": globalData.zlfa2SegmentSelectedIndex == 4 ? @"Y" :@"N",
+                                                   @"zdkx": globalData.zlfa2SegmentSelectedIndex == 5 ? @"Y" :@"N",
+                                                   @"hl": globalData.zlfa2SegmentSelectedIndex == 7 ? @"Y" :@"N",
+                                                   @"nfm2": globalData.zlfa2SegmentSelectedIndex == 6 ? @"Y" :@"N",
+
+                                                   @"fz": @"N",
+                                                   @"cx": globalData.zlfaChixuJianxieNeifenSelectedIndex == 1 ? @"Y" :@"N",
+                                                   @"jx": globalData.zlfaChixuJianxieNeifenSelectedIndex == 2 ? @"Y" :@"N",
+
+                                                   @"ssqs": globalData.zlfaChixuJianxieNeifenDetailSelectedIndex == 4 ? @"Y" :@"N",
+                                                   @"dyqs": globalData.zlfaChixuJianxieNeifenDetailSelectedIndex == 1 ? @"Y" :@"N",
+                                                   @"dykx": globalData.zlfaChixuJianxieNeifenDetailSelectedIndex == 2 ? @"Y" :@"N",
+                                                   @"zdxd": globalData.zlfaChixuJianxieNeifenDetailSelectedIndex == 3 ? @"Y" :@"N",
+                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isXinFuZhu:NO],
+                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isXinFuZhu:NO],
+                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isXinFuZhu:NO],
+                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isXinFuZhu:NO],
+                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isXinFuZhu:NO],
+                                                   @"fta": [self ifSelectedYaowu:@"fta" isXinFuZhu:NO],
+
+                                                   @"cjs": globalData.zlfa2ErfenSelectedIndex == 1 ? @"Y" :@"N",
+                                                   @"fta2": globalData.zlfa2ErfenSelectedIndex == 2 ? @"Y" :@"N"
+                                                   };
+
+            for (NSString *keyString in parametersDictionary.allKeys) {
+                NSLog(@"%@ : %@", keyString, parametersDictionary[keyString]);
+            }
+
+            [GInstance() httprequestWithHUD:_zlfa2ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         for (UIView *subView in [_zlfa2ViewController.view subviews]) {
+                                             if (subView.tag != 999) {
+                                                 subView.userInteractionEnabled = NO;
+                                             }
+                                         }
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             GCase2().step2SNumber = [self countStep2SNumber];
+                                             [self refreshButtonAndView:9];
+                                             [_zlfa2ViewController rollToTopView];
+                                             [_bcjz2ViewController refresh:GCase2().step1MNumber sNumber:GCase2().step2SNumber];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
         }
     }
 
@@ -603,6 +729,74 @@ static float const MASTERVIEWWIDTH = 152.0f;
 
     NSLog(@"MNUMBER: %ld", mNumber);
     return mNumber;
+}
+
+- (NSUInteger)countStep2SNumber
+{
+    if (GCase2().zlfa2SegmentSelectedIndex == 4 || //内分泌
+        GCase2().zlfa2SegmentSelectedIndex == 1 || //手术1
+        GCase2().zlfa2SegmentSelectedIndex == 2 || //手术2
+        GCase2().zlfa2SegmentSelectedIndex == 5 //中断
+        ) {
+        return 1;
+    }
+
+    if ((GCase2().zlfa2SegmentSelectedIndex == 7 && GCase2().step1MNumber != 9) || //化疗
+        ((GCase2().step1MNumber == 9 || GCase2().step1MNumber == 2) && GCase2().zlfa2SegmentSelectedIndex == 3) //外放疗
+        ) {
+        return 2;
+    }
+
+    if ((GCase2().zlfa2SegmentSelectedIndex == 6 && GCase2().step1MNumber != 9) || //二线
+        (GCase2().zlfa2SegmentSelectedIndex == 7 && GCase2().step1MNumber == 9) //放疗
+        ) {
+        return 3;
+    }
+
+    if ((GCase2().zlfa2SegmentSelectedIndex == 6 && GCase2().step1MNumber == 9) || //二线
+        (GCase2().step1MNumber != 9 && GCase2().step1MNumber != 2 && GCase2().zlfa2SegmentSelectedIndex == 3) //外放疗
+        ) {
+        return 4;
+    }
+
+    return 0;
+}
+
+- (NSString *)ifSelectedYaowu:(NSString *)yaowuName isXinFuZhu:(BOOL)isXinFuZhu
+{
+    NSDictionary *yaowuDic = @{@"达菲林 3月剂型":@[@"xfzdpl3", @"dpl3"],
+                               @"达菲林 1月剂型":@[@"xfzdpl1", @"dpl1"],
+                               @"戈舍瑞林":@[@"xfzgsrl", @"gsrl"],
+                               @"亮丙瑞林":@[@"xfzlbrl", @"lbrl"],
+                               @"比卡鲁胺":@[@"xfzbkla", @"bkla"],
+                               @"氟他胺":@[@"xfzfta", @"fta"]
+                               };
+    if (isXinFuZhu) {
+        NSString *yaowu1 = GCase2().zlfaXinfuzhuYaowuName1;
+        NSString *yaowu2 = GCase2().zlfaXinfuzhuYaowuName2;
+        NSString *mergeName = [NSString stringWithFormat:@"%@%@", yaowuDic[yaowu1][0], yaowuDic[yaowu2][0]];
+        if ([mergeName hasPrefix:yaowuName] || [mergeName hasSuffix:yaowuName]) {
+            return @"Y";
+        }else {
+            return @"N";
+        }
+    } else {
+        NSString *yaowu1;
+        NSString *yaowu2;
+        if (GCase2().currentStep == Case2Step1) {
+            yaowu1 = GCase2().zlfaYaowuName1;
+            yaowu2 = GCase2().zlfaYaowuName2;
+        } else {
+            yaowu1 = GCase2().zlfaNeifenmiYaowuName1;
+            yaowu2 = GCase2().zlfaNeifenmiYaowuName2;
+        }
+        NSString *mergeName = [NSString stringWithFormat:@"%@%@", yaowuDic[yaowu1][1], yaowuDic[yaowu2][1]];
+        if ([mergeName hasPrefix:yaowuName] || [mergeName hasSuffix:yaowuName]) {
+            return @"Y";
+        }else {
+            return @"N";
+        }
+    }
 }
 
 @end

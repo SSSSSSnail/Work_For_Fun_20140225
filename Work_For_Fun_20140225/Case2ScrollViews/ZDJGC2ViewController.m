@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 @property (weak, nonatomic) IBOutlet UIPickerView *zdjgEvaluatePickView;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *oneButtonCollection;
 - (IBAction)buttonClick:(UIButton *)sender;
 
 @property (strong, nonatomic) NSDictionary *buttonValueDictionary;
@@ -43,8 +44,8 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.buttonValueDictionary = @{@204: @"局限", @205: @"局部", @206: @"转移",
-                                   @207: @"前列腺", @208: @"2型", @209: @"高血压"};
+    self.buttonValueDictionary = @{@204: @"jxa", @205: @"jxw", @206: @"zya",
+                                   @207: @"bph", @208: @"tnb", @209: @"gxy"};
 
     self.pickViewSourceDictionary = @{@"200": @[DoubleSpace, @"高危", @"中危", @"低危"],
                                       @"201": @[DoubleSpace, @"1a", @"1b", @"1c", @"2a", @"2b", @"2c", @"3a", @"3b", @"4"],
@@ -62,6 +63,20 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 - (IBAction)buttonClick:(UIButton *)sender
 {
     sender.selected = !sender.selected;
+    BOOL isOneButton;
+    for (UIButton *button in _oneButtonCollection) {
+        if (button == sender) {
+            isOneButton = YES;
+            break;
+        }
+    }
+    if (isOneButton) {
+        for (UIButton *button in _oneButtonCollection) {
+            if (sender.selected == YES && button != sender && button.selected == YES) {
+                button.selected = NO;
+            }
+        }
+    }
 
     Case2Data *globalData = GCase2();
     globalData.zdjgZDSelectItem = [self buttonValuesString];
@@ -130,7 +145,13 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
             break;
         case UIPickViewZDJG1Evalute: //患者危险评估
         {
-            globalData.zdjgPGSelectItem = selectedString;
+            if ([selectedString isEqualToString:@"高危"]) {
+                globalData.zdjgPGSelectItem = @"gw";
+            } else if ([selectedString isEqualToString:@"中危"]) {
+                globalData.zdjgPGSelectItem = @"zw";
+            } else if ([selectedString isEqualToString:@"低危"]) {
+                globalData.zdjgPGSelectItem = @"dw";
+            }
             _pgjgLabel.text = selectedString;
         }
             break;

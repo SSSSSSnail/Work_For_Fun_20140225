@@ -39,11 +39,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)refresh
+{
+    [_bshgTable reloadData];
+    NSString *imageName = [NSString stringWithFormat:@"c2bshg1psaM%ld_%@", GCase2().step1MNumber, [self chixujianxieString2]];
+    UIImage *image = [UIImage imageNamed:imageName];
+    _bshgImageView.image = image;
+}
+
 #pragma mark - TableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return ([self isTypeBetween2to6] ? 11 : 10);
+    return ([self isTypeBetween2to7] ? 11 : 10);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,18 +85,18 @@
         //        检查：血常规、PSA、B超
         cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
-        lab.text = [NSString stringWithFormat:@"检查：%@", [self linchuangjiancheString]];
+        lab.text = [NSString stringWithFormat:@"检查：%@", [self linchuangjiancheString2]];
         lab.textColor = [UIColor colorWithRed:2.0f/255 green:128.0f/255 blue:127.0f/255 alpha:1];
     } else if (indexPath.row == 4) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
-        lab.text = [NSString stringWithFormat:@"诊断：%@", [self zhenduanString]];
+        lab.text = [NSString stringWithFormat:@"诊断：%@", [self zhenduanString2]];
         lab.textColor = [UIColor colorWithRed:2.0f/255 green:128.0f/255 blue:127.0f/255 alpha:1];
     } else if (indexPath.row == 5) {
         //        危险评估为：低危
         cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
-        lab.text = [NSString stringWithFormat:@"危险评估为：%@", [self weixianxingpingguString]];
+        lab.text = [NSString stringWithFormat:@"危险评估为：%@", [self weixianxingpingguString2]];
     } else if (indexPath.row == 6) {
         //        临床分期cTNM：T2aN0M0
         cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
@@ -97,51 +105,51 @@
     } else if (indexPath.row == 7) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"buttonLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
-        lab.text = [NSString stringWithFormat:@"曾接受过：%@", [self loadZhiLiaoFangAn]];
+        lab.text = [NSString stringWithFormat:@"曾接受过：%@", [self loadZhiLiaoFangAn2]];
         UIButton *button1 = (UIButton *)[cell viewWithTag:2];
         Case2Data *gdata = GCase2();
         if (gdata.zlfaLeftSelectedIndex == 1 || gdata.zlfaLeftSelectedIndex == 2) {
             button1.selected = YES;
         }
-//        UIButton *button2 = (UIButton *)[cell viewWithTag:3];
-//        if (gdata.zlfaLeftSelectedIndex == 3 || gdata.zlfaLeftSelectedIndex == 4 || [gdata.zlfaFuzhuOrZhaoShe isEqualToString:@"W"]) {
-//            button2.selected = YES;
-//        }
-//        UIButton *button3 = (UIButton *)[cell viewWithTag:4];
-//        if (gdata.zlfaRightSelectedIndex > 0) {
-//            button3.selected = YES;
-//        }
-//        UIButton *button4 = (UIButton *)[cell viewWithTag:5];
-//        if ([gdata.zlfaFuzhuOrZhaoShe isEqualToString:@"F"]) {
-//            button4.selected = YES;
-//        }
+        UIButton *button2 = (UIButton *)[cell viewWithTag:3];
+        if (gdata.zlfaLeftSelectedIndex == 3 || gdata.zlfaWaifangliao == 1) {
+            button2.selected = YES;
+        }
+        UIButton *button3 = (UIButton *)[cell viewWithTag:4];
+        if (gdata.zlfaRightSelectedIndex == 2) {
+            button3.selected = YES;
+        }
+        UIButton *button4 = (UIButton *)[cell viewWithTag:5];
+        if (gdata.zlfaChixuJianxieSelectedIndex > 0 || gdata.zlfaFuzhuChixuJianxieSelectedIndex > 0) {
+            button4.selected = YES;
+        }
     } else if (indexPath.row == 8) {
-        if ([self isTypeBetween2to6]) {
+        if ([self isTypeBetween2to7]) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
             UILabel *lab = (UILabel *)[cell viewWithTag:1];
             lab.frame = CGRectMake(CGRectGetMinX(lab.frame), CGRectGetMinY(lab.frame), CGRectGetWidth(lab.frame), 42);
-            lab.text = @"术后病理：采用开放性前列腺癌根治术治疗方案。术后病理：Gleason分级4+3=7，肿瘤累及前列腺左叶，外周及尖部切缘阳性。左右闭孔淋巴结未见癌转移。";
+            lab.text = @"术后病理：前列腺癌，Gleason Score 4+3（SUM=7）。右叶24张切片中可见7张有癌，左叶24张切片中可见13张有癌。左叶浸润被膜外及神经，PT3a，尖部切缘未见肿瘤。未累及尿道粘膜、双侧精囊腺、膀胱颈以及输精管。另送左闭孔淋巴结1个，右闭孔淋巴结4个，均未见转移癌。";
             lab.numberOfLines = 2;
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
             UILabel *lab = (UILabel *)[cell viewWithTag:1];
             lab.frame = CGRectMake(CGRectGetMinX(lab.frame), CGRectGetMinY(lab.frame), CGRectGetWidth(lab.frame), 21);
-            lab.text = [NSString stringWithFormat:@"内分泌治疗方案：%@", [self loadYaoWuFangAn]];
+            lab.text = [NSString stringWithFormat:@"内分泌治疗方案：%@", [self loadYaoWuFangAn2]];
         }
     } else if (indexPath.row == 9) {
-        if ([self isTypeBetween2to6]) {
+        if ([self isTypeBetween2to7]) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
             UILabel *lab = (UILabel *)[cell viewWithTag:1];
-            lab.text = [NSString stringWithFormat:@"内分泌治疗方案：%@", [self loadYaoWuFangAn]];
+            lab.text = [NSString stringWithFormat:@"内分泌治疗方案：%@", [self loadYaoWuFangAn2]];
         } else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
             UILabel *lab = (UILabel *)[cell viewWithTag:1];
-            lab.text = [NSString stringWithFormat:@"治疗药物：%@", [self loadYaoWu]];
+            lab.text = [NSString stringWithFormat:@"治疗药物：%@", [self loadYaoWu2]];
         }
     } else if (indexPath.row == 10) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"oneLabelCell"];
         UILabel *lab = (UILabel *)[cell viewWithTag:1];
-        lab.text = [NSString stringWithFormat:@"治疗药物：%@", [self loadYaoWu]];
+        lab.text = [NSString stringWithFormat:@"治疗药物：%@", [self loadYaoWu2]];
     }
     return cell;
 }
@@ -149,7 +157,7 @@
 #pragma mark - TableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self isTypeBetween2to6]) {
+    if ([self isTypeBetween2to7]) {
         if (indexPath.row == 7 || indexPath.row == 8) {
             return 55.0f;
         } else if (indexPath.row == 3){
@@ -167,9 +175,9 @@
 }
 
 #pragma mark - private Methods
-- (BOOL)isTypeBetween2to6
+- (BOOL)isTypeBetween2to7
 {
-    if (GCase2().step1MNumber >= 2 && GCase2().step1MNumber <= M6) {
+    if (GCase2().step1MNumber >= 2 && GCase2().step1MNumber <= 7) {
         return YES;
     } else {
         return NO;
@@ -177,28 +185,32 @@
 }
 
 #pragma mark - 病史回顾
-- (NSString *)zhenduanString
+- (NSString *)zhenduanString2
 {
     NSArray *itemsArray = [GCase2().zdjgZDSelectItem componentsSeparatedByString:@","];
     NSMutableString *itemsString = [NSMutableString string];
     for (NSString *item in itemsArray) {
-        if ([item isEqualToString:@"bph"]) {
-            [itemsString appendFormat:@"%@, ", @"前列腺增生"];
-        } else if ([item isEqualToString:@"jxa"]) {
+        if ([item isEqualToString:@"jxa"]) {
             [itemsString appendFormat:@"%@, ", @"局限性前列腺癌"];
         } else if ([item isEqualToString:@"jxw"]) {
             [itemsString appendFormat:@"%@, ", @"局部晚期前列腺癌"];
         } else if ([item isEqualToString:@"zya"]) {
             [itemsString appendFormat:@"%@, ", @"转移性前列腺癌"];
+        } else if ([item isEqualToString:@"bph"]) {
+            [itemsString appendFormat:@"%@, ", @"前列腺增生"];
+        } else if ([item isEqualToString:@"tnb"]) {
+            [itemsString appendFormat:@"%@, ", @"2型糖尿病"];
+        } else if ([item isEqualToString:@"gxy"]) {
+            [itemsString appendFormat:@"%@, ", @"高血压"];
         }
     }
     if (itemsString.length > 2) {
         [itemsString deleteCharactersInRange:NSMakeRange(itemsString.length - 2, 2)];
     }
-    return itemsString;
+    return itemsString == nil ? @"" : itemsString;
 }
 
-- (NSString *)weixianxingpingguString
+- (NSString *)weixianxingpingguString2
 {
     NSString *string = GCase2().zdjgPGSelectItem;
     if ([string isEqualToString:@"dw"]) {
@@ -208,16 +220,16 @@
     } else if ([string isEqualToString:@"gw"]) {
         return @"高危";
     }
-    return @"";
+    return string == nil ? @"" : string;
 }
 
-- (NSString *)linchuangjiancheString
+- (NSString *)linchuangjiancheString2
 {
     NSMutableString *string = [NSMutableString string];
-    NSArray *array= @[@"血常规", @"尿常规", @"血生化", @"凝血筛查",
-                      @"直肠指诊", @"心电图", @"超声心动", @"胸片", @"B超",
-                      @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描", @"盆腔核磁共振MR",
-                      @"ECOG评分", @"穿刺活检", @"CT检查"];
+    NSArray *array= @[@"直肠指诊", @"血常规", @"尿常规", @"血生化",
+                      @"凝血筛查", @"心电图", @"超声心动", @"胸片",
+                      @"B超", @"前列腺特异抗原PSA", @"睾酮", @"放射性核素骨扫描",
+                      @"盆腔核磁共振MR", @"ECOG评分", @"CT检查", @"穿刺活检"];
     NSArray *indexArray = [GCase2().lcjcSelectedArrayStringR1 componentsSeparatedByString:@","];
     if (indexArray.count > 0) {
         for (int i = 0; i < indexArray.count; i++) {
@@ -231,94 +243,131 @@
     if (string.length > 2) {
         [string deleteCharactersInRange:NSMakeRange(string.length - 2, 2)];
     }
-    return string;
+    return string == nil ? @"" : string;
 }
 
-- (NSString *)loadZhiLiaoFangAn
+- (NSString *)loadZhiLiaoFangAn2
 {
-//    Case2Data *gdata = GCase2();
-//    NSMutableString *fanganString = [NSMutableString string];
-//    if (gdata.zlfaLeftSelectedIndex == 1) {
-//        [fanganString appendFormat:@"%@, ", @"耻骨后根治性前列腺切除术"];
-//    } else if (gdata.zlfaLeftSelectedIndex == 2) {
-//        [fanganString appendFormat:@"%@, ", @"腹腔镜根治性前列腺切除术"];
-//    } else if (gdata.zlfaLeftSelectedIndex == 3) {
-//        [fanganString appendFormat:@"%@, ", @"外照射"];
-//    } else if (gdata.zlfaLeftSelectedIndex == 4) {
-//        [fanganString appendFormat:@"%@, ", @"近距离放疗"];
-//    }
-//
-//    if (gdata.zlfaRightSelectedIndex > 0) {
-//        [fanganString appendFormat:@"%@, ", @"新辅助内分泌治疗"];
-//    }
-//
-//    if ([gdata.zlfaFuzhuOrZhaoShe isEqualToString:@"F"]) {
-//        [fanganString appendFormat:@"%@, ", @"辅助内分泌治疗"];
-//    } else if ([gdata.zlfaFuzhuOrZhaoShe isEqualToString:@"W"]) {
-//        [fanganString appendFormat:@"%@, ", @"外照射"];
-//    }
-//
-//    if (fanganString.length > 2) {
-//        [fanganString deleteCharactersInRange:NSMakeRange(fanganString.length - 2, 2)];
-//    }
-//    return fanganString;
-    return nil;
+    Case2Data *gdata = GCase2();
+    NSMutableString *fanganString = [NSMutableString string];
+    if (gdata.zlfaLeftSelectedIndex == 1) {
+        [fanganString appendFormat:@"%@, ", @"耻骨后根治性前列腺切除术"];
+    } else if (gdata.zlfaLeftSelectedIndex == 2) {
+        [fanganString appendFormat:@"%@, ", @"腹腔镜根治性前列腺切除术"];
+    } else if (gdata.zlfaLeftSelectedIndex == 3) {
+        [fanganString appendFormat:@"%@, ", @"外照射"];
+    }
+
+    if (gdata.zlfaWaifangliao == 1) {
+        [fanganString appendFormat:@"%@, ", @"外照射"];
+    }
+
+    if (gdata.zlfaRightSelectedIndex == 2) {
+        [fanganString appendFormat:@"%@, ", @"新辅助内分泌治疗"];
+    } else if (gdata.zlfaRightSelectedIndex == 1) {
+        [fanganString appendFormat:@"%@, ", @"单一内分泌治疗"];
+    }
+
+    if (fanganString.length > 2) {
+        [fanganString deleteCharactersInRange:NSMakeRange(fanganString.length - 2, 2)];
+    }
+    return fanganString == nil ? @"" : fanganString;
 }
 
-- (NSString *)loadYaoWuFangAn
+- (NSString *)loadYaoWuFangAn2
 {
-//    Case1Data *gdata = GCase1();
-//    NSMutableString *yaowufanganString = [NSMutableString string];
-//    if (gdata.zlfaRightSelectedIndex == 1) {
-//        [yaowufanganString appendFormat:@"%@, ", @"单一药物去势治疗"];
-//    } else if (gdata.zlfaRightSelectedIndex == 2) {
-//        [yaowufanganString appendFormat:@"%@, ", @"单一抗雄激素治疗"];
-//    } else if (gdata.zlfaRightSelectedIndex == 3) {
-//        [yaowufanganString appendFormat:@"%@, ", @"最大限度雄激素阻断"];
-//    }
-//
-//    if ([gdata.zlfaFuzhuType isEqualToString:@"C"]) {
-//        [yaowufanganString appendFormat:@"%@, ", @"持续"];
-//    } else if ([gdata.zlfaFuzhuType isEqualToString:@"J"]) {
-//        [yaowufanganString appendFormat:@"%@, ", @"间歇"];
-//    }
-//
-//    if (gdata.zlfaFuzhuSelectedIndex == 1) {
-//        [yaowufanganString appendFormat:@"%@, ", @"手术去势治疗"];
-//    } else if (gdata.zlfaFuzhuSelectedIndex == 2) {
-//        [yaowufanganString appendFormat:@"%@, ", @"单一药物去势治疗"];
-//    } else if (gdata.zlfaFuzhuSelectedIndex == 3) {
-//        [yaowufanganString appendFormat:@"%@, ", @"单一抗雄激素治疗"];
-//    } else if (gdata.zlfaFuzhuSelectedIndex == 4) {
-//        [yaowufanganString appendFormat:@"%@, ", @"最大限度雄激素阻断"];
-//    }
-//
-//    if (yaowufanganString.length > 2) {
-//        [yaowufanganString deleteCharactersInRange:NSMakeRange(yaowufanganString.length - 2, 2)];
-//    }
-    return @"";
+    Case2Data *gdata = GCase2();
+    NSMutableString *yaowufanganString = [NSMutableString string];
+    if (gdata.zlfaChixujianxieDetailSelectedIndex == 1) {
+        [yaowufanganString appendFormat:@"%@, ", @"单一药物去势治疗"];
+    } else if (gdata.zlfaChixujianxieDetailSelectedIndex == 2) {
+        [yaowufanganString appendFormat:@"%@, ", @"单一抗雄激素治疗"];
+    } else if (gdata.zlfaChixujianxieDetailSelectedIndex == 3) {
+        [yaowufanganString appendFormat:@"%@, ", @"最大限度雄激素阻断"];
+    } else if (gdata.zlfaChixujianxieDetailSelectedIndex == 4) {
+        [yaowufanganString appendFormat:@"%@, ", @"手术去势治疗"];
+    }
+
+    if (gdata.zlfaFuzhuChixuJianxieSelectedIndex == 1) {
+        [yaowufanganString appendFormat:@"%@, ", @"持续"];
+    } else if (gdata.zlfaFuzhuChixuJianxieSelectedIndex == 2) {
+        [yaowufanganString appendFormat:@"%@, ", @"间歇"];
+    }
+
+    if (gdata.zlfaChixuJianxieSelectedIndex == 1) {
+        [yaowufanganString appendFormat:@"%@, ", @"持续"];
+    } else if (gdata.zlfaChixuJianxieSelectedIndex == 2) {
+        [yaowufanganString appendFormat:@"%@, ", @"间歇"];
+    }
+
+    if (gdata.zlfaFuzhuChixujianxieDetailSelectedIndex == 1) {
+        [yaowufanganString appendFormat:@"%@, ", @"单一药物去势治疗"];
+    } else if (gdata.zlfaFuzhuChixujianxieDetailSelectedIndex == 2) {
+        [yaowufanganString appendFormat:@"%@, ", @"单一抗雄激素治疗"];
+    } else if (gdata.zlfaFuzhuChixujianxieDetailSelectedIndex == 3) {
+        [yaowufanganString appendFormat:@"%@, ", @"最大限度雄激素阻断"];
+    } else if (gdata.zlfaFuzhuChixujianxieDetailSelectedIndex == 4) {
+        [yaowufanganString appendFormat:@"%@, ", @"手术去势治疗"];
+    }
+
+    if (yaowufanganString.length > 2) {
+        [yaowufanganString deleteCharactersInRange:NSMakeRange(yaowufanganString.length - 2, 2)];
+    }
+    return yaowufanganString == nil ? @"" : yaowufanganString;
 }
 
-- (NSString *)loadYaoWu
+- (NSString *)loadYaoWu2
 {
-//    Case1Data *gdata = GCase1();
-//    NSMutableString *yaowuString = [NSMutableString string];
-//    if (gdata.zlfaXinFuZhuYaoWuSeg1.length > 1) {
-//        [yaowuString appendFormat:@"%@, ", gdata.zlfaXinFuZhuYaoWuSeg1];
-//    }
-//    if (gdata.zlfaXinFuZhuYaoWuSeg2.length > 1) {
-//        [yaowuString appendFormat:@"%@, ", gdata.zlfaXinFuZhuYaoWuSeg2];
-//    }
-//    if (gdata.zlfaFuzhuYaoWuSeg2.length > 1) {
-//        [yaowuString appendFormat:@"%@, ", gdata.zlfaFuzhuYaoWuSeg2];
-//    }
-//    if (gdata.zlfaFuzhuYaoWuSeg3.length > 1) {
-//        [yaowuString appendFormat:@"%@, ", gdata.zlfaFuzhuYaoWuSeg3];
-//    }
-//    if (yaowuString.length > 2) {
-//        [yaowuString deleteCharactersInRange:NSMakeRange(yaowuString.length - 2, 2)];
-//    }
-    return @"";
+    Case2Data *gdata = GCase2();
+    NSMutableString *yaowuString = [NSMutableString string];
+    if (gdata.zlfaYaowuName1.length > 1) {
+        [yaowuString appendFormat:@"%@, ", gdata.zlfaYaowuName1];
+    }
+    if (gdata.zlfaYaowuName2.length > 1) {
+        [yaowuString appendFormat:@"%@, ", gdata.zlfaYaowuName2];
+    }
+    if (gdata.zlfaXinfuzhuYaowuName1.length > 1) {
+        [yaowuString appendFormat:@"%@, ", gdata.zlfaXinfuzhuYaowuName1];
+    }
+    if (gdata.zlfaXinfuzhuYaowuName2.length > 1) {
+        [yaowuString appendFormat:@"%@, ", gdata.zlfaXinfuzhuYaowuName2];
+    }
+    if (yaowuString.length > 2) {
+        [yaowuString deleteCharactersInRange:NSMakeRange(yaowuString.length - 2, 2)];
+    }
+    return yaowuString == nil ? @"" : yaowuString;
+}
+
+- (NSString *)loadButtonString2
+{
+    NSMutableString *buttonString = [NSMutableString string];
+    Case2Data *gdata = GCase2();
+    if (gdata.zlfaLeftSelectedIndex == 1 || gdata.zlfaLeftSelectedIndex == 2) {
+        [buttonString appendFormat:@"%d,", 0];
+    }
+    if (gdata.zlfaLeftSelectedIndex == 3 || gdata.zlfaWaifangliao == 1) {
+        [buttonString appendFormat:@"%d,", 1];
+    }
+    if (gdata.zlfaRightSelectedIndex == 2) {
+        [buttonString appendFormat:@"%d,", 2];
+    }
+    if (gdata.zlfaChixuJianxieSelectedIndex > 0 || gdata.zlfaFuzhuChixuJianxieSelectedIndex > 0) {
+        [buttonString appendFormat:@"%d,", 3];
+    }
+    return buttonString == nil ? @"" : buttonString;
+}
+
+- (NSString *)chixujianxieString2
+{
+    NSUInteger mNumber = GCase2().step1MNumber;
+    NSUInteger lastNumber = 0;
+    if (mNumber == 3 || mNumber == 5) {
+        lastNumber = GCase2().zlfaFuzhuChixuJianxieSelectedIndex;
+    }
+    if (mNumber == 8 || mNumber == 9) {
+        lastNumber = GCase2().zlfaChixuJianxieSelectedIndex;
+    }
+    return [NSString stringWithFormat:@"%ld", (long)lastNumber];
 }
 
 - (IBAction)confirmClick:(UIButton *)sender

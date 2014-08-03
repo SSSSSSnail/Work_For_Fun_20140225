@@ -12,4 +12,6 @@
 
 @property (assign, nonatomic) BOOL isLocked;
 
+- (void)refresh;
+
 @end

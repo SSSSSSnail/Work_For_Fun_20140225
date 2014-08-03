@@ -47,7 +47,7 @@
                          completion:^(NSDictionary *jsonDic) {
                              NSLog(@"responseJson: %@", jsonDic);
                              if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                 GInstance().caseNumber = CaseNumberTwo;
+                                 GInstance().caseNumber = ((NSString *)jsonDic[@"case_id"]).intValue;
                                  [GInstance() loadData];
                                  NSString *subjectid = (NSString *)jsonDic[@"subject_id"];                               
                                  if (![subjectid isEqualToString:GInstance().globalData.subjectId]) {

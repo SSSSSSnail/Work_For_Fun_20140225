@@ -25,8 +25,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.buttonValueDictionary = @{@203: @"局限1", @204: @"局限2", @205: @"局部", @206: @"转移",
-                                   @207: @"前列腺", @208: @"2型", @209: @"高血压"};
+    self.buttonValueDictionary = @{@203: @"jxas", @204: @"jxaj", @205: @"jxw", @206: @"zya",
+                                   @207: @"bph", @208: @"tnb", @209: @"gxy"};
 }
 
 - (void)didReceiveMemoryWarning

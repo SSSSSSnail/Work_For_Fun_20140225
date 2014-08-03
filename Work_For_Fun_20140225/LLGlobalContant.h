@@ -35,11 +35,17 @@
 
 @end
 
-//static NSString *const SERVERURL = @"http://192.168.1.11:8080/diphereline-case/subject.do";
-//static NSString *const STEPURL = @"http://192.168.1.11:8080/diphereline-case/case1.do";
+//Local
+//static NSString *const SERVERURL = @"http://192.168.1.12:8080/diphereline-case/subject.do";
+//static NSString *const STEPURL = @"http://192.168.1.12:8080/diphereline-case/case2.do";
 
-static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";
-static NSString *const STEPURL = @"http://diphereline-case.com/case1.do";
+//Prod
+//static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";
+//static NSString *const STEPURL = @"http://diphereline-case.com/case1.do";
+
+//Test
+static NSString *const SERVERURL = @"http://edetailing-data.com/diphereline-case/subject.do";
+static NSString *const STEPURL = @"http://edetailing-data.com/diphereline-case/case2.do";
 
 static NSString *const E1 = @"E01";
 static NSString *const E2 = @"E02";

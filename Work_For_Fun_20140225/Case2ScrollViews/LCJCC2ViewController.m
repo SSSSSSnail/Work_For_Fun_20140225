@@ -32,6 +32,11 @@
 
 @implementation LCJCC2ViewController
 
+- (void)refresh
+{
+    [_tableviewLCJC reloadData];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -68,7 +73,7 @@
 #pragma mark - TableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 16;
+    return GCase2().currentStep == Case2Step1 ? 16 : 15;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -150,9 +155,19 @@
 - (BOOL)reloadResultImageView:(NSInteger)row
 {
     BOOL hideFullImage = YES;
-    NSString *imageNameString = [NSString stringWithFormat:@"%@", _lcjcTableToImageNameArray[row]];
+
+    NSMutableString *imageNameString = [NSMutableString stringWithString:_lcjcTableToImageNameArray[row]];
     if ([imageNameString hasSuffix:@"*"]) {
-        imageNameString = [imageNameString substringToIndex:imageNameString.length - 1];
+        [imageNameString deleteCharactersInRange:NSMakeRange(imageNameString.length - 1, 1)];
+        if (GCase2().currentStep == Case2Step2) {
+            NSString *mString;
+            if (GCase2().step1MNumber >= 3 && GCase2().step1MNumber <= 5) {
+                mString = @"m3-5";
+            } else {
+                mString = [NSString stringWithFormat:@"m%ld", GCase2().step1MNumber];
+            }
+            [imageNameString insertString:mString atIndex:0];
+        }
         _lcjcResultImageViewFull.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_full", imageNameString]];
         hideFullImage = NO;
     }
@@ -168,8 +183,10 @@
         globalData.lcjcSelectedArrayStringR1 = [NSString string];
     }
 
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1];
+    if (!_isLocked) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.backgroundColor = [UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1];
+    }
 
     NSMutableDictionary *parametersDictionary = [@{@"step": @"2",
                                                    @"action": @"check",
@@ -272,8 +289,10 @@
         globalData.lcjcSelectedArrayStringR2 = [NSString string];
     }
 
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1];
+    if (!_isLocked) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.backgroundColor = [UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1];
+    }
 
     NSMutableDictionary *parametersDictionary = [@{@"step": @"7",
                                                    @"action": @"check",

@@ -10,4 +10,8 @@
 
 @interface ZLFAS2C2ViewController : Case2SuperViewController
 
+- (void)refresh;
+
+- (void)rollToTopView;
+
 @end

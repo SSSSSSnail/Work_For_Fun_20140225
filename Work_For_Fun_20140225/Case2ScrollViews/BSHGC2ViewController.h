@@ -10,13 +10,17 @@
 
 @interface BSHGC2ViewController : Case2SuperViewController
 
-- (NSString *)weixianxingpingguString;
-- (NSString *)zhenduanString;
-- (NSString *)linchuangjiancheString;
-- (NSString *)loadZhiLiaoFangAn;
-- (NSString *)loadYaoWuFangAn;
-- (NSString *)loadYaoWu;
+- (NSString *)chixujianxieString2;
+- (NSString *)weixianxingpingguString2;
+- (NSString *)zhenduanString2;
+- (NSString *)linchuangjiancheString2;
+- (NSString *)loadZhiLiaoFangAn2;
+- (NSString *)loadButtonString2;
+- (NSString *)loadYaoWuFangAn2;
+- (NSString *)loadYaoWu2;
 
-- (BOOL)isTypeBetween2to6;
+- (BOOL)isTypeBetween2to7;
+
+- (void)refresh;
 
 @end

@@ -95,6 +95,7 @@ static NSString * const DoubleSpace = @"  ";
 @property (assign, nonatomic) NSUInteger pickViewSubIndex;
 
 @property (assign, nonatomic, getter = isBackStep) BOOL backStep;
+@property (assign, nonatomic, getter = isXinFuZhu) BOOL xinFuZhu;
 @end
 
 @implementation ZLFAC2ViewController
@@ -660,10 +661,18 @@ static NSString * const DoubleSpace = @"  ";
     NSString *selectedString = pickerViewSource[row];
     selectedString = [selectedString isEqualToString:DoubleSpace]? nil : selectedString;
     if (pickerView.tag == 1) {
-        globalData.zlfaYaowuName1 = selectedString;
+        if ((globalData.zlfaLeftSelectedIndex == 1 || globalData.zlfaLeftSelectedIndex == 2) && globalData.zlfaFuzhuSelectedIndex == 0 && globalData.zlfaLianheSelectedIndex == 0) {
+            globalData.zlfaXinfuzhuYaowuName1 = selectedString;
+        } else {
+            globalData.zlfaYaowuName1 = selectedString;
+        }
     }
     if (pickerView.tag == 2) {
-        globalData.zlfaYaowuName2 = selectedString;
+        if ((globalData.zlfaLeftSelectedIndex == 1 || globalData.zlfaLeftSelectedIndex == 2) && globalData.zlfaFuzhuSelectedIndex == 0 && globalData.zlfaLianheSelectedIndex == 0) {
+            globalData.zlfaXinfuzhuYaowuName2 = selectedString;
+        } else {
+            globalData.zlfaYaowuName2 = selectedString;
+        }
     }
 }
 
@@ -673,15 +682,14 @@ static NSString * const DoubleSpace = @"  ";
         return;
     }
 
-    _section2PickerView1.hidden = YES;
-    _section2PickerView2.hidden = YES;
-
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:@"治疗方案确认后不能修改!"
                        cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
 
     }]
                        otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+        _section2PickerView1.hidden = YES;
+        _section2PickerView2.hidden = YES;
         [self taskList:sender];
     }], nil] show];
 }
@@ -738,9 +746,21 @@ static NSString * const DoubleSpace = @"  ";
                 detailSelectedIndex = GCase2().zlfaChixujianxieDetailSelectedIndex;
             }
             _buchongfanganButton.hidden = YES;
-            GCase2().zlfaYaowuName1 = nil;
-            GCase2().zlfaYaowuName2 = nil;
-            section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", detailSelectedIndex]];
+            if (GCase2().zlfaLeftSelectedIndex == 1 || GCase2().zlfaLeftSelectedIndex == 2) {
+                if (GCase2().zlfaFuzhuSelectedIndex == 1 || GCase2().zlfaLianheSelectedIndex == 1) {
+                    GCase2().zlfaYaowuName1 = nil;
+                    GCase2().zlfaYaowuName2 = nil;
+                    section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", detailSelectedIndex]];
+                } else {
+                    GCase2().zlfaXinfuzhuYaowuName1 = nil;
+                    GCase2().zlfaXinfuzhuYaowuName2 = nil;
+                    section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2xinfuzhu_%ld", detailSelectedIndex]];
+                }
+            } else {
+                GCase2().zlfaYaowuName1 = nil;
+                GCase2().zlfaYaowuName2 = nil;
+                section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", detailSelectedIndex]];
+            }
             _pickViewSubIndex = detailSelectedIndex;
             if (detailSelectedIndex == 1) {
                 _section2PickerView1.hidden = NO;
@@ -884,6 +904,20 @@ static NSString * const DoubleSpace = @"  ";
             }
         }
 
+        if ((globalData.zlfaLeftSelectedIndex == 1 || globalData.zlfaLeftSelectedIndex == 2) && globalData.zlfaRightSelectedIndex == 2) {
+            if (globalData.zlfaChixujianxieDetailSelectedIndex == 1 || globalData.zlfaChixujianxieDetailSelectedIndex == 2) {
+                if (!globalData.zlfaXinfuzhuYaowuName1) {
+                    [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                    return NO;
+                }
+            } else if (globalData.zlfaChixujianxieDetailSelectedIndex == 3) {
+                if (!globalData.zlfaXinfuzhuYaowuName1 || !globalData.zlfaXinfuzhuYaowuName2) {
+                    [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                    return NO;
+                }
+            }
+        }
+
         NSUInteger selectedIndex = 0;
         if (globalData.zlfaWaifangliao == 1 && globalData.zlfaLianheSelectedIndex == 1) {
             selectedIndex = globalData.zlfaChixujianxieDetailSelectedIndex;
@@ -919,8 +953,9 @@ static NSString * const DoubleSpace = @"  ";
     _section2View.hidden = YES;
     _section1View.hidden = NO;
     _titleLabel.text = @"选择治疗方案";
-    _fuzhuView.hidden = YES;
-    _lianheView.hidden = NO;
+//    _fuzhuView.hidden = YES;
+//    _lianheView.hidden = YES;
+
 }
 
 @end

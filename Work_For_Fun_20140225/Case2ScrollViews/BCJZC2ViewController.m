@@ -49,4 +49,13 @@
     _bcjzContentImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"c2bqjzM%ld_%ld", (long)mNumber, (long)lastNumber]];
 }
 
+- (void)refresh:(NSUInteger)mNumber sNumber:(NSUInteger)sNumber
+{
+    NSMutableString *imageNameString = [NSMutableString stringWithFormat:@"M%ldS%ld", (long)mNumber, (long)sNumber];
+    if (GCase2().zlfaChixuJianxieNeifenSelectedIndex > 0) {
+        [imageNameString appendString:[NSString stringWithFormat:@"-%ld", GCase2().zlfaChixuJianxieNeifenSelectedIndex]];
+    }
+    _bcjzContentImageView.image = [UIImage imageNamed:imageNameString];
+}
+
 @end

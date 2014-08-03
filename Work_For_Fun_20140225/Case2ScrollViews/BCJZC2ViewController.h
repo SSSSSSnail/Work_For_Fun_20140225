@@ -12,4 +12,6 @@
 
 - (void)refresh:(NSUInteger)mNumber;
 
+- (void)refresh:(NSUInteger)mNumber sNumber:(NSUInteger)sNumber;
+
 @end
