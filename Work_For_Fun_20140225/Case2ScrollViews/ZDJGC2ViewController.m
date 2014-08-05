@@ -63,14 +63,8 @@ typedef NS_ENUM(NSInteger, ComponentsTag)
 - (IBAction)buttonClick:(UIButton *)sender
 {
     sender.selected = !sender.selected;
-    BOOL isOneButton;
-    for (UIButton *button in _oneButtonCollection) {
-        if (button == sender) {
-            isOneButton = YES;
-            break;
-        }
-    }
-    if (isOneButton) {
+
+    if ([_oneButtonCollection containsObject:sender]) {
         for (UIButton *button in _oneButtonCollection) {
             if (sender.selected == YES && button != sender && button.selected == YES) {
                 button.selected = NO;

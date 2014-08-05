@@ -17,6 +17,9 @@
 #import "ZDJGS2C2ViewController.h"
 #import "ZLFAS2C2ViewController.h"
 
+#import "BSHGS3ViewController.h"
+#import "ZLFAS3C2ViewController.h"
+
 #import "Case2Data.h"
 
 #import "LLUIButton.h"
@@ -73,10 +76,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
 @property (strong, nonatomic) ZLFAS2C2ViewController *zlfa2ViewController;
 @property (strong, nonatomic) BCJZC2ViewController   *bcjz2ViewController;
 
-@property (strong, nonatomic) HZQKC2ViewController *hzqk3ViewController;
+@property (strong, nonatomic) BSHGS3ViewController *hzqk3ViewController;
 @property (strong, nonatomic) LCJCC2ViewController *lcjc3ViewController;
-@property (strong, nonatomic) ZDJGC2ViewController *zdjg3ViewController;
-@property (strong, nonatomic) ZLFAC2ViewController *zlfa3ViewController;
+@property (strong, nonatomic) ZDJGS2C2ViewController *zdjg3ViewController;
+@property (strong, nonatomic) ZLFAS3C2ViewController *zlfa3ViewController;
 @property (strong, nonatomic) BCJZC2ViewController *bcjz3ViewController;
 
 @property (strong, nonatomic) NSMutableArray *masterButtonArray;
@@ -129,10 +132,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
     self.zlfa2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfa2VC"];
     self.bcjz2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
     //访视3
-    self.hzqk3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"hzqkVC"];
+    self.hzqk3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bshg3VC"];
     self.lcjc3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
-    self.zdjg3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjgVC"];
-    self.zlfa3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfaVC"];
+    self.zdjg3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjg2VC"];
+    self.zlfa3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfa3VC"];
     self.bcjz3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
 
     [self addChildViewController:_hzqk1ViewController];
@@ -199,13 +202,13 @@ static float const MASTERVIEWWIDTH = 152.0f;
                              _lcjc2ViewController.view,
                              _zdjg2ViewController.view,
                              _zlfa2ViewController.view,
-                             _bcjz2ViewController.view
-//
-//                             _hzqk3ViewController.view,
-//                             _lcjc3ViewController.view,
-//                             _zdjg3ViewController.view,
-//                             _zlfa3ViewController.view,
-//                             _bcjz3ViewController.view
+                             _bcjz2ViewController.view,
+
+                             _hzqk3ViewController.view,
+                             _lcjc3ViewController.view,
+                             _zdjg3ViewController.view,
+                             _zlfa3ViewController.view,
+                             _bcjz3ViewController.view
                              ];
 
     for (int i = 0; i < _detailViewArray.count; i++) {
@@ -219,8 +222,17 @@ static float const MASTERVIEWWIDTH = 152.0f;
 
     _masterScrollView.scrollEnabled = NO;
     _masterScrollView.contentSize = CGSizeMake(MASTERVIEWWIDTH, MASTERVIEWHEIGHT * 3);
+
+    UISwipeGestureRecognizer *swipeGes = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDownCase2:)];
+    swipeGes.direction = UISwipeGestureRecognizerDirectionDown;
+    [_step2MasterView addGestureRecognizer:swipeGes];
+    UISwipeGestureRecognizer *swipeGes3 = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeDownCase2:)];
+    swipeGes3.direction = UISwipeGestureRecognizerDirectionDown;
+    [_step3MasterView addGestureRecognizer:swipeGes3];
+
 }
 
+#pragma mark - 测试模式
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -229,11 +241,27 @@ static float const MASTERVIEWWIDTH = 152.0f;
 #endif
 
 #ifdef SKIPREQUEST
-    GCase2().currentStep = Case2Step2;
-    GCase2().step1MNumber = 2;
-    [self refreshButtonAndView:8];
-    [_hzqk2ViewController refresh];
+    [self refreshButtonAndView:0];
+//    GCase2().currentStep = Case2Step3;
+//    GCase2().step1MNumber = 7;
+//    GCase2().step2SNumber = 2;
+//    [self refreshButtonAndView:13];
+//    [_lcjc3ViewController refresh];
+//    [_zlfa2ViewController refresh];
+//    [_hzqk2ViewController refresh];
+//    [_zlfa3ViewController refresh];
 #endif
+}
+
+- (void)swipeDownCase2:(id)sender {
+    if (GCase2().currentIndex > 4 &&  GCase2().currentIndex <10) {
+        [self refreshButtonAndView:0];
+    }
+
+    if (GCase2().currentIndex > 9) {
+        [self refreshButtonAndView:5];
+    }
+
 }
 
 - (void)refreshButtonAndView:(long)toIndex
@@ -253,9 +281,21 @@ static float const MASTERVIEWWIDTH = 152.0f;
 
     GCase2().currentIndex = toIndex;
     GCase2().maxIndex = MAX(toIndex, GCase2().maxIndex);
-    [_detailScrollView scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
+    [_detailScrollView scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT * toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
 
-    [_masterScrollView scrollRectToVisible:CGRectMake(0, MASTERVIEWHEIGHT*GCase2().currentStep, MASTERVIEWWIDTH, MASTERVIEWHEIGHT) animated:YES];
+    int scrollNumber;
+    if (toIndex <5) {
+        scrollNumber = 0;
+        _masterBGImageView.image = [UIImage imageNamed:@"leftMenuBG"];
+    } else if (toIndex < 10) {
+        scrollNumber = 1;
+        _masterBGImageView.image = [UIImage imageNamed:@"c2leftMenuBG"];
+    } else {
+        scrollNumber = 2;
+        _masterBGImageView.image = [UIImage imageNamed:@"c2leftMenu3BG"];
+    }
+
+    [_masterScrollView scrollRectToVisible:CGRectMake(0, MASTERVIEWHEIGHT * scrollNumber, MASTERVIEWWIDTH, MASTERVIEWHEIGHT) animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -398,7 +438,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"ddgc": globalData.zlfaLeftSelectedIndex == 4 ? @"Y" : @"N",
                                                    @"cggz": globalData.zlfaLeftSelectedIndex == 1 ? @"Y" : @"N",
                                                    @"fqgz": globalData.zlfaLeftSelectedIndex == 2 ? @"Y" : @"N",
-                                                   @"wfl": (globalData.zlfaLeftSelectedIndex == 2 || globalData.zlfaWaifangliao == 1)? @"Y" : @"N",
+                                                   @"wfl": (globalData.zlfaLeftSelectedIndex == 3 || globalData.zlfaWaifangliao == 1)? @"Y" : @"N",
                                                    @"dynf": globalData.zlfaRightSelectedIndex == 1 ? @"Y" : @"N",
                                                    @"lhnf": globalData.zlfaLianheSelectedIndex == 1 ? @"Y" : @"N",
                                                    @"xfz": globalData.zlfaRightSelectedIndex == 2 ? @"Y" : @"N",
@@ -465,7 +505,6 @@ static float const MASTERVIEWWIDTH = 152.0f;
     } else if (globalData.currentIndex == 4) {
 #pragma mark 病程进展访视一
         if (globalData.maxIndex > globalData.currentIndex) {
-            _masterBGImageView.image = [UIImage imageNamed:@"c2leftMenuBG"];
             globalData.currentStep = Case2Step2;
             [self refreshButtonAndView:5];
         } else {
@@ -473,6 +512,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"action": @"result",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
+                                                   @"solution": [NSString stringWithFormat:@"m%ld", (long)[self countStep1MNumber]],
                                                    @"col1": [NSString stringWithFormat:@"m%ld|%@", (long)GCase2().step1MNumber, [_hzqk2ViewController chixujianxieString2]],
                                                    @"col2": [_hzqk2ViewController linchuangjiancheString2],
                                                    @"col3": [_hzqk2ViewController zhenduanString2],
@@ -495,7 +535,6 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                          if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
                                              [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                          } else {
-                                             _masterBGImageView.image = [UIImage imageNamed:@"c2leftMenuBG"];
                                              globalData.currentStep = Case2Step2;
                                              [self refreshButtonAndView:5];
                                              [_hzqk2ViewController refresh];
@@ -624,7 +663,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"action": @"solution",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
-                                                   @"solution": [NSString stringWithFormat:@"m%lds%ld", GCase2().step1MNumber, [self countStep2SNumber]],
+                                                   @"solution": [NSString stringWithFormat:@"m%lds%ld", (long)GCase2().step1MNumber, (long)[self countStep2SNumber]],
 
                                                    @"cggz": globalData.zlfa2SegmentSelectedIndex == 1 ? @"Y" :@"N",
                                                    @"fqgz": globalData.zlfa2SegmentSelectedIndex == 2 ? @"Y" :@"N",
@@ -684,8 +723,253 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                      }
                                  }];
         }
-    }
+    } else if (globalData.currentIndex == 9) {
+#pragma mark 病程进展访视二
+        if (globalData.maxIndex > globalData.currentIndex) {
+            globalData.currentStep = Case2Step3;
+            [self refreshButtonAndView:10];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"10",
+                                                   @"action": @"result",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
+                                                   @"col1": [NSString stringWithFormat:@"m%ld|%@", (long)GCase2().step1MNumber, [_hzqk2ViewController chixujianxieString2]],
+                                                   @"col2": [_hzqk2ViewController linchuangjiancheString2],
+                                                   @"col3": [_hzqk2ViewController zhenduanString2],
+                                                   @"col4": [_hzqk2ViewController weixianxingpingguString2],
+                                                   @"col5": [NSString stringWithFormat:@"T%@N%@M%@", GCase2().zdjgTSelectItem, GCase2().zdjgNSelectItem, GCase2().zdjgMSelectItem],
+                                                   @"col6": [_hzqk2ViewController loadZhiLiaoFangAn2],
+                                                   @"col7": [_hzqk2ViewController loadButtonString2],
+                                                   @"col8": [_hzqk2ViewController isTypeBetween2to7] ? @"Y" : @"N",
+                                                   @"col9": [_hzqk2ViewController loadYaoWuFangAn2],
+                                                   @"col10": [_hzqk2ViewController loadYaoWu2],
+                                                   @"col11": [NSString stringWithFormat:@"m%lds%ld|%@", (long)GCase2().step1MNumber, (long)GCase2().step2SNumber, [_hzqk3ViewController chixujianxieString3]],
+                                                   @"col12": [_hzqk3ViewController linchuangjiancheString3],
+                                                   @"col13": [_hzqk3ViewController zhenduanString3],
+                                                   @"col16": [_hzqk3ViewController loadZhiLiaoFangAn3],
+                                                   @"col17": [_hzqk3ViewController loadButtonString3],
+                                                   @"col18": [_hzqk3ViewController loadYaoWuFangAn3],
+                                                   @"col19": [_hzqk3ViewController loadYaoWu3],
+                                                   @"solution": [NSString stringWithFormat:@"m%lds%ld", (long)GCase2().step1MNumber, (long)GCase2().step2SNumber]
+                                                   };
 
+            [GInstance() httprequestWithHUD:_bcjz1ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             globalData.currentStep = Case2Step3;
+                                             [self refreshButtonAndView:10];
+                                             [_hzqk3ViewController refresh];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
+        }
+    } else if (globalData.currentIndex == 10) {
+#pragma mark 病史回顾访视三
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:11];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"11",
+                                                   @"action": @"info",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber};
+            [GInstance() httprequestWithHUD:_hzqk3ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             [_lcjc3ViewController refresh];
+                                             [self refreshButtonAndView:11];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
+        }
+    } else if (globalData.currentIndex == 11) {
+#pragma mark 临床检查访视三
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:12];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成诊断！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                NSDictionary *parametersDictionary = @{@"step": @"12",
+                                                       @"action": @"checkconfirm",
+                                                       @"subject_id": globalData.subjectId,
+                                                       @"group_id": globalData.groupNumber};
+                [GInstance() httprequestWithHUD:_lcjc3ViewController.view
+                                 withRequestURL:STEPURL
+                                 withParameters:parametersDictionary
+                                     completion:^(NSDictionary *jsonDic) {
+                                         NSLog(@"responseJson: %@", jsonDic);
+                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                             } else {
+                                                 _lcjc3ViewController.isLocked = YES;
+                                                 [self refreshButtonAndView:12];
+                                                 [GInstance() savaData];
+                                             }
+                                         } else {
+                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                             }
+                                         }
+                                     }];
+            }], nil] show];
+        }
+    } else if (globalData.currentIndex == 12) {
+#pragma mark 诊断结果访视三
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:13];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成诊断！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"13",
+                                                                                                            @"action": @"diagnose",
+                                                                                                            @"subject_id": globalData.subjectId,
+                                                                                                            @"group_id": globalData.groupNumber,
+                                                                                                            @"zd": globalData.zdjg3ZDSelectItem}];
+                [GInstance() httprequestWithHUD:_zdjg3ViewController.view
+                                 withRequestURL:STEPURL
+                                 withParameters:parametersDictionary
+                                     completion:^(NSDictionary *jsonDic) {
+                                         NSLog(@"responseJson: %@", jsonDic);
+                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                             for (UIView *subView in [_zdjg3ViewController.view subviews]) {
+                                                 if (subView.tag != 999) {
+                                                     subView.userInteractionEnabled = NO;
+                                                 }
+                                             }
+                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                             } else {
+                                                 [self refreshButtonAndView:13];
+                                                 [_zlfa3ViewController refresh];
+                                                 [GInstance() savaData];
+                                             }
+                                         } else {
+                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                             }
+                                         }
+                                     }];
+            }], nil] show];
+        }
+    } else if (globalData.currentIndex == 13) {
+#pragma mark 治疗方案访视三
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:14];
+        } else {
+            NSDictionary *parametersDictionary = @{@"step": @"14",
+                                                   @"action": @"solution",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
+                                                   @"solution": [NSString stringWithFormat:@"m%lds%ld", (long)GCase2().step1MNumber, (long)[self countStep2SNumber]],
+
+                                                   @"gt": globalData.zlfa3GutongSelectedIndex == 1 ? @"Y" :@"N",
+                                                   @"nfm": globalData.zlfa3SegmentSelectedIndex == 4 ? @"Y" :@"N",
+                                                   @"zdkx": globalData.zlfa3SegmentSelectedIndex == 5 ? @"Y" :@"N",
+                                                   @"hl": globalData.zlfa3SegmentSelectedIndex == 7 ? @"Y" :@"N",
+                                                   @"nfm2": globalData.zlfa3SegmentSelectedIndex == 6 ? @"Y" :@"N",
+                                                   @"abtl": globalData.zlfa3SegmentSelectedIndex == 8 ? @"Y" :@"N",
+
+                                                   @"fz": @"N",
+                                                   @"cx": globalData.zlfa3ChixuJianxieNeifenSelectedIndex == 1 ? @"Y" :@"N",
+                                                   @"jx": globalData.zlfa3ChixuJianxieNeifenSelectedIndex == 2 ? @"Y" :@"N",
+
+                                                   @"ssqs": globalData.zlfa3ChixuJianxieNeifenDetailSelectedIndex == 4 ? @"Y" :@"N",
+                                                   @"dyqs": globalData.zlfa3ChixuJianxieNeifenDetailSelectedIndex == 1 ? @"Y" :@"N",
+                                                   @"dykx": globalData.zlfa3ChixuJianxieNeifenDetailSelectedIndex == 2 ? @"Y" :@"N",
+                                                   @"zdxd": globalData.zlfa3ChixuJianxieNeifenDetailSelectedIndex == 3 ? @"Y" :@"N",
+                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isXinFuZhu:NO],
+                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isXinFuZhu:NO],
+                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isXinFuZhu:NO],
+                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isXinFuZhu:NO],
+                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isXinFuZhu:NO],
+                                                   @"fta": [self ifSelectedYaowu:@"fta" isXinFuZhu:NO],
+
+                                                   @"cjs": globalData.zlfa3ErfenSelectedIndex == 1 ? @"Y" :@"N",
+                                                   @"fta2": globalData.zlfa3ErfenSelectedIndex == 2 ? @"Y" :@"N"
+                                                   };
+
+            for (NSString *keyString in parametersDictionary.allKeys) {
+                NSLog(@"%@ : %@", keyString, parametersDictionary[keyString]);
+            }
+
+            [GInstance() httprequestWithHUD:_zlfa3ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         for (UIView *subView in [_zlfa3ViewController.view subviews]) {
+                                             if (subView.tag != 999) {
+                                                 subView.userInteractionEnabled = NO;
+                                             }
+                                         }
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             GCase2().step2SNumber = [self countStep2SNumber];
+                                             [self refreshButtonAndView:14];
+                                             [_zlfa3ViewController rollToTopView];
+                                             [_bcjz3ViewController refresh];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
+        }
+    } else if (globalData.currentIndex == 14) {
+        // 病程进展 第二轮确定
+        NSDictionary *parametersDictionary = @{@"step": @"15",
+                                               @"action": @"result",
+                                               @"subject_id": globalData.subjectId,
+                                               @"group_id": globalData.groupNumber};
+        [GInstance() httprequestWithHUD:_bcjz3ViewController.view
+                         withRequestURL:STEPURL
+                         withParameters:parametersDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     [GInstance() showInfoMessage:@"治疗结束！"];
+                                     [GInstance() savaData];
+                                 } else {
+                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                     }
+                                 }
+                             }];
+}
 
 
 }
@@ -758,7 +1042,6 @@ static float const MASTERVIEWWIDTH = 152.0f;
         ) {
         return 4;
     }
-
     return 0;
 }
 
@@ -786,9 +1069,12 @@ static float const MASTERVIEWWIDTH = 152.0f;
         if (GCase2().currentStep == Case2Step1) {
             yaowu1 = GCase2().zlfaYaowuName1;
             yaowu2 = GCase2().zlfaYaowuName2;
-        } else {
+        } else if (GCase2().currentStep == Case2Step2){
             yaowu1 = GCase2().zlfaNeifenmiYaowuName1;
             yaowu2 = GCase2().zlfaNeifenmiYaowuName2;
+        } else {
+            yaowu1 = GCase2().zlfa3NeifenmiYaowuName1;
+            yaowu2 = GCase2().zlfa3NeifenmiYaowuName2;
         }
         NSString *mergeName = [NSString stringWithFormat:@"%@%@", yaowuDic[yaowu1][1], yaowuDic[yaowu2][1]];
         if ([mergeName hasPrefix:yaowuName] || [mergeName hasSuffix:yaowuName]) {

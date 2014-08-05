@@ -64,5 +64,19 @@ typedef NS_ENUM(NSInteger, Case2Step) {
 @property (copy, nonatomic) NSString *zlfaNeifenmiYaowuName2; //Picker2
 
 /**************** 访视3 ******************/
+//诊断
+@property (copy, nonatomic) NSString *zdjg3ZDSelectItem;
+
+//治疗方案
+@property (assign, nonatomic) NSUInteger zlfa3GutongSelectedIndex; // 1 选中 0 未选中
+@property (assign, nonatomic) NSUInteger zlfa3LeftSelectedIndex; // 1 放疗 2 氯化锶 0 未选中
+
+@property (assign, nonatomic) NSUInteger zlfa3SegmentSelectedIndex; // 4 5 6 7 8 0 未选择
+@property (assign, nonatomic) NSUInteger zlfa3ErfenSelectedIndex; // 1 雌激素 2 氟他胺 0 未选择
+@property (assign, nonatomic) NSUInteger zlfa3ChixuJianxieNeifenSelectedIndex; // 1 持续 2 间歇 0 未选择
+@property (assign, nonatomic) NSUInteger zlfa3ChixuJianxieNeifenDetailSelectedIndex; // 1 药物 2 抗雄 3 雄激素 4 手术 0 未选择
+@property (copy, nonatomic) NSString *zlfa3NeifenmiYaowuName1; //Picker1
+@property (copy, nonatomic) NSString *zlfa3NeifenmiYaowuName2; //Picker2
+
 
 @end

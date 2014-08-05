@@ -26,6 +26,8 @@
 
 @property (strong, nonatomic) NSArray *checkingStringArray;
 
+@property (strong, nonatomic) NSArray *imageMappingArray;
+
 - (IBAction)confirmClick:(UIButton *)sender;
 
 @end
@@ -34,6 +36,13 @@
 
 - (void)refresh
 {
+    if (GCase2().currentIndex != 1)
+    {
+        CGRect tableFrame = _tableviewLCJC.frame;
+        tableFrame.size.height = CGRectGetHeight(tableFrame) - 40.0f;
+        _tableviewLCJC.frame = tableFrame;
+
+    }
     [_tableviewLCJC reloadData];
 }
 
@@ -68,20 +77,156 @@
 
     UIPinchGestureRecognizer *pinchGestureRecongnizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchResultImageView:)];
     [_lcjcResultImageViewFull addGestureRecognizer:pinchGestureRecongnizer];
+
+    self.imageMappingArray = @[//直肠指诊
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"3", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //血常规
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"10", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"10", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"10", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"10", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"10", @"M8S3": @"8",
+                                 @"M9S1": @"9", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //尿常规
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"9", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //血生化
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"10", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"10", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"1", @"M5S2": @"10", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"10", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"10", @"M8S3": @"8",
+                                 @"M9S1": @"9", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //凝血筛查
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"9", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //心电图
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"9", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //超声心动
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"9", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //胸片
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"9", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //B超
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"3", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //PSA
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"10", @"M3S2": @"10", @"M3S3": @"10", @"M3S4": @"3",
+                                 @"M4S1": @"10", @"M4S2": @"10", @"M4S3": @"10", @"M4S4": @"3",
+                                 @"M5S1": @"10", @"M5S2": @"10", @"M5S3": @"10", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"10", @"M7S2": @"10", @"M7S3": @"10",
+                                 @"M8S1": @"10", @"M8S2": @"10", @"M8S3": @"10",
+                                 @"M9S1": @"10", @"M9S2": @"8", @"M9S3": @"11", @"M9S4": @"11"},
+                               //睾酮
+                               @{@"M2S1": @"9", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"9", @"M3S3": @"3", @"M3S4": @"9",
+                                 @"M4S1": @"3", @"M4S2": @"9", @"M4S3": @"3", @"M4S4": @"9",
+                                 @"M5S1": @"3", @"M5S2": @"9", @"M5S3": @"3", @"M5S4": @"9",
+                                 @"M6S1": @"9",
+                                 @"M7S1": @"9", @"M7S2": @"9", @"M7S3": @"9",
+                                 @"M8S1": @"9", @"M8S2": @"9", @"M8S3": @"9",
+                                 @"M9S1": @"9", @"M9S2": @"9", @"M9S3": @"9", @"M9S4": @"9"},
+                               //骨扫描
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"10", @"M3S2": @"10", @"M3S3": @"10", @"M3S4": @"3",
+                                 @"M4S1": @"10", @"M4S2": @"10", @"M4S3": @"10", @"M4S4": @"3",
+                                 @"M5S1": @"10", @"M5S2": @"10", @"M5S3": @"10", @"M5S4": @"3",
+                                 @"M6S1": @"10",
+                                 @"M7S1": @"10", @"M7S2": @"10", @"M7S3": @"10",
+                                 @"M8S1": @"10", @"M8S2": @"10", @"M8S3": @"10",
+                                 @"M9S1": @"10", @"M9S2": @"10", @"M9S3": @"10", @"M9S4": @"10"},
+                               //MR
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"3", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"},
+                               //ECOG
+                               @{@"M2S1": @"10", @"M2S2": @"10",
+                                 @"M3S1": @"10", @"M3S2": @"10", @"M3S3": @"10", @"M3S4": @"10",
+                                 @"M4S1": @"10", @"M4S2": @"10", @"M4S3": @"10", @"M4S4": @"10",
+                                 @"M5S1": @"10", @"M5S2": @"10", @"M5S3": @"10", @"M5S4": @"10",
+                                 @"M6S1": @"10",
+                                 @"M7S1": @"10", @"M7S2": @"10", @"M7S3": @"10",
+                                 @"M8S1": @"10", @"M8S2": @"10", @"M8S3": @"10",
+                                 @"M9S1": @"10", @"M9S2": @"10", @"M9S3": @"10", @"M9S4": @"10"},
+                               //CT
+                               @{@"M2S1": @"2", @"M2S2": @"2",
+                                 @"M3S1": @"3", @"M3S2": @"3", @"M3S3": @"3", @"M3S4": @"3",
+                                 @"M4S1": @"3", @"M4S2": @"3", @"M4S3": @"3", @"M4S4": @"3",
+                                 @"M5S1": @"3", @"M5S2": @"3", @"M5S3": @"3", @"M5S4": @"3",
+                                 @"M6S1": @"6",
+                                 @"M7S1": @"7", @"M7S2": @"7", @"M7S3": @"7",
+                                 @"M8S1": @"8", @"M8S2": @"8", @"M8S3": @"8",
+                                 @"M9S1": @"3", @"M9S2": @"8", @"M9S3": @"9", @"M9S4": @"9"}];
 }
 
 #pragma mark - TableView DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return GCase2().currentStep == Case2Step1 ? 16 : 15;
+    return GCase2().currentIndex == 1 ? 16 : 15;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *selectedString;
-    if (GCase2().currentStep == Case2Step1) {
+    if (GCase2().currentIndex == 1) {
         selectedString = GCase2().lcjcSelectedArrayStringR1;
-    } else if(GCase2().currentStep == Case2Step2){
+    } else if(GCase2().currentIndex == 6){
         selectedString = GCase2().lcjcSelectedArrayStringR2;
     } else {
         selectedString = GCase2().lcjcSelectedArrayStringR3;
@@ -107,9 +252,9 @@
 #pragma mark - TableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (GCase2().currentStep == Case2Step1) {
+    if (GCase2().currentIndex == 1) {
         [self tableView:tableView didSelectRowForR1AtIndexPath:indexPath];
-    } else if(GCase2().currentStep == Case2Step2){
+    } else if(GCase2().currentIndex == 6){
         [self tableView:tableView didSelectRowForR2AtIndexPath:indexPath];
     } else {
         [self tableView:tableView didSelectRowForR3AtIndexPath:indexPath];
@@ -128,17 +273,17 @@
                             [_lcjcOkButton setImage:[UIImage imageNamed:@"okButton.png"] forState:UIControlStateNormal];
                         }];
     } else {
-        if (GCase2().currentStep == Case2Step1) {
+        if (GCase2().currentIndex == 1) {
             if (GCase2().lcjcSelectedArrayStringR1.length == 0) {
                 [GInstance() showInfoMessage:@"请完成检查步骤！"];
                 return;
             }
-        } else if(GCase2().currentStep == Case2Step2) {
+        } else if(GCase2().currentIndex == 6) {
             if (GCase2().lcjcSelectedArrayStringR2.length == 0) {
                 [GInstance() showInfoMessage:@"请完成检查步骤！"];
                 return;
             }
-        } else {
+        } else if(GCase2().currentIndex == 11) {
             if (GCase2().lcjcSelectedArrayStringR3.length == 0) {
                 [GInstance() showInfoMessage:@"请完成检查步骤！"];
                 return;
@@ -157,21 +302,36 @@
     BOOL hideFullImage = YES;
 
     NSMutableString *imageNameString = [NSMutableString stringWithString:_lcjcTableToImageNameArray[row]];
+
     if ([imageNameString hasSuffix:@"*"]) {
         [imageNameString deleteCharactersInRange:NSMakeRange(imageNameString.length - 1, 1)];
-        if (GCase2().currentStep == Case2Step2) {
-            NSString *mString;
-            if (GCase2().step1MNumber >= 3 && GCase2().step1MNumber <= 5) {
-                mString = @"m3-5";
-            } else {
-                mString = [NSString stringWithFormat:@"m%ld", GCase2().step1MNumber];
-            }
-            [imageNameString insertString:mString atIndex:0];
-        }
-        _lcjcResultImageViewFull.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_full", imageNameString]];
         hideFullImage = NO;
     }
 
+    if (GCase2().currentIndex == 6) {
+        NSString *mString;
+        if (GCase2().step1MNumber >= 3 && GCase2().step1MNumber <= 5) {
+            mString = @"m3-5";
+        } else {
+            mString = [NSString stringWithFormat:@"m%ld", (long)GCase2().step1MNumber];
+        }
+        [imageNameString insertString:mString atIndex:0];
+    } else if (GCase2().currentIndex == 11) {
+        NSDictionary *mappingDic = _imageMappingArray[row];
+        NSString *mValue = mappingDic[[NSString stringWithFormat:@"M%ldS%ld", (long)GCase2().step1MNumber, (long)GCase2().step2SNumber]];
+
+        NSString *mString;
+        if (mValue.intValue >= 3 && mValue.intValue <= 5) {
+            mString = @"m3-5";
+        } else {
+            mString = [NSString stringWithFormat:@"m%@", mValue];
+        }
+        [imageNameString insertString:mString atIndex:0];
+    }
+
+    if (!hideFullImage) {
+        _lcjcResultImageViewFull.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_full", imageNameString]];
+    }
     _lcjcResultImageView.image = [UIImage imageNamed:imageNameString];
     return hideFullImage;
 }
@@ -365,7 +525,83 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowForR3AtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%s", __FUNCTION__);
+    Case2Data *globalData = GCase2();
+    if (globalData.lcjcSelectedArrayStringR3.length == 0) {
+        globalData.lcjcSelectedArrayStringR3 = [NSString string];
+    }
+
+    if (!_isLocked) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.backgroundColor = [UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1];
+    }
+
+    NSMutableDictionary *parametersDictionary = [@{@"step": @"12",
+                                                   @"action": @"check",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
+                                                   @"item": _checkingStringArray[indexPath.row]} mutableCopy];
+
+    NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR3 componentsSeparatedByString:@","];
+    BOOL hideFullImage = [self reloadResultImageView:indexPath.row];
+
+    if (_isLocked) {
+        if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+            if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+                _isLcjcDeatilView = YES;
+                [UIView transitionFromView:_tableviewLCJC
+                                    toView:_lcjcResultImageView
+                                  duration:1.0
+                                   options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                completion:^(BOOL finished) {
+                                    if (_isLcjcDeatilView) {
+                                        _lcjcResultImageViewFull.hidden = hideFullImage;
+                                    }
+                                    [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                }];
+            }
+        }
+    } else {
+        if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+            [GInstance() httprequestWithHUD:self.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         _isLcjcDeatilView = YES;
+                                         globalData.lcjcSelectedArrayStringR3 = [globalData.lcjcSelectedArrayStringR3 stringByAppendingFormat:@"%ld,", (long)indexPath.row];
+                                         [GInstance() savaData];
+
+                                         [UIView transitionFromView:_tableviewLCJC
+                                                             toView:_lcjcResultImageView
+                                                           duration:1.0
+                                                            options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                                         completion:^(BOOL finished) {
+                                                             if (_isLcjcDeatilView) {
+                                                                 _lcjcResultImageViewFull.hidden = hideFullImage;
+                                                             }
+                                                             [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                                         }];
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
+        } else {
+            _isLcjcDeatilView = YES;
+            [UIView transitionFromView:_tableviewLCJC
+                                toView:_lcjcResultImageView
+                              duration:1.0
+                               options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                            completion:^(BOOL finished) {
+                                if (_isLcjcDeatilView) {
+                                    _lcjcResultImageViewFull.hidden = hideFullImage;
+                                }
+                                [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                            }];
+        }
+    }
 }
 
 - (void)pinchResultImageView:(UIPinchGestureRecognizer *)sender

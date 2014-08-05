@@ -51,10 +51,31 @@
 
 - (void)refresh:(NSUInteger)mNumber sNumber:(NSUInteger)sNumber
 {
-    NSMutableString *imageNameString = [NSMutableString stringWithFormat:@"M%ldS%ld", (long)mNumber, (long)sNumber];
+    NSString *mNumberString;
+    if (mNumber < 3 || mNumber > 5) {
+        mNumberString = [NSString stringWithFormat:@"%ld", (long)mNumber];
+    } else {
+        mNumberString = @"3-5";
+    }
+    NSMutableString *imageNameString = [NSMutableString stringWithFormat:@"M%@S%ld", mNumberString, (long)sNumber];
     if (GCase2().zlfaChixuJianxieNeifenSelectedIndex > 0) {
         [imageNameString appendString:[NSString stringWithFormat:@"-%ld", GCase2().zlfaChixuJianxieNeifenSelectedIndex]];
     }
+    NSLog(@"%@", imageNameString);
+    _bcjzContentImageView.image = [UIImage imageNamed:imageNameString];
+}
+
+- (void)refresh
+{
+    NSMutableString *imageNameString = [NSMutableString stringWithString:@"c2bcjz3_"];
+    if (GCase2().zlfa3GutongSelectedIndex == 1) {
+        [imageNameString appendString:@"Y"];
+    } else {
+        [imageNameString appendString:@"N"];
+    }
+    [imageNameString appendFormat:@"_%ld", GCase2().zlfa3SegmentSelectedIndex];
+
+    NSLog(@"%@", imageNameString);
     _bcjzContentImageView.image = [UIImage imageNamed:imageNameString];
 }
 

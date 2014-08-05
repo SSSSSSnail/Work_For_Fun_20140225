@@ -144,6 +144,68 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <view contentMode="scaleToFill" id="59F-Vf-F2i" userLabel="View- Step3">
+                                        <rect key="frame" x="0.0" y="1390" width="152" height="695"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="20" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A0C-W1-CHc" userLabel="患者情况 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="20" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="bshgUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="bshgSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="s0t-g6-0f2" eventType="touchUpInside" id="h8a-LR-lae"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="21" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="u7F-dN-8vS" userLabel="临床检查 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="150" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="lcjcUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="lcjcSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="s0t-g6-0f2" eventType="touchUpInside" id="EnL-JR-CU3"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L2r-Za-DHc" userLabel="诊断结果 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="283" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="zdjgUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="zdjgSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="s0t-g6-0f2" eventType="touchUpInside" id="8ku-di-F72"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VSr-fa-78x" userLabel="治疗方案 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="415" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="zlfaUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="zlfaSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="s0t-g6-0f2" eventType="touchUpInside" id="Qnx-3g-fPO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="w2V-FM-UJv" userLabel="病程进展 - Button" customClass="LLUIButton">
+                                                <rect key="frame" x="9" y="549" width="131" height="126"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="bcjzUnselected.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="selected" image="bcjzSelected.png"/>
+                                                <connections>
+                                                    <action selector="clickNext:" destination="s0t-g6-0f2" eventType="touchUpInside" id="19q-hQ-Mu1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="k9A-0P-4H6" userLabel="DetailScrollView">
@@ -161,6 +223,7 @@
                         <outlet property="masterScrollView" destination="Giw-Xp-b9c" id="fn7-YD-HXv"/>
                         <outlet property="step1MasterView" destination="lqx-7k-AJH" id="nFb-4k-WVv"/>
                         <outlet property="step2MasterView" destination="V0F-yo-dXx" id="bba-kC-Jln"/>
+                        <outlet property="step3MasterView" destination="59F-Vf-F2i" id="CIm-rm-ND4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1q-AL-GQJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1335,11 +1398,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buttonLabelCell" id="4sD-Fn-h4I">
-                                        <rect key="frame" x="0.0" y="143" width="832" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buttonLabelCell" rowHeight="56" id="4sD-Fn-h4I">
+                                        <rect key="frame" x="0.0" y="143" width="832" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4sD-Fn-h4I" id="xv3-Ui-J8Q">
-                                            <rect key="frame" x="0.0" y="0.0" width="832" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="832" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1F8-zd-dtE">
@@ -1402,8 +1465,115 @@
                                                     <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="辅助内分泌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xi8-cR-cTh">
-                                                    <rect key="frame" x="667" y="34" width="70" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="辅助/联合/单一内分泌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xi8-cR-cTh">
+                                                    <rect key="frame" x="667" y="36" width="155" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="button6LabelCell" rowHeight="55" id="XHP-oL-G6B" userLabel="Table View Cell - 6buttonLabelCell">
+                                        <rect key="frame" x="0.0" y="199" width="832" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XHP-oL-G6B" id="1Im-fE-eKz">
+                                            <rect key="frame" x="0.0" y="0.0" width="832" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y9m-uO-PYb">
+                                                    <rect key="frame" x="15" y="7" width="769" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wTg-I9-d7G">
+                                                    <rect key="frame" x="56" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="egk-hw-ErU">
+                                                    <rect key="frame" x="176" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cqr-63-haC">
+                                                    <rect key="frame" x="291" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2jZ-CR-avg">
+                                                    <rect key="frame" x="411" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手术" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kfp-hR-RQs">
+                                                    <rect key="frame" x="92" y="34" width="35" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="放疗" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="77w-jW-wdZ">
+                                                    <rect key="frame" x="202" y="33" width="35" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内分泌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vpB-K5-wMk">
+                                                    <rect key="frame" x="317" y="34" width="51" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中断抗雄" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2gM-nd-vmh">
+                                                    <rect key="frame" x="437" y="34" width="64" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AaF-BE-WNR">
+                                                    <rect key="frame" x="543" y="34" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6xo-c9-R4g">
+                                                    <rect key="frame" x="683" y="34" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="二线内分泌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aD0-fn-xjx">
+                                                    <rect key="frame" x="569" y="34" width="70" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="化疗" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sEO-6p-joa">
+                                                    <rect key="frame" x="714" y="34" width="64" height="19"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1439,7 +1609,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dgn-ot-d1B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="864" y="-1662"/>
+            <point key="canvasLocation" x="864" y="-1670"/>
         </scene>
         <!--View Controller - 2 -诊断结果-->
         <scene sceneID="vBA-ov-jry">
@@ -1561,6 +1731,10 @@
                         <outletCollection property="buttonCollection" destination="jmg-jN-dOH" id="HuF-kB-Wfq"/>
                         <outletCollection property="buttonCollection" destination="c2S-8J-kr4" id="tmv-8q-Q2y"/>
                         <outletCollection property="buttonCollection" destination="dsm-O0-Ler" id="Pvt-zA-ZVV"/>
+                        <outletCollection property="buttonLeftCollection" destination="kpS-LK-abi" id="CDW-H5-e8d"/>
+                        <outletCollection property="buttonLeftCollection" destination="dsm-O0-Ler" id="Fg3-GG-5AM"/>
+                        <outletCollection property="buttonLeftCollection" destination="r6j-cq-Quo" id="zId-gh-dQd"/>
+                        <outletCollection property="buttonLeftCollection" destination="j2f-KQ-f3S" id="NM2-iD-U4D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kEU-MS-PZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1985,6 +2159,739 @@
             </objects>
             <point key="canvasLocation" x="864" y="1157"/>
         </scene>
+        <!--View Controller - 3 - 病史回顾-->
+        <scene sceneID="UJZ-Fd-UcR">
+            <objects>
+                <viewController storyboardIdentifier="bshg3VC" title="病史回顾3" useStoryboardIdentifierAsRestorationIdentifier="YES" id="39j-VN-UTr" userLabel="View Controller - 3 - 病史回顾" customClass="BSHGS3ViewController" sceneMemberID="viewController">
+                    <view key="view" tag="110" contentMode="scaleToFill" id="4A1-VZ-mRi" customClass="LLUIView">
+                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pdW-vq-Cso">
+                                <rect key="frame" x="395" y="717" width="83" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="okButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmClick:" destination="39j-VN-UTr" eventType="touchUpInside" id="xLN-ps-UCM"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="JCX-It-yQQ">
+                                <rect key="frame" x="20" y="15" width="832" height="420"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="twoLabelCell" id="89y-U5-hxd">
+                                        <rect key="frame" x="0.0" y="55" width="832" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="89y-U5-hxd" id="FUk-k0-HBK">
+                                            <rect key="frame" x="0.0" y="0.0" width="832" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OAe-lJ-kpZ">
+                                                    <rect key="frame" x="17" y="11" width="293" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dK0-Kd-lWN">
+                                                    <rect key="frame" x="453" y="11" width="336" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="oneLabelCell" id="Mx3-PV-fe5">
+                                        <rect key="frame" x="0.0" y="99" width="832" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mx3-PV-fe5" id="wNh-Un-szA">
+                                            <rect key="frame" x="0.0" y="0.0" width="832" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9tF-it-p6p">
+                                                    <rect key="frame" x="17" y="11" width="795" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buttonLabelCell" rowHeight="56" id="pg3-jy-jev">
+                                        <rect key="frame" x="0.0" y="143" width="832" height="56"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pg3-jy-jev" id="8AH-ml-Dav">
+                                            <rect key="frame" x="0.0" y="0.0" width="832" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yZU-GQ-jOV">
+                                                    <rect key="frame" x="15" y="7" width="769" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BfI-Er-YRa">
+                                                    <rect key="frame" x="56" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EHv-Mb-KvT">
+                                                    <rect key="frame" x="266" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="il7-O4-6JN">
+                                                    <rect key="frame" x="462" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="66v-gT-17n">
+                                                    <rect key="frame" x="641" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手术" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8vI-aY-kR4">
+                                                    <rect key="frame" x="92" y="34" width="35" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="放疗" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uxx-Fk-dnW">
+                                                    <rect key="frame" x="292" y="34" width="35" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新辅助内分泌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BMb-lf-a45">
+                                                    <rect key="frame" x="488" y="34" width="90" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="辅助/联合/单一内分泌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Dz-TG-YLL">
+                                                    <rect key="frame" x="667" y="36" width="155" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="button6LabelCell" rowHeight="55" id="R9m-4j-vim" userLabel="Table View Cell - 6buttonLabelCell">
+                                        <rect key="frame" x="0.0" y="199" width="832" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R9m-4j-vim" id="fHu-kO-MTi">
+                                            <rect key="frame" x="0.0" y="0.0" width="832" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OZ2-bo-54q">
+                                                    <rect key="frame" x="15" y="7" width="769" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DbW-r5-hAU">
+                                                    <rect key="frame" x="56" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h4V-aQ-i7P">
+                                                    <rect key="frame" x="176" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="heW-Ta-uG5">
+                                                    <rect key="frame" x="291" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="anv-05-p6B">
+                                                    <rect key="frame" x="411" y="33" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手术" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g3b-cb-WNu">
+                                                    <rect key="frame" x="92" y="34" width="35" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="放疗" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hZg-tH-Yf3">
+                                                    <rect key="frame" x="202" y="33" width="35" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内分泌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fYO-sa-jDl">
+                                                    <rect key="frame" x="317" y="34" width="51" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中断抗雄" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oih-eO-jK3">
+                                                    <rect key="frame" x="437" y="34" width="64" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pFf-6z-duX">
+                                                    <rect key="frame" x="543" y="34" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="13A-KP-YXZ">
+                                                    <rect key="frame" x="683" y="34" width="18" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="checkUnselectButton.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checkSelectButton.png"/>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="二线内分泌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SD5-L1-Vh7">
+                                                    <rect key="frame" x="569" y="34" width="70" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="化疗" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V04-kI-Zv7">
+                                                    <rect key="frame" x="714" y="34" width="64" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0078431372550000003" green="0.50196078430000002" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="39j-VN-UTr" id="QCX-td-ygu"/>
+                                    <outlet property="delegate" destination="39j-VN-UTr" id="bRk-Yg-Nhl"/>
+                                </connections>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="vZl-ql-kXh">
+                                <rect key="frame" x="20" y="442" width="832" height="270"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
+                    <connections>
+                        <outlet property="bshgImageView" destination="vZl-ql-kXh" id="sI4-ev-63S"/>
+                        <outlet property="bshgTable" destination="JCX-It-yQQ" id="jD7-bi-usi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNb-2e-ZxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1944" y="-1662"/>
+        </scene>
+        <!--View Controller - 3 - 治疗方案-->
+        <scene sceneID="Odx-s8-7vF">
+            <objects>
+                <viewController storyboardIdentifier="zlfa3VC" title="治疗方案2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vjr-pB-is0" userLabel="View Controller - 3 - 治疗方案" customClass="ZLFAS3C2ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KpJ-hf-jSU">
+                        <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaBG.png" id="KrV-pi-2L0">
+                                <rect key="frame" x="0.0" y="0.0" width="872" height="768"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="dfc-uV-d5w">
+                                <rect key="frame" x="10" y="124" width="854" height="513"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view hidden="YES" contentMode="scaleToFill" id="K38-qk-BJS" userLabel="View - Section2">
+                                        <rect key="frame" x="0.0" y="0.0" width="854" height="513"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="K1l-Ac-MjC">
+                                                <rect key="frame" x="0.0" y="0.0" width="854" height="513"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <pickerView hidden="YES" tag="1" contentMode="scaleToFill" id="p4V-JL-0gF">
+                                                <rect key="frame" x="317" y="149" width="220" height="216"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="vjr-pB-is0" id="lhz-2w-sHP"/>
+                                                    <outlet property="delegate" destination="vjr-pB-is0" id="tYp-FN-RWV"/>
+                                                </connections>
+                                            </pickerView>
+                                            <pickerView hidden="YES" tag="2" contentMode="scaleToFill" id="RJe-QU-bne">
+                                                <rect key="frame" x="317" y="149" width="220" height="216"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="vjr-pB-is0" id="X11-zc-s46"/>
+                                                    <outlet property="delegate" destination="vjr-pB-is0" id="qJ1-zT-3Al"/>
+                                                </connections>
+                                            </pickerView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="Ofk-0c-DMY" userLabel="View - Section1">
+                                        <rect key="frame" x="0.0" y="0.0" width="854" height="513"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zlfaSection1BG.png" id="gIm-cl-IKu">
+                                                <rect key="frame" x="0.0" y="0.0" width="854" height="513"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </imageView>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" id="7iD-L4-i0q" userLabel="View - Left">
+                                                <rect key="frame" x="17" y="21" width="400" height="471"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c2zlfa3LeftBG.png" id="Ek9-p9-yoz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <segmentedControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="MNM-jZ-E3O">
+                                                        <rect key="frame" x="299" y="38" width="81" height="29"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <segments>
+                                                            <segment title="YES"/>
+                                                            <segment title="NO"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="zlfa3LeftSegmentChanged:" destination="vjr-pB-is0" eventType="valueChanged" id="vfV-CS-Xsx"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Al-bP-TiZ" userLabel="Button - 左1">
+                                                        <rect key="frame" x="19" y="79" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" image="checkUnselectButton.png">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <state key="selected" image="checkSelectButton.png"/>
+                                                        <connections>
+                                                            <action selector="zlfa3LeftButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="qwx-h4-PzY"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sHz-jf-i4A" userLabel="Button - 左2">
+                                                        <rect key="frame" x="194" y="79" width="40" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <state key="normal" image="checkUnselectButton.png">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <state key="selected" image="checkSelectButton.png"/>
+                                                        <connections>
+                                                            <action selector="zlfa3LeftButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="Uu2-2Y-rkE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <view contentMode="scaleToFill" id="2Om-Cl-h9u">
+                                                        <rect key="frame" x="27" y="135" width="358" height="189"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <subviews>
+                                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c2zlfa3Left1BG.png" id="lNd-S7-cdq" userLabel="Image View - 1">
+                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="189"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            </imageView>
+                                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c2zlfa3Left2BG.png" id="5XN-Xo-tiA" userLabel="Image View - 2">
+                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="189"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" id="KaS-ch-Ylq" userLabel="View - Mask">
+                                                        <rect key="frame" x="0.0" y="86" width="400" height="263"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" id="Fd9-NV-D1N">
+                                                <rect key="frame" x="437" y="21" width="400" height="471"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" id="UrX-2N-Ja5" userLabel="View - Right">
+                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c2zlfa2BGRight1.png" id="rcw-pA-c1T">
+                                                                <rect key="frame" x="0.0" y="0.0" width="400" height="471"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <view contentMode="scaleToFill" id="bLS-gu-wuk" userLabel="View - Animation">
+                                                                <rect key="frame" x="0.0" y="83" width="400" height="388"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <subviews>
+                                                                    <view hidden="YES" contentMode="scaleToFill" id="Etn-CZ-5rr" userLabel="View - 内分泌">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="388"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <subviews>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c2zlfa2BGRight1_2.png" id="m6X-aH-35G">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="400" height="388"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            </imageView>
+                                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hvw-NX-4lY" userLabel="Button - 持续">
+                                                                                <rect key="frame" x="64" y="10" width="40" height="40"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                </state>
+                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                <connections>
+                                                                                    <action selector="chixujianxieButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="Npl-mE-Lgf"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h25-lM-Qdw" userLabel="Button - 间歇">
+                                                                                <rect key="frame" x="208" y="10" width="40" height="40"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                </state>
+                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                <connections>
+                                                                                    <action selector="chixujianxieButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="FVo-HF-8LK"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <view contentMode="scaleToFill" id="WT5-cY-IVi">
+                                                                                <rect key="frame" x="0.0" y="56" width="400" height="202"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <subviews>
+                                                                                    <view hidden="YES" contentMode="scaleToFill" id="iQZ-Zo-0y4">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="202"/>
+                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                        <subviews>
+                                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c2danyijianxieBG.png" id="xaq-CF-Ytq">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="400" height="202"/>
+                                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                            </imageView>
+                                                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DBF-MW-d5q" userLabel="Button - 单一药物去势">
+                                                                                                <rect key="frame" x="51" y="8" width="40" height="40"/>
+                                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                </state>
+                                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                                <connections>
+                                                                                                    <action selector="danyiButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="nhG-r3-DID"/>
+                                                                                                </connections>
+                                                                                            </button>
+                                                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uP5-WJ-M87" userLabel="Button - 雄激素">
+                                                                                                <rect key="frame" x="51" y="56" width="40" height="40"/>
+                                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                </state>
+                                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                                <connections>
+                                                                                                    <action selector="danyiButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="EZV-5E-3Aj"/>
+                                                                                                </connections>
+                                                                                            </button>
+                                                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1uU-hr-in6" userLabel="Button - 最大限度">
+                                                                                                <rect key="frame" x="51" y="104" width="40" height="40"/>
+                                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                </state>
+                                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                                <connections>
+                                                                                                    <action selector="danyiButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="9zm-Ly-eAH"/>
+                                                                                                </connections>
+                                                                                            </button>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                                    </view>
+                                                                                    <view hidden="YES" contentMode="scaleToFill" id="SCY-lc-QHt">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="202"/>
+                                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                        <subviews>
+                                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c2danyichixuBG.png" id="dXG-lK-mKW">
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="400" height="202"/>
+                                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                            </imageView>
+                                                                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TuO-cU-aGT" userLabel="Button - 手术">
+                                                                                                <rect key="frame" x="51" y="9" width="40" height="40"/>
+                                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                </state>
+                                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                                <connections>
+                                                                                                    <action selector="danyiButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="Fdm-kL-cMg"/>
+                                                                                                </connections>
+                                                                                            </button>
+                                                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xwr-74-8S7" userLabel="Button - 单一药物去势">
+                                                                                                <rect key="frame" x="51" y="57" width="40" height="40"/>
+                                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                </state>
+                                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                                <connections>
+                                                                                                    <action selector="danyiButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="BY9-ZG-QKi"/>
+                                                                                                </connections>
+                                                                                            </button>
+                                                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ui5-Pl-QVb" userLabel="Button - 雄激素">
+                                                                                                <rect key="frame" x="51" y="103" width="40" height="40"/>
+                                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                </state>
+                                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                                <connections>
+                                                                                                    <action selector="danyiButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="wEV-qV-sXa"/>
+                                                                                                </connections>
+                                                                                            </button>
+                                                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YZp-tN-HzZ" userLabel="Button - 最大限度">
+                                                                                                <rect key="frame" x="51" y="152" width="40" height="40"/>
+                                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                                </state>
+                                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                                <connections>
+                                                                                                    <action selector="danyiButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="LXD-kP-STS"/>
+                                                                                                </connections>
+                                                                                            </button>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                                    </view>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                            </view>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" id="y7P-My-lGY" userLabel="View - Right">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="400" height="388"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <subviews>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="c2zlfa3RightBG.png" id="0ej-5E-eKY">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="400" height="388"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            </imageView>
+                                                                            <segmentedControl opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="n3t-6u-H1P">
+                                                                                <rect key="frame" x="293" y="35" width="81" height="29"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <segments>
+                                                                                    <segment title="YES"/>
+                                                                                    <segment title="NO"/>
+                                                                                </segments>
+                                                                                <connections>
+                                                                                    <action selector="zlfa2SegmentedChanged:" destination="vjr-pB-is0" eventType="valueChanged" id="BUT-J4-3he"/>
+                                                                                </connections>
+                                                                            </segmentedControl>
+                                                                            <segmentedControl opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="Vh3-3t-Gzn">
+                                                                                <rect key="frame" x="293" y="82" width="81" height="29"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <segments>
+                                                                                    <segment title="YES"/>
+                                                                                    <segment title="NO"/>
+                                                                                </segments>
+                                                                                <connections>
+                                                                                    <action selector="zlfa2SegmentedChanged:" destination="vjr-pB-is0" eventType="valueChanged" id="2AF-f8-67u"/>
+                                                                                </connections>
+                                                                            </segmentedControl>
+                                                                            <segmentedControl opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="SYd-8e-DAR">
+                                                                                <rect key="frame" x="293" y="166" width="81" height="29"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <segments>
+                                                                                    <segment title="YES"/>
+                                                                                    <segment title="NO"/>
+                                                                                </segments>
+                                                                                <connections>
+                                                                                    <action selector="zlfa2SegmentedChanged:" destination="vjr-pB-is0" eventType="valueChanged" id="mue-t4-xff"/>
+                                                                                </connections>
+                                                                            </segmentedControl>
+                                                                            <segmentedControl opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="ne0-0B-ESj">
+                                                                                <rect key="frame" x="293" y="245" width="81" height="29"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <segments>
+                                                                                    <segment title="YES"/>
+                                                                                    <segment title="NO"/>
+                                                                                </segments>
+                                                                                <connections>
+                                                                                    <action selector="zlfa2SegmentedChanged:" destination="vjr-pB-is0" eventType="valueChanged" id="BZp-lu-0aQ"/>
+                                                                                </connections>
+                                                                            </segmentedControl>
+                                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fNO-FP-Fif" userLabel="Button - 雌激素">
+                                                                                <rect key="frame" x="61" y="118" width="40" height="40"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                </state>
+                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                <connections>
+                                                                                    <action selector="erxianButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="LPt-2g-aq0"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3e7-Bk-b3k" userLabel="Button - 氟他胺">
+                                                                                <rect key="frame" x="208" y="118" width="40" height="40"/>
+                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                <state key="normal" image="checkUnselectButton.png">
+                                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                </state>
+                                                                                <state key="selected" image="checkSelectButton.png"/>
+                                                                                <connections>
+                                                                                    <action selector="erxianButtonClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="iBF-cE-wBE"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                            </view>
+                                                            <segmentedControl opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="R4y-x3-dnZ">
+                                                                <rect key="frame" x="292" y="38" width="81" height="29"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <segments>
+                                                                    <segment title="YES"/>
+                                                                    <segment title="NO"/>
+                                                                </segments>
+                                                                <connections>
+                                                                    <action selector="zlfa2SegmentedChanged:" destination="vjr-pB-is0" eventType="valueChanged" id="Q7a-oj-CZj"/>
+                                                                </connections>
+                                                            </segmentedControl>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" tag="999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hfQ-zN-smf">
+                                <rect key="frame" x="394" y="683" width="83" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="okButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmClick:" destination="vjr-pB-is0" eventType="touchUpInside" id="OUZ-go-TQt"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vut-7L-7IO">
+                                <rect key="frame" x="188" y="68" width="497" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="872" height="768"/>
+                    <connections>
+                        <outlet property="chixuView" destination="SCY-lc-QHt" id="nJh-bc-51Y"/>
+                        <outlet property="chixujianxieAnimationView" destination="WT5-cY-IVi" id="sdK-4j-DkY"/>
+                        <outlet property="jianxieView" destination="iQZ-Zo-0y4" id="1Me-Cp-99o"/>
+                        <outlet property="leftImageView1" destination="lNd-S7-cdq" id="JLR-dT-Kvc"/>
+                        <outlet property="leftImageView2" destination="5XN-Xo-tiA" id="Ur8-nq-mHY"/>
+                        <outlet property="neifenmiView" destination="Etn-CZ-5rr" id="NoW-BH-3l7"/>
+                        <outlet property="right1View" destination="y7P-My-lGY" id="6aW-TE-zxI"/>
+                        <outlet property="rightNeifenmiAnimationView" destination="bLS-gu-wuk" id="3Td-9Z-2gL"/>
+                        <outlet property="section1View" destination="Ofk-0c-DMY" id="dBg-PX-bgw"/>
+                        <outlet property="section2BGImageView" destination="K1l-Ac-MjC" id="bkg-V6-eUW"/>
+                        <outlet property="section2PickerView1" destination="p4V-JL-0gF" id="Umt-DE-AdB"/>
+                        <outlet property="section2PickerView2" destination="RJe-QU-bne" id="usa-Hp-iUA"/>
+                        <outlet property="section2View" destination="K38-qk-BJS" id="Ch1-4C-Ytq"/>
+                        <outlet property="sectionAnimationView" destination="dfc-uV-d5w" id="ZBl-WU-KHA"/>
+                        <outlet property="titleLabel" destination="vut-7L-7IO" id="NXz-jr-8Ed"/>
+                        <outlet property="zlfa3LeftAnimationView" destination="2Om-Cl-h9u" id="GPh-MH-oc0"/>
+                        <outlet property="zlfa3LeftMaskView" destination="KaS-ch-Ylq" id="Zq6-5k-KVn"/>
+                        <outlet property="zlfa3LeftSegmentedControl" destination="MNM-jZ-E3O" id="RaR-7P-5iD"/>
+                        <outletCollection property="erxianButtonCollection" destination="fNO-FP-Fif" id="AWW-dq-fF7"/>
+                        <outletCollection property="erxianButtonCollection" destination="3e7-Bk-b3k" id="6Yh-9M-Ze0"/>
+                        <outletCollection property="chixujianxieButtonCollection" destination="hvw-NX-4lY" id="upc-OY-xbX"/>
+                        <outletCollection property="chixujianxieButtonCollection" destination="h25-lM-Qdw" id="1ri-Xj-8oW"/>
+                        <outletCollection property="jianxieButtonCollection" destination="DBF-MW-d5q" id="Plq-Ca-Jwq"/>
+                        <outletCollection property="jianxieButtonCollection" destination="uP5-WJ-M87" id="ZUy-4q-e8A"/>
+                        <outletCollection property="jianxieButtonCollection" destination="1uU-hr-in6" id="BdC-PA-5ER"/>
+                        <outletCollection property="chixuButtonCollection" destination="TuO-cU-aGT" id="i4F-eJ-InY"/>
+                        <outletCollection property="chixuButtonCollection" destination="xwr-74-8S7" id="OoG-1Y-MCv"/>
+                        <outletCollection property="chixuButtonCollection" destination="Ui5-Pl-QVb" id="m9i-cZ-FYX"/>
+                        <outletCollection property="chixuButtonCollection" destination="YZp-tN-HzZ" id="oi3-cG-vsk"/>
+                        <outletCollection property="zlfa2SegmentedCollection" destination="n3t-6u-H1P" id="9Y0-Z3-Npl"/>
+                        <outletCollection property="zlfa2SegmentedCollection" destination="Vh3-3t-Gzn" id="4G8-0k-eG2"/>
+                        <outletCollection property="zlfa2SegmentedCollection" destination="SYd-8e-DAR" id="XvJ-qb-oau"/>
+                        <outletCollection property="zlfa2SegmentedCollection" destination="R4y-x3-dnZ" id="Zwq-Yv-qxS"/>
+                        <outletCollection property="zlfa2SegmentedCollection" destination="ne0-0B-ESj" id="tHA-Hs-xB5"/>
+                        <outletCollection property="zlfa3LfetButtonCollection" destination="6Al-bP-TiZ" id="T2a-RH-DOn"/>
+                        <outletCollection property="zlfa3LfetButtonCollection" destination="sHz-jf-i4A" id="ITO-GC-aoZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jLM-hV-dDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="864" y="1157"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bcjzBG.png" width="872" height="768"/>
@@ -2002,6 +2909,10 @@
         <image name="c2zlfa2BGRight1.png" width="400" height="471"/>
         <image name="c2zlfa2BGRight1_1.png" width="400" height="388"/>
         <image name="c2zlfa2BGRight1_2.png" width="400" height="388"/>
+        <image name="c2zlfa3Left1BG.png" width="358" height="189"/>
+        <image name="c2zlfa3Left2BG.png" width="358" height="189"/>
+        <image name="c2zlfa3LeftBG.png" width="400" height="471"/>
+        <image name="c2zlfa3RightBG.png" width="400" height="388"/>
         <image name="c2zlfaBGLeft.png" width="400" height="471"/>
         <image name="c2zlfaBGRight1.png" width="400" height="471"/>
         <image name="checkSelectButton.png" width="18" height="18"/>

@@ -13,6 +13,8 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonCollection;
 - (IBAction)buttonClick:(UIButton *)sender;
 
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonLeftCollection;
+
 @property (strong, nonatomic) NSDictionary *buttonValueDictionary;
 
 - (IBAction)confirmClick:(UIButton *)sender;
@@ -39,8 +41,20 @@
 {
     sender.selected = !sender.selected;
 
+    if ([_buttonLeftCollection containsObject:sender]) {
+        for (UIButton *button in _buttonLeftCollection) {
+            if (sender.selected == YES && button != sender && button.selected == YES) {
+                button.selected = NO;
+            }
+        }
+    }
+
     Case2Data *globalData = GCase2();
-    globalData.zdjg2ZDSelectItem = [self buttonValuesString];
+    if (globalData.currentStep == Case2Step2) {
+        globalData.zdjg2ZDSelectItem = [self buttonValuesString];
+    } else {
+        globalData.zdjg3ZDSelectItem = [self buttonValuesString];
+    }
 }
 
 - (NSString *)buttonValuesString
@@ -63,7 +77,14 @@
 - (IBAction)confirmClick:(UIButton *)sender
 {
     Case2Data *globalData = GCase2();
-    if (globalData.zdjg2ZDSelectItem.length <= 0) {
+    NSString *checkString;
+    if (globalData.currentStep == Case2Step2) {
+        checkString = globalData.zdjg2ZDSelectItem;
+    } else {
+        checkString = globalData.zdjg3ZDSelectItem;
+    }
+
+    if (checkString.length <= 0) {
         [GInstance() showInfoMessage:@"请完成所有的诊断!"];
         return;
     }
