@@ -50,7 +50,7 @@
     frame = _bshgImageView.frame;
     frame.origin.y = yPosition;
     _bshgImageView.frame = frame;
-    NSString *imageName = [NSString stringWithFormat:@"c2bshg1psaM%ld_%@", GCase2().step1MNumber, [self chixujianxieString2]];
+    NSString *imageName = [NSString stringWithFormat:@"c2bshg1psaM%ld_%@", (long)GCase2().step1MNumber, [self chixujianxieString2]];
     UIImage *image = [UIImage imageNamed:imageName];
     _bshgImageView.image = image;
 }

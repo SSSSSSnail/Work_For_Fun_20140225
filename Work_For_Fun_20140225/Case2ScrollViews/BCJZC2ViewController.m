@@ -59,7 +59,7 @@
     }
     NSMutableString *imageNameString = [NSMutableString stringWithFormat:@"M%@S%ld", mNumberString, (long)sNumber];
     if (GCase2().zlfaChixuJianxieNeifenSelectedIndex > 0) {
-        [imageNameString appendString:[NSString stringWithFormat:@"-%ld", GCase2().zlfaChixuJianxieNeifenSelectedIndex]];
+        [imageNameString appendString:[NSString stringWithFormat:@"-%ld", (long)GCase2().zlfaChixuJianxieNeifenSelectedIndex]];
     }
     NSLog(@"%@", imageNameString);
     _bcjzContentImageView.image = [UIImage imageNamed:imageNameString];
@@ -73,7 +73,7 @@
     } else {
         [imageNameString appendString:@"N"];
     }
-    [imageNameString appendFormat:@"_%ld", GCase2().zlfa3SegmentSelectedIndex];
+    [imageNameString appendFormat:@"_%ld", (long)GCase2().zlfa3SegmentSelectedIndex];
 
     NSLog(@"%@", imageNameString);
     _bcjzContentImageView.image = [UIImage imageNamed:imageNameString];

@@ -438,7 +438,7 @@ static NSString * const DoubleSpace = @"  ";
 
             GCase2().zlfa3NeifenmiYaowuName1 = nil;
             GCase2().zlfa3NeifenmiYaowuName2 = nil;
-            UIImage *section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2zlfa3neifenmi_%ld", detailSelectedIndex]];
+            UIImage *section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2zlfa3neifenmi_%ld", (long)detailSelectedIndex]];
             if (detailSelectedIndex == 1) {
                 _section2PickerView1.hidden = NO;
                 _section2PickerView2.hidden = YES;

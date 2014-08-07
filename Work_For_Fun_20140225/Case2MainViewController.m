@@ -89,6 +89,11 @@ static float const MASTERVIEWWIDTH = 152.0f;
 
 - (IBAction)clickNext:(LLUIButton *)sender;
 
+- (IBAction)dateButtonClick:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UILabel *c2DateLabel;
+@property (weak, nonatomic) IBOutlet UIView *c2DateView;
+@property (strong, nonatomic) NSArray *c2DateMappingArrayR1;
+@property (strong, nonatomic) NSArray *c2DateMappingArrayR2;
 @end
 
 @implementation Case2MainViewController
@@ -230,7 +235,22 @@ static float const MASTERVIEWWIDTH = 152.0f;
     swipeGes3.direction = UISwipeGestureRecognizerDirectionDown;
     [_step3MasterView addGestureRecognizer:swipeGes3];
 
-}
+    _c2DateLabel.font = [UIFont miscrosoftYaHeiFontWithSize:22.0f];
+    _c2DateLabel.textColor = [UIColor colorWithRed:246.0f/255 green:134.0f/255 blue:2.0f/255 alpha:1];
+    _c2DateLabel.text = @"";
+
+    self.c2DateMappingArrayR1 = @[@0, @0, @25, @34, @34, @34, @25, @31, @28, @19]; //M值
+    self.c2DateMappingArrayR2 = @[@0, @0,                   //M0 M1
+                                  @[@0, @19, @20],          //M2
+                                  @[@0, @10, @11, @10, @19], //M3
+                                  @[@0, @10, @11, @10, @19], //M4
+                                  @[@0, @10, @11, @10, @19], //M5
+                                  @[@0, @13],               //M6
+                                  @[@0, @13, @16, @13],     //M7
+                                  @[@0, @10, @13, @10],     //M8
+                                  @[@0, @13, @13, @10, @10] //M3
+                                  ];
+ }
 
 #pragma mark - 测试模式
 - (void)viewDidAppear:(BOOL)animated
@@ -241,11 +261,11 @@ static float const MASTERVIEWWIDTH = 152.0f;
 #endif
 
 #ifdef SKIPREQUEST
-    [self refreshButtonAndView:0];
-//    GCase2().currentStep = Case2Step3;
-//    GCase2().step1MNumber = 7;
+//    [self refreshButtonAndView:0];
+    GCase2().currentStep = Case2Step2;
+    GCase2().step1MNumber = 7;
 //    GCase2().step2SNumber = 2;
-//    [self refreshButtonAndView:13];
+    [self refreshButtonAndView:7];
 //    [_lcjc3ViewController refresh];
 //    [_zlfa2ViewController refresh];
 //    [_hzqk2ViewController refresh];
@@ -296,7 +316,66 @@ static float const MASTERVIEWWIDTH = 152.0f;
     }
 
     [_masterScrollView scrollRectToVisible:CGRectMake(0, MASTERVIEWHEIGHT * scrollNumber, MASTERVIEWWIDTH, MASTERVIEWHEIGHT) animated:YES];
+
+    [self refreshDateLabel:toIndex];
 }
+
+- (void)refreshDateLabel:(long)toIndex
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale=[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+
+    NSDate *fromDate = [dateFormatter dateFromString:@"2000/03/08"];
+    NSDate *toDate;
+
+    if (GCase2().currentIndex < 4) {
+        toDate = fromDate;
+    } else if (GCase2().currentIndex < 9) {
+        toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], @0, @0] nowDate:fromDate];
+    } else if (GCase2().currentIndex < 14) {
+        toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], _c2DateMappingArrayR2[GCase2().step1MNumber][GCase2().step2SNumber], @0] nowDate:fromDate];
+    } else {
+        if (GCase2().zlfa3SegmentSelectedIndex == 5 || GCase2().zlfa3SegmentSelectedIndex == 6) {
+            toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], @[_c2DateMappingArrayR2[GCase2().step1MNumber]][GCase2().step2SNumber], @4] nowDate:fromDate];
+        } else {
+            toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], @[_c2DateMappingArrayR2[GCase2().step1MNumber]][GCase2().step2SNumber], @7] nowDate:fromDate];
+        }
+    }
+    _c2DateLabel.text = [dateFormatter stringFromDate:toDate];
+    _c2DateView.hidden = NO;
+    [GInstance() animationDateInOut:_c2DateView withCompletion:^{}];
+}
+
+- (IBAction)dateButtonClick:(UIButton *)sender
+{
+    [GInstance() animationScaleDownOut:_c2DateView withCompletion:^{
+        _c2DateView.hidden = YES;
+    }];
+}
+
+- (NSDate *)addMonths:(NSArray *)monthNumberArray nowDate:(NSDate *)nowDate
+{
+    __block int totalMonths = 0;
+
+    NSLog(@"%@", monthNumberArray);
+
+    [monthNumberArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+        totalMonths = totalMonths + obj.intValue;
+    }];
+
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = nil;
+    comps = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:nowDate];
+    NSDateComponents *adcomps = [[NSDateComponents alloc] init];
+    [adcomps setYear:0];
+    [adcomps setMonth:totalMonths];
+    [adcomps setDay:0];
+
+    NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:nowDate options:0];
+    return newdate;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -1011,7 +1090,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
 
     GCase2().step1MNumber = mNumber;
 
-    NSLog(@"MNUMBER: %ld", mNumber);
+    NSLog(@"MNUMBER: %ld", (long)mNumber);
     return mNumber;
 }
 

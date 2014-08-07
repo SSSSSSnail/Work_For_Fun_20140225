@@ -750,16 +750,16 @@ static NSString * const DoubleSpace = @"  ";
                 if (GCase2().zlfaFuzhuSelectedIndex == 1 || GCase2().zlfaLianheSelectedIndex == 1) {
                     GCase2().zlfaYaowuName1 = nil;
                     GCase2().zlfaYaowuName2 = nil;
-                    section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", detailSelectedIndex]];
+                    section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", (long)detailSelectedIndex]];
                 } else {
                     GCase2().zlfaXinfuzhuYaowuName1 = nil;
                     GCase2().zlfaXinfuzhuYaowuName2 = nil;
-                    section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2xinfuzhu_%ld", detailSelectedIndex]];
+                    section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2xinfuzhu_%ld", (long)detailSelectedIndex]];
                 }
             } else {
                 GCase2().zlfaYaowuName1 = nil;
                 GCase2().zlfaYaowuName2 = nil;
-                section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", detailSelectedIndex]];
+                section2BGImage = [UIImage imageNamed:[NSString stringWithFormat:@"c2chixujianxie_%ld", (long)detailSelectedIndex]];
             }
             _pickViewSubIndex = detailSelectedIndex;
             if (detailSelectedIndex == 1) {

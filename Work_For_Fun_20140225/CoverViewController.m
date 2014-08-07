@@ -76,6 +76,7 @@
         [GInstance() initData];
         GInstance().globalData.subjectId = subjectid;
         GInstance().globalData.subjectName = @"TestName";
+        GInstance().globalData.groupNumber = @"Test";
         [GInstance() savaData];
     }
 //    [self performSegueWithIdentifier:@"modalToCover2" sender:self];

@@ -55,7 +55,7 @@
     }
     NSMutableString *imageNameString = [NSMutableString stringWithFormat:@"c2bshg2psaM%@S%ld", mNumberString, (long)sNumber];
     if (GCase2().zlfaChixuJianxieNeifenSelectedIndex > 0) {
-        [imageNameString appendString:[NSString stringWithFormat:@"-%ld", GCase2().zlfaChixuJianxieNeifenSelectedIndex]];
+        [imageNameString appendString:[NSString stringWithFormat:@"-%ld", (long)GCase2().zlfaChixuJianxieNeifenSelectedIndex]];
     }
     UIImage *image = [UIImage imageNamed:imageNameString];
     _bshgImageView.image = image;
@@ -322,7 +322,7 @@
 
 - (NSString *)chixujianxieString3
 {
-    return [NSString stringWithFormat:@"%ld", GCase2().zlfaChixuJianxieNeifenSelectedIndex];
+    return [NSString stringWithFormat:@"%ld", (long)GCase2().zlfaChixuJianxieNeifenSelectedIndex];
 }
 
 - (NSString *)loadButtonString3

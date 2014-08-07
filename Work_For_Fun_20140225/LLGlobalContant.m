@@ -182,6 +182,95 @@ NSString *BackupFileName();
     return instance;
 }
 
+#pragma mark - Animation
+- (void)animationDateInOut:(UIView *)animationView withCompletion:(void (^)())completion
+{
+    [self animationScale:animationView withCompletion:^{
+        completion();
+    }];
+}
+
+- (void)animationScale:(UIView *)animationView withCompletion:(void (^)())completion
+{
+    [self animationScale:animationView afterDelay:0.5f withCompletion:^{
+        completion();
+    }];
+}
+
+- (void)animationScale:(UIView *)animationView afterDelay:(NSTimeInterval)delay withCompletion:(void (^)())completion
+{
+    animationView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    animationView.alpha = 0;
+    [UIView animateWithDuration:0.1
+                          delay:delay
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         animationView.alpha = 1;
+                         animationView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             [UIView animateWithDuration:0.1
+                                                   delay:0.0f
+                                                 options:UIViewAnimationOptionCurveEaseInOut
+                                              animations:^{
+                                                  animationView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+                                              } completion:^(BOOL finished) {
+                                                  if (finished) {
+                                                      completion();
+                                                  }
+                                              }];
+                         }
+                     }];
+}
+
+- (void)animationScaleUpOut:(UIView *)animationView withCompletion:(void (^)())completion
+{
+    animationView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    animationView.alpha = 1;
+    [UIView animateWithDuration:0.1
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         animationView.alpha = 0;
+                         animationView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             completion();
+                         }
+                     }];
+}
+
+- (void)animationScaleDownOut:(UIView *)animationView withCompletion:(void (^)())completion
+{
+    animationView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    [UIView animateWithDuration:0.1
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         animationView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             completion();
+                             [UIView animateWithDuration:0.1
+                                                   delay:0.0f
+                                                 options:UIViewAnimationOptionCurveEaseInOut
+                                              animations:^{
+                                                  animationView.alpha = 0.0f;
+                                                  animationView.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
+                                              } completion:^(BOOL finished) {}];
+                         }
+                     }];
+}
+
+- (NSString *)formatDate:(NSNumber *)numberDate
+{
+    NSDate *toFormatDate = [NSDate dateWithTimeIntervalSince1970:numberDate.doubleValue/1000];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale=[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    return [dateFormatter stringFromDate:toFormatDate];
+}
+
 @end
 
 NSString *DataFileName()
