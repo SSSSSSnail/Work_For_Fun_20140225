@@ -13,6 +13,7 @@
 
 @interface LCJCC2ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *tableViewSuperView;
 @property (weak, nonatomic) IBOutlet UITableView *tableviewLCJC;
 @property (weak, nonatomic) IBOutlet UIImageView *lcjcResultImageView;
 @property (strong, nonatomic) UIImageView *lcjcResultImageViewFull;
@@ -36,12 +37,15 @@
 
 - (void)refresh
 {
-    if (GCase2().currentIndex != 1)
-    {
+    if (GCase2().currentIndex != 1) {
         CGRect tableFrame = _tableviewLCJC.frame;
-        tableFrame.size.height = CGRectGetHeight(tableFrame) - 40.0f;
+        tableFrame.size.height = 602.0f;
         _tableviewLCJC.frame = tableFrame;
 
+    } else {
+        CGRect tableFrame = _tableviewLCJC.frame;
+        tableFrame.size.height = 642.0f;
+        _tableviewLCJC.frame = tableFrame;
     }
     [_tableviewLCJC reloadData];
 }
@@ -65,7 +69,6 @@
                                  @"bc", @"psa", @"gt", @"gsm", @"mr", @"ecog", @"ct", @"cchj"];
 
     _isLocked = NO;
-    [_tableviewLCJC setContentOffset:CGPointMake(0, 35)];
 
     self.lcjcResultImageViewFull = [[UIImageView alloc] initWithFrame:MINIMAGEFRAME];
     _lcjcResultImageViewFull.userInteractionEnabled = YES;
@@ -348,98 +351,74 @@
         cell.backgroundColor = [UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1];
     }
 
+    NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR1 componentsSeparatedByString:@","];
     NSMutableDictionary *parametersDictionary = [@{@"step": @"2",
                                                    @"action": @"check",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
-                                                   @"item": _checkingStringArray[indexPath.row]} mutableCopy];
-    dispatch_semaphore_t t = dispatch_semaphore_create(0);
-    if (indexPath.row == 12 && globalData.lcjcChuanCiBA.length == 0 && !_isLocked) {
-        [[[UIAlertView alloc] initWithTitle:nil
-                                    message:@"您在临床检查中核磁检查的时机选择？"
-                           cancelButtonItem:[RIButtonItem itemWithLabel:@"穿刺活检前" action:^{
-            globalData.lcjcChuanCiBA = @"b";
-            [parametersDictionary setObject:globalData.lcjcChuanCiBA forKey:@"mrpos"];
-            dispatch_semaphore_signal(t);
-        }]
-                           otherButtonItems:[RIButtonItem itemWithLabel:@"穿刺活检后" action:^{
-            globalData.lcjcChuanCiBA = @"a";
-            [parametersDictionary setObject:globalData.lcjcChuanCiBA forKey:@"mrpos"];
-            dispatch_semaphore_signal(t);
-        }], nil] show];
-        [parametersDictionary setObject:@"checkMR" forKey:@"action"];
-    } else {
-        dispatch_semaphore_signal(t);
-        [parametersDictionary setObject:@"check" forKey:@"action"];
-    }
+                                                   @"item": _checkingStringArray[indexPath.row],
+                                                   @"seq": [NSString stringWithFormat:@"%ld", (long)selectedArray.count]} mutableCopy];
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dispatch_semaphore_wait(t, DISPATCH_TIME_FOREVER);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR1 componentsSeparatedByString:@","];
-            BOOL hideFullImage = [self reloadResultImageView:indexPath.row];
+    BOOL hideFullImage = [self reloadResultImageView:indexPath.row];
 
-            if (_isLocked) {
-                if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
-                    if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
-                        _isLcjcDeatilView = YES;
-                        [UIView transitionFromView:_tableviewLCJC
-                                            toView:_lcjcResultImageView
-                                          duration:1.0
-                                           options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                                        completion:^(BOOL finished) {
-                                            if (_isLcjcDeatilView) {
-                                                _lcjcResultImageViewFull.hidden = hideFullImage;
-                                            }
-                                            [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                                        }];
-                    }
-                }
-            } else {
-                if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
-                    [GInstance() httprequestWithHUD:self.view
-                                     withRequestURL:STEPURL
-                                     withParameters:parametersDictionary
-                                         completion:^(NSDictionary *jsonDic) {
-                                             NSLog(@"responseJson: %@", jsonDic);
-                                             if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-                                                 _isLcjcDeatilView = YES;
-                                                 globalData.lcjcSelectedArrayStringR1 = [globalData.lcjcSelectedArrayStringR1 stringByAppendingFormat:@"%ld,", (long)indexPath.row];
-                                                 [GInstance() savaData];
-
-                                                 [UIView transitionFromView:_tableviewLCJC
-                                                                     toView:_lcjcResultImageView
-                                                                   duration:1.0
-                                                                    options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                                                                 completion:^(BOOL finished) {
-                                                                     if (_isLcjcDeatilView) {
-                                                                         _lcjcResultImageViewFull.hidden = hideFullImage;
-                                                                     }
-                                                                     [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                                                                 }];
-                                             } else {
-                                                 if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-                                                     [GInstance() showErrorMessage:@"服务器结果异常!"];
-                                                 }
-                                             }
-                                         }];
-                } else {
-                    _isLcjcDeatilView = YES;
-                    [UIView transitionFromView:_tableviewLCJC
-                                        toView:_lcjcResultImageView
-                                      duration:1.0
-                                       options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
-                                    completion:^(BOOL finished) {
-                                        if (_isLcjcDeatilView) {
-                                            _lcjcResultImageViewFull.hidden = hideFullImage;
-                                        }
-                                        [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-                                    }];
-                }
+    if (_isLocked) {
+        if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+            if ([selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+                _isLcjcDeatilView = YES;
+                [UIView transitionFromView:_tableviewLCJC
+                                    toView:_lcjcResultImageView
+                                  duration:1.0
+                                   options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                completion:^(BOOL finished) {
+                                    if (_isLcjcDeatilView) {
+                                        _lcjcResultImageViewFull.hidden = hideFullImage;
+                                    }
+                                    [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                }];
             }
-            
-        });
-    });
+        }
+    } else {
+        if (![selectedArray containsObject:[NSString stringWithFormat:@"%ld", (long)indexPath.row]]) {
+            [GInstance() httprequestWithHUD:self.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         _isLcjcDeatilView = YES;
+                                         globalData.lcjcSelectedArrayStringR1 = [globalData.lcjcSelectedArrayStringR1 stringByAppendingFormat:@"%ld,", (long)indexPath.row];
+                                         [GInstance() savaData];
+
+                                         [UIView transitionFromView:_tableviewLCJC
+                                                             toView:_lcjcResultImageView
+                                                           duration:1.0
+                                                            options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                                                         completion:^(BOOL finished) {
+                                                             if (_isLcjcDeatilView) {
+                                                                 _lcjcResultImageViewFull.hidden = hideFullImage;
+                                                             }
+                                                             [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                                                         }];
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
+        } else {
+            _isLcjcDeatilView = YES;
+            [UIView transitionFromView:_tableviewLCJC
+                                toView:_lcjcResultImageView
+                              duration:1.0
+                               options:UIViewAnimationOptionTransitionCurlUp | UIViewAnimationOptionShowHideTransitionViews
+                            completion:^(BOOL finished) {
+                                if (_isLcjcDeatilView) {
+                                    _lcjcResultImageViewFull.hidden = hideFullImage;
+                                }
+                                [_lcjcOkButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
+                            }];
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowForR2AtIndexPath:(NSIndexPath *)indexPath
@@ -454,13 +433,14 @@
         cell.backgroundColor = [UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1];
     }
 
+    NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
     NSMutableDictionary *parametersDictionary = [@{@"step": @"7",
                                                    @"action": @"check",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
-                                                   @"item": _checkingStringArray[indexPath.row]} mutableCopy];
+                                                   @"item": _checkingStringArray[indexPath.row],
+                                                   @"seq": [NSString stringWithFormat:@"%ld", (long)selectedArray.count]} mutableCopy];
 
-    NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR2 componentsSeparatedByString:@","];
     BOOL hideFullImage = [self reloadResultImageView:indexPath.row];
 
     if (_isLocked) {
@@ -535,13 +515,14 @@
         cell.backgroundColor = [UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1];
     }
 
+    NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR3 componentsSeparatedByString:@","];
     NSMutableDictionary *parametersDictionary = [@{@"step": @"12",
                                                    @"action": @"check",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
-                                                   @"item": _checkingStringArray[indexPath.row]} mutableCopy];
+                                                   @"item": _checkingStringArray[indexPath.row],
+                                                   @"seq": [NSString stringWithFormat:@"%ld", (long)selectedArray.count]} mutableCopy];
 
-    NSArray *selectedArray = [GCase2().lcjcSelectedArrayStringR3 componentsSeparatedByString:@","];
     BOOL hideFullImage = [self reloadResultImageView:indexPath.row];
 
     if (_isLocked) {

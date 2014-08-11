@@ -261,11 +261,11 @@ static float const MASTERVIEWWIDTH = 152.0f;
 #endif
 
 #ifdef SKIPREQUEST
-//    [self refreshButtonAndView:0];
-    GCase2().currentStep = Case2Step2;
-    GCase2().step1MNumber = 7;
-//    GCase2().step2SNumber = 2;
-    [self refreshButtonAndView:7];
+    [self refreshButtonAndView:0];
+//    GCase2().currentStep = Case2Step3;
+//    GCase2().step1MNumber = 3;
+//    GCase2().step2SNumber = 1;
+//    [self refreshButtonAndView:12];
 //    [_lcjc3ViewController refresh];
 //    [_zlfa2ViewController refresh];
 //    [_hzqk2ViewController refresh];
@@ -337,9 +337,9 @@ static float const MASTERVIEWWIDTH = 152.0f;
         toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], _c2DateMappingArrayR2[GCase2().step1MNumber][GCase2().step2SNumber], @0] nowDate:fromDate];
     } else {
         if (GCase2().zlfa3SegmentSelectedIndex == 5 || GCase2().zlfa3SegmentSelectedIndex == 6) {
-            toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], @[_c2DateMappingArrayR2[GCase2().step1MNumber]][GCase2().step2SNumber], @4] nowDate:fromDate];
+            toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], _c2DateMappingArrayR2[GCase2().step1MNumber][GCase2().step2SNumber], @4] nowDate:fromDate];
         } else {
-            toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], @[_c2DateMappingArrayR2[GCase2().step1MNumber]][GCase2().step2SNumber], @7] nowDate:fromDate];
+            toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase2().step1MNumber], _c2DateMappingArrayR2[GCase2().step1MNumber][GCase2().step2SNumber], @7] nowDate:fromDate];
         }
     }
     _c2DateLabel.text = [dateFormatter stringFromDate:toDate];
@@ -414,6 +414,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                              [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
                                          } else {
                                              [self refreshButtonAndView:1];
+                                             [_lcjc1ViewController refresh];
                                              [GInstance() savaData];
                                          }
                                      } else {
@@ -522,9 +523,9 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"lhnf": globalData.zlfaLianheSelectedIndex == 1 ? @"Y" : @"N",
                                                    @"xfz": globalData.zlfaRightSelectedIndex == 2 ? @"Y" : @"N",
                                                    @"fz": globalData.zlfaFuzhuSelectedIndex == 1 ? @"Y" : @"N",
-                                                   @"xfqs": globalData.zlfaChixujianxieDetailSelectedIndex == 1 ? @"Y" : @"N",
-                                                   @"xfkx": globalData.zlfaChixujianxieDetailSelectedIndex == 2 ? @"Y" : @"N",
-                                                   @"xfzd": globalData.zlfaChixujianxieDetailSelectedIndex == 3 ? @"Y" : @"N",
+                                                   @"xfqs": (globalData.zlfaChixujianxieDetailSelectedIndex == 1 && globalData.zlfaRightSelectedIndex == 2)? @"Y" : @"N",
+                                                   @"xfkx": (globalData.zlfaChixujianxieDetailSelectedIndex == 2 && globalData.zlfaRightSelectedIndex == 2)? @"Y" : @"N",
+                                                   @"xfzd": (globalData.zlfaChixujianxieDetailSelectedIndex == 3 && globalData.zlfaRightSelectedIndex == 2)? @"Y" : @"N",
                                                    @"xfzgsrl": [self ifSelectedYaowu:@"xfzgsrl" isXinFuZhu:YES],
                                                    @"xfzlbrl": [self ifSelectedYaowu:@"xfzlbrl" isXinFuZhu:YES],
                                                    @"xfzdpl1": [self ifSelectedYaowu:@"xfzdpl1" isXinFuZhu:YES],

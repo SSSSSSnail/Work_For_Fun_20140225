@@ -221,24 +221,6 @@ static float const DETAILVIEWIDTH = 872.0f;
     GCase1().currentIndex = toIndex;
     GCase1().maxIndex = MAX(toIndex, GCase1().maxIndex);
     [_detailScrollView scrollRectToVisible:CGRectMake(0.0f, DETAILVIEWHEIGHT*toIndex, DETAILVIEWIDTH, DETAILVIEWHEIGHT) animated:YES];
-//    switch (toIndex) {
-//        case 5:
-//            [_hzqkM2ViewController reloadViewDataForR2];
-//            break;
-//            case 6:
-//            [_lcjcM2ViewController reloadViewDataForR2];
-//            break;
-//            case 7:
-//            break;
-//            case 8:
-//            [_zlfaM2ViewController reloadViewDataForR2];
-//            break;
-//            case 9:
-//            break;
-//            
-//        default:
-//            break;
-//    }
 }
 
 #pragma mark - ScrollViewController Delegate

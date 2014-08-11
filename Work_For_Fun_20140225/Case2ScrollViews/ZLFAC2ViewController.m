@@ -609,30 +609,37 @@ static NSString * const DoubleSpace = @"  ";
 #pragma mark - 补充方案
 - (IBAction)buchongfanganButtonClick:(UIButton *)sender
 {
-    _titleLabel.text = @"选择具体治疗方法";
+    [[[UIAlertView alloc] initWithTitle:nil
+                                message:@"您是否确认需要添加补充治疗?"
+                       cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
 
-    _danyifuzhuView.hidden = YES;
-    _fuzhuView.hidden = NO;
+    }]
+                       otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+        _titleLabel.text = @"选择具体治疗方法";
 
-    for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
-        if (segmentedControl.tag == 3 && GCase2().zlfaRightSelectedIndex != 2) {
-            segmentedControl.enabled = YES;
-        } else {
-            segmentedControl.enabled = NO;
+        _danyifuzhuView.hidden = YES;
+        _fuzhuView.hidden = NO;
+
+        for (UISegmentedControl *segmentedControl in _zlfaLeftSegmentedCollection) {
+            if (segmentedControl.tag == 3 && GCase2().zlfaRightSelectedIndex != 2) {
+                segmentedControl.enabled = YES;
+            } else {
+                segmentedControl.enabled = NO;
+            }
         }
-    }
 
-    [UIView transitionWithView:_sectionAnimationView
-                      duration:0.8
-                       options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionShowHideTransitionViews
-                    animations:^{
-                        _section1View.hidden = NO;
-                        _section2View.hidden = YES;
-                    }
-                    completion:^(BOOL finished){
+        [UIView transitionWithView:_sectionAnimationView
+                          duration:0.8
+                           options:UIViewAnimationOptionTransitionFlipFromRight | UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionShowHideTransitionViews
+                        animations:^{
+                            _section1View.hidden = NO;
+                            _section2View.hidden = YES;
+                        }
+                        completion:^(BOOL finished){
+                            
+                        }];
 
-                    }];
-
+     }], nil] show];
 }
 
 #pragma mark - UIPickerView DataSource
@@ -688,8 +695,10 @@ static NSString * const DoubleSpace = @"  ";
 
     }]
                        otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-        _section2PickerView1.hidden = YES;
-        _section2PickerView2.hidden = YES;
+        if (_currentStep == CurrentStepThree && _backStep == NO) {
+            _section2PickerView1.hidden = YES;
+            _section2PickerView2.hidden = YES;
+        }
         [self taskList:sender];
     }], nil] show];
 }

@@ -73,7 +73,7 @@
 
         lab1 = (UILabel *)[cell viewWithTag:2];
         lab1.font = [UIFont miscrosoftYaHeiFontWithSize:14.0f];
-        lab1.text = @"年龄：75岁" ;
+        lab1.text = @"年龄：77岁" ;
         lab1.textColor = [UIColor colorWithRed:2.0f/255 green:128.0f/255 blue:127.0f/255 alpha:1];
     } else if (indexPath.row == 1) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"twoLabelCell"];

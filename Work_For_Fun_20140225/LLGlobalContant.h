@@ -12,7 +12,7 @@
 #define NSLog(...) {}
 #endif
 
-//#define SKIPREQUEST
+#define SKIPREQUEST
 
 #import "UIFont+MicrosoftFont.h"
 #import "UIAlertView+Blocks.h"
@@ -35,17 +35,21 @@
 
 @end
 
+
+static NSString *const HOSTURL = @"http://diphereline-case.com/";
 //Local
-//static NSString *const SERVERURL = @"http://192.168.1.9:8080/diphereline-case/subject.do";
-//static NSString *const STEPURL = @"http://192.168.1.9:8080/diphereline-case/case2.do";
+//static NSString *const HOSTURL = @"http://192.168.1.14:8080/diphereline-case/";
+
+#define SERVERURL [NSString stringWithFormat:@"%@%@", HOSTURL, @"subject.do"]
+#define STEPURL [NSString stringWithFormat:@"%@case%ld.do", HOSTURL, (long)GInstance().caseNumber]
 
 //Prod
 //static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";
 //static NSString *const STEPURL = @"http://diphereline-case.com/case1.do";
 
 //Test
-static NSString *const SERVERURL = @"http://edetailing-data.com/subject.do";
-static NSString *const STEPURL = @"http://edetailing-data.com/case2.do";
+//static NSString *const SERVERURL = @"http://edetailing-data.com/subject.do";
+//static NSString *const STEPURL = @"http://edetailing-data.com/case2.do";
 
 static NSString *const E1 = @"E01";
 static NSString *const E2 = @"E02";
@@ -58,6 +62,7 @@ typedef NS_ENUM (NSUInteger, CaseNumber) {
 @interface LLGlobalContant : NSObject
 
 @property (nonatomic, assign) CaseNumber caseNumber;
+@property (nonatomic, assign) BOOL validatedCode;
 
 + (instancetype)sharedInstance;
 

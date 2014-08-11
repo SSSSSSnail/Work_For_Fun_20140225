@@ -317,13 +317,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="591" height="642"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <tableView clipsSubviews="YES" tag="199" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="40" sectionHeaderHeight="10" sectionFooterHeight="10" id="tHq-i6-hSX">
+                                    <tableView clipsSubviews="YES" tag="199" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" id="tHq-i6-hSX">
                                         <rect key="frame" x="0.0" y="0.0" width="591" height="642"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="lcjcTableviewCell" id="b6e-0x-FFZ">
-                                                <rect key="frame" x="0.0" y="55" width="591" height="40"/>
+                                                <rect key="frame" x="0.0" y="22" width="591" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b6e-0x-FFZ" id="Iu1-Gq-9Ol">
                                                     <rect key="frame" x="0.0" y="0.0" width="591" height="39"/>
@@ -346,6 +346,7 @@
                                         </connections>
                                     </tableView>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1eV-Eo-hvq">
                                 <rect key="frame" x="394" y="733" width="84" height="31"/>
@@ -370,6 +371,7 @@
                     <connections>
                         <outlet property="lcjcOkButton" destination="1eV-Eo-hvq" id="Suw-VZ-0os"/>
                         <outlet property="lcjcResultImageView" destination="16b-QY-PR7" id="Ulx-wY-nd6"/>
+                        <outlet property="tableViewSuperView" destination="fXm-bI-HtA" id="9l2-uv-Qz3"/>
                         <outlet property="tableviewLCJC" destination="tHq-i6-hSX" id="9nb-cO-Gje"/>
                     </connections>
                 </viewController>

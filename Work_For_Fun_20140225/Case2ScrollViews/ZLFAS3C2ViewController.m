@@ -206,7 +206,7 @@ static NSString * const DoubleSpace = @"  ";
         }
     }
     if (!buttonEnable) {
-        GCase2().zlfa3GutongSelectedIndex = 0;
+        GCase2().zlfa3LeftSelectedIndex = 0;
     }
 }
 
@@ -217,6 +217,7 @@ static NSString * const DoubleSpace = @"  ";
     for (UIButton *button in _zlfa3LfetButtonCollection) {
         if (button != sender) {
             button.selected = NO;
+            break;
         }
     }
 
@@ -235,6 +236,7 @@ static NSString * const DoubleSpace = @"  ";
                     completion:^(BOOL finished){
                     }];
 
+    GCase2().zlfa3LeftSelectedIndex = sender.tag;
 }
 
 - (IBAction)zlfa2SegmentedChanged:(UISegmentedControl *)sender
@@ -414,8 +416,6 @@ static NSString * const DoubleSpace = @"  ";
         return;
     }
 
-    _section2PickerView1.hidden = YES;
-    _section2PickerView2.hidden = YES;
 
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:@"治疗方案确认后不能修改!"
@@ -423,6 +423,10 @@ static NSString * const DoubleSpace = @"  ";
 
     }]
                        otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+        if (_currentStep != CurrentStepTwo) {
+            _section2PickerView1.hidden = YES;
+            _section2PickerView2.hidden = YES;
+        }
         [self taskList:sender];
     }], nil] show];
 }
@@ -488,7 +492,12 @@ static NSString * const DoubleSpace = @"  ";
 - (BOOL)checkValues
 {
     if (_zlfa3LeftSegmentedControl.enabled == YES &&
-        GCase2().zlfa3GutongSelectedIndex != 0) {
+        GCase2().zlfa3GutongSelectedIndex != 1) {
+        [GInstance() showInfoMessage:@"请完成骨痛治疗。"];
+        return NO;
+    }
+
+    if (GCase2().zlfa3GutongSelectedIndex == 1 && GCase2().zlfa3LeftSelectedIndex == 0) {
         [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
         return NO;
     }
@@ -496,6 +505,38 @@ static NSString * const DoubleSpace = @"  ";
     if (GCase2().zlfa3SegmentSelectedIndex == 0) {
         [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
         return NO;
+    }
+
+    if (GCase2().zlfa3SegmentSelectedIndex == 6 && GCase2().zlfa3ErfenSelectedIndex == 0) {
+        [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+        return NO;
+    }
+
+    if (GCase2().zlfa3SegmentSelectedIndex == 4) {
+        if (GCase2().zlfa3ChixuJianxieNeifenSelectedIndex == 0) {
+            [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+            return NO;
+        } else {
+            if (GCase2().zlfa3ChixuJianxieNeifenDetailSelectedIndex == 0) {
+                [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                return NO;
+            } else {
+                if (_currentStep == CurrentStepTwo) {
+                    if (GCase2().zlfa3ChixuJianxieNeifenDetailSelectedIndex == 1 ||
+                        GCase2().zlfa3ChixuJianxieNeifenDetailSelectedIndex == 2) {
+                        if(!GCase2().zlfa3NeifenmiYaowuName1) {
+                            [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                            return NO;
+                        }
+                    } else if (GCase2().zlfa3ChixuJianxieNeifenDetailSelectedIndex == 3) {
+                        if(!GCase2().zlfa3NeifenmiYaowuName1 || !GCase2().zlfa3NeifenmiYaowuName2) {
+                            [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                            return NO;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     return YES;

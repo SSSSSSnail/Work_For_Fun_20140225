@@ -312,14 +312,51 @@ static NSString * const DoubleSpace = @"  ";
     GCase2().zlfaChixuJianxieNeifenDetailSelectedIndex = sender.tag;
 }
 
+- (BOOL)checkValues
+{
+    if (GCase2().zlfa2SegmentSelectedIndex == 0) {
+        [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+        return NO;
+    }
+    if (GCase2().zlfa2SegmentSelectedIndex == 6 && GCase2().zlfa2ErfenSelectedIndex == 0) {
+        [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+        return NO;
+    }
+    if (GCase2().zlfa2SegmentSelectedIndex == 4) {
+        if (GCase2().zlfaChixuJianxieNeifenSelectedIndex == 0) {
+            [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+            return NO;
+        } else {
+            if (GCase2().zlfaChixuJianxieNeifenDetailSelectedIndex == 0) {
+                [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                return NO;
+            } else {
+                if (_currentStep == CurrentStepTwo) {
+                    if (GCase2().zlfaChixuJianxieNeifenDetailSelectedIndex == 1 ||
+                        GCase2().zlfaChixuJianxieNeifenDetailSelectedIndex == 2) {
+                        if(!GCase2().zlfaNeifenmiYaowuName1) {
+                            [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                            return NO;
+                        }
+                    } else if (GCase2().zlfaChixuJianxieNeifenDetailSelectedIndex == 3) {
+                        if(!GCase2().zlfaNeifenmiYaowuName1 || !GCase2().zlfaNeifenmiYaowuName2) {
+                            [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
+                            return NO;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return YES;
+}
+
 - (IBAction)confirmClick:(UIButton *)sender
 {
-//    if (![self checkValues]) {
-//        return;
-//    }
+    if (![self checkValues]) {
+        return;
+    }
 
-    _section2PickerView1.hidden = YES;
-    _section2PickerView2.hidden = YES;
 
     [[[UIAlertView alloc] initWithTitle:nil
                                 message:@"治疗方案确认后不能修改!"
@@ -327,6 +364,10 @@ static NSString * const DoubleSpace = @"  ";
 
     }]
                        otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+        if (_currentStep != CurrentStepTwo) {
+            _section2PickerView1.hidden = YES;
+            _section2PickerView2.hidden = YES;
+        }
         [self taskList:sender];
     }], nil] show];
 }
