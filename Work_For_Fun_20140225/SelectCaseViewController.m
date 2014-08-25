@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 @property (assign, nonatomic) NSInteger selectedCase;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *caseButtonCollection;
 
 - (IBAction)clickCaseButton:(UIButton *)sender;
 - (IBAction)clickStartButton:(UIButton *)sender;
@@ -34,9 +35,10 @@
     [super viewDidLoad];
     if (GInstance().caseNumber == CaseNumberOne) {
         _bgImageView.image = [UIImage imageNamed:@"selectCase"];
-    }
-    if (GInstance().caseNumber == CaseNumberTwo) {
+    }else if (GInstance().caseNumber == CaseNumberTwo) {
         _bgImageView.image = [UIImage imageNamed:@"selectCase2"];
+    }else if (GInstance().caseNumber == CaseNumberZero) {
+        _bgImageView.image = [UIImage imageNamed:@"selectCase0"];
     }
 }
 
@@ -52,9 +54,33 @@
 }
 
 - (IBAction)clickCaseButton:(UIButton *)sender {
-    if (sender.tag == GInstance().caseNumber) {
-        sender.selected = YES;
+    if (GInstance().caseNumber != CaseNumberZero) {
+        if (sender.tag == GInstance().caseNumber) {
+            sender.selected = YES;
+            _selectedCase = sender.tag;
+        }
+    } else {
+        [_caseButtonCollection enumerateObjectsUsingBlock:^(UIButton *obj, NSUInteger idx, BOOL *stop) {
+            if (obj == sender) {
+                obj.selected = YES;
+            } else {
+                obj.selected = NO;
+            }
+        }];
         _selectedCase = sender.tag;
+        GInstance().caseNumber = sender.tag;
+        [GInstance() loadData];
+        NSString *subjectid = [[NSDate date] description];
+        if (![subjectid isEqualToString:GInstance().globalData.subjectId]) {
+            if (GInstance().globalData.subjectId) {
+                [GInstance() backupData];
+            }
+            [GInstance() initData];
+            GInstance().globalData.subjectId = subjectid;
+            GInstance().globalData.subjectName = @"TestName";
+            GInstance().globalData.groupNumber = @"Test";
+            [GInstance() savaData];
+        }
     }
 }
 

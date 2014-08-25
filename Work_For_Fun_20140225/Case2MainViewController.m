@@ -262,10 +262,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
 
 #ifdef SKIPREQUEST
     [self refreshButtonAndView:0];
-//    GCase2().currentStep = Case2Step3;
+//    GCase2().currentStep = Case2Step1;
 //    GCase2().step1MNumber = 3;
 //    GCase2().step2SNumber = 1;
-//    [self refreshButtonAndView:12];
+//    [self refreshButtonAndView:3];
 //    [_lcjc3ViewController refresh];
 //    [_zlfa2ViewController refresh];
 //    [_hzqk2ViewController refresh];

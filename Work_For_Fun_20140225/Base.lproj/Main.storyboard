@@ -99,6 +99,8 @@
                     </view>
                     <connections>
                         <outlet property="bgImageView" destination="nhm-69-rW7" id="L1P-Dp-bkK"/>
+                        <outletCollection property="caseButtonCollection" destination="ywe-tK-EvR" id="aEn-oF-EI8"/>
+                        <outletCollection property="caseButtonCollection" destination="Pl3-r0-FP0" id="eTT-qI-tzm"/>
                         <segue destination="dTL-s9-QlI" kind="modal" identifier="modalToMain" id="aEf-kc-NZQ"/>
                     </connections>
                 </viewController>

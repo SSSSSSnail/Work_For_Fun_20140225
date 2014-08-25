@@ -695,7 +695,7 @@ static NSString * const DoubleSpace = @"  ";
 
     }]
                        otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-        if (_currentStep == CurrentStepThree && _backStep == NO) {
+        if (_currentStep == CurrentStepThree && _backStep == NO && GCase2().zlfaFuzhuSelectedIndex != 1) {
             _section2PickerView1.hidden = YES;
             _section2PickerView2.hidden = YES;
         }

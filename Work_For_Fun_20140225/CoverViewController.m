@@ -78,25 +78,8 @@
     }
 #endif
 #ifdef SKIPREQUEST
-    GInstance().caseNumber = CaseNumberTwo;
-    [GInstance() loadData];
-    NSString *subjectid = [[NSDate date] description];
-    if (![subjectid isEqualToString:GInstance().globalData.subjectId]) {
-        if (GInstance().globalData.subjectId) {
-            [GInstance() backupData];
-        }
-        [GInstance() initData];
-        GInstance().globalData.subjectId = subjectid;
-        GInstance().globalData.subjectName = @"TestName";
-        GInstance().globalData.groupNumber = @"Test";
-        [GInstance() savaData];
-    }
-//    [self performSegueWithIdentifier:@"modalToCover2" sender:self];
-
-    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"Case2" bundle:nil];
-    UIViewController* case2mainViewController = [secondStoryBoard instantiateViewControllerWithIdentifier:@"Case2MainViewController"];
-    GInstance().globalData.groupNumber = @"G1";
-    [self presentViewController:case2mainViewController animated:YES completion:^{}];
+    GInstance().caseNumber = CaseNumberZero;
+    [self performSegueWithIdentifier:@"modalToCover2" sender:self];
 #endif
 }
 

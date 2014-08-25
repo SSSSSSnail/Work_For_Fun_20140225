@@ -43,18 +43,11 @@ static NSString *const HOSTURL = @"http://diphereline-case.com/";
 #define SERVERURL [NSString stringWithFormat:@"%@%@", HOSTURL, @"subject.do"]
 #define STEPURL [NSString stringWithFormat:@"%@case%ld.do", HOSTURL, (long)GInstance().caseNumber]
 
-//Prod
-//static NSString *const SERVERURL = @"http://diphereline-case.com/subject.do";
-//static NSString *const STEPURL = @"http://diphereline-case.com/case1.do";
-
-//Test
-//static NSString *const SERVERURL = @"http://edetailing-data.com/subject.do";
-//static NSString *const STEPURL = @"http://edetailing-data.com/case2.do";
-
 static NSString *const E1 = @"E01";
 static NSString *const E2 = @"E02";
 
 typedef NS_ENUM (NSUInteger, CaseNumber) {
+    CaseNumberZero = 0,
     CaseNumberOne = 1,
     CaseNumberTwo = 2
 };
