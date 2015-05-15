@@ -24,7 +24,7 @@
 @property (copy, nonatomic) NSString *zdjgPGSelectItem;
 
 //治疗方案1
-@property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 1 2 3 4
+@property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 2 3 4 5
 @property (assign, nonatomic) NSUInteger zlfaRightSelectedIndex; // 1 2    0 未选择
 
 @property (assign, nonatomic) NSUInteger zlfaNeifenmiSelectedIndex; // 1 2 0 未选择

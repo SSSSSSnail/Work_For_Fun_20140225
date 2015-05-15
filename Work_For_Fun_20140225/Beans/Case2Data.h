@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, Case2Step) {
 @property (copy, nonatomic) NSString *zdjgPGSelectItem;
 
 //治疗方案
-@property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 2 3 4 5
+@property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 1 2 3 4
 @property (assign, nonatomic) NSUInteger zlfaRightSelectedIndex; // 1 2    0 未选择
 @property (assign, nonatomic) NSUInteger zlfaChixuJianxieSelectedIndex; // 1 持续 2 间歇 0 未选择
 @property (assign, nonatomic) NSUInteger zlfaChixujianxieDetailSelectedIndex; // 1 药物 2 抗雄 3 雄激素 4 手术 0 未选择
