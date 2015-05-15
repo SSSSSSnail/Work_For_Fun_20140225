@@ -33,13 +33,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (GInstance().caseNumber == CaseNumberOne) {
-        _bgImageView.image = [UIImage imageNamed:@"selectCase"];
-    }else if (GInstance().caseNumber == CaseNumberTwo) {
-        _bgImageView.image = [UIImage imageNamed:@"selectCase2"];
-    }else if (GInstance().caseNumber == CaseNumberZero) {
-        _bgImageView.image = [UIImage imageNamed:@"selectCase0"];
+//    if (GInstance().caseNumber == CaseNumberOne) {
+//        _bgImageView.image = [UIImage imageNamed:@"selectCase"];
+//    }else if (GInstance().caseNumber == CaseNumberTwo) {
+//        _bgImageView.image = [UIImage imageNamed:@"selectCase2"];
+//    }else if (GInstance().caseNumber == CaseNumberZero) {
+//        _bgImageView.image = [UIImage imageNamed:@"selectCase0"];
+//    }
+    
+    NSString *imageName = nil;
+    switch (GInstance().caseNumber) {
+        case CaseNumberOne: {
+            imageName = @"selectCase";
+            break;
+        }
+        case CaseNumberTwo:  {
+            imageName = @"selectCase2";
+            break;
+        }
+        case CaseNumberThree: {
+            imageName = @"selectCase3";
+            break;
+        }
+        case CaseNumberZero:
+        default: {
+            imageName = @"selectCase0";
+            break;
+        }
     }
+    _bgImageView.image = [UIImage imageNamed:imageName];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -139,10 +162,37 @@
                              completion:^(NSDictionary *jsonDic) {
                                  NSLog(@"responseJson: %@", jsonDic);
                                  if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-        globalData.hasAddtoGroup = @"Y";
-        [GInstance() savaData];
-        [self presentViewController:case2mainViewController animated:YES completion:^{}];
-    } else {
+                                     globalData.hasAddtoGroup = @"Y";
+                                     [GInstance() savaData];
+                                     [self presentViewController:case2mainViewController animated:YES completion:^{}];
+                                 } else {
+                                     [GInstance() showErrorMessage:@"初始化失败，请选择其他组名 !"];
+                                 }
+                             }];
+    } else if (_selectedCase == 3) {
+        LLGlobalData *globalData = GInstance().globalData;
+        UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"Case3" bundle:nil];
+        UIViewController* case3mainViewController = [secondStoryBoard instantiateViewControllerWithIdentifier:@"Case3MainViewController"];
+        
+        if ([globalData.hasAddtoGroup isEqualToString:YCase]) {
+            [self presentViewController:case3mainViewController animated:YES completion:^{}];
+            return;
+        }
+        
+        NSDictionary *parameterDictionary = @{@"step": @"0",
+                                              @"action": @"addgroup",
+                                              @"subject_id": globalData.subjectId,
+                                              @"group_id": groupNumber};
+        [GInstance() httprequestWithHUD:self.view
+                         withRequestURL:SERVERURL
+                         withParameters:parameterDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] boolValue]){
+                                     globalData.hasAddtoGroup = YCase;
+                                     [GInstance() savaData];
+                                     [self presentViewController:case3mainViewController animated:YES completion:^{}];
+                                 } else {
                                      [GInstance() showErrorMessage:@"初始化失败，请选择其他组名 !"];
                                  }
                              }];

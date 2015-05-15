@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="cHd-s7-bne">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="cHd-s7-bne">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Cover View Controller-->
@@ -18,7 +19,6 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
@@ -43,7 +43,6 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <segue destination="owM-LY-byI" kind="modal" identifier="modalToSelectCase" id="0rN-Fl-ZXm"/>
@@ -65,7 +64,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ywe-tK-EvR">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ywe-tK-EvR" userLabel="c1">
                                 <rect key="frame" x="39" y="163" width="168" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -74,7 +73,7 @@
                                     <action selector="clickCaseButton:" destination="owM-LY-byI" eventType="touchUpInside" id="yBc-ze-B14"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pl3-r0-FP0">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pl3-r0-FP0" userLabel="c2">
                                 <rect key="frame" x="207" y="163" width="168" height="168"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -83,7 +82,7 @@
                                     <action selector="clickCaseButton:" destination="owM-LY-byI" eventType="touchUpInside" id="Zeo-pU-Qa2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="72Q-9N-9mw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="72Q-9N-9mw" userLabel="start">
                                 <rect key="frame" x="561" y="380" width="443" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
@@ -93,9 +92,17 @@
                                     <action selector="clickStartButton:" destination="owM-LY-byI" eventType="touchUpInside" id="YYk-Z3-iru"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yLJ-43-z18" userLabel="c3">
+                                <rect key="frame" x="207" y="331" width="168" height="168"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="selected" image="caseButtonSelected.png"/>
+                                <connections>
+                                    <action selector="clickCaseButton:" destination="owM-LY-byI" eventType="touchUpInside" id="Jl8-AO-Qpu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <outlet property="bgImageView" destination="nhm-69-rW7" id="L1P-Dp-bkK"/>
@@ -262,7 +269,6 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <outlet property="detailScrollView" destination="hY5-sl-7hJ" id="BiP-Db-5dG"/>
@@ -275,7 +281,7 @@
             </objects>
             <point key="canvasLocation" x="742" y="2277"/>
         </scene>
-        <!--View Controller - 患者情况-->
+        <!--患者情况-->
         <scene sceneID="6Hf-9K-umH">
             <objects>
                 <viewController storyboardIdentifier="hzqkVC" title="患者情况" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IzL-WT-k9n" customClass="HZQKViewController" sceneMemberID="viewController">
@@ -303,7 +309,7 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="twoLabelCell" id="mVh-Qv-62w">
-                                        <rect key="frame" x="0.0" y="55" width="832" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="832" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mVh-Qv-62w" id="jfX-dK-ucA">
                                             <rect key="frame" x="0.0" y="0.0" width="832" height="43"/>
@@ -327,7 +333,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="oneLabelCell" id="HTP-vq-2ya">
-                                        <rect key="frame" x="0.0" y="99" width="832" height="44"/>
+                                        <rect key="frame" x="0.0" y="94" width="832" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HTP-vq-2ya" id="iug-yE-FKR">
                                             <rect key="frame" x="0.0" y="0.0" width="832" height="43"/>
@@ -344,7 +350,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buttonLabelCell" id="bEd-Ls-u2z">
-                                        <rect key="frame" x="0.0" y="143" width="832" height="44"/>
+                                        <rect key="frame" x="0.0" y="138" width="832" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bEd-Ls-u2z" id="Ud7-ot-bCn">
                                             <rect key="frame" x="0.0" y="0.0" width="832" height="43"/>
@@ -439,7 +445,6 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -458,7 +463,7 @@
             </objects>
             <point key="canvasLocation" x="2344" y="-546"/>
         </scene>
-        <!--View Controller - 临床检查-->
+        <!--临床检查-->
         <scene sceneID="ZbX-3V-Fd9">
             <objects>
                 <viewController storyboardIdentifier="lcjcVC" title="临床检查" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WYl-Dp-ALg" customClass="LCJCViewController" sceneMemberID="viewController">
@@ -484,7 +489,7 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="lcjcTableviewCell" id="LEu-Jo-DK3">
-                                                <rect key="frame" x="0.0" y="55" width="475" height="35"/>
+                                                <rect key="frame" x="0.0" y="50" width="475" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LEu-Jo-DK3" id="h0B-oR-fhY">
                                                     <rect key="frame" x="0.0" y="0.0" width="475" height="34"/>
@@ -524,7 +529,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -543,7 +547,7 @@
             </objects>
             <point key="canvasLocation" x="2344" y="395"/>
         </scene>
-        <!--View Controller - 诊断结果-->
+        <!--诊断结果-->
         <scene sceneID="ssI-zh-tvg">
             <objects>
                 <viewController storyboardIdentifier="zdjgVC" title="诊断结果" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QR2-Fd-NxG" customClass="ZDJGViewController" sceneMemberID="viewController">
@@ -685,7 +689,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -717,7 +720,7 @@
             </objects>
             <point key="canvasLocation" x="2341" y="1319"/>
         </scene>
-        <!--View Controller - 治疗方案-->
+        <!--治疗方案-->
         <scene sceneID="508-ID-9rE">
             <objects>
                 <viewController storyboardIdentifier="zlfaVC" title="治疗方案" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TQ3-zH-gg5" customClass="ZLFAViewController" sceneMemberID="viewController">
@@ -1127,7 +1130,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -1178,7 +1180,7 @@
             </objects>
             <point key="canvasLocation" x="2349" y="2277"/>
         </scene>
-        <!--View Controller - 病程进展-->
+        <!--病程进展-->
         <scene sceneID="rbx-8v-Y37">
             <objects>
                 <viewController storyboardIdentifier="bcjzVC" title="病程进展" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZST-lu-LBs" customClass="BCJZViewController" sceneMemberID="viewController">
@@ -1213,7 +1215,6 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>

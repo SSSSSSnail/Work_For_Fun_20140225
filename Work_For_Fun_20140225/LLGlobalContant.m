@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 #import "Case1Data.h"
 #import "Case2Data.h"
+#import "Case3Data.h"
 
 static NSString *kDataClass = @"dataClass";
 
@@ -49,12 +50,16 @@ NSString *BackupFileName();
 - (void)initData
 {
     switch (_caseNumber) {
-        case CaseNumberOne:
+        case CaseNumberOne :
             self.globalData = [[Case1Data alloc] init];
             break;
-        case CaseNumberTwo:
+        case CaseNumberTwo :
             self.globalData = [[Case2Data alloc] init];
             break;
+        case CaseNumberThree : {
+            _globalData = [[Case3Data alloc] init];
+            break;
+        }
 
         default:
             break;
@@ -75,7 +80,7 @@ NSString *BackupFileName();
     NSError *error;
     BOOL isFolderCreated = YES;
     if (![fileManager fileExistsAtPath:BackupFileName()]) {
-        isFolderCreated = [fileManager createDirectoryAtPath:BackupFileName() withIntermediateDirectories:YES attributes:NO error:&error];
+        isFolderCreated = [fileManager createDirectoryAtPath:BackupFileName() withIntermediateDirectories:YES attributes:nil error:&error];
     }
     if (isFolderCreated) {
         [fileManager moveItemAtPath:DataFileName() toPath:[BackupFileName() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.plist", _globalData.subjectId]] error:&error];
@@ -265,9 +270,12 @@ NSString *BackupFileName();
 - (NSString *)formatDate:(NSNumber *)numberDate
 {
     NSDate *toFormatDate = [NSDate dateWithTimeIntervalSince1970:numberDate.doubleValue/1000];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.locale=[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    static NSDateFormatter *dateFormatter = nil;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+        [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    }
     return [dateFormatter stringFromDate:toFormatDate];
 }
 
@@ -300,4 +308,9 @@ Case1Data *GCase1()
 Case2Data *GCase2()
 {
     return (Case2Data *)GInstance().globalData;
+}
+
+Case3Data *GCase3()
+{
+    return (Case3Data *)GInstance().globalData;
 }

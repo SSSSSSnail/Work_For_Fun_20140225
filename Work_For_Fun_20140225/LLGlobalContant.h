@@ -20,6 +20,7 @@
 
 @class Case1Data;
 @class Case2Data;
+@class Case3Data;
 @interface LLGlobalData : NSObject
 
 @property (copy, nonatomic) NSString *subjectName;
@@ -46,10 +47,13 @@ static NSString *const HOSTURL = @"http://diphereline-case.com/";
 static NSString *const E1 = @"E01";
 static NSString *const E2 = @"E02";
 
+static NSString *const YCase = @"Y";
+
 typedef NS_ENUM (NSUInteger, CaseNumber) {
     CaseNumberZero = 0,
     CaseNumberOne = 1,
-    CaseNumberTwo = 2
+    CaseNumberTwo = 2,
+    CaseNumberThree = 3
 };
 
 @interface LLGlobalContant : NSObject
@@ -123,3 +127,4 @@ typedef NS_ENUM (NSUInteger, CaseNumber) {
 LLGlobalContant *GInstance();
 Case1Data *GCase1();
 Case2Data *GCase2();
+Case3Data *GCase3();
