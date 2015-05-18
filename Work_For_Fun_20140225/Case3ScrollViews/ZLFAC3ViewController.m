@@ -201,6 +201,9 @@ static NSString * const DoubleSpace = @"  ";
             GCase3().zlfaRightSelectedIndex = selection ? seg.tag : 0;
             
         } else {
+            
+            BOOL isWflorHl = (seg == _wflSegmentedControl || seg == _hlSegmentedControl);
+            
             for (UISegmentedControl *segment in _segmentedControls) {
                 if (seg == segment) {
                     continue;
@@ -213,16 +216,19 @@ static NSString * const DoubleSpace = @"  ";
                         segment.enabled = !selection;
                     } else {
                         if (segment == _nfmSegmentedControl) {
-                            segment.enabled = YES;
-                        } else {
-                            segment.enabled = !selection;
+                            if (selection) {
+                                segment.selectedSegmentIndex = 0;
+                            } else {
+                                segment.selectedSegmentIndex = 1;
+                            }
                         }
+                        segment.enabled = !selection;
                     }
                     
                 }
             }
             GCase3().zlfaLeftSelectedIndex = selection ? seg.tag : 0;
-            GCase3().zlfaRightSelectedIndex = 0;
+            GCase3().zlfaRightSelectedIndex = _nfmSegmentedControl.selectedSegmentIndex == 0 ? 1 : 0;
         }
         [self task:seg.tag showOrHide:selection isBC:NO];
     } else if (_state == CurrentStateBCXZ) {
@@ -329,9 +335,7 @@ static NSString * const DoubleSpace = @"  ";
 
 - (IBAction)confirmClick:(UIButton *)sender
 {
-//    Case3Data *globalData = GCase3();
     if (![self checkValues]) {
-//        NSLog(@"NO");
         return;
     }
 
@@ -391,10 +395,15 @@ static NSString * const DoubleSpace = @"  ";
         _state = CurrentStateFinish;
         _section2View.hidden = YES;
         _titleLabel.text = @"选择治疗方案";
+        _section1View.hidden = NO;
+        _section2View.hidden = YES;
         if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
             [self.scrollViewDelegate didClickConfirmButton:sender];
         }
     } else if (_state == CurrentStateFinish) {
+        
+        _section1View.hidden = NO;
+        _section2View.hidden = YES;
         if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
             [self.scrollViewDelegate didClickConfirmButton:sender];
         }
@@ -434,10 +443,17 @@ static NSString * const DoubleSpace = @"  ";
                         }];
     } else if (_state == CurrentStateBCXZ) {
         if (globalData.zlfaBuchongLeftSelectedIndex == 0) {
+            
             if (globalData.zlfaBuchongNeifenmiSelectedIndex == 1) {
                 _state = CurrentStateShowResult;
             } else if (globalData.zlfaBuchongNeifenmiSelectedIndex == 2) {
                 _state = CurrentStateYWXZ;
+            } else {
+                _state = CurrentStateFinish;
+                if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
+                    [self.scrollViewDelegate didClickConfirmButton:sender];
+                }
+                return;
             }
             NSString *imageName = [NSString stringWithFormat:@"c3M1_%@", @(globalData.zlfaBuchongNeifenmiSelectedIndex)];
             _section2BGImageView.image = [UIImage imageNamed:imageName];
@@ -462,15 +478,7 @@ static NSString * const DoubleSpace = @"  ";
             if (globalData.zlfaLeftSelectedIndex == 4) {
                 _state = CurrentStateWithNext;
                 imageName = [NSString stringWithFormat:@"c3M3_1"];
-            } else if (globalData.zlfaLeftSelectedIndex == 5) {
-                if (globalData.zlfaBuchongNeifenmiSelectedIndex == 1) {
-                    _state = CurrentStateShowResult;
-                } else if (globalData.zlfaBuchongNeifenmiSelectedIndex == 2) {
-                    _state = CurrentStateYWXZ;
-                }
-                imageName = [NSString stringWithFormat:@"c3M1_%@", @(globalData.zlfaBuchongNeifenmiSelectedIndex)];
             }
-            
             _section2BGImageView.image = [UIImage imageNamed:imageName];
             [UIView transitionWithView:_sectionAnimationView
                               duration:0.8
@@ -518,6 +526,10 @@ static NSString * const DoubleSpace = @"  ";
                     [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
                     return NO;
                 } else {
+                    if (globalData.zlfaNeifenmiSelectedIndex == 0) {
+                        [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
+                        return NO;
+                    }
                     if (globalData.zlfaNeifenmiSelectedIndex == 2) {
                         if (globalData.zlfaZuidaZuduanSelectedIndex == 2) {
                             [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
@@ -527,6 +539,7 @@ static NSString * const DoubleSpace = @"  ";
                             return NO;
                         }
                     }
+                    
                 }
             } else {
                 if (globalData.zlfaLeftSelectedIndex == 4) {
@@ -559,16 +572,15 @@ static NSString * const DoubleSpace = @"  ";
                 }
             }
         } else {
-            if (globalData.zlfaBuchongNeifenmiSelectedIndex == 0) {
-                [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
-                return NO;
-            } else if (globalData.zlfaBuchongNeifenmiSelectedIndex == 2) {
-                if (globalData.zlfaBuchongZuidaZuduanSelectedIndex == 0) {
-                    [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
-                    return NO;
-                } else if (globalData.zlfaBuchongZuidaZuduanSelectedIndex == 2) {
-                    [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
-                    return NO;
+            if (globalData.zlfaBuchongRightSelectedIndex == 0) {
+                if (globalData.zlfaBuchongNeifenmiSelectedIndex == 2) {
+                    if (globalData.zlfaBuchongZuidaZuduanSelectedIndex == 0) {
+                        [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
+                        return NO;
+                    } else if (globalData.zlfaBuchongZuidaZuduanSelectedIndex == 2) {
+                        [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
+                        return NO;
+                    }
                 }
             }
         }
@@ -615,7 +627,6 @@ static NSString * const DoubleSpace = @"  ";
                     [self resetGZSBKArray];
                 }
             }
-            
             [self hideTaskView:_nfmView showOrHide:show];
             if (!show) {
                 [self resetNFMArray];
@@ -625,9 +636,8 @@ static NSString * const DoubleSpace = @"  ";
         case 2:
         case 3: {
             if (!BC) {
-                if (!_nfmView.isHidden) {
-                    [self hideTaskView:_nfmView showOrHide:NO];
-                }
+                
+                [self hideTaskView:_nfmView showOrHide:show];
                 if (!_gzspqView.isHidden) {
                     [self hideTaskView:_gzspqView showOrHide:NO];
                 }

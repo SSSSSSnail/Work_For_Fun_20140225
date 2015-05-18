@@ -16,4 +16,5 @@
 
 - (void)refresh;
 
+- (void)refreshWithArray:(NSArray *)array;
 @end

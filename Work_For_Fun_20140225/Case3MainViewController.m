@@ -14,8 +14,8 @@
 #import "BCJZC3ViewController.h"
 //
 #import "BSHGC3ViewController.h"
-//#import "ZDJGS2C2ViewController.h"
-//#import "ZLFAS2C2ViewController.h"
+#import "ZDJGS2C3ViewController.h"
+#import "ZLFAS2C3ViewController.h"
 //
 //#import "BSHGS3ViewController.h"
 //#import "ZLFAS3C2ViewController.h"
@@ -72,9 +72,9 @@ static float const MASTERVIEWWIDTH = 152.0f;
 //
 @property (strong, nonatomic) BSHGC3ViewController   *hzqk2ViewController;
 @property (strong, nonatomic) LCJCC3ViewController   *lcjc2ViewController;
-//@property (strong, nonatomic) ZDJGS2C2ViewController *zdjg2ViewController;
-//@property (strong, nonatomic) ZLFAS2C2ViewController *zlfa2ViewController;
-//@property (strong, nonatomic) BCJZC2ViewController   *bcjz2ViewController;
+@property (strong, nonatomic) ZDJGS2C3ViewController *zdjg2ViewController;
+@property (strong, nonatomic) ZLFAS2C3ViewController *zlfa2ViewController;
+@property (strong, nonatomic) BCJZC3ViewController   *bcjz2ViewController;
 //
 //@property (strong, nonatomic) BSHGS3ViewController *hzqk3ViewController;
 //@property (strong, nonatomic) LCJCC2ViewController *lcjc3ViewController;
@@ -127,16 +127,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
     //访视2
     self.hzqk2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bshgVC"];
     self.lcjc2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
-//    self.zdjg2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjg2VC"];
-//    self.zlfa2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfa2VC"];
-//    self.bcjz2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
-//    //访视3
-//    self.hzqk3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bshg3VC"];
-//    self.lcjc3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lcjcVC"];
-//    self.zdjg3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjg2VC"];
-//    self.zlfa3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfa3VC"];
-//    self.bcjz3ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
-//
+    self.zdjg2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zdjg2VC"];
+    self.zlfa2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"zlfa2VC"];
+    self.bcjz2ViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"bcjzVC"];
+
     [self addChildViewController:_hzqk1ViewController];
     _hzqk1ViewController.scrollViewDelegate = self;
     [self addChildViewController:_lcjc1ViewController];
@@ -152,23 +146,13 @@ static float const MASTERVIEWWIDTH = 152.0f;
     _hzqk2ViewController.scrollViewDelegate = self;
     [self addChildViewController:_lcjc2ViewController];
     _lcjc2ViewController.scrollViewDelegate = self;
-//    [self addChildViewController:_zdjg2ViewController];
-//    _zdjg2ViewController.scrollViewDelegate = self;
-//    [self addChildViewController:_zlfa2ViewController];
-//    _zlfa2ViewController.scrollViewDelegate = self;
-//    [self addChildViewController:_bcjz2ViewController];
-//    _bcjz2ViewController.scrollViewDelegate = self;
+    [self addChildViewController:_zdjg2ViewController];
+    _zdjg2ViewController.scrollViewDelegate = self;
+    [self addChildViewController:_zlfa2ViewController];
+    _zlfa2ViewController.scrollViewDelegate = self;
+    [self addChildViewController:_bcjz2ViewController];
+    _bcjz2ViewController.scrollViewDelegate = self;
 //
-//    [self addChildViewController:_hzqk3ViewController];
-//    _hzqk3ViewController.scrollViewDelegate = self;
-//    [self addChildViewController:_lcjc3ViewController];
-//    _lcjc3ViewController.scrollViewDelegate = self;
-//    [self addChildViewController:_zdjg3ViewController];
-//    _zdjg3ViewController.scrollViewDelegate = self;
-//    [self addChildViewController:_zlfa3ViewController];
-//    _zlfa3ViewController.scrollViewDelegate = self;
-//    [self addChildViewController:_bcjz3ViewController];
-//    _bcjz3ViewController.scrollViewDelegate = self;
 
     for (NSNumber *buttonTag in _masterTagArray) {
         UIButton *button = (UIButton *)[_step1MasterView viewWithTag:buttonTag.integerValue];
@@ -198,16 +182,11 @@ static float const MASTERVIEWWIDTH = 152.0f;
                              _bcjz1ViewController.view,
 //
                              _hzqk2ViewController.view,
-                             _lcjc2ViewController.view
-//                             _zdjg2ViewController.view,
-//                             _zlfa2ViewController.view,
-//                             _bcjz2ViewController.view,
-//
-//                             _hzqk3ViewController.view,
-//                             _lcjc3ViewController.view,
-//                             _zdjg3ViewController.view,
-//                             _zlfa3ViewController.view,
-//                             _bcjz3ViewController.view
+                             _lcjc2ViewController.view,
+                             _zdjg2ViewController.view,
+                             _zlfa2ViewController.view,
+                             _bcjz2ViewController.view,
+
                              ];
 
     for (int i = 0; i < _detailViewArray.count; i++) {
@@ -233,29 +212,16 @@ static float const MASTERVIEWWIDTH = 152.0f;
     _c3DateLabel.textColor = [UIColor colorWithRed:246.0f/255 green:134.0f/255 blue:2.0f/255 alpha:1];
     _c3DateLabel.text = @"";
 
-//    self.c3DateMappingArrayR1 = @[@0, @0, @25, @34, @34, @34, @25, @31, @28, @19]; //M值
-    self.c3DateMappingArrayR2 = @[@0, @0,                   //M0 M1
-                                  @[@0, @19, @20],          //M2
-                                  @[@0, @10, @11, @10, @19], //M3
-                                  @[@0, @10, @11, @10, @19], //M4
-                                  @[@0, @10, @11, @10, @19], //M5
-                                  @[@0, @13],               //M6
-                                  @[@0, @13, @16, @13],     //M7
-                                  @[@0, @10, @13, @10],     //M8
-                                  @[@0, @13, @13, @10, @10] //M3
-                                  ];
-    
+
     self.c3DateMappingArrayR1 = @[@(0), @(30), @(36), @(42), @(39), @(42), @(24)];
-    self.c3DateMappingArrayR2 = @[@0, @0,                   //M0 M1
-                                 @[@0, @19, @20],          //M2
-                                 @[@0, @10, @11, @10, @19], //M3
-                                 @[@0, @10, @11, @10, @19], //M4
-                                 @[@0, @10, @11, @10, @19], //M5
-                                 @[@0, @13],               //M6
-                                 @[@0, @13, @16, @13],     //M7
-                                 @[@0, @10, @13, @10],     //M8
-                                 @[@0, @13, @13, @10, @10] //M3
-                                 ];
+    self.c3DateMappingArrayR2 = @[@0,
+                                  @[@0, @6, @6, @12, @1, @12], //M1
+                                  @[@0, @2, @2, @3, @1, @3],          //M2
+                                  @[@0, @6, @6, @12, @1, @12], //M3
+                                  @[@0, @6, @6, @12, @1, @12], //M4
+                                  @[@0, @6, @6, @12, @1, @12], //M5
+                                  @[@0, @6, @3, @6, @3]                     //M6
+                                  ];
  }
 
 #pragma mark - 测试模式
@@ -315,7 +281,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
         _masterBGImageView.image = [UIImage imageNamed:@"zuocecaidan_c3"];
     } else if (toIndex < 10) {
         scrollNumber = 1;
-        _masterBGImageView.image = [UIImage imageNamed:@"zuocecaidan_c3"];
+        _masterBGImageView.image = [UIImage imageNamed:@"zuocecaidan_c3r2"];
     } else {
         scrollNumber = 2;
         _masterBGImageView.image = [UIImage imageNamed:@"zuocecaidan_c3"];
@@ -342,7 +308,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
     } else if (GCase3().currentIndex < 9) {
         toDate = [self addMonths:@[_c3DateMappingArrayR1[GCase3().step1MNumber], @0, @0] nowDate:fromDate];
     } else if (GCase3().currentIndex < 14) {
-        toDate = [self addMonths:@[_c3DateMappingArrayR1[GCase3().step1MNumber], _c3DateMappingArrayR2[GCase3().step1MNumber][GCase3().step3SNumber], @0] nowDate:fromDate];
+        toDate = [self addMonths:@[_c3DateMappingArrayR1[GCase3().step1MNumber], _c3DateMappingArrayR2[GCase3().step1MNumber][GCase3().step2SNumber], @0] nowDate:fromDate];
     } else {
 //        if (GCase3().zlfa3SegmentSelectedIndex == 5 || GCase3().zlfa3SegmentSelectedIndex == 6) {
 //            toDate = [self addMonths:@[_c2DateMappingArrayR1[GCase3().step1MNumber], _c2DateMappingArrayR2[GCase3().step1MNumber][GCase3().step2SNumber], @4] nowDate:fromDate];
@@ -526,43 +492,26 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"action": @"solution",
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
-                                                   @"ddgc": globalData.zlfaLeftSelectedIndex == 4 ? @"Y" : @"N",
-                                                   @"cggz": globalData.zlfaLeftSelectedIndex == 1 ? @"Y" : @"N",
-                                                   @"fqgz": globalData.zlfaLeftSelectedIndex == 2 ? @"Y" : @"N",
-                                                   @"wfl": (globalData.zlfaLeftSelectedIndex == 3 || globalData.zlfaWaifangliao == 1)? @"Y" : @"N",
-                                                   @"dynf": globalData.zlfaRightSelectedIndex == 1 ? @"Y" : @"N",
-                                                   @"lhnf": globalData.zlfaLianheSelectedIndex == 1 ? @"Y" : @"N",
-                                                   @"xfz": globalData.zlfaRightSelectedIndex == 2 ? @"Y" : @"N",
-                                                   @"fz": globalData.zlfaFuzhuSelectedIndex == 1 ? @"Y" : @"N",
-                                                   @"xfqs": (globalData.zlfaChixujianxieDetailSelectedIndex == 1 && globalData.zlfaRightSelectedIndex == 2)? @"Y" : @"N",
-                                                   @"xfkx": (globalData.zlfaChixujianxieDetailSelectedIndex == 2 && globalData.zlfaRightSelectedIndex == 2)? @"Y" : @"N",
-                                                   @"xfzd": (globalData.zlfaChixujianxieDetailSelectedIndex == 3 && globalData.zlfaRightSelectedIndex == 2)? @"Y" : @"N",
-                                                   @"xfzgsrl": [self ifSelectedYaowu:@"xfzgsrl" isXinFuZhu:YES],
-                                                   @"xfzlbrl": [self ifSelectedYaowu:@"xfzlbrl" isXinFuZhu:YES],
-                                                   @"xfzdpl1": [self ifSelectedYaowu:@"xfzdpl1" isXinFuZhu:YES],
-                                                   @"xfzdpl3": [self ifSelectedYaowu:@"xfzdpl3" isXinFuZhu:YES],
-                                                   @"xfzbkla": [self ifSelectedYaowu:@"xfzbkla" isXinFuZhu:YES],
-                                                   @"xfzfta": [self ifSelectedYaowu:@"xfzfta" isXinFuZhu:YES],
+                                                   @"nf1": globalData.zlfaRightSelectedIndex == 1 || globalData.zlfaBuchongRightSelectedIndex == 1 ? YCase : NCase,
+                                                   @"hl": globalData.zlfaLeftSelectedIndex == 2 ? YCase : NCase,
+                                                   @"wfl": globalData.zlfaLeftSelectedIndex == 3 || globalData.zlfaBuchongLeftSelectedIndex == 3 ? YCase : NCase,
+                                                   @"gzbk": globalData.zlfaLeftSelectedIndex == 4 ? YCase : NCase,
+                                                   @"gzpq": globalData.zlfaLeftSelectedIndex == 5 ? YCase : NCase,
+                                                   @"ssqs": globalData.zlfaNeifenmiSelectedIndex == 1 || globalData.zlfaBuchongNeifenmiSelectedIndex == 1 ? YCase : NCase,
+                                                   @"zdzd": globalData.zlfaNeifenmiSelectedIndex == 2 || globalData.zlfaBuchongNeifenmiSelectedIndex == 2 ? YCase : NCase,
                                                    
-                                                   @"cx": (globalData.zlfaFuzhuChixuJianxieSelectedIndex == 1 ||
-                                                           (globalData.zlfaChixuJianxieSelectedIndex == 1 && globalData.zlfaRightSelectedIndex != 2))? @"Y" : @"N",
-                                                   @"jx": (globalData.zlfaFuzhuChixuJianxieSelectedIndex == 2 ||
-                                                           (globalData.zlfaChixuJianxieSelectedIndex == 2 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
-                                                   @"ssqs": (globalData.zlfaFuzhuChixujianxieDetailSelectedIndex == 4 ||
-                                                             (globalData.zlfaChixujianxieDetailSelectedIndex == 4 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
-                                                   @"fzqs": (globalData.zlfaFuzhuChixujianxieDetailSelectedIndex == 1 ||
-                                                             (globalData.zlfaChixujianxieDetailSelectedIndex == 1 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
-                                                   @"fzkx": (globalData.zlfaFuzhuChixujianxieDetailSelectedIndex == 2 ||
-                                                             (globalData.zlfaChixujianxieDetailSelectedIndex == 2 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
-                                                   @"fzzd": (globalData.zlfaFuzhuChixujianxieDetailSelectedIndex == 3 ||
-                                                             (globalData.zlfaChixujianxieDetailSelectedIndex == 3 && globalData.zlfaRightSelectedIndex != 2)) ? @"Y" : @"N",
+                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isBuchong:NO],
+                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isBuchong:NO],
+                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isBuchong:NO],
+                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isBuchong:NO],
+                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isBuchong:NO],
+                                                   @"fta": [self ifSelectedYaowu:@"fta" isBuchong:NO],
                                                    
-                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isXinFuZhu:NO],
-                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isXinFuZhu:NO],
-                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isXinFuZhu:NO],
-                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isXinFuZhu:NO],
-                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isXinFuZhu:NO],
-                                                   @"fta": [self ifSelectedYaowu:@"fta" isXinFuZhu:NO],
+                                                   @"cggzbk": globalData.zlfaGZSBikongSelectedIndex == 1 ? YCase : NCase,
+                                                   @"fqgzbk": globalData.zlfaGZSBikongSelectedIndex == 2 ? YCase : NCase,
+                                                   @"cggzpq": globalData.zlfaGZSPenqiangSelectedIndex == 1 ? YCase : NCase,
+                                                   @"fqgzpq": globalData.zlfaGZSPenqiangSelectedIndex == 2 ? YCase : NCase,
+                                                   
                                                    @"solution": [NSString stringWithFormat:@"m%ld", (long)[self countStep1MNumber]]
                                                    };
             
@@ -611,7 +560,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"col5": [NSString stringWithFormat:@"T%@N%@M%@", GCase3().zdjgTSelectItem, GCase3().zdjgNSelectItem, GCase3().zdjgMSelectItem],
                                                    @"col6": [_hzqk2ViewController loadZhiLiaoFangAn2],
                                                    @"col7": [_hzqk2ViewController loadButtonString2],
-                                                   @"col8": [_hzqk2ViewController isTypeBetween2to7] ? @"Y" : @"N",
+                                                   @"col8": [_hzqk2ViewController isNeededShowBingli] ? @"Y" : @"N",
                                                    @"col9": [_hzqk2ViewController loadYaoWuFangAn2],
                                                    @"col10": [_hzqk2ViewController loadYaoWu2],
                                                    
@@ -668,154 +617,190 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                  }];
         }
     } else if (globalData.currentIndex == 6) {
-//#pragma mark 临床检查访视二
-//        if (globalData.maxIndex > globalData.currentIndex) {
-//            [self refreshButtonAndView:7];
-//        } else {
-//            [[[UIAlertView alloc] initWithTitle:nil
-//                                        message:@"请确认已经完成诊断！"
-//                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-//                
-//            }]
-//                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-//                NSDictionary *parametersDictionary = @{@"step": @"7",
-//                                                       @"action": @"checkconfirm",
-//                                                       @"subject_id": globalData.subjectId,
-//                                                       @"group_id": globalData.groupNumber};
-//                [GInstance() httprequestWithHUD:_lcjc2ViewController.view
-//                                 withRequestURL:STEPURL
-//                                 withParameters:parametersDictionary
-//                                     completion:^(NSDictionary *jsonDic) {
-//                                         NSLog(@"responseJson: %@", jsonDic);
-//                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-//                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
-//                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
-//                                             } else {
-//                                                 _lcjc2ViewController.isLocked = YES;
-//                                                 [self refreshButtonAndView:7];
-//                                                 [GInstance() savaData];
-//                                             }
-//                                         } else {
-//                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-//                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
-//                                             }
-//                                         }
-//                                     }];
-//            }], nil] show];
-//        }
+#pragma mark 临床检查访视二
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:7];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成诊断！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+                
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                NSDictionary *parametersDictionary = @{@"step": @"7",
+                                                       @"action": @"checkconfirm",
+                                                       @"subject_id": globalData.subjectId,
+                                                       @"group_id": globalData.groupNumber};
+                [GInstance() httprequestWithHUD:_lcjc2ViewController.view
+                                 withRequestURL:STEPURL
+                                 withParameters:parametersDictionary
+                                     completion:^(NSDictionary *jsonDic) {
+                                         NSLog(@"responseJson: %@", jsonDic);
+                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                             } else {
+                                                 _lcjc2ViewController.isLocked = YES;
+                                                 [self refreshButtonAndView:7];
+                                                 [GInstance() savaData];
+                                             }
+                                         } else {
+                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                             }
+                                         }
+                                     }];
+            }], nil] show];
+        }
     } else if (globalData.currentIndex == 7) {
 #pragma mark 诊断结果访视二
-//        if (globalData.maxIndex > globalData.currentIndex) {
-//            [self refreshButtonAndView:8];
-//        } else {
-//            [[[UIAlertView alloc] initWithTitle:nil
-//                                        message:@"请确认已经完成诊断！"
-//                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
-//                
-//            }]
-//                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
-//                NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"8",
-//                                                                                                            @"action": @"diagnose",
-//                                                                                                            @"subject_id": globalData.subjectId,
-//                                                                                                            @"group_id": globalData.groupNumber,
-//                                                                                                            @"zd": globalData.zdjg2ZDSelectItem}];
-//                [GInstance() httprequestWithHUD:_zdjg2ViewController.view
-//                                 withRequestURL:STEPURL
-//                                 withParameters:parametersDictionary
-//                                     completion:^(NSDictionary *jsonDic) {
-//                                         NSLog(@"responseJson: %@", jsonDic);
-//                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-//                                             for (UIView *subView in [_zdjg2ViewController.view subviews]) {
-//                                                 if (subView.tag != 999) {
-//                                                     subView.userInteractionEnabled = NO;
-//                                                 }
-//                                             }
-//                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
-//                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
-//                                             } else {
-//                                                 [self refreshButtonAndView:8];
-//                                                 [_zlfa2ViewController refresh];
-//                                                 [GInstance() savaData];
-//                                             }
-//                                         } else {
-//                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-//                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
-//                                             }
-//                                         }
-//                                     }];
-//            }], nil] show];
-//        }
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:8];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:nil
+                                        message:@"请确认已经完成诊断！"
+                               cancelButtonItem:[RIButtonItem itemWithLabel:@"取消" action:^{
+                
+            }]
+                               otherButtonItems:[RIButtonItem itemWithLabel:@"确认" action:^{
+                NSMutableDictionary *parametersDictionary = [NSMutableDictionary dictionaryWithDictionary:@{@"step": @"8",
+                                                                                                            @"action": @"diagnose",
+                                                                                                            @"subject_id": globalData.subjectId,
+                                                                                                            @"group_id": globalData.groupNumber,
+                                                                                                            @"zd": globalData.zdjg2ZDSelectItem}];
+                [GInstance() httprequestWithHUD:_zdjg2ViewController.view
+                                 withRequestURL:STEPURL
+                                 withParameters:parametersDictionary
+                                     completion:^(NSDictionary *jsonDic) {
+                                         NSLog(@"responseJson: %@", jsonDic);
+                                         if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                             for (UIView *subView in [_zdjg2ViewController.view subviews]) {
+                                                 if (subView.tag != 999) {
+                                                     subView.userInteractionEnabled = NO;
+                                                 }
+                                             }
+                                             if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                                 [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                             } else {
+                                                 [self refreshButtonAndView:8];
+                                                 [_zlfa2ViewController refresh];
+                                                 [GInstance() savaData];
+                                             }
+                                         } else {
+                                             if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                                 [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                             }
+                                         }
+                                     }];
+            }], nil] show];
+        }
     } else if (globalData.currentIndex == 8) {
 #pragma mark 治疗方案访视二
-//        if (globalData.maxIndex > globalData.currentIndex) {
-//            [self refreshButtonAndView:9];
-//        } else {
-//            NSDictionary *parametersDictionary = @{@"step": @"9",
-//                                                   @"action": @"solution",
-//                                                   @"subject_id": globalData.subjectId,
-//                                                   @"group_id": globalData.groupNumber,
-//                                                   @"solution": [NSString stringWithFormat:@"m%lds%ld", (long)GCase3().step1MNumber, (long)[self countStep2SNumber]],
-//                                                   
-//                                                   @"cggz": globalData.zlfa2SegmentSelectedIndex == 1 ? @"Y" :@"N",
-//                                                   @"fqgz": globalData.zlfa2SegmentSelectedIndex == 2 ? @"Y" :@"N",
-//                                                   @"wfl": globalData.zlfa2SegmentSelectedIndex == 3 ? @"Y" :@"N",
-//                                                   @"nfm": globalData.zlfa2SegmentSelectedIndex == 4 ? @"Y" :@"N",
-//                                                   @"zdkx": globalData.zlfa2SegmentSelectedIndex == 5 ? @"Y" :@"N",
-//                                                   @"hl": globalData.zlfa2SegmentSelectedIndex == 7 ? @"Y" :@"N",
-//                                                   @"nfm2": globalData.zlfa2SegmentSelectedIndex == 6 ? @"Y" :@"N",
-//                                                   
-//                                                   @"fz": @"N",
-//                                                   @"cx": globalData.zlfaChixuJianxieNeifenSelectedIndex == 1 ? @"Y" :@"N",
-//                                                   @"jx": globalData.zlfaChixuJianxieNeifenSelectedIndex == 2 ? @"Y" :@"N",
-//                                                   
-//                                                   @"ssqs": globalData.zlfaChixuJianxieNeifenDetailSelectedIndex == 4 ? @"Y" :@"N",
-//                                                   @"dyqs": globalData.zlfaChixuJianxieNeifenDetailSelectedIndex == 1 ? @"Y" :@"N",
-//                                                   @"dykx": globalData.zlfaChixuJianxieNeifenDetailSelectedIndex == 2 ? @"Y" :@"N",
-//                                                   @"zdxd": globalData.zlfaChixuJianxieNeifenDetailSelectedIndex == 3 ? @"Y" :@"N",
-//                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isXinFuZhu:NO],
-//                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isXinFuZhu:NO],
-//                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isXinFuZhu:NO],
-//                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isXinFuZhu:NO],
-//                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isXinFuZhu:NO],
-//                                                   @"fta": [self ifSelectedYaowu:@"fta" isXinFuZhu:NO],
-//                                                   
-//                                                   @"cjs": globalData.zlfa2ErfenSelectedIndex == 1 ? @"Y" :@"N",
-//                                                   @"fta2": globalData.zlfa2ErfenSelectedIndex == 2 ? @"Y" :@"N"
-//                                                   };
-//            
-//            for (NSString *keyString in parametersDictionary.allKeys) {
-//                NSLog(@"%@ : %@", keyString, parametersDictionary[keyString]);
-//            }
-//            
-//            [GInstance() httprequestWithHUD:_zlfa2ViewController.view
-//                             withRequestURL:STEPURL
-//                             withParameters:parametersDictionary
-//                                 completion:^(NSDictionary *jsonDic) {
-//                                     NSLog(@"responseJson: %@", jsonDic);
-//                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
-//                                         for (UIView *subView in [_zlfa2ViewController.view subviews]) {
-//                                             if (subView.tag != 999) {
-//                                                 subView.userInteractionEnabled = NO;
-//                                             }
-//                                         }
-//                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
-//                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
-//                                         } else {
-//                                             GCase3().step2SNumber = [self countStep2SNumber];
-//                                             [self refreshButtonAndView:9];
-//                                             [_zlfa2ViewController rollToTopView];
-//                                             [_bcjz2ViewController refresh:GCase3().step1MNumber sNumber:GCase3().step2SNumber];
-//                                             [GInstance() savaData];
-//                                         }
-//                                     } else {
-//                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
-//                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
-//                                         }
-//                                     }
-//                                 }];
-//        }
+        if (globalData.maxIndex > globalData.currentIndex) {
+            [self refreshButtonAndView:9];
+        } else {
+            NSString *cforJXNF = nil;
+            NSString *nf1 = nil;
+            if (GCase3().step1MNumber == 6) {
+                cforJXNF = NCase;
+                if (GCase3().zlfa2RightSelectIndex == 1) {
+                    nf1 = YCase;
+                } else {
+                    nf1 = NCase;
+                }
+            } else {
+                nf1 = NCase;
+                if (GCase3().zlfa2RightSelectIndex == 1) {
+                    cforJXNF = YCase;
+                } else {
+                    cforJXNF = NCase;
+                }
+            }
+            
+            NSDictionary *parametersDictionary = @{@"step": @"9",
+                                                   @"action": @"solution",
+                                                   @"subject_id": globalData.subjectId,
+                                                   @"group_id": globalData.groupNumber,
+                                                   @"solution": [NSString stringWithFormat:@"m%lds%ld", (long)GCase3().step1MNumber, (long)[self countStep2SNumber]],
+                                                   
+                                                   @"exnf": globalData.zlfa2SegmentSelectedIndex == 5 ? YCase :NCase,
+                                                   @"lcsy": globalData.zlfa2SegmentSelectedIndex == 6 ? YCase : NCase,
+                                                   @"wfl": globalData.zlfa2SegmentSelectedIndex == 3 ? YCase :NCase,
+                                                   @"hl": globalData.zlfa2SegmentSelectedIndex == 2 ? YCase : NCase,
+                                                   @"nf1":nf1,
+                                                   
+                                                   @"ssqs": globalData.zlfa2NeifenmiSelectedIndex == 1 ? YCase : NCase,
+                                                   @"zdzd": globalData.zlfa2NeifenmiSelectedIndex == 2 ? YCase : NCase,
+                                                   
+                                                   @"abtl" : globalData.zlfa2LinchuangYaowuSelectedIndex == 1 ? YCase : NCase,
+                                                   @"ezla" : globalData.zlfa2LinchuangYaowuSelectedIndex == 2 ? YCase : NCase,
+                                                   @"ecjs" : globalData.zlfa2ErfenSelectedIndex == 1 ? YCase : NCase,
+                                                   @"efta" : globalData.zlfa2ErfenSelectedIndex == 2 ? YCase : NCase,
+                                                   @"jxnf": cforJXNF,
+                                                   
+                                                   @"gsrl": [self ifSelectedYaowu:@"gsrl" isBuchong:YES],
+                                                   @"lbrl": [self ifSelectedYaowu:@"lbrl" isBuchong:YES],
+                                                   @"dpl1": [self ifSelectedYaowu:@"dpl1" isBuchong:YES],
+                                                   @"dpl3": [self ifSelectedYaowu:@"dpl3" isBuchong:YES],
+                                                   @"bkla": [self ifSelectedYaowu:@"bkla" isBuchong:YES],
+                                                   @"fta": [self ifSelectedYaowu:@"fta" isBuchong:YES],
+                                                   
+                                                   
+                                                   };
+            
+            for (NSString *keyString in parametersDictionary.allKeys) {
+                NSLog(@"%@ : %@", keyString, parametersDictionary[keyString]);
+            }
+            
+            [GInstance() httprequestWithHUD:_zlfa2ViewController.view
+                             withRequestURL:STEPURL
+                             withParameters:parametersDictionary
+                                 completion:^(NSDictionary *jsonDic) {
+                                     NSLog(@"responseJson: %@", jsonDic);
+                                     if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                         for (UIView *subView in [_zlfa2ViewController.view subviews]) {
+                                             if (subView.tag != 999) {
+                                                 subView.userInteractionEnabled = NO;
+                                             }
+                                         }
+                                         if ([(NSString *)jsonDic[@"locked"] isEqualToString:@"true"]) {
+                                             [GInstance() showInfoMessage:@"暂停进入下一阶段！"];
+                                         } else {
+                                             
+                                             GCase3().step2SNumber = [self countStep2SNumber];
+                                             [self refreshButtonAndView:9];
+                                             [_zlfa2ViewController rollToTopView];
+                                             [_bcjz2ViewController refreshWithArray:[self countStep2Array]];
+                                             [GInstance() savaData];
+                                         }
+                                     } else {
+                                         if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                             [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                         }
+                                     }
+                                 }];
+        }
     } else if (globalData.currentIndex == 9) {
-//#pragma mark 病程进展访视二
+#pragma mark 病程进展访视二
+        NSDictionary *parametersDictionary = @{@"step": @"10",
+                                               @"action": @"result",
+                                               @"subject_id": globalData.subjectId,
+                                               @"group_id": globalData.groupNumber};
+        [GInstance() httprequestWithHUD:_bcjz2ViewController.view
+                         withRequestURL:STEPURL
+                         withParameters:parametersDictionary
+                             completion:^(NSDictionary *jsonDic) {
+                                 NSLog(@"responseJson: %@", jsonDic);
+                                 if ([(NSString *)jsonDic[@"result"] isEqualToString:@"true"]){
+                                     [GInstance() showInfoMessage:@"治疗结束！"];
+                                     [GInstance() savaData];
+                                 } else {
+                                     if ([(NSString *)jsonDic[@"errcode"] isEqualToString:E1]) {
+                                         [GInstance() showErrorMessage:@"服务器结果异常!"];
+                                     }
+                                 }
+                             }];
+
 //        if (globalData.maxIndex > globalData.currentIndex) {
 //            globalData.currentStep = Case2Step3;
 //            [self refreshButtonAndView:10];
@@ -1065,9 +1050,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
 
 - (NSUInteger)countStep1MNumber
 {
-    
     NSUInteger mNumber = 0;
-    
     if (GCase3().step1MNumber != 0) {
         return GCase3().step1MNumber;
     }
@@ -1075,95 +1058,80 @@ static float const MASTERVIEWWIDTH = 152.0f;
     if (GCase3().zlfaLeftSelectedIndex != 0) {
         
         if (GCase3().zlfaLeftSelectedIndex == 5) {
-            if (GCase3().zlfaBuchongLeftSelectedIndex != 0) {
-                GCase3().step1MNumber = 5;
-            } else {
-                GCase3().step1MNumber = 6;
-            }
-        } else {
-            GCase3().step1MNumber = GCase3().zlfaLeftSelectedIndex;
-        }
-        return GCase3().step1MNumber;
-    } else {
-        GCase3().step1MNumber = 1;
-        return GCase3().step1MNumber;
-    }
-    
-    /*
-    if (GCase3().zlfaLeftSelectedIndex == 4) {
-        mNumber = 1;
-    } else if (GCase3().zlfaLeftSelectedIndex == 1 || GCase3().zlfaLeftSelectedIndex == 2) {
-        if (GCase3().zlfaRightSelectedIndex == 0) {
-            if (GCase3().zlfaWaifangliao == 1) {
-                if (GCase3().zlfaLianheSelectedIndex == 1) {
-                    mNumber = 7;
-                } else {
-                    mNumber = 6;
-                }
-            } else {
-                if (GCase3().zlfaFuzhuSelectedIndex == 1) {
-                    mNumber = 3;
-                } else {
-                    mNumber = 2;
-                }
-            }
-        } else {
-            if (GCase3().zlfaFuzhuSelectedIndex == 1) {
+            if (GCase3().zlfaBuchongRightSelectedIndex != 0) {
                 mNumber = 5;
             } else {
-                mNumber = 4;
+                mNumber = 6;
             }
+        } else {
+            mNumber = GCase3().zlfaLeftSelectedIndex;
         }
-    } else if (GCase3().zlfaLeftSelectedIndex == 3) {
-        mNumber = 8;
+    } else {
+        mNumber = 1;
     }
-
-    if (GCase3().zlfaRightSelectedIndex == 1) {
-        mNumber = 9;
-    }
-
+    
     GCase3().step1MNumber = mNumber;
-
-    NSLog(@"MNUMBER: %ld", (long)mNumber);
-     */
     return mNumber;
 }
 
 - (NSUInteger)countStep2SNumber
 {
-    /*
-    if (GCase3().zlfa2SegmentSelectedIndex == 4 || //内分泌
-        GCase3().zlfa2SegmentSelectedIndex == 1 || //手术1
-        GCase3().zlfa2SegmentSelectedIndex == 2 || //手术2
-        GCase3().zlfa2SegmentSelectedIndex == 5 //中断
-        ) {
-        return 1;
-    }
-
-    if ((GCase3().zlfa2SegmentSelectedIndex == 7 && GCase3().step1MNumber != 9) || //化疗
-        ((GCase3().step1MNumber == 9 || GCase3().step1MNumber == 2) && GCase3().zlfa2SegmentSelectedIndex == 3) //外放疗
-        ) {
-        return 2;
-    }
-
-    if ((GCase3().zlfa2SegmentSelectedIndex == 6 && GCase3().step1MNumber != 9) || //二线
-        (GCase3().zlfa2SegmentSelectedIndex == 7 && GCase3().step1MNumber == 9) //放疗
-        ) {
-        return 3;
-    }
-
-    if ((GCase3().zlfa2SegmentSelectedIndex == 6 && GCase3().step1MNumber == 9) || //二线
-        (GCase3().step1MNumber != 9 && GCase3().step1MNumber != 2 && GCase3().zlfa2SegmentSelectedIndex == 3) //外放疗
-        ) {
-        return 4;
-    }
-     */
-    return 0;
+    NSArray *array = [self countStep2Array];
+    NSInteger index = [array[1] integerValue] ;
+//    GCase3().step2SNumber = index;
+    return index;
 }
 
+- (NSArray *)countStep2Array
+{
+    Case3Data *globalData = GCase3();
+    NSInteger sNumber = 0;
+    NSInteger subNumber = 0;
+    if (globalData.step1MNumber == 6) {
+        if (globalData.zlfa2LeftSelectedIndex == 0) {
+            sNumber = 1;
+        } else {
+            if (globalData.zlfa2LeftSelectedIndex == 2) {
+                if (globalData.zlfa2RightSelectIndex == 0) {
+                    sNumber = 3;
+                } else {
+                    sNumber = 4;
+                }
+            } else if (globalData.zlfa2LeftSelectedIndex == 3) {
+                sNumber = 2;
+            }
+        }
+    } else {
+        if (globalData.zlfa2LeftSelectedIndex == 5) {
+            sNumber = 1;
+        } else if (globalData.zlfa2LeftSelectedIndex == 2) {
+            if (globalData.zlfa2RightSelectIndex == 0) {
+                sNumber = 2;
+            } else {
+                sNumber = 3;
+            }
+        } else if (globalData.zlfa2LeftSelectedIndex == 6) {
+            if (globalData.zlfa2RightSelectIndex == 0) {
+                sNumber = 4;
+            } else {
+                sNumber = 5;
+            }
+        }
+    }
+    subNumber = globalData.zlfa2LinchuangYaowuSelectedIndex;
+    
+    NSInteger mNumber = globalData.step1MNumber;
+    if (mNumber == 4 || mNumber == 5) {
+        mNumber = 3;
+    }
+    
+    return @[@(mNumber), @(sNumber), @(subNumber)];
+}
+
+/*
 - (NSString *)ifSelectedYaowu:(NSString *)yaowuName isXinFuZhu:(BOOL)isXinFuZhu
 {
-    /*
+    
     NSDictionary *yaowuDic = @{@"达菲林 3月剂型":@[@"xfzdpl3", @"dpl3"],
                                @"达菲林 1月剂型":@[@"xfzdpl1", @"dpl1"],
                                @"戈舍瑞林":@[@"xfzgsrl", @"gsrl"],
@@ -1200,8 +1168,39 @@ static float const MASTERVIEWWIDTH = 152.0f;
             return @"N";
         }
     }
-     */
-    return YCase;
+         return YCase;
 }
+ */
+
+ 
+ 
+- (NSString *)ifSelectedYaowu:(NSString *)yaowuName isBuchong:(BOOL)isBuchong
+{
+    Case3Data *globalData = GCase3();
+    NSDictionary *yaowuDic = @{
+                               @"dpl3" : @"达菲林 3月剂型",
+                               @"dpl1" : @"达菲林 1月剂型",
+                               @"gsrl" : @"戈舍瑞林",
+                               @"lbrl" : @"亮丙瑞林",
+                               @"bkla": @"比卡鲁胺",
+                               @"fta" :@"氟他胺"
+                               };
+    
+    NSString *ywName = yaowuDic[yaowuName];
+    if (isBuchong) {
+        if ([globalData.zlfaNeifenmiYaowuName1 isEqualToString:ywName] || [globalData.zlfaNeifenmiYaowuName2 isEqualToString:ywName]) {
+            return YCase;
+        }
+    } else {
+        if ([globalData.zlfaBuchongRightYWName1 isEqualToString:ywName] || [globalData.zlfaBuchongRightYWName2 isEqualToString:ywName] ||
+            [globalData.zlfaRightYWName1 isEqualToString:ywName] || [globalData.zlfaRightYWName2 isEqualToString:ywName]) {
+            return YCase;
+        }
+    }
+    return NCase;
+}
+
+
+
 
 @end

@@ -323,6 +323,7 @@
                                                    @"item": _checkingStringArray[indexPath.row],
                                                    @"seq": [NSString stringWithFormat:@"%ld", (long)selectedArray.count]} mutableCopy];
 
+    NSLog(@"%@", parametersDictionary);
     BOOL hideFullImage = [self reloadResultImageView:indexPath.row];
 
     if (_isLocked) {

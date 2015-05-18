@@ -24,7 +24,7 @@
 @property (copy, nonatomic) NSString *zdjgPGSelectItem;
 
 //治疗方案1
-@property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 2 3 4 5
+@property (assign, nonatomic) NSUInteger zlfaLeftSelectedIndex; // 2 化疗 3 外放疗  4 5
 @property (assign, nonatomic) NSUInteger zlfaRightSelectedIndex; // 1 2    0 未选择
 
 @property (assign, nonatomic) NSUInteger zlfaNeifenmiSelectedIndex; // 1 2 0 未选择
@@ -45,24 +45,12 @@
 @property (copy, nonatomic) NSString *zlfaBuchongRightYWName1;
 @property (copy, nonatomic) NSString *zlfaBuchongRightYWName2;
 
-@property (assign, nonatomic) NSUInteger zlfaChixuJianxieSelectedIndex; // 1 持续 2 间歇 0 未选择
-@property (assign, nonatomic) NSUInteger zlfaChixujianxieDetailSelectedIndex; // 1 药物 2 抗雄 3 雄激素 4 手术 0 未选择
-@property (assign, nonatomic) NSUInteger zlfaLianheSelectedIndex; //1 选中 0 未选
-@property (copy, nonatomic) NSString *zlfaYaowuName1; //Picker1
-@property (copy, nonatomic) NSString *zlfaYaowuName2; //Picker2
-
 
 @property (copy, nonatomic) NSString *zlfaXinfuzhuYaowuName1; //Picker1 新辅助
 @property (copy, nonatomic) NSString *zlfaXinfuzhuYaowuName2; //Picker2 新辅助
 
 
-@property (assign, nonatomic) NSUInteger zlfaWaifangliao; // 1 选择 0 未选
-@property (assign, nonatomic) NSUInteger zlfaFuzhuSelectedIndex; // 1 选择    0 未选择
-@property (assign, nonatomic) NSUInteger zlfaFuzhuChixuJianxieSelectedIndex; // 1 持续 2 间歇 0 未选择
-@property (assign, nonatomic) NSUInteger zlfaFuzhuChixujianxieDetailSelectedIndex; // 1 药物 2 抗雄 3 雄激素 4 手术 0 未选择
-
 @property (assign, nonatomic) NSUInteger zlfa2SegmentSelectedIndex; // 1 2 3 4 5 6 7 0 未选择
-@property (assign, nonatomic) NSUInteger zlfa2ErfenSelectedIndex; // 1 雌激素 2 氟他胺 0 未选择
 @property (assign, nonatomic) NSUInteger zlfaChixuJianxieNeifenSelectedIndex; // 1 持续 2 间歇 0 未选择
 @property (assign, nonatomic) NSUInteger zlfaChixuJianxieNeifenDetailSelectedIndex; // 1 药物 2 抗雄 3 雄激素 4 手术 0 未选择
 
@@ -71,7 +59,19 @@
 //病程进展
 
 
+/**************** 访视2 ******************/
+//诊断
+@property (copy, nonatomic) NSString *zdjg2ZDSelectItem;
 
+@property (assign, nonatomic) NSUInteger zlfa2RightSelectIndex;
+@property (assign, nonatomic) NSUInteger zlfa2ErfenSelectedIndex; // 1 雌激素 2 氟他胺 0 未选择
+@property (assign, nonatomic) NSUInteger zlfa2LinchuangYaowuSelectedIndex;
+
+@property (assign, nonatomic) NSUInteger zlfa2GutongSelecteIndex;
+@property (assign, nonatomic) NSUInteger zlfa2GutongItemSelecteIndex;
+@property (assign, nonatomic) NSUInteger zlfa2LeftSelectedIndex;
+@property (assign, nonatomic) NSUInteger zlfa2NeifenmiSelectedIndex; // 1 2 0 未选择
+@property (assign, nonatomic) NSUInteger zlfa2ZuidaZuduanSelectedIndex; // 1 持续 2 间歇 0未选择 （0，2错误提示）
 
 @property (assign, nonatomic) NSUInteger step1MNumber;
 @property (assign, nonatomic) NSUInteger step2SNumber;

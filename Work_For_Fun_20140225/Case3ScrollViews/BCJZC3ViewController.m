@@ -65,6 +65,23 @@
     _bcjzContentImageView.image = [UIImage imageNamed:imageNameString];
 }
 
+- (void)refreshWithArray:(NSArray *)array
+{
+    NSString *imageName = @"c3r2M";
+    if ([[array lastObject] integerValue] != 0) {
+        imageName = [imageName stringByAppendingFormat:@"%@S%@_%@", array[0], array[1], array[2]];
+    } else {
+        imageName = [imageName stringByAppendingFormat:@"%@S%@", array[0], array[1]];
+    }
+    _bcjzContentImageView.image = [UIImage imageNamed:@"zlfaBG"];
+    
+    UIImageView *imageView = (UIImageView *)[self.view viewWithTag:4];
+    imageView.hidden = NO;
+    imageView.image = [UIImage imageNamed:imageName];
+    
+}
+
+
 - (void)refresh
 {
 //    NSMutableString *imageNameString = [NSMutableString stringWithString:@"c2bcjz3_"];

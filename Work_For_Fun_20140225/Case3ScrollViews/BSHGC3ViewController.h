@@ -19,7 +19,7 @@
 - (NSString *)loadYaoWuFangAn2;
 - (NSString *)loadYaoWu2;
 
-- (BOOL)isTypeBetween2to7;
+- (BOOL)isNeededShowBingli;
 
 - (void)refresh;
 
