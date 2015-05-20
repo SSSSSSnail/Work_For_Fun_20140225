@@ -553,7 +553,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"subject_id": globalData.subjectId,
                                                    @"group_id": globalData.groupNumber,
                                                    @"solution": [NSString stringWithFormat:@"m%ld", (long)[self countStep1MNumber]],
-                                                   @"col1": [NSString stringWithFormat:@"m%ld|%@", (long)GCase3().step1MNumber, [_hzqk2ViewController chixujianxieString2]],
+                                                   @"col1": [NSString stringWithFormat:@"m%ld", (long)GCase3().step1MNumber],
                                                    @"col2": [_hzqk2ViewController linchuangjiancheString2],
                                                    @"col3": [_hzqk2ViewController zhenduanString2],
                                                    @"col4": [_hzqk2ViewController weixianxingpingguString2],
@@ -723,10 +723,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"group_id": globalData.groupNumber,
                                                    @"solution": [NSString stringWithFormat:@"m%lds%ld", (long)GCase3().step1MNumber, (long)[self countStep2SNumber]],
                                                    
-                                                   @"exnf": globalData.zlfa2SegmentSelectedIndex == 5 ? YCase :NCase,
-                                                   @"lcsy": globalData.zlfa2SegmentSelectedIndex == 6 ? YCase : NCase,
-                                                   @"wfl": globalData.zlfa2SegmentSelectedIndex == 3 ? YCase :NCase,
-                                                   @"hl": globalData.zlfa2SegmentSelectedIndex == 2 ? YCase : NCase,
+                                                   @"exnf": globalData.zlfa2LeftSelectedIndex == 5 ? YCase :NCase,
+                                                   @"lcsy": globalData.zlfa2LeftSelectedIndex == 6 ? YCase : NCase,
+                                                   @"wfl": globalData.zlfa2LeftSelectedIndex == 3 ? YCase :NCase,
+                                                   @"hl": globalData.zlfa2LeftSelectedIndex == 2 ? YCase : NCase,
                                                    @"nf1":nf1,
                                                    
                                                    @"ssqs": globalData.zlfa2NeifenmiSelectedIndex == 1 ? YCase : NCase,
@@ -744,6 +744,10 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                                    @"dpl3": [self ifSelectedYaowu:@"dpl3" isBuchong:YES],
                                                    @"bkla": [self ifSelectedYaowu:@"bkla" isBuchong:YES],
                                                    @"fta": [self ifSelectedYaowu:@"fta" isBuchong:YES],
+                                                   
+                                                   @"gtzl": globalData.zlfa2GutongSelecteIndex == 4 ? YCase : NCase,
+                                                   @"zlfl" : globalData.zlfa2GutongItemSelecteIndex == 1 ? YCase : NCase,
+                                                   @"zlhj" : globalData.zlfa2GutongItemSelecteIndex == 2 ? YCase : NCase,
                                                    
                                                    
                                                    };

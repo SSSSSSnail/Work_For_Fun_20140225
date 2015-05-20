@@ -12,7 +12,7 @@
 #define NSLog(...) {}
 #endif
 
-#define SKIPREQUEST
+//#define SKIPREQUEST
 
 #import "UIFont+MicrosoftFont.h"
 #import "UIAlertView+Blocks.h"
@@ -37,9 +37,9 @@
 @end
 
 
-static NSString *const HOSTURL = @"http://diphereline-case.com/";
+//static NSString *const HOSTURL = @"http://diphereline-case.com/";
 //Local
-//static NSString *const HOSTURL = @"http://192.168.1.14:8080/diphereline-case/";
+static NSString *const HOSTURL = @"http://192.168.1.55:8080/";
 
 #define SERVERURL [NSString stringWithFormat:@"%@%@", HOSTURL, @"subject.do"]
 #define STEPURL [NSString stringWithFormat:@"%@case%ld.do", HOSTURL, (long)GInstance().caseNumber]
@@ -48,6 +48,7 @@ static NSString *const E1 = @"E01";
 static NSString *const E2 = @"E02";
 
 static NSString *const YCase = @"Y";
+static NSString *const NCase = @"N";
 
 typedef NS_ENUM (NSUInteger, CaseNumber) {
     CaseNumberZero = 0,

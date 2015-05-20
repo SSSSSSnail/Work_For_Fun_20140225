@@ -202,8 +202,6 @@ static NSString * const DoubleSpace = @"  ";
             
         } else {
             
-            BOOL isWflorHl = (seg == _wflSegmentedControl || seg == _hlSegmentedControl);
-            
             for (UISegmentedControl *segment in _segmentedControls) {
                 if (seg == segment) {
                     continue;
@@ -572,7 +570,7 @@ static NSString * const DoubleSpace = @"  ";
                 }
             }
         } else {
-            if (globalData.zlfaBuchongRightSelectedIndex == 0) {
+            if (globalData.zlfaBuchongRightSelectedIndex == 1) {
                 if (globalData.zlfaBuchongNeifenmiSelectedIndex == 2) {
                     if (globalData.zlfaBuchongZuidaZuduanSelectedIndex == 0) {
                         [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
@@ -581,6 +579,9 @@ static NSString * const DoubleSpace = @"  ";
                         [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
                         return NO;
                     }
+                } else if (globalData.zlfaBuchongNeifenmiSelectedIndex == 0) {
+                    [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
+                    return NO;
                 }
             }
         }
@@ -719,6 +720,7 @@ static NSString * const DoubleSpace = @"  ";
         } else if (view == _nfmView) {
             CGRect frame = _hlMasterView.frame;
             _hlMasterView.frame = CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame) - height, CGRectGetWidth(frame), CGRectGetHeight(frame));
+
         }
     } completion:^(BOOL finished) {
         
@@ -825,7 +827,7 @@ static NSString * const DoubleSpace = @"  ";
         if (_state == CurrentStateFAXZ) {
             GCase3().zlfaNeifenmiSelectedIndex = 0;
         } else {
-            GCase3().zlfaNeifenmiSelectedIndex = 0;
+            GCase3().zlfaBuchongNeifenmiSelectedIndex = 0;
         }
         
     }
@@ -889,6 +891,7 @@ static NSString * const DoubleSpace = @"  ";
             button.selected = NO;
         }
     }];
+    _nfmZuidazuduanSubView.hidden = YES;
     if (_state == CurrentStateFAXZ) {
         GCase3().zlfaZuidaZuduanSelectedIndex = 0;
     } else {
@@ -904,7 +907,6 @@ static NSString * const DoubleSpace = @"  ";
             button.selected = NO;
         }
     }];
-    _nfmZuidazuduanSubView.hidden = YES;
     GCase3().zlfaGZSBikongSelectedIndex = 0;
 }
 

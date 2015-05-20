@@ -904,17 +904,18 @@ static NSString * const DoubleSpace = @"  ";
 - (void)buttonClick:(UIButton *)button
 {
     if ([_linchuangyaowuArray containsObject:button]) {
-        if (_linchuangyaowushiyanSegmentedControl.selectedSegmentIndex == 0) {
-            [self linchuangyaowu:button];
-        }
+//        if (_linchuangyaowushiyanSegmentedControl.selectedSegmentIndex == 0) {
+//            
+//        }
+        [self linchuangyaowu:button];
     } else if ([_gutongArray containsObject:button]) {
-        if (_gutongzhiliaoSegmentedControl.selectedSegmentIndex == 0) {
+//        if (_gutongzhiliaoSegmentedControl.selectedSegmentIndex == 0) {
             [self gutong:button];
-        }
+//        }
     } if ([_erxianNFMArray containsObject:button]) {
-        if (_erxianFNMSegmentedControl.selectedSegmentIndex == 0) {
+//        if (_erxianFNMSegmentedControl.selectedSegmentIndex == 0) {
             [self erxianNFM:button];
-        }
+//        }
     }
 }
 
@@ -930,8 +931,13 @@ static NSString * const DoubleSpace = @"  ";
                 view.selected = NO;
             }
         }
-        GCase3().zlfa2LinchuangYaowuSelectedIndex = button.tag;
         
+        if (_linchuangyaowushiyanSegmentedControl.selectedSegmentIndex == 1) {
+            _linchuangyaowushiyanSegmentedControl.selectedSegmentIndex = 0;
+            [self segmentedValueChanged:_linchuangyaowushiyanSegmentedControl];
+        }
+        GCase3().zlfa2LinchuangYaowuSelectedIndex = button.tag;
+
     } else {
         GCase3().zlfa2LinchuangYaowuSelectedIndex = 0;
     }
@@ -947,6 +953,10 @@ static NSString * const DoubleSpace = @"  ";
             if (button != view && view.isSelected) {
                 view.selected = NO;
             }
+        }
+        if (_erxianFNMSegmentedControl.selectedSegmentIndex == 1) {
+            _erxianFNMSegmentedControl.selectedSegmentIndex = 0;
+            [self segmentedValueChanged:_erxianFNMSegmentedControl];
         }
     }
     
@@ -968,6 +978,10 @@ static NSString * const DoubleSpace = @"  ";
             if (button != view && view.isSelected) {
                 view.selected = NO;
             }
+        }
+        if (_gutongzhiliaoSegmentedControl.selectedSegmentIndex == 1) {
+            _gutongzhiliaoSegmentedControl.selectedSegmentIndex = 0;
+            [self segmentedValueChanged:_gutongzhiliaoSegmentedControl];
         }
     }
     
@@ -994,7 +1008,7 @@ static NSString * const DoubleSpace = @"  ";
 {
     [data enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         UIButton *button = (UIButton *)obj;
-        if (button.isSelected) {
+        if (button.isSelected && !enable) {
             button.selected = NO;
         }
     }];

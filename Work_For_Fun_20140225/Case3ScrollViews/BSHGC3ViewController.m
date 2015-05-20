@@ -346,33 +346,57 @@
 - (NSString *)loadButtonString2
 {
     NSMutableString *buttonString = [NSMutableString string];
-//    Case3Data *gdata = GCase3();
-//    if (gdata.zlfaLeftSelectedIndex == 1 || gdata.zlfaLeftSelectedIndex == 2) {
-//        [buttonString appendFormat:@"%d,", 0];
-//    }
-//    if (gdata.zlfaLeftSelectedIndex == 3 || gdata.zlfaWaifangliao == 1) {
-//        [buttonString appendFormat:@"%d,", 1];
-//    }
-//    if (gdata.zlfaRightSelectedIndex == 2) {
-//        [buttonString appendFormat:@"%d,", 2];
-//    }
-//    if (gdata.zlfaChixuJianxieSelectedIndex > 0 || gdata.zlfaFuzhuChixuJianxieSelectedIndex > 0) {
-//        [buttonString appendFormat:@"%d,", 3];
-//    }
-    return buttonString == nil ? @"" : buttonString;
+    Case3Data *gdata = GCase3();
+    /*
+    if (gdata.zlfaLeftSelectedIndex == 1 || gdata.zlfaLeftSelectedIndex == 2) {
+        [buttonString appendFormat:@"%d,", 0];
+    }
+    if (gdata.zlfaLeftSelectedIndex == 3 || gdata.zlfaWaifangliao == 1) {
+        [buttonString appendFormat:@"%d,", 1];
+    }
+    if (gdata.zlfaRightSelectedIndex == 2) {
+        [buttonString appendFormat:@"%d,", 2];
+    }
+     手术 放疗 内分泌 化疗
+    */
+    if (gdata.zlfaLeftSelectedIndex == 4 || gdata.zlfaLeftSelectedIndex == 5) {
+        [buttonString appendFormat:@"%d", 0];
+    }
+    if (gdata.zlfaLeftSelectedIndex == 3 || gdata.zlfaBuchongLeftSelectedIndex == 3) {
+        if (buttonString.length > 0) {
+            [buttonString appendFormat:@","];
+        }
+        [buttonString appendFormat:@"%d", 1];
+    }
+    
+    if (gdata.zlfaRightSelectedIndex == 1 || gdata.zlfaBuchongRightSelectedIndex == 1) {
+        if (buttonString.length > 0) {
+            [buttonString appendFormat:@","];
+        }
+        [buttonString appendFormat:@"%d", 2];
+    }
+    
+    if (gdata.zlfaLeftSelectedIndex == 2) {
+        if (buttonString.length > 0) {
+            [buttonString appendFormat:@","];
+        }
+        [buttonString appendFormat:@"%d", 3];
+    }
+
+    return buttonString.length == 0 ? @"" : buttonString;
 }
 
 - (NSString *)chixujianxieString2
 {
-    NSUInteger mNumber = GCase3().step1MNumber;
-    NSUInteger lastNumber = 0;
-    if (mNumber == 3 || mNumber == 5) {
+//    NSUInteger mNumber = GCase3().step1MNumber;
+//    NSUInteger lastNumber = 0;
+//    if (mNumber == 3 || mNumber == 5) {
 //        lastNumber = GCase3().zlfaFuzhuChixuJianxieSelectedIndex;
-    }
-    if (mNumber == 8 || mNumber == 9) {
+//    }
+//    if (mNumber == 8 || mNumber == 9) {
 //        lastNumber = GCase3().zlfaChixuJianxieSelectedIndex;
-    }
-    return [NSString stringWithFormat:@"%ld", (long)lastNumber];
+//    }
+    return @"1";// [NSString stringWithFormat:@"%ld", (long)lastNumber];
 }
 
 - (IBAction)confirmClick:(UIButton *)sender
