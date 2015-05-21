@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Work_For_Fun_20140225/Case3ScrollViews/ZLFAS2C3ViewController.m"
-            timestampString = "453619036.510094"
+            timestampString = "453801908.337304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "694"
-            endingLineNumber = "694"
+            startingLineNumber = "692"
+            endingLineNumber = "692"
             landmarkName = "-pickerView:didSelectRow:inComponent:"
             landmarkType = "5">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Work_For_Fun_20140225/Case3ScrollViews/ZLFAC3ViewController.m"
-            timestampString = "453712998.298479"
+            timestampString = "453801908.337304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "620"
-            endingLineNumber = "620"
+            startingLineNumber = "613"
+            endingLineNumber = "613"
             landmarkName = "-task:showOrHide:isBC:"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Work_For_Fun_20140225/Case3ScrollViews/ZLFAC3ViewController.m"
-            timestampString = "453712998.298479"
+            timestampString = "453801908.337304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "631"
-            endingLineNumber = "631"
+            startingLineNumber = "624"
+            endingLineNumber = "624"
             landmarkName = "-task:showOrHide:isBC:"
             landmarkType = "5">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Work_For_Fun_20140225/Case3ScrollViews/ZLFAC3ViewController.m"
-            timestampString = "453713144.965661"
+            timestampString = "453801908.337304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "730"
-            endingLineNumber = "730"
+            startingLineNumber = "723"
+            endingLineNumber = "723"
             landmarkName = "-hideTaskView:showOrHide:"
             landmarkType = "5">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Work_For_Fun_20140225/Case3ScrollViews/ZLFAC3ViewController.m"
-            timestampString = "453712998.298479"
+            timestampString = "453801908.337304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "721"
-            endingLineNumber = "721"
+            startingLineNumber = "714"
+            endingLineNumber = "714"
             landmarkName = "-hideTaskView:showOrHide:"
             landmarkType = "5">
          </BreakpointContent>
@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Work_For_Fun_20140225/Case3ScrollViews/ZLFAS2C3ViewController.m"
-            timestampString = "453704974.03117"
+            timestampString = "453801908.337304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "934"
-            endingLineNumber = "934"
+            startingLineNumber = "932"
+            endingLineNumber = "932"
             landmarkName = "-linchuangyaowu:"
             landmarkType = "5">
          </BreakpointContent>
@@ -180,28 +180,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Work_For_Fun_20140225/Case3ScrollViews/ZLFAS2C3ViewController.m"
-            timestampString = "453705578.550175"
+            timestampString = "453801908.337304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "879"
-            endingLineNumber = "879"
+            startingLineNumber = "877"
+            endingLineNumber = "877"
             landmarkName = "-changedState:selected:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Work_For_Fun_20140225/Case3MainViewController.m"
-            timestampString = "453710174.04287"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "758"
-            endingLineNumber = "758"
-            landmarkName = "-didClickConfirmButton:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -212,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Work_For_Fun_20140225/Case3ScrollViews/ZLFAC3ViewController.m"
-            timestampString = "453712998.298479"
+            timestampString = "453801908.337304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "573"
-            endingLineNumber = "573"
+            startingLineNumber = "566"
+            endingLineNumber = "566"
             landmarkName = "-checkValues"
             landmarkType = "5">
          </BreakpointContent>

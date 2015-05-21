@@ -524,12 +524,10 @@ static NSString * const DoubleSpace = @"  ";
 - (void)taskList:(UIButton *)sender
 {
     Case3Data *globalData = GCase3();
-    
+    _titleLabel.text = nil;
     if (globalData.step1MNumber == 6) {
         
         if (_currentStep == CurrentStepFinish) {
-            _section1View.hidden = NO;
-            _section2View.hidden = YES;
             if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
                 [self.scrollViewDelegate didClickConfirmButton:sender];
             }

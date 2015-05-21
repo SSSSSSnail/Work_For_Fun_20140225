@@ -391,17 +391,10 @@ static NSString * const DoubleSpace = @"  ";
                         }];
     } else if (_state == CurrentStateYWXZ || _state == CurrentStateBC || _state == CurrentStateShowResult) {
         _state = CurrentStateFinish;
-        _section2View.hidden = YES;
-        _titleLabel.text = @"选择治疗方案";
-        _section1View.hidden = NO;
-        _section2View.hidden = YES;
         if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
             [self.scrollViewDelegate didClickConfirmButton:sender];
         }
     } else if (_state == CurrentStateFinish) {
-        
-        _section1View.hidden = NO;
-        _section2View.hidden = YES;
         if ([self.scrollViewDelegate respondsToSelector:@selector(didClickConfirmButton:)]) {
             [self.scrollViewDelegate didClickConfirmButton:sender];
         }

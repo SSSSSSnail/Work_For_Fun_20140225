@@ -577,6 +577,7 @@ static float const MASTERVIEWWIDTH = 152.0f;
                                          } else {
 //                                             globalData.currentStep = Case2Step2;
                                              [self refreshButtonAndView:5];
+                                             [_zlfa1ViewController rollToTopView];
                                              [_hzqk2ViewController refresh];
                                              [GInstance() savaData];
                                          }
