@@ -12,7 +12,7 @@
 #define NSLog(...) {}
 #endif
 
-#define SKIPREQUEST
+//#define SKIPREQUEST
 
 #import "UIFont+MicrosoftFont.h"
 #import "UIAlertView+Blocks.h"
@@ -37,9 +37,9 @@
 @end
 
 
-//static NSString *const HOSTURL = @"http://diphereline-case.com/";
+static NSString *const HOSTURL = @"http://diphereline-case.com/";
 //Local
-static NSString *const HOSTURL = @"http://192.168.1.55:8080/";
+//static NSString *const HOSTURL = @"http://edetailing-data.com/";
 
 #define SERVERURL [NSString stringWithFormat:@"%@%@", HOSTURL, @"subject.do"]
 #define STEPURL [NSString stringWithFormat:@"%@case%ld.do", HOSTURL, (long)GInstance().caseNumber]
