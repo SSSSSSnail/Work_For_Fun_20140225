@@ -12,7 +12,7 @@
 #define NSLog(...) {}
 #endif
 
-//#define SKIPREQUEST
+#define SKIPREQUEST
 
 #import "UIFont+MicrosoftFont.h"
 #import "UIAlertView+Blocks.h"

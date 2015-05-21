@@ -418,14 +418,6 @@ static NSString * const DoubleSpace = @"  ";
 {
     Case3Data *globalData = GCase3();
     NSInteger step = globalData.step1MNumber;
-    if (globalData.zlfa2GutongSelecteIndex == 0) {
-        [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
-        return NO;
-    }
-    if (globalData.zlfa2GutongItemSelecteIndex == 0) {
-        [GInstance() showInfoMessage:@"请完成治疗方案选择。"];
-        return NO;
-    }
     if (step == 6) {
         if (globalData.zlfa2LeftSelectedIndex == 2) {
             if (![self validationNFM:NO]) {
@@ -433,7 +425,7 @@ static NSString * const DoubleSpace = @"  ";
                 return NO;
             }
             if (globalData.zlfa2ZuidaZuduanSelectedIndex == 2) {
-                [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
+                [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇内分泌治疗!"];
                 return NO;
             }
             if (_currentStep == CurrentStepFinish) {
@@ -450,7 +442,7 @@ static NSString * const DoubleSpace = @"  ";
                 return NO;
             }
             if (globalData.zlfa2ZuidaZuduanSelectedIndex == 2) {
-                [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
+                [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇内分泌治疗!"];
                 return NO;
             }
         }
@@ -496,6 +488,14 @@ static NSString * const DoubleSpace = @"  ";
                 }
             }
         }
+    }
+    if (globalData.zlfa2GutongSelecteIndex == 0) {
+        [GInstance() showInfoMessage:@"请完成骨痛治疗。"];
+        return NO;
+    }
+    if (globalData.zlfa2GutongItemSelecteIndex == 0) {
+        [GInstance() showInfoMessage:@"请完成骨痛治疗。"];
+        return NO;
     }
     
     return YES;

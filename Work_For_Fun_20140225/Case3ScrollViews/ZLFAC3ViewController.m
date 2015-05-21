@@ -500,7 +500,7 @@ static NSString * const DoubleSpace = @"  ";
             } else {
                 if (globalData.zlfaNeifenmiSelectedIndex == 2) {
                     if (globalData.zlfaZuidaZuduanSelectedIndex == 2) {
-                        [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
+                        [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇内分泌治疗!"];
                         return NO;
                     } else if (globalData.zlfaZuidaZuduanSelectedIndex == 0) {
                         [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
@@ -523,7 +523,7 @@ static NSString * const DoubleSpace = @"  ";
                     }
                     if (globalData.zlfaNeifenmiSelectedIndex == 2) {
                         if (globalData.zlfaZuidaZuduanSelectedIndex == 2) {
-                            [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
+                            [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇内分泌治疗!"];
                             return NO;
                         } else if (globalData.zlfaZuidaZuduanSelectedIndex == 0) {
                             [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
@@ -558,7 +558,7 @@ static NSString * const DoubleSpace = @"  ";
                     [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
                     return NO;
                 } else if (globalData.zlfaBuchongZuidaZuduanSelectedIndex == 2) {
-                    [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
+                    [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇内分泌治疗!"];
                     return NO;
                 }
             }
@@ -569,7 +569,7 @@ static NSString * const DoubleSpace = @"  ";
                         [GInstance() showInfoMessage:@"请完成治疗方案选择!"];
                         return NO;
                     } else if (globalData.zlfaBuchongZuidaZuduanSelectedIndex == 2) {
-                        [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇!"];
+                        [GInstance() showInfoMessage:@"根据该患者情况，不适合间歇内分泌治疗!"];
                         return NO;
                     }
                 } else if (globalData.zlfaBuchongNeifenmiSelectedIndex == 0) {
