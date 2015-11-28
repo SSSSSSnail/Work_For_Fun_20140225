@@ -243,9 +243,10 @@
     cell.textLabel.text = _lcjcTableViewLabelTextArray[indexPath.row];
 
     UILabel *rightLabel = (UILabel *)[cell viewWithTag:1];
-    rightLabel.text = @"查看结果";
+//    rightLabel.text = @"查看结果";
+    rightLabel.hidden = YES;
     rightLabel.font = [UIFont miscrosoftYaHeiFontWithSize:22.0f];
-
+    
     UIColor *cellBackgroundColor = isSelected?[UIColor colorWithRed:247.0f/255 green:176.0f/255 blue:92.0f/255 alpha:1]:[UIColor whiteColor];
     cell.backgroundColor = cellBackgroundColor;
 
