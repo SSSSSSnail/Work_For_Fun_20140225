@@ -16,7 +16,7 @@
 			<key>Title</key>
 			<string>版本号</string>
 			<key>DefaultValue</key>
-			<string>V3.1</string>
+			<string>V3.4</string>
 			<key>Key</key>
 			<string>versionNO</string>
 		</dict>
